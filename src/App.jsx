@@ -315,6 +315,13 @@ function CustomCursor() {
 }
 
 // ── CompetitiveLandscape ─────────────────────────────────────────────────
+const CL_SEC  = { maxWidth: 1160, margin: "0 auto", padding: "100px 48px 80px", position: "relative" };
+const CL_LBL  = { fontFamily: "'JetBrains Mono',monospace", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#C9A84C", padding: "7px 16px", border: "1px solid rgba(201,168,76,0.25)", borderRadius: 24, display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(201,168,76,0.06)", marginBottom: "28px" };
+const CL_DOT  = { width: 5, height: 5, borderRadius: "50%", background: "#C9A84C" };
+const CL_MEGA = { fontFamily: "'Bebas Neue',sans-serif", fontSize: "clamp(2.5rem,5.5vw,4.5rem)", letterSpacing: "0.04em", lineHeight: 0.95, textTransform: "uppercase", color: "#E8D5B5", marginBottom: 48 };
+const CL_CARD = { background: "#121F3A", border: "1px solid rgba(201,168,76,0.1)", borderRadius: 12, padding: 36, position: "relative", overflow: "hidden" };
+const CL_CTOP = { position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg,transparent,rgba(201,168,76,0.2),transparent)" };
+
 function CompetitiveLandscape() {
   const [ref, vis] = useReveal({ t: 0.15 });
   const [p, setP]  = useState(0);
@@ -339,15 +346,15 @@ function CompetitiveLandscape() {
   const footnoteF = p < 0.68 ? 0 : Math.min(1, (p - 0.68) / 0.08);
 
   return (
-    <section ref={ref} style={{ ...{ background: "#0A1628", overflow: "hidden" } }}>
+    <section ref={ref} style={{ background: "#0A1628", overflow: "hidden", position: "relative" }}>
       <Stars count={20} color="rgba(201,168,76,0.1)" />
-      <div className="msec" style={{ ...sec, padding: "100px 48px 80px", opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(30px)", transition: "opacity 0.7s ease, transform 0.7s ease" }}>
-        <div><span style={lbl}><span style={dot} /> Competitive Landscape</span></div>
-        <h2 style={{ ...mega("clamp(2.5rem,5.5vw,4.5rem)", 48) }}>Where We Stand — <span style={{ color: "#C41E2A" }}>Privacy ↔ Usability</span></h2>
+      <div className="msec" style={{ ...CL_SEC, opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(30px)", transition: "opacity 0.7s ease, transform 0.7s ease" }}>
+        <div><span style={CL_LBL}><span style={CL_DOT} /> Competitive Landscape</span></div>
+        <h2 style={CL_MEGA}>Where We Stand — <span style={{ color: "#C41E2A" }}>Privacy ↔ Usability</span></h2>
         <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 40, alignItems: "start" }}>
           <CompetitiveChart p={p} />
-          <div style={{ ...card, opacity: insightF, transform: `translateX(${(1 - insightF) * 24}px)` }}>
-            <div style={cardTop} />
+          <div style={{ ...CL_CARD, opacity: insightF, transform: `translateX(${(1 - insightF) * 24}px)` }}>
+            <div style={CL_CTOP} />
             <h4 style={{ fontFamily: "'Bebas Neue'", fontSize: "1.3rem", letterSpacing: "0.06em", marginBottom: 16, color: "#C9A84C" }}>KEY INSIGHT</h4>
             <p style={{ fontSize: "0.9rem", color: "#7A8599", lineHeight: 1.65, marginBottom: 14 }}>
               Existing privacy solutions force a choice between <strong style={{ color: "#E8D5B5" }}>strong privacy</strong> and <strong style={{ color: "#E8D5B5" }}>ease of use</strong>.
