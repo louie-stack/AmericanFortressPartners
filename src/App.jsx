@@ -415,7 +415,7 @@ function ComparisonSection() {
           <div style={{ width:1, height:32, background:"linear-gradient(to bottom, #3D4A63, transparent)" }} />
         </div>
 
-        <div style={{ maxWidth:1000, margin:"0 auto", padding:"0 48px", width:"100%", position:"relative", zIndex:1 }}>
+        <div style={{ maxWidth:1000, margin:"40px auto 0", padding:"0 48px", width:"100%", position:"relative", zIndex:1 }}>
           {/* Title */}
           <h2 style={{ fontFamily:"'Bebas Neue'", letterSpacing:"0.04em", lineHeight:1.05, color:"#E8D5B5", fontSize:"clamp(2rem,4.5vw,3.8rem)", marginBottom:16 }}>
             Head-to-Head <span style={{ color:"#C41E2A" }}>Feature Comparison</span>
