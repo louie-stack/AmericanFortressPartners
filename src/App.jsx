@@ -7,8 +7,8 @@ const useReveal = (opts = {}) => {
     const el = ref.current;
     if (!el) return;
     const ob = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { setVis(true); ob.unobserve(el); }
-    }, { threshold: opts.t || 0.15 });
+      setVis(e.isIntersecting);
+    }, { threshold: [0, opts.t || 0.15] });
     ob.observe(el);
     return () => ob.disconnect();
   }, []);
@@ -347,7 +347,7 @@ function ComparisonSection() {
   const [shakeOffset, setShakeOffset] = useState({ x:0, y:0 });
   const [footerVis,   setFooterVis]   = useState(false);
 
-  // Entry detection via IntersectionObserver — fires once
+  // Entry/exit detection — resets on leave so animation replays on re-entry
   useEffect(() => {
     const el = wrapRef.current;
     if (!el) return;
@@ -355,9 +355,16 @@ function ComparisonSection() {
       if (e.isIntersecting && !hasPlayed.current) {
         hasPlayed.current = true;
         setStarted(true);
-        obs.disconnect();
+      } else if (!e.isIntersecting) {
+        // Reset everything so it replays next time
+        hasPlayed.current = false;
+        setStarted(false);
+        setActiveCount(0);
+        setImpactIndex(-1);
+        setFooterVis(false);
+        setShakeOffset({ x: 0, y: 0 });
       }
-    }, { threshold: 0.15 });
+    }, { threshold: [0, 0.15] });
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
@@ -515,7 +522,7 @@ function CompetitiveLandscapeInner() {
     const obs = new IntersectionObserver(([e]) => {
       if (e.isIntersecting && !startedRef.current) {
         startedRef.current = true;
-        obs.disconnect();
+        cancelAnimationFrame(rafRef.current);
         const DURATION = 2500;
         const start = performance.now();
         const run = (now) => {
@@ -524,8 +531,13 @@ function CompetitiveLandscapeInner() {
           if (t < 1) rafRef.current = requestAnimationFrame(run);
         };
         rafRef.current = requestAnimationFrame(run);
+      } else if (!e.isIntersecting) {
+        // Reset so animation replays on re-entry
+        startedRef.current = false;
+        cancelAnimationFrame(rafRef.current);
+        setCp(0);
       }
-    }, { threshold: 0.15 });
+    }, { threshold: [0, 0.15] });
     obs.observe(el);
     return () => { obs.disconnect(); cancelAnimationFrame(rafRef.current); };
   }, []);
@@ -562,18 +574,25 @@ function FinancialSection() {
   const rafRef = useRef(null);
 
   useEffect(() => {
-    if (!vis || startedRef.current) return;
-    startedRef.current = true;
-    const DURATION = 2200;
-    const start = performance.now();
-    const run = (now) => {
-      const t = Math.min(1, (now - start) / DURATION);
-      const ease = 1 - Math.pow(1 - t, 3);
-      setFn(Math.round(ease * 1000000));
-      setSh(Math.round(ease * 200000));
-      if (t < 1) rafRef.current = requestAnimationFrame(run);
-    };
-    rafRef.current = requestAnimationFrame(run);
+    if (vis && !startedRef.current) {
+      startedRef.current = true;
+      const DURATION = 2200;
+      const start = performance.now();
+      const run = (now) => {
+        const t = Math.min(1, (now - start) / DURATION);
+        const ease = 1 - Math.pow(1 - t, 3);
+        setFn(Math.round(ease * 1000000));
+        setSh(Math.round(ease * 200000));
+        if (t < 1) rafRef.current = requestAnimationFrame(run);
+      };
+      rafRef.current = requestAnimationFrame(run);
+    } else if (!vis) {
+      // Reset on leave so counter replays on re-entry
+      startedRef.current = false;
+      cancelAnimationFrame(rafRef.current);
+      setFn(0);
+      setSh(0);
+    }
     return () => cancelAnimationFrame(rafRef.current);
   }, [vis]);
 
