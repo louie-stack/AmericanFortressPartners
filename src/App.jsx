@@ -142,29 +142,29 @@ const Quad = ({ stage: s }) => {
   ];
   return (
     <svg viewBox="0 0 500 400" style={{ width: "100%", maxWidth: 640 }}>
-      <rect x="260" y="30" width="200" height="170" rx="6" fill="rgba(201,168,76,0.03)" stroke="rgba(201,168,76,0.08)" strokeWidth="1" strokeDasharray="6 4" opacity={1} />
-      <text x="360" y="50" textAnchor="middle" fontSize="9" fill="rgba(201,168,76,0.4)" fontFamily="monospace" fontStyle="italic" opacity={1}>The Sweet Spot</text>
-      <line x1="50" y1="350" x2="460" y2="350" stroke="rgba(201,168,76,0.2)" strokeWidth="1" />
-      <line x1="50" y1="350" x2="50" y2="25" stroke="rgba(201,168,76,0.2)" strokeWidth="1" />
-      <text x="255" y="378" textAnchor="middle" fontSize="10" fill="rgba(201,168,76,0.3)" fontFamily="monospace" opacity={1}>Ease of Use →</text>
-      <text x="22" y="190" fontSize="10" fill="rgba(201,168,76,0.3)" fontFamily="monospace" transform="rotate(-90,22,190)" opacity={1}>Privacy Level →</text>
-      <text x="62" y="368" fontSize="8" fill="rgba(201,168,76,0.2)" fontFamily="monospace" opacity={1}>Complex</text>
-      <text x="395" y="368" fontSize="8" fill="rgba(201,168,76,0.2)" fontFamily="monospace" opacity={1}>Consumer-Ready</text>
+      <rect x="260" y="30" width="200" height="170" rx="6" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.25)" strokeWidth="1" strokeDasharray="6 4" />
+      <text x="360" y="50" textAnchor="middle" fontSize="10" fill="rgba(201,168,76,0.7)" fontFamily="monospace" fontStyle="italic">The Sweet Spot</text>
+      <line x1="50" y1="350" x2="460" y2="350" stroke="rgba(201,168,76,0.5)" strokeWidth="1.5" />
+      <line x1="50" y1="350" x2="50" y2="25" stroke="rgba(201,168,76,0.5)" strokeWidth="1.5" />
+      <text x="255" y="382" textAnchor="middle" fontSize="11" fill="rgba(201,168,76,0.85)" fontFamily="monospace" fontWeight="600">Ease of Use →</text>
+      <text x="18" y="190" fontSize="11" fill="rgba(201,168,76,0.85)" fontFamily="monospace" fontWeight="600" transform="rotate(-90,18,190)">Privacy Level →</text>
+      <text x="62" y="368" fontSize="9" fill="rgba(201,168,76,0.5)" fontFamily="monospace">Complex</text>
+      <text x="380" y="368" fontSize="9" fill="rgba(201,168,76,0.5)" fontFamily="monospace">Consumer-Ready</text>
       {cs.map((c, i) => (
-        <g key={i} opacity={s >= i + 1 ? 1 : 0} style={{ transition: `opacity 0.5s ease ${i * 0.1}s` }}>
-          <circle cx={c.x} cy={c.y} r="6" fill="rgba(138,147,166,0.35)" stroke="rgba(138,147,166,0.25)" strokeWidth="1" />
-          <text x={c.x} y={c.y - 14} textAnchor="middle" fontSize="10" fill="rgba(138,147,166,0.55)" fontFamily="sans-serif">{c.n}</text>
+        <g key={i} opacity={s >= i + 1 ? 1 : 0} style={{ transition: `opacity 0.6s ease` }}>
+          <circle cx={c.x} cy={c.y} r="7" fill="rgba(138,147,166,0.5)" stroke="rgba(200,210,230,0.4)" strokeWidth="1.5" />
+          <text x={c.x} y={c.y - 16} textAnchor="middle" fontSize="11" fill="rgba(200,210,230,0.8)" fontFamily="sans-serif" fontWeight="500">{c.n}</text>
         </g>
       ))}
-      <g opacity={s >= 4 ? 1 : 0} style={{ transition: "opacity 0.9s ease" }}>
-        <circle cx="385" cy="70" r="32" fill="rgba(212,43,43,0.05)" stroke="rgba(212,43,43,0.12)" strokeWidth="1">
-          {s >= 4 && <animate attributeName="r" values="32;40;32" dur="3s" repeatCount="indefinite" />}
+      <g opacity={s >= 6 ? 1 : 0} style={{ transition: "opacity 0.9s ease" }}>
+        <circle cx="385" cy="70" r="32" fill="rgba(212,43,43,0.08)" stroke="rgba(212,43,43,0.2)" strokeWidth="1">
+          {s >= 6 && <animate attributeName="r" values="32;40;32" dur="3s" repeatCount="indefinite" />}
         </circle>
-        <circle cx="385" cy="70" r="16" fill="rgba(212,43,43,0.1)" stroke="rgba(212,43,43,0.25)" strokeWidth="1">
-          {s >= 4 && <animate attributeName="r" values="16;20;16" dur="3s" repeatCount="indefinite" />}
+        <circle cx="385" cy="70" r="16" fill="rgba(212,43,43,0.15)" stroke="rgba(212,43,43,0.4)" strokeWidth="1.5">
+          {s >= 6 && <animate attributeName="r" values="16;20;16" dur="3s" repeatCount="indefinite" />}
         </circle>
         <polygon points="385,56 388,64 396,64 389.5,69 392,77 385,72.5 378,77 380.5,69 374,64 382,64" fill="#D42B2B" />
-        <text x="385" y="100" textAnchor="middle" fontSize="12" fill="#D42B2B" fontFamily="sans-serif" fontWeight="700">American Fortress</text>
+        <text x="385" y="102" textAnchor="middle" fontSize="12" fill="#D42B2B" fontFamily="sans-serif" fontWeight="700">American Fortress</text>
       </g>
     </svg>
   );
@@ -524,7 +524,7 @@ export default function AF() {
                 <div>
                   <Quad stage={qStage} />
                 </div>
-                <div style={{ ...card, opacity: qStage >= 5 ? 1 : 0, transform: `translateX(${qStage >= 5 ? 0 : 60}px)`, transition: "opacity 0.7s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1)" }}>
+                <div style={{ ...card, opacity: qStage >= 6 ? 1 : 0, transform: `translateX(${qStage >= 6 ? 0 : 60}px)`, transition: "opacity 0.7s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1)" }}>
                   <div style={cardTop} />
                   <h4 style={{ fontFamily: "'Bebas Neue'", fontSize: "1.3rem", letterSpacing: "0.06em", marginBottom: 16, color: "#C9A84C" }}>KEY INSIGHT</h4>
                   <p style={{ fontSize: "0.9rem", color: "#7A8599", lineHeight: 1.65, marginBottom: 14 }}>
@@ -535,7 +535,7 @@ export default function AF() {
                   </p>
                 </div>
               </div>
-              <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: "0.9rem", color: "#3D4A63", textAlign: "center", marginTop: 40, opacity: qStage >= 5 ? 1 : 0, transition: "opacity 0.7s ease 0.2s" }}>
+              <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: "0.9rem", color: "#3D4A63", textAlign: "center", marginTop: 40, opacity: qStage >= 6 ? 1 : 0, transition: "opacity 0.7s ease 0.2s" }}>
                 No other solution combines patented privacy, human-readable naming, multi-chain support, and regulatory compliance in a consumer-ready SDK.
               </p>
             </div>
