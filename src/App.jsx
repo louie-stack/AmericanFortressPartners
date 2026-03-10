@@ -405,7 +405,7 @@ function ComparisonSection() {
     <div ref={wrapRef} style={{ position:"relative", height:"250vh" }}>
       <section style={{
         background:"#0F1D35", position:"sticky", top:0, height:"100vh",
-        display:"flex", alignItems:"flex-start", justifyContent:"center",
+        display:"flex", alignItems:"center", justifyContent:"center",
         overflow:"hidden",
         transform:`translate(${shakeOffset.x}px,${shakeOffset.y}px)`,
       }}>
@@ -415,7 +415,7 @@ function ComparisonSection() {
           <div style={{ width:1, height:32, background:"linear-gradient(to bottom, #3D4A63, transparent)" }} />
         </div>
 
-        <div style={{ maxWidth:1000, margin:"0 auto", padding:"60px 48px 60px", width:"100%", position:"relative", zIndex:1, maxHeight:"100vh", overflowY:"auto", boxSizing:"border-box" }}>
+        <div style={{ maxWidth:1000, margin:"0 auto", padding:"0 48px", width:"100%", position:"relative", zIndex:1 }}>
           {/* Title */}
           <h2 style={{ fontFamily:"'Bebas Neue'", letterSpacing:"0.04em", lineHeight:1.05, color:"#E8D5B5", fontSize:"clamp(2rem,4.5vw,3.8rem)", marginBottom:16 }}>
             Head-to-Head <span style={{ color:"#C41E2A" }}>Feature Comparison</span>
