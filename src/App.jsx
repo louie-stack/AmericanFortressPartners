@@ -467,27 +467,36 @@ export default function AF() {
         <section ref={s2R} style={{ ...full, background: "#0F1D35" }}>
           <div className="msec" style={sec}>
             <div style={rv(s2V, 0)}><span style={lbl}><span style={dot} /> The Solution — Part 2</span></div>
-            <h2 style={{ ...rv(s2V, 0.12), ...mega("clamp(2.5rem,5.5vw,4.5rem)") }}>Confidentiality <span style={{ color: "#C41E2A" }}>Machine</span></h2>
-            <p style={{ ...rv(s2V, 0.22), color: "#7A8599", fontSize: "1.05rem", marginBottom: 32 }}>On-chain transaction privacy layer — compliance-ready, not a mixer</p>
 
-            {["Hides amounts, sender, and receiver details on-chain","Compliance-ready: selective disclosure for regulators (CM Proof of Funds)","Works across DeFi protocols and standard transfers"].map((f, i) => (
-              <div key={i} style={{ ...feat(s2V, 0.3 + i * 0.1), marginBottom: 16 }}>
-                <span style={fchk}>★</span><span style={mut}>{f}</span>
+            {/* Two-column layout: text left, box slides in from right offset lower */}
+            <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "start" }}>
+              {/* Left: content */}
+              <div>
+                <h2 style={{ ...rv(s2V, 0.12), ...mega("clamp(2.5rem,5.5vw,4.5rem)"), marginBottom: 16 }}>Confidentiality <span style={{ color: "#C41E2A" }}>Machine</span></h2>
+                <p style={{ ...rv(s2V, 0.22), color: "#7A8599", fontSize: "1.05rem", marginBottom: 32 }}>On-chain transaction privacy layer — compliance-ready, not a mixer</p>
+                {["Hides amounts, sender, and receiver details on-chain","Compliance-ready: selective disclosure for regulators (CM Proof of Funds)","Works across DeFi protocols and standard transfers"].map((f, i) => (
+                  <div key={i} style={{ ...feat(s2V, 0.3 + i * 0.1), marginBottom: 16 }}>
+                    <span style={fchk}>★</span><span style={mut}>{f}</span>
+                  </div>
+                ))}
               </div>
-            ))}
 
-            <div style={{ ...rs(s2V, 0.65), ...card, marginTop: 48, background: "linear-gradient(135deg,#121F3A,rgba(196,30,42,0.03))", borderImage: "linear-gradient(135deg,rgba(201,168,76,0.3),transparent 50%,rgba(196,30,42,0.2)) 1" }}>
-              <div style={cardTop} />
-              <h3 style={{ fontFamily: "'Bebas Neue'", fontSize: "1.6rem", letterSpacing: "0.06em", marginBottom: 24, color: "#E8D5B5" }}>
-                Two Revenue Engines, <span style={{ color: "#C9A84C" }}>One SDK</span>
-              </h3>
-              {[["FortressNames","name sales & upgrades"],["Confidentiality Machine","transaction fees"],["Single SDK integration","for both"]].map(([a, b], i) => (
-                <div key={i} style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
-                  <span style={{ width: 8, height: 8, borderRadius: "50%", background: i < 2 ? "#C41E2A" : "#3D4A63", flexShrink: 0 }} />
-                  <span style={{ fontSize: "0.9rem", color: "#7A8599" }}><strong style={{ color: "#E8D5B5" }}>{a}</strong> — {b}</span>
+              {/* Right: box offset lower, slides in from right */}
+              <div style={{ paddingTop: 80 }}>
+                <div style={{ ...rr(s2V, 0.5), ...card, background: "linear-gradient(135deg,#121F3A,rgba(196,30,42,0.03))", borderImage: "linear-gradient(135deg,rgba(201,168,76,0.3),transparent 50%,rgba(196,30,42,0.2)) 1" }}>
+                  <div style={cardTop} />
+                  <h3 style={{ fontFamily: "'Bebas Neue'", fontSize: "1.6rem", letterSpacing: "0.06em", marginBottom: 24, color: "#E8D5B5" }}>
+                    Two Revenue Engines, <span style={{ color: "#C9A84C" }}>One SDK</span>
+                  </h3>
+                  {[["FortressNames","name sales & upgrades"],["Confidentiality Machine","transaction fees"],["Single SDK integration","for both"]].map(([a, b], i) => (
+                    <div key={i} style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
+                      <span style={{ width: 8, height: 8, borderRadius: "50%", background: i < 2 ? "#C41E2A" : "#3D4A63", flexShrink: 0 }} />
+                      <span style={{ fontSize: "0.9rem", color: "#7A8599" }}><strong style={{ color: "#E8D5B5" }}>{a}</strong> — {b}</span>
+                    </div>
+                  ))}
+                  <button style={{ ...btnG, marginTop: 20, padding: "12px 28px", fontSize: "0.8rem" }}>View SDK Documentation ↗</button>
                 </div>
-              ))}
-              <button style={{ ...btnG, marginTop: 20, padding: "12px 28px", fontSize: "0.8rem" }}>View SDK Documentation ↗</button>
+              </div>
             </div>
           </div>
         </section>
