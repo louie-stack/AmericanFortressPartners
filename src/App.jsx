@@ -780,6 +780,7 @@ export default function AF() {
   const [scrollY, setScrollY] = useState(0);
   const [glitch, setGlitch] = useState(false);
   const [hovCard, setHovCard] = useState(null);
+  const [hovRev,  setHovRev]  = useState(null);
 
   useEffect(() => {
     const fn = () => setScrollY(window.scrollY);
@@ -1155,19 +1156,23 @@ export default function AF() {
             <p style={{ ...rv(rV, 0.22), color: "#7A8599", fontSize: "1.05rem", marginBottom: 40 }}>Earn 20% commission on every name upgrade + 20% affiliate commission</p>
 
             <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
-              <div style={{ ...card, ...rl(rV, 0.4) }}>
+              <div
+                onMouseEnter={() => setHovRev(0)} onMouseLeave={() => setHovRev(null)}
+                style={{ ...card, ...rl(rV, 0.4), background: hovRev === 0 ? "rgba(22,34,62,0.7)" : card.background, border: `1px solid ${hovRev === 0 ? "rgba(100,110,150,0.2)" : "rgba(100,110,150,0.1)"}`, transform: `${rl(rV, 0.4).transform || ""} translateY(${hovRev === 0 ? "-2px" : "0"})`, boxShadow: hovRev === 0 ? "0 4px 24px rgba(0,0,0,0.15),0 0 30px rgba(100,110,150,0.04)" : "none", transition: "background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease" }}>
                 <div style={cardTop} />
                 <h3 style={{ fontFamily: "'Bebas Neue'", fontSize: "1.3rem", letterSpacing: "0.06em", marginBottom: 4 }}>FOR NAME SERVICES</h3>
                 <p style={{ fontFamily: "'JetBrains Mono'", fontSize: "0.7rem", color: "#3D4A63", marginBottom: 20, letterSpacing: "0.06em" }}>ENS, Space ID, SNS, etc.</p>
                 {["Privacy upgrade for all existing sold domain names","20% commission on every privacy name upgrade","Additional 20% for affiliate/community promoters","Pricing adjustable per partner"].map((t, i) => (
-                  <p key={i} style={bpt("#C9A84C")}><span style={bpdot("#C9A84C")} />{t}</p>
+                  <p key={i} style={{ ...bpt("#C9A84C"), color: hovRev === 0 ? "rgba(180,185,210,0.7)" : "#7A8599", transition: "color 0.3s ease" }}><span style={bpdot("#C9A84C")} />{t}</p>
                 ))}
               </div>
-              <div style={{ ...card, ...rr(rV, 0.55) }}>
+              <div
+                onMouseEnter={() => setHovRev(1)} onMouseLeave={() => setHovRev(null)}
+                style={{ ...card, ...rr(rV, 0.55), background: hovRev === 1 ? "rgba(22,34,62,0.7)" : card.background, border: `1px solid ${hovRev === 1 ? "rgba(100,110,150,0.2)" : "rgba(100,110,150,0.1)"}`, transform: `${rr(rV, 0.55).transform || ""} translateY(${hovRev === 1 ? "-2px" : "0"})`, boxShadow: hovRev === 1 ? "0 4px 24px rgba(0,0,0,0.15),0 0 30px rgba(100,110,150,0.04)" : "none", transition: "background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease" }}>
                 <div style={cardTop} />
                 <h3 style={{ fontFamily: "'Bebas Neue'", fontSize: "1.3rem", letterSpacing: "0.06em", marginBottom: 20 }}>FOR WALLETS</h3>
                 {["Same 20% + 20% affiliate revenue share","Native Send-to-Name™ enhances UX & retention","Free random names drive onboarding","Paid custom names drive revenue"].map((t, i) => (
-                  <p key={i} style={bpt("#C9A84C")}><span style={bpdot("#C9A84C")} />{t}</p>
+                  <p key={i} style={{ ...bpt("#C9A84C"), color: hovRev === 1 ? "rgba(180,185,210,0.7)" : "#7A8599", transition: "color 0.3s ease" }}><span style={bpdot("#C9A84C")} />{t}</p>
                 ))}
               </div>
             </div>
