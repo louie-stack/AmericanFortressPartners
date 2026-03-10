@@ -314,6 +314,108 @@ function CustomCursor() {
   );
 }
 
+// ── NameResolver ──────────────────────────────────────────────────────────
+const NR_HEX   = "0123456789abcdef";
+const NR_TGT   = "@JAKUB";
+const NR_CYCLE = 9000;
+const NR_S0    = 3000;   // hex → scramble
+const NR_S1    = 5000;   // scramble → resolved
+const NR_S2    = 7500;   // resolved → fading
+const NR_TICKS = 30;
+const NR_MS    = 65;
+
+function NameResolver() {
+  const [time, setTime]        = useState(0);
+  const [text, setText]        = useState("0xA7c4...3F9b");
+  const startRef               = useRef(null);
+  const rafRef                 = useRef(null);
+  const lastPhaseRef           = useRef("hex");
+  const tickRef                = useRef(0);
+  const intervalRef            = useRef(null);
+
+  useEffect(() => {
+    const run = (ts) => {
+      if (!startRef.current) startRef.current = ts;
+      const t = (ts - startRef.current) % NR_CYCLE;
+      setTime(t);
+      const p = t < NR_S0 ? "hex" : t < NR_S1 ? "scramble" : t < NR_S2 ? "resolved" : "fading";
+      if (p !== lastPhaseRef.current) {
+        lastPhaseRef.current = p;
+        if (intervalRef.current) { clearInterval(intervalRef.current); intervalRef.current = null; }
+        if (p === "scramble") {
+          tickRef.current = 0;
+          intervalRef.current = setInterval(() => {
+            tickRef.current = Math.min(tickRef.current + 1, NR_TICKS);
+            const done = Math.floor((tickRef.current / NR_TICKS) * NR_TGT.length);
+            const rand = Array.from({ length: NR_TGT.length - done }, () => NR_HEX[Math.floor(Math.random() * NR_HEX.length)]).join("");
+            setText(NR_TGT.slice(0, done) + rand);
+          }, NR_MS);
+        } else if (p === "resolved") {
+          setText(NR_TGT);
+        } else if (p === "hex") {
+          setText("0xA7c4...3F9b");
+        }
+      }
+      rafRef.current = requestAnimationFrame(run);
+    };
+    rafRef.current = requestAnimationFrame(run);
+    return () => { cancelAnimationFrame(rafRef.current); if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, []);
+
+  const phase      = time < NR_S0 ? "hex" : time < NR_S1 ? "scramble" : time < NR_S2 ? "resolved" : "fading";
+  const isHex      = phase === "hex";
+  const isScramble = phase === "scramble";
+  const isResolved = phase === "resolved";
+  const opacity    = phase === "fading" ? 0 : 1;
+  const textColor  = isResolved ? "#f0ece2" : isScramble ? "rgba(200,170,100,0.7)" : "rgba(160,165,185,0.35)";
+
+  return (
+    <div style={{ opacity, transition: "opacity 0.5s ease" }}>
+      <div style={{ height: 20, marginBottom: 10 }}>
+        {isScramble && <span style={{ fontFamily:"'JetBrains Mono'", fontSize: 9, textTransform:"uppercase", letterSpacing:"3px", color:"rgba(200,170,100,0.85)" }}>● Resolving name...</span>}
+        {isResolved && <span style={{ fontFamily:"'JetBrains Mono'", fontSize: 9, textTransform:"uppercase", letterSpacing:"3px", color:"#34D399" }}>✓ Identity verified — private transfer ready</span>}
+      </div>
+      <div style={{ position:"relative", display:"inline-flex", alignItems:"center", gap: 20 }}>
+        {isResolved && <div style={{ position:"absolute", inset:"-40px -80px", background:"radial-gradient(ellipse,rgba(200,170,100,0.08) 0%,transparent 70%)", pointerEvents:"none" }} />}
+        <span style={{ fontFamily:"'JetBrains Mono'", fontSize:"clamp(12px,1.2vw,16px)", color:"#3D4A63", padding:"10px 18px", background:"rgba(196,30,42,0.04)", border:"1px solid rgba(196,30,42,0.12)", borderRadius:6, textDecoration: isHex ? "none" : "line-through", opacity: isHex ? 1 : 0.4 }}>0xA7c4...3F9b</span>
+        <span style={{ fontSize:"1.5rem", color:"#C9A84C", opacity: isHex ? 0.3 : 1 }}>→</span>
+        <div style={{ position:"relative" }}>
+          <span style={{ fontFamily:"'JetBrains Mono'", fontSize:"clamp(24px,3.5vw,40px)", fontWeight:500, color:textColor, letterSpacing: isResolved ? "3px" : "1px" }}>{text}</span>
+          <div style={{ position:"absolute", bottom:4, left:0, height:2, width: isResolved ? "100%" : "0%", background:"linear-gradient(90deg,rgba(200,170,100,0.6),rgba(200,170,100,0.2))", transition:"width 0.5s ease" }} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── FeatureChips ──────────────────────────────────────────────────────────
+const S1_CHIPS = [
+  { label:"Human-Readable",       desc:"Names like @jakub replace complex wallet addresses" },
+  { label:"Anti-Phishing",        desc:"Eliminates address poisoning — send to names, not addresses" },
+  { label:"Recovery",             desc:"The name recovers entire transaction history linked to it" },
+  { label:"Universal",            desc:"Works with both custodial and non-custodial wallets" },
+  { label:"Stealth Addresses",    desc:"Patented technology ensures every transaction is private" },
+  { label:"Multi-Chain",          desc:"Ethereum, Base, 0G, Litecoin, DASH, and more from Day 1" },
+  { label:"Poisoning Protection", desc:"Address poisoning protection built in" },
+  { label:"Freemium Model",       desc:"Free random names → paid custom names for conversion" },
+];
+function FeatureChips() {
+  const [hov, setHov] = useState(null);
+  return (
+    <div className="s1chips" style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:10, maxWidth:900 }}>
+      {S1_CHIPS.map((c, i) => {
+        const h = hov === i;
+        return (
+          <div key={i} onMouseEnter={() => setHov(i)} onMouseLeave={() => setHov(null)} style={{ padding:"14px 16px", borderRadius:8, background: h ? "rgba(200,170,100,0.06)" : "rgba(100,110,150,0.04)", border:`1px solid ${h ? "rgba(200,170,100,0.15)" : "rgba(100,110,150,0.08)"}`, boxShadow: h ? "0 0 20px rgba(200,170,100,0.05)" : "none", transition:"background 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease", cursor:"default" }}>
+            <div style={{ fontFamily:"'JetBrains Mono'", fontSize:9, textTransform:"uppercase", letterSpacing:"1.5px", marginBottom:8, color: h ? "rgba(200,170,100,0.7)" : "rgba(200,170,100,0.4)", transition:"color 0.25s ease" }}>{c.label}</div>
+            <div style={{ fontSize:13, lineHeight:1.5, color: h ? "rgba(200,210,230,0.7)" : "rgba(160,165,185,0.5)", transition:"color 0.25s ease" }}>{c.desc}</div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function WalletScanner() {
   const ADDR = "0xA7c4f2B8e91D3F6a0C5d12E8b47f9302C61aF9b";
   const CYCLE = 7500;
@@ -506,8 +608,10 @@ export default function AF() {
         .ctab .ac{color:#C9A84C;border-bottom:2px solid #C9A84C}
         .ctab td:first-child{text-align:left;font-weight:500}
         .ctab .afcl{background:rgba(201,168,76,0.03)}
+        @media(max-width:1024px){.s1chips{grid-template-columns:repeat(2,1fr)!important}}
         @media(max-width:768px){
           .msec{padding:100px 20px!important}
+          .s1chips{grid-template-columns:1fr!important}
           .mgrid2{grid-template-columns:1fr!important}
           .mgrid3{grid-template-columns:1fr!important}
           .mhero{font-size:3rem!important;white-space:normal!important}
@@ -685,25 +789,15 @@ export default function AF() {
         <Stripe flip />
 
         {/* SOLUTION 1 */}
-        <section ref={s1R} style={full}>
-          <div className="msec" style={sec}>
+        <section ref={s1R} style={{ ...full, position:"relative", overflow:"hidden", minHeight:"100vh", display:"flex", alignItems:"center" }}>
+          <div style={{ position:"absolute", top:0, left:"8%", right:"8%", height:1, background:"linear-gradient(90deg,transparent,rgba(100,110,150,0.1),transparent)" }} />
+          <div style={{ position:"absolute", top:0, right:0, bottom:0, width:"55%", zIndex:0, backgroundImage:`url(${LIBERTY_SRC})`, backgroundSize:"cover", backgroundPosition:"center", opacity:0.09, filter:"saturate(0.15)", maskImage:"linear-gradient(to right,transparent,black 30%,black 70%,transparent),linear-gradient(to bottom,transparent 0%,black 15%,black 75%,transparent 100%)", maskComposite:"intersect", WebkitMaskImage:"linear-gradient(to right,transparent,black 30%,black 70%,transparent),linear-gradient(to bottom,transparent 0%,black 15%,black 75%,transparent 100%)", WebkitMaskComposite:"destination-in" }} />
+          <div className="msec" style={{ maxWidth:1160, margin:"0 auto", padding:"100px 6vw 80px", display:"flex", flexDirection:"column", justifyContent:"center", position:"relative", zIndex:1, width:"100%" }}>
             <div style={rv(s1V, 0)}><span style={lbl}><span style={dot} /> The Solution — Part 1</span></div>
-            <h2 style={{ ...rv(s1V, 0.12), ...mega("clamp(2.5rem,5.5vw,4.5rem)") }}>FortressNames <span style={{ color: "#C41E2A" }}>Send-to-Name™</span></h2>
-            <p style={{ ...rv(s1V, 0.22), color: "#7A8599", fontSize: "1.05rem", marginBottom: 12 }}>Human-readable names replace complex wallet addresses with patented privacy</p>
-
-            <div style={{ ...rs(s1V, 0.35), display: "flex", alignItems: "center", justifyContent: "center", gap: 24, margin: "40px 0", flexWrap: "wrap" }}>
-              <span style={{ fontFamily: "'JetBrains Mono'", fontSize: "0.9rem", color: "#3D4A63", padding: "14px 24px", background: "rgba(196,30,42,0.04)", border: "1px solid rgba(196,30,42,0.12)", borderRadius: 8, textDecoration: "line-through" }}>0xA7c4...3F9b</span>
-              <span style={{ fontSize: "2rem", color: "#C9A84C" }}>→</span>
-              <span style={{ fontFamily: "'Bebas Neue'", fontSize: "1.8rem", color: "#34D399", padding: "10px 28px", background: "rgba(52,211,153,0.06)", border: "1px solid rgba(52,211,153,0.18)", borderRadius: 8, letterSpacing: "0.04em" }}>@JAKUB</span>
-            </div>
-
-            <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "18px 48px", marginTop: 40 }}>
-              {["Human-readable names (e.g., @jakub) replace complex wallet addresses","Patented stealth address technology ensures every transaction is private","Eliminates address poisoning & phishing — send to names, not addresses","Address poisoning protection built in","Wallet recovery: the name recovers entire transaction history linked to it","Multi-chain Day 1: Ethereum, Base, 0G, Litecoin, DASH, and more","Works with both custodial and non-custodial wallets — universal compatibility","Freemium model: free random names → paid custom names for conversion"].map((f, i) => (
-                <div key={i} style={feat(s1V, 0.4 + i * 0.08)}>
-                  <span style={fchk}>★</span><span style={mut}>{f}</span>
-                </div>
-              ))}
-            </div>
+            <h2 style={{ ...rv(s1V, 0.12), ...mega("clamp(2.5rem,5.5vw,4.5rem)"), maxWidth:600 }}>FortressNames <span style={{ color:"#C41E2A" }}>Send-to-Name™</span></h2>
+            <p style={{ ...rv(s1V, 0.22), color:"#7A8599", fontSize:"1.05rem", marginBottom:40, maxWidth:460 }}>Human-readable names replace complex wallet addresses with patented privacy</p>
+            <div style={{ marginBottom:44 }}><NameResolver /></div>
+            <FeatureChips />
           </div>
         </section>
 
