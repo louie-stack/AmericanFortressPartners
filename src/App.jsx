@@ -1141,12 +1141,12 @@ export default function AF() {
           </section>
         </div>
 
-        <Stripe />
+        <div style={{ padding: "48px 0" }}><Stripe /></div>
 
         {/* COMPARISON TABLE */}
         <ComparisonSection />
 
-        <Stripe flip />
+        <div style={{ padding: "48px 0" }}><Stripe flip /></div>
 
         {/* REVENUE SHARE */}
         <section ref={rR2} style={full}>
