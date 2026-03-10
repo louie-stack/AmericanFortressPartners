@@ -686,12 +686,9 @@ export default function AF() {
           <div style={{ position: "relative", width: "100%", overflow: "hidden", paddingBottom: 64 }}>
             <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to right, #0F1D35, transparent)", zIndex: 2, pointerEvents: "none" }} />
             <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to left, #0F1D35, transparent)", zIndex: 2, pointerEvents: "none" }} />
-            <div className="marquee-track">
-              {[...["MatterFi","MetaMask","Brinks","Litecoin","Base","DASH","0G","Space ID","QuickSwap"], ...["MatterFi","MetaMask","Brinks","Litecoin","Base","DASH","0G","Space ID","QuickSwap"]].map((l, i) => (
-                <div key={i} style={{ flexShrink: 0, margin: "0 12px", padding: "20px 36px", borderRadius: 10, border: "1px solid rgba(201,168,76,0.12)", background: "rgba(232,213,181,0.03)", fontFamily: "'Bebas Neue'", fontSize: "1rem", letterSpacing: "0.1em", color: "#7A8599", whiteSpace: "nowrap", transition: "border-color 0.2s, color 0.2s" }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.4)"; e.currentTarget.style.color = "#C9A84C"; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.12)"; e.currentTarget.style.color = "#7A8599"; }}
-                >{l}</div>
+            <div className="marquee-track" style={{ alignItems: "center" }}>
+              {[0, 1, 2, 3].map(rep => (
+                <img key={rep} src="/logos.png" alt="partners" style={{ height: 36, width: "auto", flexShrink: 0, margin: "0 48px", opacity: 0.75, filter: "brightness(0) invert(1)" }} />
               ))}
             </div>
           </div>
