@@ -314,6 +314,59 @@ function CustomCursor() {
   );
 }
 
+// ── FinancialSection ─────────────────────────────────────────────────────
+function FinancialSection() {
+  const [ref, vis] = useReveal();
+  const [fn, setFn] = useState(0);   // FortressNames $1M
+  const [sh, setSh] = useState(0);   // Your share $200K
+  const startedRef = useRef(false);
+  const rafRef = useRef(null);
+
+  useEffect(() => {
+    if (!vis || startedRef.current) return;
+    startedRef.current = true;
+    const DURATION = 2200;
+    const start = performance.now();
+    const run = (now) => {
+      const t = Math.min(1, (now - start) / DURATION);
+      const ease = 1 - Math.pow(1 - t, 3);
+      setFn(Math.round(ease * 1000000));
+      setSh(Math.round(ease * 200000));
+      if (t < 1) rafRef.current = requestAnimationFrame(run);
+    };
+    rafRef.current = requestAnimationFrame(run);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [vis]);
+
+  const lbl2 = { fontFamily:"'JetBrains Mono'", fontSize:"0.65rem", letterSpacing:"0.2em", color:"#C9A84C", marginBottom:16 };
+  const sub  = { fontSize:"0.88rem", color:"#3D4A63", marginTop:8 };
+
+  return (
+    <section ref={ref} style={{ ...{ background:"linear-gradient(180deg,#0F1D35,#0D172E,#0A1628)", position:"relative", overflow:"hidden" } }}>
+      <Stars count={30} color="rgba(201,168,76,0.16)" />
+      <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width:500, height:500, borderRadius:"50%", background:"radial-gradient(circle,rgba(196,30,42,0.05),transparent 70%)", pointerEvents:"none" }} />
+      <div className="msec" style={{ maxWidth:1160, margin:"0 auto", padding:"120px 48px", textAlign:"center", position:"relative", zIndex:1, opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(40px)", transition:"opacity 0.8s ease, transform 0.8s ease" }}>
+        <span style={{ fontFamily:"'JetBrains Mono'", fontSize:"0.65rem", letterSpacing:"0.15em", color:"#C9A84C", textTransform:"uppercase", display:"inline-flex", alignItems:"center", gap:8, marginBottom:24, padding:"6px 14px", border:"1px solid rgba(201,168,76,0.15)", borderRadius:20 }}><span style={{ width:6, height:6, borderRadius:"50%", background:"#C9A84C", display:"inline-block" }} /> Revenue Projections</span>
+        <h2 style={{ ...{ fontFamily:"'Bebas Neue'", letterSpacing:"0.04em", lineHeight:1.05, color:"#E8D5B5", fontSize:"clamp(2.5rem,5.5vw,4.5rem)", marginBottom:48 } }}>The <span style={{ color:"#C41E2A" }}>Financial Opportunity</span></h2>
+        <div style={{ maxWidth:700, margin:"0 auto", padding:"64px 48px", background:"linear-gradient(135deg,rgba(15,29,53,0.9),rgba(196,30,42,0.04))", border:"1px solid rgba(201,168,76,0.1)", borderRadius:16 }}>
+          <p style={lbl2}>FORTRESSNAMES REVENUE</p>
+          <p style={{ fontFamily:"'Bebas Neue'", fontSize:"clamp(3.5rem,9vw,6.5rem)", lineHeight:1, color:"#E8D5B5", letterSpacing:"0.02em" }}>
+            ${fn.toLocaleString()}<span style={{ fontSize:"0.3em", color:"#7A8599", fontFamily:"Outfit", fontWeight:400 }}>/mo</span>
+          </p>
+          <p style={sub}>100,000 names sold at $10/month</p>
+          <div style={{ width:60, height:1, background:"rgba(201,168,76,0.1)", margin:"40px auto" }} />
+          <p style={lbl2}>YOUR 20% SHARE — RECURRING</p>
+          <p style={{ fontFamily:"'Bebas Neue'", fontSize:"clamp(2.8rem,7vw,5rem)", lineHeight:1, color:"#C41E2A", textShadow:"0 0 60px rgba(196,30,42,0.25)", letterSpacing:"0.02em" }}>
+            ${sh.toLocaleString()}<span style={{ fontSize:"0.3em", color:"rgba(196,30,42,0.4)", fontFamily:"Outfit", fontWeight:400 }}>/mo</span>
+          </p>
+          <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:"0.88rem", color:"#C41E2A", marginTop:16, fontStyle:"italic", opacity:0.7 }}>Plus affiliate commissions driving additional volume</p>
+        </div>
+        <div style={{ marginTop:40 }}><button style={{ fontFamily:"'JetBrains Mono'", fontSize:"0.72rem", letterSpacing:"0.1em", textTransform:"uppercase", padding:"14px 32px", background:"#C41E2A", color:"#fff", border:"none", borderRadius:4, cursor:"pointer" }}>Discuss Revenue Opportunity ↗</button></div>
+      </div>
+    </section>
+  );
+}
+
 // ── NameResolver ──────────────────────────────────────────────────────────
 const NR_HEX   = "0123456789abcdef";
 const NR_TGT   = "@JAKUB";
@@ -948,46 +1001,8 @@ export default function AF() {
 
         <Stripe />
 
-        {/* FINANCIAL — scroll-pinned */}
-        <div ref={fWrap} style={{ position: "relative", height: "350vh" }}>
-          <section style={{ ...full, position: "sticky", top: 0, height: "100vh", display: "flex", alignItems: "center", background: "linear-gradient(180deg,#0F1D35,#0D172E,#0A1628)", overflow: "hidden" }}>
-            {/* progress bar */}
-            <div style={{ position: "absolute", right: 24, top: "50%", transform: "translateY(-50%)", width: 2, height: 120, background: "rgba(201,168,76,0.06)", borderRadius: 2 }}>
-              <div style={{ position: "absolute", top: 0, width: "100%", height: `${fProgress * 100}%`, background: "linear-gradient(to bottom, #C9A84C, #C41E2A)", borderRadius: 2, transition: "height 0.1s linear" }} />
-            </div>
-            {/* scroll hint */}
-            <div style={{ position: "absolute", bottom: 32, left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: 6, opacity: fStage <= 2 ? 0.5 : 0, transition: "opacity 0.6s ease", pointerEvents: "none", zIndex: 5 }}>
-              <span style={{ fontFamily: "'JetBrains Mono'", fontSize: "0.6rem", color: "#3D4A63", letterSpacing: "0.15em" }}>Scroll to explore</span>
-              <span style={{ fontSize: "1rem", color: "#3D4A63", animation: "bounce 1.5s ease infinite" }}>↓</span>
-            </div>
-            <Stars count={30} color="rgba(201,168,76,0.16)" />
-            <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 500, height: 500, borderRadius: "50%", background: `radial-gradient(circle,rgba(196,30,42,${0.02 + fProgress * 0.06}),transparent 70%)`, pointerEvents: "none", transition: "background 0.3s ease" }} />
-            <div className="msec" style={{ ...sec, textAlign: "center", width: "100%", opacity: fStage >= 1 ? 1 : 0, transform: `translateY(${fStage >= 1 ? 0 : 40}px)`, transition: "opacity 0.8s ease, transform 0.8s ease" }}>
-              <div style={{ opacity: fStage >= 1 ? 1 : 0, transition: "opacity 0.6s ease" }}><span style={lbl}><span style={dot} /> Revenue Projections</span></div>
-              <h2 style={{ ...mega("clamp(2.5rem,5.5vw,4.5rem)", 48), opacity: fStage >= 1 ? 1 : 0, transition: "opacity 0.6s ease 0.15s" }}>The <span style={{ color: "#C41E2A" }}>Financial Opportunity</span></h2>
-
-              <div style={{ maxWidth: 700, margin: "0 auto", padding: "64px 48px", background: "linear-gradient(135deg,rgba(15,29,53,0.9),rgba(196,30,42,0.04))", border: "1px solid rgba(201,168,76,0.1)", borderRadius: 16, opacity: fStage >= 2 ? 1 : 0, transform: `scale(${fStage >= 2 ? 1 : 0.82})`, transition: "all 0.8s cubic-bezier(0.16,1,0.3,1)" }}>
-                {/* $1M counter — stages 3–7 */}
-                <p style={{ fontFamily: "'JetBrains Mono'", fontSize: "0.65rem", letterSpacing: "0.2em", color: "#C9A84C", marginBottom: 16, opacity: fStage >= 3 ? 1 : 0, transition: "opacity 0.5s ease" }}>FORTRESSNAMES REVENUE</p>
-                <p style={{ fontFamily: "'Bebas Neue'", fontSize: "clamp(3.5rem,9vw,6.5rem)", lineHeight: 1, color: "#E8D5B5", letterSpacing: "0.02em", opacity: fStage >= 3 ? 1 : 0, transition: "opacity 0.5s ease" }}>
-                  ${(fStage < 3 ? 0 : fStage >= 7 ? 1000000 : Math.round(1000000 * Math.min(1, (fProgress - 3/12) / (4/12)))).toLocaleString()}<span style={{ fontSize: "0.3em", color: "#7A8599", fontFamily: "Outfit", fontWeight: 400 }}>/mo</span>
-                </p>
-                <p style={{ fontSize: "0.88rem", color: "#3D4A63", marginTop: 8, opacity: fStage >= 7 ? 1 : 0, transition: "opacity 0.5s ease" }}>100,000 names sold at $10/month</p>
-
-                {/* divider */}
-                <div style={{ width: 60, height: 1, background: "rgba(201,168,76,0.1)", margin: "40px auto", opacity: fStage >= 7 ? 1 : 0, transition: "opacity 0.5s ease" }} />
-
-                {/* $200K counter — stages 8–11 */}
-                <p style={{ fontFamily: "'JetBrains Mono'", fontSize: "0.65rem", letterSpacing: "0.2em", color: "#C9A84C", marginBottom: 16, opacity: fStage >= 8 ? 1 : 0, transition: "opacity 0.5s ease" }}>YOUR 20% SHARE — RECURRING</p>
-                <p style={{ fontFamily: "'Bebas Neue'", fontSize: "clamp(2.8rem,7vw,5rem)", lineHeight: 1, color: "#C41E2A", textShadow: `0 0 ${40 + fProgress * 40}px rgba(196,30,42,0.25)`, letterSpacing: "0.02em", opacity: fStage >= 8 ? 1 : 0, transition: "opacity 0.5s ease" }}>
-                  ${(fStage < 8 ? 0 : fStage >= 11 ? 200000 : Math.round(200000 * Math.min(1, (fProgress - 8/12) / (3/12)))).toLocaleString()}<span style={{ fontSize: "0.3em", color: "rgba(196,30,42,0.4)", fontFamily: "Outfit", fontWeight: 400 }}>/mo</span>
-                </p>
-                <p style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "0.88rem", color: "#C41E2A", marginTop: 16, fontStyle: "italic", opacity: fStage >= 11 ? 0.7 : 0, transition: "opacity 0.7s ease" }}>Plus affiliate commissions driving additional volume</p>
-              </div>
-              <div style={{ marginTop: 40, opacity: fStage >= 11 ? 1 : 0, transform: `translateY(${fStage >= 11 ? 0 : 30}px)`, transition: "opacity 0.7s ease, transform 0.7s ease" }}><button style={btnR}>Discuss Revenue Opportunity ↗</button></div>
-            </div>
-          </section>
-        </div>
+        {/* FINANCIAL */}
+        <FinancialSection />
 
         <Stripe flip />
 
