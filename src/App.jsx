@@ -314,6 +314,57 @@ function CustomCursor() {
   );
 }
 
+// ── CompetitiveLandscape ─────────────────────────────────────────────────
+function CompetitiveLandscape() {
+  const [ref, vis] = useReveal({ t: 0.15 });
+  const [p, setP]  = useState(0);
+  const startedRef = useRef(false);
+  const rafRef     = useRef(null);
+
+  useEffect(() => {
+    if (!vis || startedRef.current) return;
+    startedRef.current = true;
+    const DURATION = 2500;
+    const start = performance.now();
+    const run = (now) => {
+      const t = Math.min(1, (now - start) / DURATION);
+      setP(t);
+      if (t < 1) rafRef.current = requestAnimationFrame(run);
+    };
+    rafRef.current = requestAnimationFrame(run);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [vis]);
+
+  const insightF  = p < 0.58 ? 0 : Math.min(1, (p - 0.58) / 0.1);
+  const footnoteF = p < 0.68 ? 0 : Math.min(1, (p - 0.68) / 0.08);
+
+  return (
+    <section ref={ref} style={{ ...{ background: "#0A1628", overflow: "hidden" } }}>
+      <Stars count={20} color="rgba(201,168,76,0.1)" />
+      <div className="msec" style={{ ...sec, padding: "100px 48px 80px", opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(30px)", transition: "opacity 0.7s ease, transform 0.7s ease" }}>
+        <div><span style={lbl}><span style={dot} /> Competitive Landscape</span></div>
+        <h2 style={{ ...mega("clamp(2.5rem,5.5vw,4.5rem)", 48) }}>Where We Stand — <span style={{ color: "#C41E2A" }}>Privacy ↔ Usability</span></h2>
+        <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 40, alignItems: "start" }}>
+          <CompetitiveChart p={p} />
+          <div style={{ ...card, opacity: insightF, transform: `translateX(${(1 - insightF) * 24}px)` }}>
+            <div style={cardTop} />
+            <h4 style={{ fontFamily: "'Bebas Neue'", fontSize: "1.3rem", letterSpacing: "0.06em", marginBottom: 16, color: "#C9A84C" }}>KEY INSIGHT</h4>
+            <p style={{ fontSize: "0.9rem", color: "#7A8599", lineHeight: 1.65, marginBottom: 14 }}>
+              Existing privacy solutions force a choice between <strong style={{ color: "#E8D5B5" }}>strong privacy</strong> and <strong style={{ color: "#E8D5B5" }}>ease of use</strong>.
+            </p>
+            <p style={{ fontSize: "0.9rem", color: "#7A8599", lineHeight: 1.65 }}>
+              American Fortress is the <span style={{ color: "#C41E2A", fontWeight: 700 }}>only solution</span> that delivers full privacy AND consumer-grade simplicity in one SDK.
+            </p>
+          </div>
+        </div>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: "0.9rem", color: "#3D4A63", textAlign: "center", marginTop: 40, opacity: footnoteF }}>
+          No other solution combines patented privacy, human-readable naming, multi-chain support, and regulatory compliance in a consumer-ready SDK.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 // ── ComparisonSection ────────────────────────────────────────────────────
 const SLAM_INTERVAL   = 350;
 const IMPACT_DURATION = 150;
@@ -339,37 +390,28 @@ function CmpSym({ v }) {
 }
 
 function ComparisonSection() {
-  const wrapRef    = useRef(null);
-  const [p, setP]  = useState(0);
-  const hasPlayed  = useRef(false);
+  const wrapRef   = useRef(null);
+  const hasPlayed = useRef(false);
   const [started,     setStarted]     = useState(false);
   const [activeCount, setActiveCount] = useState(0);
   const [impactIndex, setImpactIndex] = useState(-1);
   const [shakeOffset, setShakeOffset] = useState({ x:0, y:0 });
   const [footerVis,   setFooterVis]   = useState(false);
 
-  // Scroll progress
+  // Entry detection via IntersectionObserver — fires once
   useEffect(() => {
     const el = wrapRef.current;
     if (!el) return;
-    const onScroll = () => {
-      const rect = el.getBoundingClientRect();
-      const h = el.offsetHeight - window.innerHeight;
-      if (h <= 0) return;
-      setP(Math.max(0, Math.min(1, -rect.top / h)));
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !hasPlayed.current) {
+        hasPlayed.current = true;
+        setStarted(true);
+        obs.disconnect();
+      }
+    }, { threshold: 0.15 });
+    obs.observe(el);
+    return () => obs.disconnect();
   }, []);
-
-  // Entry detection — fires once
-  useEffect(() => {
-    if (p > 0.02 && !hasPlayed.current) {
-      hasPlayed.current = true;
-      setStarted(true);
-    }
-  }, [p]);
 
   // Timer-driven slam — separate effect so scroll cleanup never kills timers
   useEffect(() => {
@@ -402,20 +444,12 @@ function ComparisonSection() {
   const cellBase = { padding:"12px 20px", borderBottom:"1px solid rgba(100,110,150,0.05)", display:"contents" };
 
   return (
-    <div ref={wrapRef} style={{ position:"relative", height:"250vh", background:"#0F1D35" }}>
+    <div ref={wrapRef} style={{ background:"#0F1D35" }}>
       <section style={{
-        background:"#0F1D35", position:"sticky", top:0, height:"100vh",
-        display:"flex", alignItems:"center", justifyContent:"center",
-        overflow:"hidden",
+        background:"#0F1D35", overflow:"hidden",
         transform:`translate(${shakeOffset.x}px,${shakeOffset.y}px)`,
       }}>
-        {/* Scroll hint */}
-        <div style={{ position:"absolute", bottom:28, left:"50%", transform:"translateX(-50%)", opacity:hintOpacity, pointerEvents:"none", zIndex:5, display:"flex", flexDirection:"column", alignItems:"center", gap:8 }}>
-          <span style={{ fontFamily:"'JetBrains Mono'", fontSize:"0.6rem", color:"#3D4A63", letterSpacing:"0.15em", textTransform:"uppercase" }}>Scroll</span>
-          <div style={{ width:1, height:32, background:"linear-gradient(to bottom, #3D4A63, transparent)" }} />
-        </div>
-
-        <div style={{ maxWidth:1000, margin:"0 auto", padding:"0 48px", width:"100%", position:"relative", zIndex:1 }}>
+        <div style={{ maxWidth:1000, margin:"0 auto", padding:"80px 48px", width:"100%", position:"relative", zIndex:1 }}>
           {/* Title */}
           <h2 style={{ fontFamily:"'Bebas Neue'", letterSpacing:"0.04em", lineHeight:1.05, color:"#E8D5B5", fontSize:"clamp(2rem,4.5vw,3.8rem)", marginBottom:16 }}>
             Head-to-Head <span style={{ color:"#C41E2A" }}>Feature Comparison</span>
@@ -792,8 +826,7 @@ export default function AF() {
   const [pR, pV] = useReveal({ t: 0.12 });
   const [s1R, s1V] = useReveal({ t: 0.1 });
   const [s2R, s2V] = useReveal({ t: 0.1 });
-  const compRunwayRef = useRef(null);
-  const compProgress = useStickyProgress(compRunwayRef);
+
   const { wrapRef: fWrap, progress: fProgress, stage: fStage } = useScrollPin(12);
   const [cR, cV] = useReveal({ t: 0.06 });
   const [rR2, rV] = useReveal({ t: 0.1 });
@@ -1099,47 +1132,8 @@ export default function AF() {
         <Stripe flip />
 
 
-        {/* COMPETITIVE LANDSCAPE — SCROLL PINNED, PROGRESS DRIVEN */}
-        <div ref={compRunwayRef} style={{ position: "relative", height: "400vh" }}>
-          <section style={{ ...full, position: "sticky", top: 0, height: "100vh", display: "flex", alignItems: "flex-start", justifyContent: "center", overflow: "hidden" }}>
-            <Stars count={20} color="rgba(201,168,76,0.1)" />
-            {/* Scroll hint — fades out as soon as scroll begins */}
-            <div style={{ position: "absolute", bottom: 32, left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: 6, opacity: Math.max(0, 1 - compProgress * 6), pointerEvents: "none", zIndex: 5 }}>
-              <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.65rem", letterSpacing: "0.12em", color: "#C9A84C", textTransform: "uppercase" }}>Scroll to explore</span>
-              <svg width="16" height="24" viewBox="0 0 16 24" fill="none"><path d="M8 4V20M8 20L2 14M8 20L14 14" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite" /></path></svg>
-            </div>
-            <div className="msec" style={{ ...sec, padding: "60px 48px 40px" }}>
-              <div><span style={lbl}><span style={dot} /> Competitive Landscape</span></div>
-              <h2 style={{ ...mega("clamp(2.5rem,5.5vw,4.5rem)", 48) }}>Where We Stand — <span style={{ color: "#C41E2A" }}>Privacy ↔ Usability</span></h2>
-              <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 40, alignItems: "start" }}>
-                <CompetitiveChart p={compProgress} />
-                {(() => {
-                  const f = compProgress < 0.58 ? 0 : Math.min(1, (compProgress - 0.58) / 0.1);
-                  return (
-                    <div style={{ ...card, opacity: f, transform: `translateX(${(1 - f) * 24}px)` }}>
-                      <div style={cardTop} />
-                      <h4 style={{ fontFamily: "'Bebas Neue'", fontSize: "1.3rem", letterSpacing: "0.06em", marginBottom: 16, color: "#C9A84C" }}>KEY INSIGHT</h4>
-                      <p style={{ fontSize: "0.9rem", color: "#7A8599", lineHeight: 1.65, marginBottom: 14 }}>
-                        Existing privacy solutions force a choice between <strong style={{ color: "#E8D5B5" }}>strong privacy</strong> and <strong style={{ color: "#E8D5B5" }}>ease of use</strong>.
-                      </p>
-                      <p style={{ fontSize: "0.9rem", color: "#7A8599", lineHeight: 1.65 }}>
-                        American Fortress is the <span style={{ color: "#C41E2A", fontWeight: 700 }}>only solution</span> that delivers full privacy AND consumer-grade simplicity in one SDK.
-                      </p>
-                    </div>
-                  );
-                })()}
-              </div>
-              {(() => {
-                const f = compProgress < 0.68 ? 0 : Math.min(1, (compProgress - 0.68) / 0.08);
-                return (
-                  <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: "0.9rem", color: "#3D4A63", textAlign: "center", marginTop: 40, opacity: f }}>
-                    No other solution combines patented privacy, human-readable naming, multi-chain support, and regulatory compliance in a consumer-ready SDK.
-                  </p>
-                );
-              })()}
-            </div>
-          </section>
-        </div>
+        {/* COMPETITIVE LANDSCAPE */}
+        <CompetitiveLandscape />
 
         {/* COMPARISON TABLE */}
         <ComparisonSection />
