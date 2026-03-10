@@ -402,7 +402,7 @@ function ComparisonSection() {
   const cellBase = { padding:"12px 20px", borderBottom:"1px solid rgba(100,110,150,0.05)", display:"contents" };
 
   return (
-    <div ref={wrapRef} style={{ position:"relative", height:"350vh" }}>
+    <div ref={wrapRef} style={{ position:"relative", height:"420vh" }}>
       <section style={{
         background:"#0F1D35", position:"sticky", top:0, height:"100vh",
         display:"flex", alignItems:"flex-start", justifyContent:"center",
@@ -415,7 +415,7 @@ function ComparisonSection() {
           <div style={{ width:1, height:32, background:"linear-gradient(to bottom, #3D4A63, transparent)" }} />
         </div>
 
-        <div style={{ maxWidth:1000, margin:"0 auto", padding:"56px 48px 40px", width:"100%", position:"relative", zIndex:1 }}>
+        <div style={{ maxWidth:1000, margin:"0 auto", padding:"56px 48px 48px", width:"100%", position:"relative", zIndex:1 }}>
           {/* Title */}
           <h2 style={{ fontFamily:"'Bebas Neue'", letterSpacing:"0.04em", lineHeight:1.05, color:"#E8D5B5", fontSize:"clamp(2rem,4.5vw,3.8rem)", marginBottom:28 }}>
             Head-to-Head <span style={{ color:"#C41E2A" }}>Feature Comparison</span>
@@ -450,7 +450,7 @@ function ComparisonSection() {
               return (
                 <div key={i} style={{
                   display:"grid", gridTemplateColumns:gridCols,
-                  padding:"12px 20px",
+                  padding:"16px 20px",
                   background: rowBg,
                   transition: isImpact ? "none" : "background 0.3s ease",
                   borderBottom: isLast ? "none" : "1px solid rgba(100,110,150,0.05)",
