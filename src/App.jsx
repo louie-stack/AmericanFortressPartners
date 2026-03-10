@@ -673,13 +673,13 @@ export default function AF() {
 
         {/* TRUSTED BY */}
         <section ref={lR} style={{ ...full, background: "#0F1D35", overflow: "hidden" }}>
-          <div className="msec" style={{ ...sec, textAlign: "center", paddingBottom: 0 }}>
+          <div className="msec" style={{ ...sec, textAlign: "center", paddingBottom: 0, paddingTop: 48 }}>
             <h2 style={{ ...rv(lV, 0), ...mega("clamp(2rem,4.5vw,3.8rem)", 8) }}>Trusted By <span style={{ color: "#C9A84C" }}>Industry Leaders</span></h2>
             <p style={{ ...rv(lV, 0.1), color: "#3D4A63", fontSize: "0.92rem", marginBottom: 48 }}>Integrated with leading wallets, chains, and financial institutions</p>
           </div>
           {/* Marquee strip */}
           <style>{`
-            @keyframes marquee { 0% { transform: translateX(0) } 100% { transform: translateX(-50%) } }
+            @keyframes marquee { 0% { transform: translateX(0) } 100% { transform: translateX(-25%) } }
             .marquee-track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
             .marquee-track:hover { animation-play-state: paused; }
           `}</style>
@@ -687,7 +687,7 @@ export default function AF() {
             <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to right, #0F1D35, transparent)", zIndex: 2, pointerEvents: "none" }} />
             <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to left, #0F1D35, transparent)", zIndex: 2, pointerEvents: "none" }} />
             <div className="marquee-track" style={{ alignItems: "center" }}>
-              {[0, 1].map(rep => (
+              {[0, 1, 2, 3].map(rep => (
                 <img key={rep} src="/logos.png" alt="partners" style={{ height: 36, width: "auto", flexShrink: 0, margin: "0 16px", opacity: 0.85 }} />
               ))}
             </div>
