@@ -363,60 +363,48 @@ const NR_TICKS = 30;
 const NR_TICK_MS = 65;
 
 function NameResolver({ visibility }) {
-  const [phase, setPhase] = React.useState("hex"); // hex | scramble | resolved | fading
+  const [time, setTime] = React.useState(0);
   const [displayText, setDisplayText] = React.useState("0xA7c4...3F9b");
   const startRef = React.useRef(null);
   const rafRef = React.useRef(null);
+  const lastPhaseRef = React.useRef("hex");
   const tickRef = React.useRef(0);
   const tickTimerRef = React.useRef(null);
 
   React.useEffect(() => {
-    let alive = true;
     const run = (ts) => {
-      if (!alive) return;
       if (!startRef.current) startRef.current = ts;
       const t = (ts - startRef.current) % NR_CYCLE;
-
-      if (t < NR_SCRAMBLE_START) {
-        setPhase("hex");
-        setDisplayText("0xA7c4...3F9b");
-        tickRef.current = 0;
-        if (tickTimerRef.current) { clearInterval(tickTimerRef.current); tickTimerRef.current = null; }
-      } else if (t < NR_SCRAMBLE_END) {
-        if (phase !== "scramble") {
-          setPhase("scramble");
+      setTime(t);
+      const p = t < NR_SCRAMBLE_START ? "hex" : t < NR_SCRAMBLE_END ? "scramble" : t < NR_RESOLVED_END ? "resolved" : "fading";
+      if (p !== lastPhaseRef.current) {
+        if (p === "scramble") {
           tickRef.current = 0;
           if (tickTimerRef.current) clearInterval(tickTimerRef.current);
           tickTimerRef.current = setInterval(() => {
             tickRef.current = Math.min(tickRef.current + 1, NR_TICKS);
             const resolved = Math.floor((tickRef.current / NR_TICKS) * NAME_TARGET.length);
-            const remaining = NAME_TARGET.length - resolved;
-            const scrambled = Array.from({ length: remaining }, () => HEX_CHARS[Math.floor(Math.random() * HEX_CHARS.length)]).join("");
+            const scrambled = Array.from({ length: NAME_TARGET.length - resolved }, () => HEX_CHARS[Math.floor(Math.random() * HEX_CHARS.length)]).join("");
             setDisplayText(NAME_TARGET.slice(0, resolved) + scrambled);
           }, NR_TICK_MS);
-        }
-      } else if (t < NR_RESOLVED_END) {
-        if (phase !== "resolved") {
-          setPhase("resolved");
-          setDisplayText(NAME_TARGET);
+        } else {
           if (tickTimerRef.current) { clearInterval(tickTimerRef.current); tickTimerRef.current = null; }
+          if (p === "resolved") setDisplayText(NAME_TARGET);
+          if (p === "hex") setDisplayText("0xA7c4...3F9b");
         }
-      } else {
-        if (phase !== "fading") {
-          setPhase("fading");
-          if (tickTimerRef.current) { clearInterval(tickTimerRef.current); tickTimerRef.current = null; }
-        }
+        lastPhaseRef.current = p;
       }
       rafRef.current = requestAnimationFrame(run);
     };
     rafRef.current = requestAnimationFrame(run);
-    return () => { alive = false; cancelAnimationFrame(rafRef.current); if (tickTimerRef.current) clearInterval(tickTimerRef.current); };
-  }, [phase]);
+    return () => { cancelAnimationFrame(rafRef.current); if (tickTimerRef.current) clearInterval(tickTimerRef.current); };
+  }, []);
+
+  const phase = time < NR_SCRAMBLE_START ? "hex" : time < NR_SCRAMBLE_END ? "scramble" : time < NR_RESOLVED_END ? "resolved" : "fading";
 
   const isResolved = phase === "resolved";
   const isScramble = phase === "scramble";
-  const isFading = phase === "fading";
-  const masterOpacity = isFading ? 0 : 1;
+  const masterOpacity = phase === "fading" ? 0 : 1;
 
   const statusText = isScramble ? "● Resolving name..." : isResolved ? "✓ Identity verified — private transfer ready" : null;
   const statusColor = isScramble ? "rgba(200,170,100,0.85)" : "#34D399";
