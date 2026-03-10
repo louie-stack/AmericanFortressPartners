@@ -151,17 +151,17 @@ const Quad = ({ stage: s }) => {
       <text x="62" y="368" fontSize="8" fill="rgba(201,168,76,0.2)" fontFamily="monospace" opacity={s >= 2 ? 1 : 0} style={{ transition: "opacity 0.5s" }}>Complex</text>
       <text x="395" y="368" fontSize="8" fill="rgba(201,168,76,0.2)" fontFamily="monospace" opacity={s >= 2 ? 1 : 0} style={{ transition: "opacity 0.5s" }}>Consumer-Ready</text>
       {cs.map((c, i) => (
-        <g key={i} opacity={s >= i + 3 ? 1 : 0} style={{ transition: `opacity 0.5s ease ${i * 0.15}s` }}>
+        <g key={i} opacity={s >= 2 ? 1 : 0} style={{ transition: `opacity 0.5s ease ${i * 0.12}s` }}>
           <circle cx={c.x} cy={c.y} r="6" fill="rgba(138,147,166,0.35)" stroke="rgba(138,147,166,0.25)" strokeWidth="1" />
           <text x={c.x} y={c.y - 14} textAnchor="middle" fontSize="10" fill="rgba(138,147,166,0.55)" fontFamily="sans-serif">{c.n}</text>
         </g>
       ))}
-      <g opacity={s >= 8 ? 1 : 0} style={{ transition: "opacity 0.9s ease" }}>
+      <g opacity={s >= 4 ? 1 : 0} style={{ transition: "opacity 0.9s ease" }}>
         <circle cx="385" cy="70" r="32" fill="rgba(212,43,43,0.05)" stroke="rgba(212,43,43,0.12)" strokeWidth="1">
-          {s >= 8 && <animate attributeName="r" values="32;40;32" dur="3s" repeatCount="indefinite" />}
+          {s >= 4 && <animate attributeName="r" values="32;40;32" dur="3s" repeatCount="indefinite" />}
         </circle>
         <circle cx="385" cy="70" r="16" fill="rgba(212,43,43,0.1)" stroke="rgba(212,43,43,0.25)" strokeWidth="1">
-          {s >= 8 && <animate attributeName="r" values="16;20;16" dur="3s" repeatCount="indefinite" />}
+          {s >= 4 && <animate attributeName="r" values="16;20;16" dur="3s" repeatCount="indefinite" />}
         </circle>
         <polygon points="385,56 388,64 396,64 389.5,69 392,77 385,72.5 378,77 380.5,69 374,64 382,64" fill="#D42B2B" />
         <text x="385" y="100" textAnchor="middle" fontSize="12" fill="#D42B2B" fontFamily="sans-serif" fontWeight="700">American Fortress</text>
@@ -198,7 +198,7 @@ export default function AF() {
   const [pR, pV] = useReveal({ t: 0.12 });
   const [s1R, s1V] = useReveal({ t: 0.1 });
   const [s2R, s2V] = useReveal({ t: 0.1 });
-  const { wrapRef: qWrap, progress: qProgress, stage: qStage } = useScrollPin(11);
+  const { wrapRef: qWrap, progress: qProgress, stage: qStage } = useScrollPin(6);
   const { wrapRef: fWrap, progress: fProgress, stage: fStage } = useScrollPin(12);
   const [cR, cV] = useReveal({ t: 0.06 });
   const [rR2, rV] = useReveal({ t: 0.1 });
@@ -524,7 +524,7 @@ export default function AF() {
                 <div>
                   <Quad stage={Math.max(2, qStage - 1)} />
                 </div>
-                <div style={{ ...card, opacity: qStage >= 10 ? 1 : 0, transform: `translateX(${qStage >= 10 ? 0 : 60}px)`, transition: "opacity 0.7s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1)" }}>
+                <div style={{ ...card, opacity: qStage >= 5 ? 1 : 0, transform: `translateX(${qStage >= 5 ? 0 : 60}px)`, transition: "opacity 0.7s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1)" }}>
                   <div style={cardTop} />
                   <h4 style={{ fontFamily: "'Bebas Neue'", fontSize: "1.3rem", letterSpacing: "0.06em", marginBottom: 16, color: "#C9A84C" }}>KEY INSIGHT</h4>
                   <p style={{ fontSize: "0.9rem", color: "#7A8599", lineHeight: 1.65, marginBottom: 14 }}>
@@ -535,7 +535,7 @@ export default function AF() {
                   </p>
                 </div>
               </div>
-              <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: "0.9rem", color: "#3D4A63", textAlign: "center", marginTop: 40, opacity: qStage >= 10 ? 1 : 0, transition: "opacity 0.7s ease 0.2s" }}>
+              <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: "0.9rem", color: "#3D4A63", textAlign: "center", marginTop: 40, opacity: qStage >= 5 ? 1 : 0, transition: "opacity 0.7s ease 0.2s" }}>
                 No other solution combines patented privacy, human-readable naming, multi-chain support, and regulatory compliance in a consumer-ready SDK.
               </p>
             </div>
