@@ -142,14 +142,14 @@ const Quad = ({ stage: s }) => {
   ];
   return (
     <svg viewBox="0 0 500 400" style={{ width: "100%", maxWidth: 640 }}>
-      <rect x="260" y="30" width="200" height="170" rx="6" fill="rgba(201,168,76,0.03)" stroke="rgba(201,168,76,0.08)" strokeWidth="1" strokeDasharray="6 4" opacity={s >= 2 ? 1 : 0} style={{ transition: "opacity 0.6s" }} />
-      <text x="360" y="50" textAnchor="middle" fontSize="9" fill="rgba(201,168,76,0.4)" fontFamily="monospace" fontStyle="italic" opacity={s >= 2 ? 1 : 0} style={{ transition: "opacity 0.6s" }}>The Sweet Spot</text>
-      <line x1="50" y1="350" x2="460" y2="350" stroke="rgba(201,168,76,0.2)" strokeWidth="1" strokeDasharray="500" strokeDashoffset={s >= 1 ? 0 : 500} style={{ transition: "stroke-dashoffset 1.2s cubic-bezier(0.16,1,0.3,1)" }} />
-      <line x1="50" y1="350" x2="50" y2="25" stroke="rgba(201,168,76,0.2)" strokeWidth="1" strokeDasharray="400" strokeDashoffset={s >= 1 ? 0 : 400} style={{ transition: "stroke-dashoffset 1.2s cubic-bezier(0.16,1,0.3,1)" }} />
-      <text x="255" y="378" textAnchor="middle" fontSize="10" fill="rgba(201,168,76,0.3)" fontFamily="monospace" opacity={s >= 2 ? 1 : 0} style={{ transition: "opacity 0.5s" }}>Ease of Use →</text>
-      <text x="22" y="190" fontSize="10" fill="rgba(201,168,76,0.3)" fontFamily="monospace" transform="rotate(-90,22,190)" opacity={s >= 2 ? 1 : 0} style={{ transition: "opacity 0.5s" }}>Privacy Level →</text>
-      <text x="62" y="368" fontSize="8" fill="rgba(201,168,76,0.2)" fontFamily="monospace" opacity={s >= 2 ? 1 : 0} style={{ transition: "opacity 0.5s" }}>Complex</text>
-      <text x="395" y="368" fontSize="8" fill="rgba(201,168,76,0.2)" fontFamily="monospace" opacity={s >= 2 ? 1 : 0} style={{ transition: "opacity 0.5s" }}>Consumer-Ready</text>
+      <rect x="260" y="30" width="200" height="170" rx="6" fill="rgba(201,168,76,0.03)" stroke="rgba(201,168,76,0.08)" strokeWidth="1" strokeDasharray="6 4" opacity={1} />
+      <text x="360" y="50" textAnchor="middle" fontSize="9" fill="rgba(201,168,76,0.4)" fontFamily="monospace" fontStyle="italic" opacity={1}>The Sweet Spot</text>
+      <line x1="50" y1="350" x2="460" y2="350" stroke="rgba(201,168,76,0.2)" strokeWidth="1" />
+      <line x1="50" y1="350" x2="50" y2="25" stroke="rgba(201,168,76,0.2)" strokeWidth="1" />
+      <text x="255" y="378" textAnchor="middle" fontSize="10" fill="rgba(201,168,76,0.3)" fontFamily="monospace" opacity={1}>Ease of Use →</text>
+      <text x="22" y="190" fontSize="10" fill="rgba(201,168,76,0.3)" fontFamily="monospace" transform="rotate(-90,22,190)" opacity={1}>Privacy Level →</text>
+      <text x="62" y="368" fontSize="8" fill="rgba(201,168,76,0.2)" fontFamily="monospace" opacity={1}>Complex</text>
+      <text x="395" y="368" fontSize="8" fill="rgba(201,168,76,0.2)" fontFamily="monospace" opacity={1}>Consumer-Ready</text>
       {cs.map((c, i) => (
         <g key={i} opacity={s >= i + 1 ? 1 : 0} style={{ transition: `opacity 0.5s ease ${i * 0.1}s` }}>
           <circle cx={c.x} cy={c.y} r="6" fill="rgba(138,147,166,0.35)" stroke="rgba(138,147,166,0.25)" strokeWidth="1" />
@@ -504,7 +504,7 @@ export default function AF() {
         <Stripe flip />
 
         {/* QUADRANT — SCROLL PINNED */}
-        <div ref={qWrap} style={{ position: "relative", height: "900vh" }}>
+        <div ref={qWrap} style={{ position: "relative", height: "500vh" }}>
           <section style={{ ...full, position: "sticky", top: 0, height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
             <Stars count={20} color="rgba(201,168,76,0.1)" />
             {/* Progress bar */}
@@ -522,7 +522,7 @@ export default function AF() {
 
               <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 40, alignItems: "start" }}>
                 <div>
-                  <Quad stage={Math.max(2, qStage - 1)} />
+                  <Quad stage={qStage} />
                 </div>
                 <div style={{ ...card, opacity: qStage >= 5 ? 1 : 0, transform: `translateX(${qStage >= 5 ? 0 : 60}px)`, transition: "opacity 0.7s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1)" }}>
                   <div style={cardTop} />
