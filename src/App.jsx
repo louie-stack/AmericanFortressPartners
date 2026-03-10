@@ -184,6 +184,25 @@ const tRows = [
   ["SDK for Wallets","c","p","n","n","n","p"],
 ];
 
+function useCountUp(target, triggered, duration = 1800) {
+  const [val, setVal] = useState(0);
+  const raf = useRef(null);
+  useEffect(() => {
+    if (!triggered) return;
+    const start = performance.now();
+    const tick = (now) => {
+      const p = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 4);
+      setVal(Math.floor(ease * target));
+      if (p < 1) raf.current = requestAnimationFrame(tick);
+      else setVal(target);
+    };
+    raf.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf.current);
+  }, [triggered, target, duration]);
+  return val;
+}
+
 function CustomCursor() {
   const dot = useRef(null);
   const ring = useRef(null);
