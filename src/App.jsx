@@ -402,7 +402,7 @@ function ComparisonSection() {
   const cellBase = { padding:"12px 20px", borderBottom:"1px solid rgba(100,110,150,0.05)", display:"contents" };
 
   return (
-    <div ref={wrapRef} style={{ position:"relative", height:"420vh" }}>
+    <div ref={wrapRef} style={{ position:"relative", height:"250vh" }}>
       <section style={{
         background:"#0F1D35", position:"sticky", top:0, height:"100vh",
         display:"flex", alignItems:"flex-start", justifyContent:"center",
@@ -415,16 +415,17 @@ function ComparisonSection() {
           <div style={{ width:1, height:32, background:"linear-gradient(to bottom, #3D4A63, transparent)" }} />
         </div>
 
-        <div style={{ maxWidth:1000, margin:"0 auto", padding:"56px 48px 48px", width:"100%", position:"relative", zIndex:1 }}>
+        <div style={{ maxWidth:1000, margin:"0 auto", padding:"40px 48px 32px", width:"100%", position:"relative", zIndex:1 }}>
           {/* Title */}
-          <h2 style={{ fontFamily:"'Bebas Neue'", letterSpacing:"0.04em", lineHeight:1.05, color:"#E8D5B5", fontSize:"clamp(2rem,4.5vw,3.8rem)", marginBottom:28 }}>
+          <h2 style={{ fontFamily:"'Bebas Neue'", letterSpacing:"0.04em", lineHeight:1.05, color:"#E8D5B5", fontSize:"clamp(2rem,4.5vw,3.8rem)", marginBottom:16 }}>
             Head-to-Head <span style={{ color:"#C41E2A" }}>Feature Comparison</span>
           </h2>
 
           {/* Grid table */}
+
           <div style={{ background:"rgba(14,22,45,0.4)", border:"1px solid rgba(100,110,150,0.08)", borderRadius:12, overflow:"hidden" }}>
             {/* Header row */}
-            <div style={{ display:"grid", gridTemplateColumns:gridCols, padding:"14px 20px", borderBottom:"1px solid rgba(100,110,150,0.1)" }}>
+            <div style={{ display:"grid", gridTemplateColumns:gridCols, padding:"10px 20px", borderBottom:"1px solid rgba(100,110,150,0.1)" }}>
               {COLS.map((col, ci) => (
                 <div key={ci} style={{
                   fontFamily:"'JetBrains Mono'", fontSize:"0.68rem", textTransform:"uppercase", letterSpacing:"0.08em",
@@ -450,7 +451,7 @@ function ComparisonSection() {
               return (
                 <div key={i} style={{
                   display:"grid", gridTemplateColumns:gridCols,
-                  padding:"16px 20px",
+                  padding:"10px 20px",
                   background: rowBg,
                   transition: isImpact ? "none" : "background 0.3s ease",
                   borderBottom: isLast ? "none" : "1px solid rgba(100,110,150,0.05)",
@@ -493,7 +494,7 @@ function ComparisonSection() {
           {/* Footer */}
           <div style={{
             display:"flex", justifyContent:"space-between", alignItems:"center",
-            marginTop:20, flexWrap:"wrap", gap:16,
+            marginTop:12, flexWrap:"wrap", gap:12,
             opacity: footerVis ? 1 : 0,
             transform: footerVis ? "translateY(0)" : "translateY(8px)",
             transition:"opacity 0.6s ease, transform 0.6s ease",
