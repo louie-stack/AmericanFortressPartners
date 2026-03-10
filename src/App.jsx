@@ -672,15 +672,26 @@ export default function AF() {
         <Stripe />
 
         {/* TRUSTED BY */}
-        <section ref={lR} style={{ ...full, background: "#0F1D35" }}>
-          <div className="msec" style={{ ...sec, textAlign: "center" }}>
+        <section ref={lR} style={{ ...full, background: "#0F1D35", overflow: "hidden" }}>
+          <div className="msec" style={{ ...sec, textAlign: "center", paddingBottom: 0 }}>
             <h2 style={{ ...rv(lV, 0), ...mega("clamp(2rem,4.5vw,3.8rem)", 8) }}>Trusted By <span style={{ color: "#C9A84C" }}>Industry Leaders</span></h2>
             <p style={{ ...rv(lV, 0.1), color: "#3D4A63", fontSize: "0.92rem", marginBottom: 48 }}>Integrated with leading wallets, chains, and financial institutions</p>
-            <div className="mgrid3" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16, maxWidth: 720, margin: "0 auto" }}>
-              {["MatterFi","MetaMask","Brinks","Litecoin","Base","DASH","0G","Space ID","QuickSwap"].map((l, i) => (
-                <div key={i} style={{ ...rv(lV, 0.2 + i * 0.06), padding: "28px 24px", borderRadius: 10, border: "1px solid rgba(201,168,76,0.08)", background: "rgba(232,213,181,0.03)", fontFamily: "'Bebas Neue'", fontSize: "0.95rem", letterSpacing: "0.08em", color: "#7A8599" }}>
-                  {l}
-                </div>
+          </div>
+          {/* Marquee strip */}
+          <style>{`
+            @keyframes marquee { 0% { transform: translateX(0) } 100% { transform: translateX(-50%) } }
+            .marquee-track { display: flex; width: max-content; animation: marquee 22s linear infinite; }
+            .marquee-track:hover { animation-play-state: paused; }
+          `}</style>
+          <div style={{ position: "relative", width: "100%", overflow: "hidden", paddingBottom: 64 }}>
+            <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to right, #0F1D35, transparent)", zIndex: 2, pointerEvents: "none" }} />
+            <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to left, #0F1D35, transparent)", zIndex: 2, pointerEvents: "none" }} />
+            <div className="marquee-track">
+              {[...["MatterFi","MetaMask","Brinks","Litecoin","Base","DASH","0G","Space ID","QuickSwap"], ...["MatterFi","MetaMask","Brinks","Litecoin","Base","DASH","0G","Space ID","QuickSwap"]].map((l, i) => (
+                <div key={i} style={{ flexShrink: 0, margin: "0 12px", padding: "20px 36px", borderRadius: 10, border: "1px solid rgba(201,168,76,0.12)", background: "rgba(232,213,181,0.03)", fontFamily: "'Bebas Neue'", fontSize: "1rem", letterSpacing: "0.1em", color: "#7A8599", whiteSpace: "nowrap", transition: "border-color 0.2s, color 0.2s" }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.4)"; e.currentTarget.style.color = "#C9A84C"; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.12)"; e.currentTarget.style.color = "#7A8599"; }}
+                >{l}</div>
               ))}
             </div>
           </div>
