@@ -849,14 +849,14 @@ export default function AF() {
 
         {/* COMPETITIVE LANDSCAPE — SCROLL PINNED, PROGRESS DRIVEN */}
         <div ref={compRunwayRef} style={{ position: "relative", height: "400vh" }}>
-          <section style={{ ...full, position: "sticky", top: 0, height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+          <section style={{ ...full, position: "sticky", top: 0, height: "100vh", display: "flex", alignItems: "flex-start", justifyContent: "center", overflow: "hidden" }}>
             <Stars count={20} color="rgba(201,168,76,0.1)" />
             {/* Scroll hint — fades out as soon as scroll begins */}
             <div style={{ position: "absolute", bottom: 32, left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: 6, opacity: Math.max(0, 1 - compProgress * 6), pointerEvents: "none", zIndex: 5 }}>
               <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.65rem", letterSpacing: "0.12em", color: "#C9A84C", textTransform: "uppercase" }}>Scroll to explore</span>
               <svg width="16" height="24" viewBox="0 0 16 24" fill="none"><path d="M8 4V20M8 20L2 14M8 20L14 14" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite" /></path></svg>
             </div>
-            <div className="msec" style={{ ...sec, padding: "80px 48px" }}>
+            <div className="msec" style={{ ...sec, padding: "60px 48px 40px" }}>
               <div><span style={lbl}><span style={dot} /> Competitive Landscape</span></div>
               <h2 style={{ ...mega("clamp(2.5rem,5.5vw,4.5rem)", 48) }}>Where We Stand — <span style={{ color: "#C41E2A" }}>Privacy ↔ Usability</span></h2>
               <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 40, alignItems: "start" }}>
