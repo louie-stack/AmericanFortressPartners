@@ -680,15 +680,15 @@ export default function AF() {
           {/* Marquee strip */}
           <style>{`
             @keyframes marquee { 0% { transform: translateX(0) } 100% { transform: translateX(-50%) } }
-            .marquee-track { display: flex; width: max-content; animation: marquee 22s linear infinite; }
+            .marquee-track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
             .marquee-track:hover { animation-play-state: paused; }
           `}</style>
           <div style={{ position: "relative", width: "100%", overflow: "hidden", paddingBottom: 64 }}>
             <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to right, #0F1D35, transparent)", zIndex: 2, pointerEvents: "none" }} />
             <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to left, #0F1D35, transparent)", zIndex: 2, pointerEvents: "none" }} />
             <div className="marquee-track" style={{ alignItems: "center" }}>
-              {[0, 1, 2, 3].map(rep => (
-                <img key={rep} src="/logos.png" alt="partners" style={{ height: 36, width: "auto", flexShrink: 0, margin: "0 48px", opacity: 0.75, filter: "brightness(0) invert(1)" }} />
+              {[0, 1].map(rep => (
+                <img key={rep} src="/logos.png" alt="partners" style={{ height: 36, width: "auto", flexShrink: 0, margin: "0 16px", opacity: 0.85 }} />
               ))}
             </div>
           </div>
