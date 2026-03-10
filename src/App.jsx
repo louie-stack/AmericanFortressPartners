@@ -184,6 +184,92 @@ const tRows = [
   ["SDK for Wallets","c","p","n","n","n","p"],
 ];
 
+function CustomCursor() {
+  const dot = useRef(null);
+  const ring = useRef(null);
+  const mouse = useRef({ x: -100, y: -100 });
+  const ringPos = useRef({ x: -100, y: -100 });
+  const raf = useRef(null);
+  const [trails, setTrails] = useState([]);
+  const lastTrail = useRef(0);
+  const [clicking, setClicking] = useState(false);
+  const [hovering, setHovering] = useState(false);
+
+  useEffect(() => {
+    document.body.style.cursor = "none";
+    const onMove = (e) => {
+      mouse.current = { x: e.clientX, y: e.clientY };
+      if (dot.current) {
+        dot.current.style.left = e.clientX + "px";
+        dot.current.style.top = e.clientY + "px";
+      }
+      // Trail particles every 40ms
+      const now = Date.now();
+      if (now - lastTrail.current > 40) {
+        lastTrail.current = now;
+        const id = now;
+        setTrails(t => [...t.slice(-11), { id, x: e.clientX, y: e.clientY }]);
+        setTimeout(() => setTrails(t => t.filter(p => p.id !== id)), 600);
+      }
+      // Hover detection
+      const el = document.elementFromPoint(e.clientX, e.clientY);
+      if (el) {
+        const cs = window.getComputedStyle(el);
+        const isPointer = cs.cursor === "pointer" || el.tagName === "BUTTON" || el.tagName === "A" || el.onclick;
+        setHovering(!!isPointer);
+      }
+    };
+    const onDown = () => setClicking(true);
+    const onUp = () => setClicking(false);
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mousedown", onDown);
+    window.addEventListener("mouseup", onUp);
+
+    // Spring ring animation
+    const animate = () => {
+      const damping = 0.15;
+      ringPos.current.x += (mouse.current.x - ringPos.current.x) * damping;
+      ringPos.current.y += (mouse.current.y - ringPos.current.y) * damping;
+      if (ring.current) {
+        ring.current.style.left = ringPos.current.x + "px";
+        ring.current.style.top = ringPos.current.y + "px";
+      }
+      raf.current = requestAnimationFrame(animate);
+    };
+    raf.current = requestAnimationFrame(animate);
+
+    return () => {
+      document.body.style.cursor = "";
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mousedown", onDown);
+      window.removeEventListener("mouseup", onUp);
+      cancelAnimationFrame(raf.current);
+    };
+  }, []);
+
+  const dotSize = clicking ? 8 : 6;
+  const dotShadow = clicking
+    ? "0 0 16px rgba(196,30,42,0.9), 0 0 30px rgba(196,30,42,0.5)"
+    : "0 0 8px rgba(196,30,42,0.8), 0 0 16px rgba(196,30,42,0.4)";
+  const ringSize = clicking ? 16 : hovering ? 48 : 32;
+  const ringBorder = clicking ? "2px solid #C9A84C" : hovering ? "1.5px solid rgba(196,30,42,1)" : "1px solid rgba(196,30,42,0.5)";
+  const ringBg = clicking ? "rgba(196,30,42,0.08)" : "transparent";
+  const ringShadow = hovering ? "0 0 12px rgba(196,30,42,0.3)" : clicking ? "inset 0 0 8px rgba(196,30,42,0.2)" : "none";
+
+  return (
+    <>
+      {/* Trail particles */}
+      {trails.map(p => (
+        <div key={p.id} style={{ position: "fixed", left: p.x, top: p.y, width: 4, height: 4, borderRadius: "50%", background: "rgba(42,100,196,0.7)", transform: "translate(-50%,-50%)", pointerEvents: "none", zIndex: 99998, animation: "trailFade 600ms ease-out forwards" }} />
+      ))}
+      {/* Dot */}
+      <div ref={dot} style={{ position: "fixed", width: dotSize, height: dotSize, borderRadius: "50%", background: "#C41E2A", boxShadow: dotShadow, transform: "translate(-50%,-50%)", pointerEvents: "none", zIndex: 99999, transition: "width 0.2s cubic-bezier(0.16,1,0.3,1), height 0.2s cubic-bezier(0.16,1,0.3,1), box-shadow 0.2s ease" }} />
+      {/* Ring */}
+      <div ref={ring} style={{ position: "fixed", width: ringSize, height: ringSize, borderRadius: "50%", border: ringBorder, background: ringBg, boxShadow: ringShadow, transform: "translate(-50%,-50%)", pointerEvents: "none", zIndex: 99998, transition: "width 0.4s cubic-bezier(0.16,1,0.3,1), height 0.4s cubic-bezier(0.16,1,0.3,1), border 0.3s ease, box-shadow 0.3s ease, background 0.3s ease" }} />
+    </>
+  );
+}
+
 export default function AF() {
   const [scrollY, setScrollY] = useState(0);
   const [glitch, setGlitch] = useState(false);
@@ -237,6 +323,7 @@ export default function AF() {
 
   return (
     <>
+      <CustomCursor />
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
         *{margin:0;padding:0;box-sizing:border-box}
@@ -255,6 +342,7 @@ export default function AF() {
         @keyframes glitchB{0%{border-color:rgba(201,168,76,0.1);box-shadow:none}30%{border-color:#C41E2A;box-shadow:0 0 40px rgba(196,30,42,0.25),inset 0 0 20px rgba(196,30,42,0.05)}100%{border-color:rgba(196,30,42,0.2);box-shadow:0 0 20px rgba(196,30,42,0.08)}}
         @keyframes glitchLoop{0%,100%{transform:translate(0);opacity:1;color:#C41E2A;text-shadow:0 0 20px rgba(196,30,42,0.25)}10%{transform:translate(-3px,2px);clip-path:inset(10% 0 80% 0)}20%{transform:translate(3px,-1px);clip-path:inset(60% 0 20% 0);color:#fff;text-shadow:-2px 0 rgba(196,30,42,0.5),2px 0 rgba(42,30,196,0.4)}30%{transform:translate(0);clip-path:none}50%{transform:translate(-2px,1px);opacity:0.85}70%{transform:translate(2px,-1px);color:#C41E2A}85%{transform:translate(-1px,0);opacity:1}}
         @keyframes glitchBLoop{0%,100%{border-color:rgba(196,30,42,0.2);box-shadow:0 0 10px rgba(196,30,42,0.06)}40%{border-color:#C41E2A;box-shadow:0 0 30px rgba(196,30,42,0.2),inset 0 0 10px rgba(196,30,42,0.04)}70%{border-color:rgba(196,30,42,0.35);box-shadow:0 0 15px rgba(196,30,42,0.1)}}
+        @keyframes trailFade{0%{opacity:0.7;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(0)}}
         .noise::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px}
         .ctab{width:100%;border-collapse:separate;border-spacing:0;margin:32px 0}
         .ctab th,.ctab td{padding:14px 16px;text-align:center;font-size:.82rem;border-bottom:1px solid rgba(201,168,76,0.06)}
