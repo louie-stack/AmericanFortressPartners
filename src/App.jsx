@@ -151,7 +151,7 @@ const Quad = ({ stage: s }) => {
       <text x="62" y="368" fontSize="8" fill="rgba(201,168,76,0.2)" fontFamily="monospace" opacity={s >= 2 ? 1 : 0} style={{ transition: "opacity 0.5s" }}>Complex</text>
       <text x="395" y="368" fontSize="8" fill="rgba(201,168,76,0.2)" fontFamily="monospace" opacity={s >= 2 ? 1 : 0} style={{ transition: "opacity 0.5s" }}>Consumer-Ready</text>
       {cs.map((c, i) => (
-        <g key={i} opacity={s >= 2 ? 1 : 0} style={{ transition: `opacity 0.5s ease ${i * 0.12}s` }}>
+        <g key={i} opacity={s >= i + 1 ? 1 : 0} style={{ transition: `opacity 0.5s ease ${i * 0.1}s` }}>
           <circle cx={c.x} cy={c.y} r="6" fill="rgba(138,147,166,0.35)" stroke="rgba(138,147,166,0.25)" strokeWidth="1" />
           <text x={c.x} y={c.y - 14} textAnchor="middle" fontSize="10" fill="rgba(138,147,166,0.55)" fontFamily="sans-serif">{c.n}</text>
         </g>
