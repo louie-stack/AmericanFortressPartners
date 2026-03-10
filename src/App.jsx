@@ -363,15 +363,18 @@ function WalletScanner() {
   const outerGlow = isFlashing ? "0 0 32px rgba(197,48,48,0.6), 0 0 64px rgba(197,48,48,0.25)" : isExposed ? "0 0 16px rgba(197,48,48,0.2)" : "none";
 
   return (
-    <div style={{ opacity: masterOpacity, fontFamily: "'JetBrains Mono',monospace", margin: "32px 0 48px", padding: "28px 28px 24px", border: `1px solid ${isExposed || isFlashing ? "rgba(197,48,48,0.3)" : "rgba(100,110,150,0.1)"}`, borderRadius: 14, background: "rgba(6,11,24,0.5)", boxShadow: outerGlow }}>
+    <div style={{ opacity: masterOpacity, fontFamily: "'JetBrains Mono',monospace", margin: "32px 0 48px", padding: "28px 28px 24px", border: `1px solid ${isExposed || isFlashing ? "rgba(197,48,48,0.3)" : "rgba(100,110,150,0.1)"}`, borderRadius: 14, background: "rgba(6,11,24,0.5)", boxShadow: outerGlow, position: "relative" }}>
+
+      {/* Ambient radial glow */}
+      <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 700, height: 700, borderRadius: "50%", background: `radial-gradient(ellipse at center,${isExposed ? "rgba(197,48,48,0.05)" : "rgba(197,48,48,0.015)"} 0%,transparent 70%)`, pointerEvents: "none", zIndex: 0, transition: "background 0.8s ease" }} />
 
       {/* Status label */}
-      <div style={{ fontSize: "0.7rem", letterSpacing: "0.14em", textTransform: "uppercase", textAlign: "center", marginBottom: 14, height: 16, color: showExposedLabel ? "rgba(197,48,48,0.9)" : "rgba(160,165,185,0.45)" }}>
+      <div style={{ position: "relative", zIndex: 1, fontSize: "0.7rem", letterSpacing: "0.14em", textTransform: "uppercase", textAlign: "center", marginBottom: 14, height: 16, color: showExposedLabel ? "rgba(197,48,48,0.9)" : "rgba(160,165,185,0.45)" }}>
         {showExposedLabel ? "⚠ Wallet Exposed" : "● Scanning address..."}
       </div>
 
       {/* Address bar */}
-      <div style={{ position: "relative", padding: "14px 16px", borderRadius: 8, background: addrBg, border: `1px solid ${addrBorder}`, overflow: "hidden" }}>
+      <div style={{ position: "relative", zIndex: 1, padding: "14px 16px", borderRadius: 8, background: addrBg, border: `1px solid ${addrBorder}`, overflow: "hidden" }}>
         {/* CRT scan lines */}
         {isScanning && (
           <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(197,48,48,0.02) 3px,rgba(197,48,48,0.02) 4px)", pointerEvents: "none", zIndex: 2, opacity: 0.6 }} />
@@ -387,12 +390,12 @@ function WalletScanner() {
       </div>
 
       {/* Progress bar */}
-      <div style={{ width: "100%", height: 2, background: "rgba(100,110,150,0.08)", borderRadius: 1, marginTop: 6, overflow: "hidden", opacity: isScanning ? 1 : 0 }}>
+      <div style={{ position: "relative", zIndex: 1, width: "100%", height: 2, background: "rgba(100,110,150,0.08)", borderRadius: 1, marginTop: 6, overflow: "hidden", opacity: isScanning ? 1 : 0 }}>
         <div style={{ height: "100%", width: `${scanProgress * 100}%`, background: "linear-gradient(90deg,rgba(197,48,48,0.3),rgba(197,48,48,0.7))" }} />
       </div>
 
       {/* Leaked data grid */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginTop: 20 }}>
+      <div style={{ position: "relative", zIndex: 1, display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginTop: 20 }}>
         {TAGS.map(({ label, value }, i) => {
           const op = tagVisible(i);
           const hov = hoveredTag === i;
@@ -414,7 +417,7 @@ function WalletScanner() {
 
       {/* Footer label */}
       {isExposed && (
-        <div style={{ textAlign: "center", marginTop: 16, fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,48,48,0.45)" }}>● Full financial profile exposed</div>
+        <div style={{ position: "relative", zIndex: 1, textAlign: "center", marginTop: 16, fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,48,48,0.45)" }}>● Full financial profile exposed</div>
       )}
     </div>
   );
@@ -423,6 +426,7 @@ function WalletScanner() {
 export default function AF() {
   const [scrollY, setScrollY] = useState(0);
   const [glitch, setGlitch] = useState(false);
+  const [hovCard, setHovCard] = useState(null);
 
   useEffect(() => {
     const fn = () => setScrollY(window.scrollY);
@@ -648,24 +652,30 @@ export default function AF() {
             <div style={rv(pV, 0.25)}><WalletScanner /></div>
 
             <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
-              <div style={{ ...card, ...rl(pV, 0.55) }}>
+              <div
+                style={{ ...card, ...rl(pV, 0.55), background: hovCard === 0 ? "#131f3d" : "#121F3A", border: `1px solid ${hovCard === 0 ? "rgba(100,110,150,0.2)" : "rgba(100,110,150,0.1)"}`, transform: `${rl(pV, 0.55).transform || "translateX(0)"} translateY(${hovCard === 0 ? "-2px" : "0"})`, boxShadow: hovCard === 0 ? "0 4px 24px rgba(0,0,0,0.15),0 0 30px rgba(100,110,150,0.04)" : "none", transition: `${rl(pV, 0.55).transition || ""}, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease` }}
+                onMouseEnter={() => setHovCard(0)} onMouseLeave={() => setHovCard(null)}
+              >
                 <div style={cardTop} />
                 <h3 style={{ fontFamily: "'Bebas Neue'", fontSize: "1.3rem", letterSpacing: "0.08em", marginBottom: 20, display: "flex", alignItems: "center", gap: 10 }}>
                   <span style={{ width: 32, height: 32, borderRadius: 8, background: "rgba(196,30,42,0.08)", border: "1px solid rgba(196,30,42,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.85rem" }}>👛</span>
                   FOR WALLETS
                 </h3>
                 {["Address poisoning, dust attacks & phishing from transparent public addresses","Every transaction is traceable — zero financial privacy","Copy-pasting long hex strings prone to costly errors","No recovery path tied to identity"].map((t, i) => (
-                  <p key={i} style={bpt()}><span style={bpdot()} />{t}</p>
+                  <p key={i} style={{ ...bpt(), color: hovCard === 0 ? "rgba(180,185,210,0.7)" : "#7A8599", transition: "color 0.3s ease" }}><span style={bpdot()} />{t}</p>
                 ))}
               </div>
-              <div style={{ ...card, ...rr(pV, 0.7) }}>
+              <div
+                style={{ ...card, ...rr(pV, 0.7), background: hovCard === 1 ? "#131f3d" : "#121F3A", border: `1px solid ${hovCard === 1 ? "rgba(100,110,150,0.2)" : "rgba(100,110,150,0.1)"}`, transform: `${rr(pV, 0.7).transform || "translateX(0)"} translateY(${hovCard === 1 ? "-2px" : "0"})`, boxShadow: hovCard === 1 ? "0 4px 24px rgba(0,0,0,0.15),0 0 30px rgba(100,110,150,0.04)" : "none", transition: `${rr(pV, 0.7).transition || ""}, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease` }}
+                onMouseEnter={() => setHovCard(1)} onMouseLeave={() => setHovCard(null)}
+              >
                 <div style={cardTop} />
                 <h3 style={{ fontFamily: "'Bebas Neue'", fontSize: "1.3rem", letterSpacing: "0.08em", marginBottom: 20, display: "flex", alignItems: "center", gap: 10 }}>
                   <span style={{ width: 32, height: 32, borderRadius: 8, background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.85rem" }}>👤</span>
                   FOR NAME SERVICES
                 </h3>
                 {["Sold domains (.eth, .sol) permanently link to public wallet addresses — exposing entire transaction history","No privacy layer exists for the 10M+ names already sold","Missed recurring revenue opportunity after initial sale"].map((t, i) => (
-                  <p key={i} style={bpt("#FBBF24")}><span style={bpdot("#FBBF24")} />{t}</p>
+                  <p key={i} style={{ ...bpt("#FBBF24"), color: hovCard === 1 ? "rgba(180,185,210,0.7)" : "#7A8599", transition: "color 0.3s ease" }}><span style={bpdot("#FBBF24")} />{t}</p>
                 ))}
               </div>
             </div>
