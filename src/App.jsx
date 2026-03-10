@@ -402,7 +402,7 @@ function ComparisonSection() {
   const cellBase = { padding:"12px 20px", borderBottom:"1px solid rgba(100,110,150,0.05)", display:"contents" };
 
   return (
-    <div ref={wrapRef} style={{ position:"relative", height:"250vh" }}>
+    <div ref={wrapRef} style={{ position:"relative", height:"250vh", background:"#0F1D35" }}>
       <section style={{
         background:"#0F1D35", position:"sticky", top:0, height:"100vh",
         display:"flex", alignItems:"center", justifyContent:"center",
@@ -1141,12 +1141,12 @@ export default function AF() {
           </section>
         </div>
 
-        <div style={{ padding: "48px 0" }}><Stripe /></div>
+        <Stripe />
 
         {/* COMPARISON TABLE */}
         <ComparisonSection />
 
-        <div style={{ padding: "48px 0" }}><Stripe flip /></div>
+        <Stripe flip />
 
         {/* REVENUE SHARE */}
         <section ref={rR2} style={full}>
