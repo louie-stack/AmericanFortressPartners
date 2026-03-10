@@ -222,7 +222,7 @@ export default function AF() {
 
   const sec = { maxWidth: 1160, margin: "0 auto", padding: "140px 48px", position: "relative" };
   const full = { width: "100%", position: "relative", overflow: "hidden" };
-  const lbl = { fontFamily: "'JetBrains Mono',monospace", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#C9A84C", padding: "7px 16px", border: "1px solid rgba(201,168,76,0.25)", borderRadius: 24, display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(201,168,76,0.06)" };
+  const lbl = { fontFamily: "'JetBrains Mono',monospace", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#C9A84C", padding: "7px 16px", border: "1px solid rgba(201,168,76,0.25)", borderRadius: 24, display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(201,168,76,0.06)", marginBottom: "28px" };
   const dot = { width: 5, height: 5, borderRadius: "50%", background: "#C9A84C", animation: "pulseG 2.5s ease-in-out infinite" };
   const mega = (sz, mb = 20) => ({ fontFamily: "'Bebas Neue',sans-serif", fontSize: sz, letterSpacing: "0.04em", lineHeight: 0.95, textTransform: "uppercase", color: "#E8D5B5", marginBottom: mb });
   const card = { background: "#121F3A", border: "1px solid rgba(201,168,76,0.1)", borderRadius: 12, padding: 36, position: "relative", overflow: "hidden" };
@@ -253,6 +253,8 @@ export default function AF() {
         @keyframes heroGlowPulse{0%,100%{opacity:0.4}50%{opacity:0.7}}
         @keyframes glitchT{0%{transform:translate(0)}15%{transform:translate(-4px,3px)}30%{transform:translate(4px,-2px)}45%{transform:translate(-3px,-1px)}60%{transform:translate(2px,2px)}100%{transform:translate(0);opacity:.5}}
         @keyframes glitchB{0%{border-color:rgba(201,168,76,0.1);box-shadow:none}30%{border-color:#C41E2A;box-shadow:0 0 40px rgba(196,30,42,0.25),inset 0 0 20px rgba(196,30,42,0.05)}100%{border-color:rgba(196,30,42,0.2);box-shadow:0 0 20px rgba(196,30,42,0.08)}}
+        @keyframes glitchLoop{0%,100%{transform:translate(0);opacity:1;color:#C41E2A;text-shadow:0 0 20px rgba(196,30,42,0.25)}10%{transform:translate(-3px,2px);clip-path:inset(10% 0 80% 0)}20%{transform:translate(3px,-1px);clip-path:inset(60% 0 20% 0);color:#fff;text-shadow:-2px 0 rgba(196,30,42,0.5),2px 0 rgba(42,30,196,0.4)}30%{transform:translate(0);clip-path:none}50%{transform:translate(-2px,1px);opacity:0.85}70%{transform:translate(2px,-1px);color:#C41E2A}85%{transform:translate(-1px,0);opacity:1}}
+        @keyframes glitchBLoop{0%,100%{border-color:rgba(196,30,42,0.2);box-shadow:0 0 10px rgba(196,30,42,0.06)}40%{border-color:#C41E2A;box-shadow:0 0 30px rgba(196,30,42,0.2),inset 0 0 10px rgba(196,30,42,0.04)}70%{border-color:rgba(196,30,42,0.35);box-shadow:0 0 15px rgba(196,30,42,0.1)}}
         .noise::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px}
         .ctab{width:100%;border-collapse:separate;border-spacing:0;margin:32px 0}
         .ctab th,.ctab td{padding:14px 16px;text-align:center;font-size:.82rem;border-bottom:1px solid rgba(201,168,76,0.06)}
@@ -403,8 +405,8 @@ export default function AF() {
             <div style={rv(pV, 0)}><span style={lbl}><span style={dot} /> The Problem</span></div>
             <h2 style={{ ...rv(pV, 0.12), ...mega("clamp(2.5rem,5.5vw,4.5rem)") }}>Your Users Are <span style={{ color: "#C41E2A" }}>Exposed</span></h2>
 
-            <div style={{ ...rv(pV, 0.25), fontFamily: "'JetBrains Mono',monospace", fontSize: "clamp(0.75rem,1.5vw,1.1rem)", color: "#3D4A63", textAlign: "center", margin: "32px 0 48px", padding: 24, border: "1px solid rgba(201,168,76,0.1)", borderRadius: 12, background: "rgba(0,0,0,0.25)", ...(glitch ? { animation: "glitchB 0.7s ease-out forwards" } : {}) }}>
-              <span style={{ display: "inline-block", ...(glitch ? { color: "#C41E2A", textShadow: "0 0 20px rgba(196,30,42,0.25),-2px 0 rgba(196,30,42,0.4),2px 0 rgba(42,30,196,0.3)", animation: "glitchT 0.7s ease-out" } : {}) }}>
+            <div style={{ ...rv(pV, 0.25), fontFamily: "'JetBrains Mono',monospace", fontSize: "clamp(0.75rem,1.5vw,1.1rem)", color: "#3D4A63", textAlign: "center", margin: "32px 0 48px", padding: 24, border: "1px solid rgba(196,30,42,0.2)", borderRadius: 12, background: "rgba(0,0,0,0.25)", animation: "glitchBLoop 3.5s ease-in-out infinite" }}>
+              <span style={{ display: "inline-block", animation: "glitchLoop 3.5s ease-in-out infinite" }}>
                 0xA7c4f2B8e91D3F6a0C5d12E8b47f9302C61aF9b
               </span>
             </div>
@@ -413,7 +415,7 @@ export default function AF() {
               <div style={{ ...card, ...rl(pV, 0.55) }}>
                 <div style={cardTop} />
                 <h3 style={{ fontFamily: "'Bebas Neue'", fontSize: "1.3rem", letterSpacing: "0.08em", marginBottom: 20, display: "flex", alignItems: "center", gap: 10 }}>
-                  <span style={{ width: 32, height: 32, borderRadius: 8, background: "rgba(196,30,42,0.08)", border: "1px solid rgba(196,30,42,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.85rem" }}>👁</span>
+                  <span style={{ width: 32, height: 32, borderRadius: 8, background: "rgba(196,30,42,0.08)", border: "1px solid rgba(196,30,42,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.85rem" }}>👛</span>
                   FOR WALLETS
                 </h3>
                 {["Address poisoning, dust attacks & phishing from transparent public addresses","Every transaction is traceable — zero financial privacy","Copy-pasting long hex strings prone to costly errors","No recovery path tied to identity"].map((t, i) => (
@@ -423,7 +425,7 @@ export default function AF() {
               <div style={{ ...card, ...rr(pV, 0.7) }}>
                 <div style={cardTop} />
                 <h3 style={{ fontFamily: "'Bebas Neue'", fontSize: "1.3rem", letterSpacing: "0.08em", marginBottom: 20, display: "flex", alignItems: "center", gap: 10 }}>
-                  <span style={{ width: 32, height: 32, borderRadius: 8, background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.85rem" }}>⚠</span>
+                  <span style={{ width: 32, height: 32, borderRadius: 8, background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.85rem" }}>👤</span>
                   FOR NAME SERVICES
                 </h3>
                 {["Sold domains (.eth, .sol) permanently link to public wallet addresses — exposing entire transaction history","No privacy layer exists for the 10M+ names already sold","Missed recurring revenue opportunity after initial sale"].map((t, i) => (
