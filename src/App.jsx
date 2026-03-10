@@ -203,13 +203,13 @@ function CustomCursor() {
         dot.current.style.left = e.clientX + "px";
         dot.current.style.top = e.clientY + "px";
       }
-      // Trail particles every 40ms
+      // Trail particles every 20ms
       const now = Date.now();
-      if (now - lastTrail.current > 40) {
+      if (now - lastTrail.current > 20) {
         lastTrail.current = now;
         const id = now;
-        setTrails(t => [...t.slice(-11), { id, x: e.clientX, y: e.clientY }]);
-        setTimeout(() => setTrails(t => t.filter(p => p.id !== id)), 600);
+        setTrails(t => [...t.slice(-24), { id, x: e.clientX, y: e.clientY }]);
+        setTimeout(() => setTrails(t => t.filter(p => p.id !== id)), 800);
       }
       // Hover detection
       const el = document.elementFromPoint(e.clientX, e.clientY);
@@ -260,7 +260,7 @@ function CustomCursor() {
     <>
       {/* Trail particles */}
       {trails.map(p => (
-        <div key={p.id} style={{ position: "fixed", left: p.x, top: p.y, width: 4, height: 4, borderRadius: "50%", background: "rgba(42,100,196,0.7)", transform: "translate(-50%,-50%)", pointerEvents: "none", zIndex: 99998, animation: "trailFade 600ms ease-out forwards" }} />
+        <div key={p.id} style={{ position: "fixed", left: p.x, top: p.y, width: 6, height: 6, borderRadius: "50%", background: "rgba(80,140,255,1)", boxShadow: "0 0 8px rgba(80,140,255,0.9), 0 0 16px rgba(80,140,255,0.5)", transform: "translate(-50%,-50%)", pointerEvents: "none", zIndex: 99998, animation: "trailFade 800ms ease-out forwards" }} />
       ))}
       {/* Dot */}
       <div ref={dot} style={{ position: "fixed", width: dotSize, height: dotSize, borderRadius: "50%", background: "#C41E2A", boxShadow: dotShadow, transform: "translate(-50%,-50%)", pointerEvents: "none", zIndex: 99999, transition: "width 0.2s cubic-bezier(0.16,1,0.3,1), height 0.2s cubic-bezier(0.16,1,0.3,1), box-shadow 0.2s ease" }} />
