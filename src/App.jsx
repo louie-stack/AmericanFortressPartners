@@ -314,6 +314,125 @@ function CustomCursor() {
   );
 }
 
+const HEX_CHARS = "0123456789abcdef";
+const NAME_TARGET = "@JAKUB";
+const NR_CYCLE = 9000;
+const NR_SCRAMBLE_START = 3000;
+const NR_SCRAMBLE_END = 5000;
+const NR_RESOLVED_END = 7500;
+const NR_TICKS = 30;
+const NR_TICK_MS = 65;
+
+function NameResolver({ visibility }) {
+  const [phase, setPhase] = React.useState("hex"); // hex | scramble | resolved | fading
+  const [displayText, setDisplayText] = React.useState("0xA7c4...3F9b");
+  const startRef = React.useRef(null);
+  const rafRef = React.useRef(null);
+  const tickRef = React.useRef(0);
+  const tickTimerRef = React.useRef(null);
+
+  React.useEffect(() => {
+    let alive = true;
+    const run = (ts) => {
+      if (!alive) return;
+      if (!startRef.current) startRef.current = ts;
+      const t = (ts - startRef.current) % NR_CYCLE;
+
+      if (t < NR_SCRAMBLE_START) {
+        setPhase("hex");
+        setDisplayText("0xA7c4...3F9b");
+        tickRef.current = 0;
+        if (tickTimerRef.current) { clearInterval(tickTimerRef.current); tickTimerRef.current = null; }
+      } else if (t < NR_SCRAMBLE_END) {
+        if (phase !== "scramble") {
+          setPhase("scramble");
+          tickRef.current = 0;
+          if (tickTimerRef.current) clearInterval(tickTimerRef.current);
+          tickTimerRef.current = setInterval(() => {
+            tickRef.current = Math.min(tickRef.current + 1, NR_TICKS);
+            const resolved = Math.floor((tickRef.current / NR_TICKS) * NAME_TARGET.length);
+            const remaining = NAME_TARGET.length - resolved;
+            const scrambled = Array.from({ length: remaining }, () => HEX_CHARS[Math.floor(Math.random() * HEX_CHARS.length)]).join("");
+            setDisplayText(NAME_TARGET.slice(0, resolved) + scrambled);
+          }, NR_TICK_MS);
+        }
+      } else if (t < NR_RESOLVED_END) {
+        if (phase !== "resolved") {
+          setPhase("resolved");
+          setDisplayText(NAME_TARGET);
+          if (tickTimerRef.current) { clearInterval(tickTimerRef.current); tickTimerRef.current = null; }
+        }
+      } else {
+        if (phase !== "fading") {
+          setPhase("fading");
+          if (tickTimerRef.current) { clearInterval(tickTimerRef.current); tickTimerRef.current = null; }
+        }
+      }
+      rafRef.current = requestAnimationFrame(run);
+    };
+    rafRef.current = requestAnimationFrame(run);
+    return () => { alive = false; cancelAnimationFrame(rafRef.current); if (tickTimerRef.current) clearInterval(tickTimerRef.current); };
+  }, [phase]);
+
+  const isResolved = phase === "resolved";
+  const isScramble = phase === "scramble";
+  const isFading = phase === "fading";
+  const masterOpacity = isFading ? 0 : 1;
+
+  const statusText = isScramble ? "● Resolving name..." : isResolved ? "✓ Identity verified — private transfer ready" : null;
+  const statusColor = isScramble ? "rgba(200,170,100,0.85)" : "#34D399";
+
+  const textColor = isResolved ? "#f0ece2" : isScramble ? "rgba(200,170,100,0.7)" : "rgba(160,165,185,0.35)";
+  const letterSpacing = isResolved ? "3px" : "1px";
+
+  return (
+    <div style={{ opacity: masterOpacity, transition: "opacity 0.5s ease", marginBottom: 8 }}>
+      {/* Status label */}
+      <div style={{ height: 22, marginBottom: 12 }}>
+        {statusText && (
+          <span style={{ fontFamily: "'JetBrains Mono'", fontSize: "9px", color: statusColor, letterSpacing: "3px", textTransform: "uppercase" }}>
+            {statusText}
+          </span>
+        )}
+      </div>
+
+      {/* Resolver display */}
+      <div style={{ position: "relative", display: "inline-block" }}>
+        {/* Radial glow when resolved */}
+        {isResolved && (
+          <div style={{ position: "absolute", inset: "-40px -80px", background: "radial-gradient(ellipse, rgba(200,170,100,0.08) 0%, transparent 70%)", pointerEvents: "none", zIndex: 0 }} />
+        )}
+        <div style={{ position: "relative", zIndex: 1, display: "flex", alignItems: "center", gap: 20 }}>
+          {/* Hex address (strikethrough when not hex phase) */}
+          <span style={{
+            fontFamily: "'JetBrains Mono'", fontSize: "clamp(13px,1.4vw,18px)", color: "#3D4A63",
+            padding: "10px 20px", background: "rgba(196,30,42,0.04)", border: "1px solid rgba(196,30,42,0.12)", borderRadius: 6,
+            textDecoration: phase !== "hex" ? "line-through" : "none",
+            opacity: phase === "hex" ? 1 : 0.4,
+          }}>0xA7c4...3F9b</span>
+
+          <span style={{ fontSize: "1.6rem", color: "#C9A84C", opacity: phase === "hex" ? 0.3 : 1 }}>→</span>
+
+          {/* Animated name */}
+          <div style={{ position: "relative" }}>
+            <span style={{
+              fontFamily: "'JetBrains Mono'", fontSize: "clamp(24px,3.5vw,40px)", fontWeight: 500,
+              color: textColor, letterSpacing,
+            }}>{displayText}</span>
+            {/* Gold underline */}
+            <div style={{
+              position: "absolute", bottom: 4, left: 0, height: 2,
+              width: isResolved ? "100%" : "0%",
+              background: "linear-gradient(90deg, rgba(200,170,100,0.6), rgba(200,170,100,0.2))",
+              transition: "width 0.5s ease",
+            }} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function WalletScanner() {
   const ADDR = "0xA7c4f2B8e91D3F6a0C5d12E8b47f9302C61aF9b";
   const CYCLE = 7500;
@@ -685,19 +804,26 @@ export default function AF() {
         <Stripe flip />
 
         {/* SOLUTION 1 */}
-        <section ref={s1R} style={full}>
-          <div className="msec" style={sec}>
+        <section ref={s1R} style={{ ...full, position: "relative", overflow: "hidden", minHeight: "100vh", display: "flex", alignItems: "center" }}>
+          {/* Liberty background — right half, faded */}
+          <div style={{
+            position: "absolute", top: 0, right: 0, bottom: 0, width: "55%", zIndex: 0,
+            backgroundImage: `url(${LIBERTY_SRC})`, backgroundSize: "cover", backgroundPosition: "center",
+            opacity: 0.09, filter: "saturate(0.15)",
+            maskImage: "linear-gradient(to right, transparent, black 30%, black 70%, transparent), linear-gradient(to bottom, transparent 0%, black 15%, black 75%, transparent 100%)",
+            maskComposite: "intersect",
+            WebkitMaskImage: "linear-gradient(to right, transparent, black 30%, black 70%, transparent), linear-gradient(to bottom, transparent 0%, black 15%, black 75%, transparent 100%)",
+            WebkitMaskComposite: "destination-in",
+          }} />
+          <div className="msec" style={{ maxWidth: 1160, margin: "0 auto", padding: "100px 6vw 80px", display: "flex", flexDirection: "column", justifyContent: "center", position: "relative", zIndex: 1, width: "100%" }}>
             <div style={rv(s1V, 0)}><span style={lbl}><span style={dot} /> The Solution — Part 1</span></div>
             <h2 style={{ ...rv(s1V, 0.12), ...mega("clamp(2.5rem,5.5vw,4.5rem)") }}>FortressNames <span style={{ color: "#C41E2A" }}>Send-to-Name™</span></h2>
-            <p style={{ ...rv(s1V, 0.22), color: "#7A8599", fontSize: "1.05rem", marginBottom: 12 }}>Human-readable names replace complex wallet addresses with patented privacy</p>
+            <p style={{ ...rv(s1V, 0.22), color: "#7A8599", fontSize: "1.05rem", marginBottom: 40 }}>Human-readable names replace complex wallet addresses with patented privacy</p>
 
-            <div style={{ ...rs(s1V, 0.35), display: "flex", alignItems: "center", justifyContent: "center", gap: 24, margin: "40px 0", flexWrap: "wrap" }}>
-              <span style={{ fontFamily: "'JetBrains Mono'", fontSize: "0.9rem", color: "#3D4A63", padding: "14px 24px", background: "rgba(196,30,42,0.04)", border: "1px solid rgba(196,30,42,0.12)", borderRadius: 8, textDecoration: "line-through" }}>0xA7c4...3F9b</span>
-              <span style={{ fontSize: "2rem", color: "#C9A84C" }}>→</span>
-              <span style={{ fontFamily: "'Bebas Neue'", fontSize: "1.8rem", color: "#34D399", padding: "10px 28px", background: "rgba(52,211,153,0.06)", border: "1px solid rgba(52,211,153,0.18)", borderRadius: 8, letterSpacing: "0.04em" }}>@JAKUB</span>
-            </div>
+            {/* Animated name resolver */}
+            <NameResolver visibility={s1V} />
 
-            <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "18px 48px", marginTop: 40 }}>
+            <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "18px 48px", marginTop: 48 }}>
               {["Human-readable names (e.g., @jakub) replace complex wallet addresses","Patented stealth address technology ensures every transaction is private","Eliminates address poisoning & phishing — send to names, not addresses","Address poisoning protection built in","Wallet recovery: the name recovers entire transaction history linked to it","Multi-chain Day 1: Ethereum, Base, 0G, Litecoin, DASH, and more","Works with both custodial and non-custodial wallets — universal compatibility","Freemium model: free random names → paid custom names for conversion"].map((f, i) => (
                 <div key={i} style={feat(s1V, 0.4 + i * 0.08)}>
                   <span style={fchk}>★</span><span style={mut}>{f}</span>
