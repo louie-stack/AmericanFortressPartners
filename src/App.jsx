@@ -317,8 +317,18 @@ function CustomCursor() {
 function WalletScanner() {
   const ADDR = "0xA7c4f2B8e91D3F6a0C5d12E8b47f9302C61aF9b";
   const CYCLE = 7500;
-  const TAGS = ["IP: 82.34.211.9", "ISP: BT Group", "City: London, UK", "OS: Windows 11", "Browser: Chrome", "Tx Count: 2,841"];
+  const SCAN_START = 300; const SCAN_END = 2300; const FLASH_END = 2500;
+  const EXPOSED_AT = 2600; const FADE_OUT_AT = 6500; const FADE_END = 7000;
+  const TAGS = [
+    { label: "BALANCE",           value: "142.7 ETH ($384,291)" },
+    { label: "TXNS (30D)",        value: "847 transactions" },
+    { label: "TOP COUNTERPARTY",  value: "0x8f3...2eA1" },
+    { label: "DEFI EXPOSURE",     value: "Aave, Uniswap, Lido" },
+    { label: "NFT HOLDINGS",      value: "23 assets (~$41K)" },
+    { label: "LINKED WALLETS",    value: "3 identified" },
+  ];
   const [time, setTime] = useState(0);
+  const [hoveredTag, setHoveredTag] = useState(null);
   const rafRef = useRef(null);
   const startRef = useRef(null);
   useEffect(() => {
@@ -330,48 +340,81 @@ function WalletScanner() {
     rafRef.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafRef.current);
   }, []);
-  const t = time / 1000;
-  const showScanLabel = t < 0.3 || (t >= 6.5 && t < 7.0);
-  const isScanning = t >= 0.3 && t < 2.3;
-  const scanProgress = isScanning ? (t - 0.3) / 2.0 : t >= 2.3 ? 1 : 0;
-  const isFlashing = t >= 2.3 && t < 2.6;
-  const isExposed = t >= 2.6 && t < 6.5;
-  const isFadingOut = t >= 6.5 && t < 7.0;
-  const masterOpacity = isFadingOut ? 1 - (t - 6.5) / 0.5 : 1;
-  const redGlow = isFlashing ? "0 0 32px rgba(196,30,42,0.9), 0 0 64px rgba(196,30,42,0.5)" : isExposed ? "0 0 16px rgba(196,30,42,0.4)" : "none";
+
+  const isScanning  = time >= SCAN_START && time < SCAN_END;
+  const scanProgress = time < SCAN_START ? 0 : time >= SCAN_END ? 1 : (time - SCAN_START) / (SCAN_END - SCAN_START);
+  const isFlashing  = time >= SCAN_END && time < FLASH_END;
+  const isExposed   = time >= EXPOSED_AT && time < FADE_OUT_AT;
+  const isFadingOut = time >= FADE_OUT_AT && time < FADE_END;
+  const masterOpacity = isFadingOut ? 1 - (time - FADE_OUT_AT) / (FADE_END - FADE_OUT_AT) : 1;
+  const showScanLabel = time < SCAN_START || isFadingOut;
+  const showExposedLabel = isExposed;
+
+  const tagVisible = (i) => {
+    const tagStart = EXPOSED_AT + i * 120;
+    if (time < tagStart) return 0;
+    if (isFadingOut) return masterOpacity;
+    return Math.min(1, (time - tagStart) / 300);
+  };
+
+  const addrBg = isFlashing ? "rgba(197,48,48,0.1)" : isExposed ? "rgba(197,48,48,0.04)" : "rgba(8,14,30,0.6)";
+  const addrBorder = isExposed || isFlashing ? "rgba(197,48,48,0.25)" : "rgba(100,110,150,0.12)";
+  const addrColor = isExposed || isFlashing ? "rgba(220,160,160,0.8)" : "rgba(160,165,185,0.5)";
+  const outerGlow = isFlashing ? "0 0 32px rgba(197,48,48,0.6), 0 0 64px rgba(197,48,48,0.25)" : isExposed ? "0 0 16px rgba(197,48,48,0.2)" : "none";
+
   return (
-    <div style={{ opacity: masterOpacity, fontFamily: "'JetBrains Mono',monospace", fontSize: "clamp(0.7rem,1.3vw,0.95rem)", margin: "32px 0 48px", padding: 24, border: `1px solid ${isExposed || isFlashing ? "rgba(196,30,42,0.5)" : "rgba(196,30,42,0.2)"}`, borderRadius: 12, background: "rgba(0,0,0,0.25)", boxShadow: redGlow, transition: "border-color 0.2s, box-shadow 0.2s" }}>
-      {/* Label */}
-      <div style={{ fontSize: "0.72rem", letterSpacing: "0.12em", marginBottom: 12, color: isExposed ? "#C41E2A" : "#3D4A63", opacity: showScanLabel || isScanning ? 0 : 1 }}>
-        {isExposed ? "⚠ WALLET EXPOSED" : "● SCANNING ADDRESS..."}
+    <div style={{ opacity: masterOpacity, fontFamily: "'JetBrains Mono',monospace", margin: "32px 0 48px", padding: "28px 28px 24px", border: `1px solid ${isExposed || isFlashing ? "rgba(197,48,48,0.3)" : "rgba(100,110,150,0.1)"}`, borderRadius: 14, background: "rgba(6,11,24,0.5)", boxShadow: outerGlow }}>
+
+      {/* Status label */}
+      <div style={{ fontSize: "0.7rem", letterSpacing: "0.14em", textTransform: "uppercase", textAlign: "center", marginBottom: 14, height: 16, color: showExposedLabel ? "rgba(197,48,48,0.9)" : "rgba(160,165,185,0.45)" }}>
+        {showExposedLabel ? "⚠ Wallet Exposed" : "● Scanning address..."}
       </div>
-      <div style={{ fontSize: "0.72rem", letterSpacing: "0.12em", marginBottom: 12, color: "#3D4A63", opacity: showScanLabel ? 1 : 0, position: showScanLabel ? "relative" : "absolute" }}>
-        ● SCANNING ADDRESS...
+
+      {/* Address bar */}
+      <div style={{ position: "relative", padding: "14px 16px", borderRadius: 8, background: addrBg, border: `1px solid ${addrBorder}`, overflow: "hidden" }}>
+        {/* CRT scan lines */}
+        {isScanning && (
+          <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(197,48,48,0.02) 3px,rgba(197,48,48,0.02) 4px)", pointerEvents: "none", zIndex: 2, opacity: 0.6 }} />
+        )}
+        {/* Trail highlight behind beam */}
+        <div style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: `${scanProgress * 100}%`, background: isScanning ? "linear-gradient(90deg,transparent 70%,rgba(197,48,48,0.06) 100%)" : isExposed ? "rgba(197,48,48,0.02)" : "transparent", zIndex: 1, pointerEvents: "none" }} />
+        {/* Beam */}
+        {isScanning && (
+          <div style={{ position: "absolute", top: -2, bottom: -2, left: `${scanProgress * 100}%`, width: 3, background: "rgba(197,48,48,0.9)", boxShadow: "0 0 8px rgba(197,48,48,0.6),0 0 24px rgba(197,48,48,0.3),0 0 60px rgba(197,48,48,0.15)", borderRadius: 2, zIndex: 5, pointerEvents: "none" }} />
+        )}
+        {/* Address text */}
+        <div style={{ position: "relative", zIndex: 3, fontSize: "clamp(0.65rem,1.2vw,0.88rem)", color: addrColor, wordBreak: "break-all", letterSpacing: "0.03em" }}>{ADDR}</div>
       </div>
-      {/* Address */}
-      <div style={{ color: isExposed ? "#C41E2A" : "#3D4A63", wordBreak: "break-all", marginBottom: 16 }}>{ADDR}</div>
-      {/* Beam bar */}
-      {(isScanning || isFlashing) && (
-        <div style={{ position: "relative", height: 3, background: "rgba(196,30,42,0.1)", borderRadius: 2, marginBottom: 16, overflow: "hidden" }}>
-          <div style={{ position: "absolute", left: 0, top: 0, height: "100%", width: `${scanProgress * 100}%`, background: "linear-gradient(90deg,transparent,#C41E2A,rgba(196,30,42,0.4))", borderRadius: 2 }} />
-          {/* Beam glow head */}
-          <div style={{ position: "absolute", top: -2, height: 7, width: 32, left: `calc(${scanProgress * 100}% - 32px)`, background: "radial-gradient(ellipse at right,rgba(196,30,42,0.9),transparent)", borderRadius: 2 }} />
-        </div>
-      )}
-      {/* Leaked tags */}
-      {isExposed && (
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, marginTop: 8 }}>
-          {TAGS.map((tag, i) => {
-            const delay = i * 120;
-            const elapsed = (t - 2.6) * 1000;
-            const visible = elapsed >= delay;
-            return (
-              <div key={i} style={{ padding: "6px 10px", borderRadius: 6, background: "rgba(196,30,42,0.06)", border: "1px solid rgba(196,30,42,0.2)", color: "#C41E2A", fontSize: "0.68rem", letterSpacing: "0.06em", opacity: visible ? 1 : 0, transform: `translateY(${visible ? 0 : 6}px)`, transition: "opacity 0.25s, transform 0.25s" }}>
-                {tag}
+
+      {/* Progress bar */}
+      <div style={{ width: "100%", height: 2, background: "rgba(100,110,150,0.08)", borderRadius: 1, marginTop: 6, overflow: "hidden", opacity: isScanning ? 1 : 0 }}>
+        <div style={{ height: "100%", width: `${scanProgress * 100}%`, background: "linear-gradient(90deg,rgba(197,48,48,0.3),rgba(197,48,48,0.7))" }} />
+      </div>
+
+      {/* Leaked data grid */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginTop: 20 }}>
+        {TAGS.map(({ label, value }, i) => {
+          const op = tagVisible(i);
+          const hov = hoveredTag === i;
+          return (
+            <div key={i} style={{ opacity: op, transform: `translateY(${op === 0 ? 10 : 0}px)` }}
+              onMouseEnter={() => setHoveredTag(i)} onMouseLeave={() => setHoveredTag(null)}>
+              {/* Connector line */}
+              <div style={{ height: 10, display: "flex", justifyContent: "center", alignItems: "flex-start" }}>
+                <div style={{ width: 1, height: "100%", background: hov ? "rgba(197,48,48,0.35)" : "rgba(197,48,48,0.12)", transition: "background 0.25s" }} />
               </div>
-            );
-          })}
-        </div>
+              <div style={{ padding: "8px 10px", borderRadius: 6, background: hov ? "rgba(197,48,48,0.1)" : "rgba(197,48,48,0.04)", border: `1px solid ${hov ? "rgba(197,48,48,0.3)" : "rgba(197,48,48,0.12)"}`, boxShadow: hov ? "0 0 20px rgba(197,48,48,0.12),0 0 40px rgba(197,48,48,0.05)" : "none", transition: "background 0.25s,border-color 0.25s,box-shadow 0.25s", cursor: "default" }}>
+                <div style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", color: hov ? "rgba(197,48,48,0.7)" : "rgba(197,48,48,0.4)", marginBottom: 4, transition: "color 0.25s" }}>{label}</div>
+                <div style={{ fontSize: "0.72rem", color: hov ? "rgba(240,190,190,0.9)" : "rgba(210,170,170,0.65)", transition: "color 0.25s" }}>{value}</div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Footer label */}
+      {isExposed && (
+        <div style={{ textAlign: "center", marginTop: 16, fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,48,48,0.45)" }}>● Full financial profile exposed</div>
       )}
     </div>
   );
