@@ -504,7 +504,7 @@ export default function AF() {
         <Stripe flip />
 
         {/* QUADRANT — SCROLL PINNED */}
-        <div ref={qWrap} style={{ position: "relative", height: "350vh" }}>
+        <div ref={qWrap} style={{ position: "relative", height: "600vh" }}>
           <section style={{ ...full, position: "sticky", top: 0, height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
             <Stars count={20} color="rgba(201,168,76,0.1)" />
             {/* Progress bar */}
@@ -516,12 +516,12 @@ export default function AF() {
               <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.65rem", letterSpacing: "0.12em", color: "#C9A84C", textTransform: "uppercase" }}>Scroll to explore</span>
               <svg width="16" height="24" viewBox="0 0 16 24" fill="none"><path d="M8 4V20M8 20L2 14M8 20L14 14" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite" /></path></svg>
             </div>
-            <div className="msec" style={{ ...sec, opacity: qStage >= 1 ? 1 : 0, transform: `translateY(${qStage >= 1 ? 0 : 40}px)`, transition: "opacity 0.8s ease, transform 0.8s ease" }}>
-              <div style={{ opacity: qStage >= 1 ? 1 : 0, transition: "opacity 0.6s ease" }}><span style={lbl}><span style={dot} /> Competitive Landscape</span></div>
-              <h2 style={{ ...mega("clamp(2.5rem,5.5vw,4.5rem)", 48), opacity: qStage >= 1 ? 1 : 0, transition: "opacity 0.6s ease 0.15s" }}>Where We Stand — <span style={{ color: "#C41E2A" }}>Privacy × Usability</span></h2>
+            <div className="msec" style={{ ...sec }}>
+              <div><span style={lbl}><span style={dot} /> Competitive Landscape</span></div>
+              <h2 style={{ ...mega("clamp(2.5rem,5.5vw,4.5rem)", 48) }}>Where We Stand — <span style={{ color: "#C41E2A" }}>Privacy × Usability</span></h2>
 
               <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 40, alignItems: "start" }}>
-                <div style={{ opacity: qStage >= 2 ? 1 : 0, transform: `translateY(${qStage >= 2 ? 0 : 30}px)`, transition: "opacity 0.6s ease, transform 0.6s ease" }}>
+                <div>
                   <Quad stage={Math.max(0, qStage - 1)} />
                 </div>
                 <div style={{ ...card, opacity: qStage >= 10 ? 1 : 0, transform: `translateX(${qStage >= 10 ? 0 : 60}px)`, transition: "opacity 0.7s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1)" }}>
