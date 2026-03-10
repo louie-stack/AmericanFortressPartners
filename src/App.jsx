@@ -1259,7 +1259,9 @@ export default function AF() {
               </div>
               <div style={{ ...card, ...rr(ctV, 0.45), textAlign: "center" }}>
                 <div style={cardTop} />
-                <div style={{ width: 56, height: 56, borderRadius: "50%", background: "linear-gradient(135deg,#121F3A,rgba(201,168,76,0.08))", border: "1px solid rgba(201,168,76,0.2)", margin: "0 auto 12px", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Bebas Neue'", fontSize: "1rem", color: "#C9A84C" }}>JZ</div>
+                <div style={{ width: 72, height: 72, borderRadius: "50%", border: "2px solid rgba(201,168,76,0.3)", margin: "0 auto 14px", overflow: "hidden" }}>
+                  <img src="/jakub.jpg" alt="Jakub Zurawinski" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }} />
+                </div>
                 <p style={{ fontFamily: "'Bebas Neue'", fontSize: "1.1rem", letterSpacing: "0.06em" }}>JAKUB ZURAWINSKI</p>
                 <p style={{ fontFamily: "'JetBrains Mono'", fontSize: "0.7rem", color: "#3D4A63", marginBottom: 16, letterSpacing: "0.04em" }}>Head of Business Development</p>
                 <div style={{ display: "flex", flexDirection: "column", gap: 8, fontSize: "0.85rem" }}>
