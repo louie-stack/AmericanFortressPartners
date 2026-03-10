@@ -299,7 +299,7 @@ export default function AF() {
           <Stars count={40} color="rgba(201,168,76,0.15)" />
 
           {/* Centered hero content — floating above the cover art */}
-          <div className="hero-content" style={{ position: "relative", zIndex: 2, textAlign: "center", maxWidth: 880, padding: "0 40px", marginTop: -40 }}>
+          <div className="hero-content" style={{ position: "relative", zIndex: 2, textAlign: "center", maxWidth: "min(95vw, 1100px)", padding: "0 24px", marginTop: -40 }}>
 
             {/* Line 1: PARTNER WITH */}
             <div style={{ overflow: "hidden", marginBottom: 4 }}>
@@ -319,7 +319,7 @@ export default function AF() {
                 fontFamily: "'Bebas Neue',sans-serif", fontSize: "clamp(3.8rem, 11vw, 9rem)",
                 letterSpacing: "0.04em", lineHeight: 0.92, textTransform: "uppercase", color: "#E8D5B5",
                 textShadow: "0 4px 60px rgba(0,0,0,0.5), 0 2px 20px rgba(0,0,0,0.3)",
-                whiteSpace: "nowrap",
+                whiteSpace: "nowrap", fontSize: "clamp(2rem, 8.5vw, 9rem)",
                 animation: hV ? "heroLineUp 1.1s cubic-bezier(0.16,1,0.3,1) 0.5s both" : "none",
                 opacity: 0,
               }}>
