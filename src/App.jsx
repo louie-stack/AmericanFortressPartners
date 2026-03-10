@@ -315,18 +315,38 @@ function CustomCursor() {
 }
 
 // ── ComparisonSection ────────────────────────────────────────────────────
-const SLAM_INTERVAL  = 350;
+const SLAM_INTERVAL   = 350;
 const IMPACT_DURATION = 150;
 
+const CMP_ROWS = [
+  ["Transaction Privacy",    "c","p","c","c","c","c"],
+  ["Human-Readable Names",   "c","n","n","n","n","n"],
+  ["Multi-Chain",            "c","n","p","n","n","n"],
+  ["Patented Technology",    "c","n","n","n","n","p"],
+  ["DeFi Composability",     "c","p","c","n","n","n"],
+  ["Compliance / Disclosure","c","n","n","p","n","c"],
+  ["Consumer UX",            "c","c","n","n","p","n"],
+  ["Partner Revenue Share",  "c","n","n","n","n","n"],
+  ["Dust/Phishing Protection","c","n","n","n","c","n"],
+  ["Return to Sender",       "c","n","n","n","n","n"],
+  ["SDK for Wallets",        "c","p","n","n","n","p"],
+];
+
+function CmpSym({ v }) {
+  if (v === "c") return <span style={{ fontSize:16, color:"rgba(200,170,100,0.6)" }}>★</span>;
+  if (v === "p") return <span style={{ fontSize:14, color:"rgba(200,170,100,0.5)" }}>△</span>;
+  return <span style={{ fontSize:14, color:"rgba(100,110,150,0.2)" }}>—</span>;
+}
+
 function ComparisonSection() {
-  const wrapRef     = useRef(null);
-  const [p, setP]   = useState(0);
-  const hasPlayed   = useRef(false);
-  const [started, setStarted]       = useState(false);
+  const wrapRef    = useRef(null);
+  const [p, setP]  = useState(0);
+  const hasPlayed  = useRef(false);
+  const [started,     setStarted]     = useState(false);
   const [activeCount, setActiveCount] = useState(0);
   const [impactIndex, setImpactIndex] = useState(-1);
-  const [shakeOffset, setShakeOffset] = useState({ x: 0, y: 0 });
-  const [footerVis, setFooterVis]     = useState(false);
+  const [shakeOffset, setShakeOffset] = useState({ x:0, y:0 });
+  const [footerVis,   setFooterVis]   = useState(false);
 
   // Scroll progress
   useEffect(() => {
@@ -351,22 +371,22 @@ function ComparisonSection() {
     }
   }, [p]);
 
-  // Timer-driven slam sequence
+  // Timer-driven slam — separate effect so scroll cleanup never kills timers
   useEffect(() => {
     if (!started) return;
     const startDelay = setTimeout(() => {
       let current = 0;
       const interval = setInterval(() => {
-        setImpactIndex(current);
+        const idx = current;
+        setImpactIndex(idx);
         setActiveCount(prev => prev + 1);
         setShakeOffset({ x: Math.random() * 4 - 2, y: Math.random() * 3 - 1.5 });
-        const idx = current;
         setTimeout(() => {
           setImpactIndex(prev => prev === idx ? -1 : prev);
           setShakeOffset({ x: 0, y: 0 });
         }, IMPACT_DURATION);
         current++;
-        if (current >= tRows.length) {
+        if (current >= CMP_ROWS.length) {
           clearInterval(interval);
           setTimeout(() => setFooterVis(true), 400);
         }
@@ -376,80 +396,114 @@ function ComparisonSection() {
     return () => clearTimeout(startDelay);
   }, [started]);
 
-  const scrollHintOpacity = Math.max(0, 1 - p * 8);
+  const hintOpacity = Math.max(0, 1 - p * 6);
+  const COLS = ["Feature", "American Fortress", "Fluidkey", "Railgun", "Zcash", "Monero", "Canton"];
+  const gridCols = "1.8fr repeat(6, 1fr)";
+  const cellBase = { padding:"12px 20px", borderBottom:"1px solid rgba(100,110,150,0.05)", display:"contents" };
 
   return (
-    <div ref={wrapRef} style={{ position: "relative", height: "350vh" }}>
+    <div ref={wrapRef} style={{ position:"relative", height:"350vh" }}>
       <section style={{
-        background: "#0F1D35", position: "sticky", top: 0, height: "100vh",
-        display: "flex", alignItems: "flex-start", justifyContent: "center",
-        overflow: "hidden",
-        transform: `translate(${shakeOffset.x}px, ${shakeOffset.y}px)`,
+        background:"#0F1D35", position:"sticky", top:0, height:"100vh",
+        display:"flex", alignItems:"flex-start", justifyContent:"center",
+        overflow:"hidden",
+        transform:`translate(${shakeOffset.x}px,${shakeOffset.y}px)`,
       }}>
-        {/* scroll hint */}
-        <div style={{ position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)", opacity: scrollHintOpacity, pointerEvents: "none", zIndex: 5, display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
-          <span style={{ fontFamily: "'JetBrains Mono'", fontSize: "0.6rem", color: "#3D4A63", letterSpacing: "0.15em" }}>Scroll to reveal</span>
-          <span style={{ fontSize: "1rem", color: "#3D4A63" }}>↓</span>
+        {/* Scroll hint */}
+        <div style={{ position:"absolute", bottom:28, left:"50%", transform:"translateX(-50%)", opacity:hintOpacity, pointerEvents:"none", zIndex:5, display:"flex", flexDirection:"column", alignItems:"center", gap:8 }}>
+          <span style={{ fontFamily:"'JetBrains Mono'", fontSize:"0.6rem", color:"#3D4A63", letterSpacing:"0.15em", textTransform:"uppercase" }}>Scroll</span>
+          <div style={{ width:1, height:32, background:"linear-gradient(to bottom, #3D4A63, transparent)" }} />
         </div>
 
-        <div className="msec" style={{ maxWidth: 1160, margin: "0 auto", padding: "60px 48px 40px", width: "100%", position: "relative", zIndex: 1 }}>
-          <h2 style={{ ...{ fontFamily: "'Bebas Neue'", letterSpacing: "0.04em", lineHeight: 1.05, color: "#E8D5B5", fontSize: "clamp(2rem,4.5vw,3.8rem)", marginBottom: 8 } }}>
-            Head-to-Head <span style={{ color: "#C41E2A" }}>Feature Comparison</span>
+        <div style={{ maxWidth:1000, margin:"0 auto", padding:"56px 48px 40px", width:"100%", position:"relative", zIndex:1 }}>
+          {/* Title */}
+          <h2 style={{ fontFamily:"'Bebas Neue'", letterSpacing:"0.04em", lineHeight:1.05, color:"#E8D5B5", fontSize:"clamp(2rem,4.5vw,3.8rem)", marginBottom:28 }}>
+            Head-to-Head <span style={{ color:"#C41E2A" }}>Feature Comparison</span>
           </h2>
 
-          <div style={{ overflowX: "auto" }}>
-            <table className="ctab" style={{ margin: "20px 0" }}>
-              <thead>
-                <tr>
-                  <th style={{ textAlign: "left" }}>Feature</th>
-                  <th className="ac">American Fortress</th>
-                  <th>Fluidkey</th><th>Railgun</th><th>Zcash</th><th>Monero</th><th>Canton</th>
-                </tr>
-              </thead>
-              <tbody>
-                {tRows.map(([f, ...vs], i) => {
-                  const isImpact = impactIndex === i;
-                  const isAlive  = i < activeCount;
-                  const rowBg = isImpact
-                    ? "rgba(218,165,69,0.08)"
-                    : i % 2 === 0 ? "transparent" : "rgba(100,110,150,0.02)";
-                  const rowTransition = isImpact ? "none" : "background 0.3s ease";
-                  return (
-                    <tr key={i} style={{ background: rowBg, transition: rowTransition }}>
-                      <td>{f}</td>
-                      {/* American Fortress column — animated */}
-                      <td className="afcl" style={{ textAlign: "center" }}>
-                        <span style={{
-                          display: "inline-block",
-                          fontSize: 18,
-                          color: "#daa545",
-                          transform: isImpact ? "scale(1.8)" : isAlive ? "scale(1)" : "scale(0)",
-                          opacity: isAlive ? 1 : 0,
-                          filter: isImpact
-                            ? "brightness(2.8) drop-shadow(0 0 12px rgba(218,165,69,0.9))"
-                            : isAlive ? "drop-shadow(0 0 3px rgba(218,165,69,0.3))" : "none",
-                          transition: isImpact
-                            ? "transform 0.08s ease-out, filter 0.08s ease-out"
-                            : "transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.1s ease",
-                        }}>★</span>
-                      </td>
-                      {/* Other columns — static */}
-                      {vs.slice(1).map((v, j) => (
-                        <td key={j}><SI s={v} /></td>
-                      ))}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+          {/* Grid table */}
+          <div style={{ background:"rgba(14,22,45,0.4)", border:"1px solid rgba(100,110,150,0.08)", borderRadius:12, overflow:"hidden" }}>
+            {/* Header row */}
+            <div style={{ display:"grid", gridTemplateColumns:gridCols, padding:"14px 20px", borderBottom:"1px solid rgba(100,110,150,0.1)" }}>
+              {COLS.map((col, ci) => (
+                <div key={ci} style={{
+                  fontFamily:"'JetBrains Mono'", fontSize:"0.68rem", textTransform:"uppercase", letterSpacing:"0.08em",
+                  color: ci === 1 ? "#daa545" : "#7A8599",
+                  textAlign: ci === 0 ? "left" : "center",
+                  borderBottom: ci === 1 ? "2px solid rgba(218,165,69,0.5)" : "none",
+                  paddingBottom: ci === 1 ? 4 : 0,
+                }}>
+                  {col}
+                </div>
+              ))}
+            </div>
+
+            {/* Data rows */}
+            {CMP_ROWS.map(([feat, ...vs], i) => {
+              const isImpact = impactIndex === i;
+              const isAlive  = i < activeCount;
+              const isLast   = i === CMP_ROWS.length - 1;
+              const rowBg = isImpact
+                ? "rgba(218,165,69,0.08)"
+                : i % 2 === 0 ? "transparent" : "rgba(100,110,150,0.02)";
+
+              return (
+                <div key={i} style={{
+                  display:"grid", gridTemplateColumns:gridCols,
+                  padding:"12px 20px",
+                  background: rowBg,
+                  transition: isImpact ? "none" : "background 0.3s ease",
+                  borderBottom: isLast ? "none" : "1px solid rgba(100,110,150,0.05)",
+                }}>
+                  {/* Feature name */}
+                  <div style={{ fontSize:13.5, color:"rgba(200,205,220,0.7)", display:"flex", alignItems:"center" }}>{feat}</div>
+
+                  {/* AF column — animated */}
+                  <div style={{
+                    display:"flex", alignItems:"center", justifyContent:"center",
+                    borderLeft:"1px solid rgba(218,165,69,0.08)",
+                    borderRight:"1px solid rgba(218,165,69,0.08)",
+                    background: isAlive && !isImpact ? "rgba(218,165,69,0.04)" : "transparent",
+                    transition:"background 0.3s ease",
+                  }}>
+                    <span style={{
+                      display:"inline-block", fontSize:18, color:"#daa545",
+                      transform: isImpact ? "scale(1.8)" : isAlive ? "scale(1)" : "scale(0)",
+                      opacity: isAlive ? 1 : 0,
+                      filter: isImpact
+                        ? "brightness(2.8) drop-shadow(0 0 12px rgba(218,165,69,0.9))"
+                        : isAlive ? "drop-shadow(0 0 3px rgba(218,165,69,0.3))" : "none",
+                      transition: isImpact
+                        ? "transform 0.08s ease-out, filter 0.08s ease-out"
+                        : "transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.1s ease",
+                    }}>★</span>
+                  </div>
+
+                  {/* Competitor columns — static */}
+                  {vs.slice(1).map((v, j) => (
+                    <div key={j} style={{ display:"flex", alignItems:"center", justifyContent:"center" }}>
+                      <CmpSym v={v} />
+                    </div>
+                  ))}
+                </div>
+              );
+            })}
           </div>
 
-          {/* Footer + CTA */}
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 20, flexWrap: "wrap", gap: 16, opacity: footerVis ? 1 : 0, transform: footerVis ? "translateY(0)" : "translateY(16px)", transition: "opacity 0.6s ease, transform 0.6s ease" }}>
-            <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", color: "#3D4A63", fontSize: "0.92rem" }}>
+          {/* Footer */}
+          <div style={{
+            display:"flex", justifyContent:"space-between", alignItems:"center",
+            marginTop:20, flexWrap:"wrap", gap:16,
+            opacity: footerVis ? 1 : 0,
+            transform: footerVis ? "translateY(0)" : "translateY(8px)",
+            transition:"opacity 0.6s ease, transform 0.6s ease",
+          }}>
+            <p style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", color:"rgba(150,155,180,0.35)", fontSize:13 }}>
               The technology advantage is clear. Now let's talk about what it means for your bottom line. →
             </p>
-            <button style={{ ...{ fontFamily: "'JetBrains Mono'", fontSize: "0.72rem", letterSpacing: "0.08em", textTransform: "uppercase", padding: "14px 28px", background: "#C41E2A", color: "#fff", border: "none", borderRadius: 4, cursor: "pointer" } }}>Book a Partnership Call ↗</button>
+            <button style={{ fontFamily:"'JetBrains Mono'", fontSize:"0.72rem", letterSpacing:"0.08em", textTransform:"uppercase", padding:"14px 28px", background:"#C41E2A", color:"#fff", border:"none", borderRadius:4, cursor:"pointer" }}>
+              Book a Partnership Call ↗
+            </button>
           </div>
         </div>
       </section>
