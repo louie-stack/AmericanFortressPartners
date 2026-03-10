@@ -314,6 +314,69 @@ function CustomCursor() {
   );
 }
 
+function WalletScanner() {
+  const ADDR = "0xA7c4f2B8e91D3F6a0C5d12E8b47f9302C61aF9b";
+  const CYCLE = 7500;
+  const TAGS = ["IP: 82.34.211.9", "ISP: BT Group", "City: London, UK", "OS: Windows 11", "Browser: Chrome", "Tx Count: 2,841"];
+  const [time, setTime] = useState(0);
+  const rafRef = useRef(null);
+  const startRef = useRef(null);
+  useEffect(() => {
+    const tick = (ts) => {
+      if (!startRef.current) startRef.current = ts;
+      setTime((ts - startRef.current) % CYCLE);
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, []);
+  const t = time / 1000;
+  const showScanLabel = t < 0.3 || (t >= 6.5 && t < 7.0);
+  const isScanning = t >= 0.3 && t < 2.3;
+  const scanProgress = isScanning ? (t - 0.3) / 2.0 : t >= 2.3 ? 1 : 0;
+  const isFlashing = t >= 2.3 && t < 2.6;
+  const isExposed = t >= 2.6 && t < 6.5;
+  const isFadingOut = t >= 6.5 && t < 7.0;
+  const masterOpacity = isFadingOut ? 1 - (t - 6.5) / 0.5 : 1;
+  const redGlow = isFlashing ? "0 0 32px rgba(196,30,42,0.9), 0 0 64px rgba(196,30,42,0.5)" : isExposed ? "0 0 16px rgba(196,30,42,0.4)" : "none";
+  return (
+    <div style={{ opacity: masterOpacity, fontFamily: "'JetBrains Mono',monospace", fontSize: "clamp(0.7rem,1.3vw,0.95rem)", margin: "32px 0 48px", padding: 24, border: `1px solid ${isExposed || isFlashing ? "rgba(196,30,42,0.5)" : "rgba(196,30,42,0.2)"}`, borderRadius: 12, background: "rgba(0,0,0,0.25)", boxShadow: redGlow, transition: "border-color 0.2s, box-shadow 0.2s" }}>
+      {/* Label */}
+      <div style={{ fontSize: "0.72rem", letterSpacing: "0.12em", marginBottom: 12, color: isExposed ? "#C41E2A" : "#3D4A63", opacity: showScanLabel || isScanning ? 0 : 1 }}>
+        {isExposed ? "⚠ WALLET EXPOSED" : "● SCANNING ADDRESS..."}
+      </div>
+      <div style={{ fontSize: "0.72rem", letterSpacing: "0.12em", marginBottom: 12, color: "#3D4A63", opacity: showScanLabel ? 1 : 0, position: showScanLabel ? "relative" : "absolute" }}>
+        ● SCANNING ADDRESS...
+      </div>
+      {/* Address */}
+      <div style={{ color: isExposed ? "#C41E2A" : "#3D4A63", wordBreak: "break-all", marginBottom: 16 }}>{ADDR}</div>
+      {/* Beam bar */}
+      {(isScanning || isFlashing) && (
+        <div style={{ position: "relative", height: 3, background: "rgba(196,30,42,0.1)", borderRadius: 2, marginBottom: 16, overflow: "hidden" }}>
+          <div style={{ position: "absolute", left: 0, top: 0, height: "100%", width: `${scanProgress * 100}%`, background: "linear-gradient(90deg,transparent,#C41E2A,rgba(196,30,42,0.4))", borderRadius: 2 }} />
+          {/* Beam glow head */}
+          <div style={{ position: "absolute", top: -2, height: 7, width: 32, left: `calc(${scanProgress * 100}% - 32px)`, background: "radial-gradient(ellipse at right,rgba(196,30,42,0.9),transparent)", borderRadius: 2 }} />
+        </div>
+      )}
+      {/* Leaked tags */}
+      {isExposed && (
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, marginTop: 8 }}>
+          {TAGS.map((tag, i) => {
+            const delay = i * 120;
+            const elapsed = (t - 2.6) * 1000;
+            const visible = elapsed >= delay;
+            return (
+              <div key={i} style={{ padding: "6px 10px", borderRadius: 6, background: "rgba(196,30,42,0.06)", border: "1px solid rgba(196,30,42,0.2)", color: "#C41E2A", fontSize: "0.68rem", letterSpacing: "0.06em", opacity: visible ? 1 : 0, transform: `translateY(${visible ? 0 : 6}px)`, transition: "opacity 0.25s, transform 0.25s" }}>
+                {tag}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function AF() {
   const [scrollY, setScrollY] = useState(0);
   const [glitch, setGlitch] = useState(false);
@@ -539,11 +602,7 @@ export default function AF() {
             <div style={rv(pV, 0)}><span style={lbl}><span style={dot} /> The Problem</span></div>
             <h2 style={{ ...rv(pV, 0.12), ...mega("clamp(2.5rem,5.5vw,4.5rem)") }}>Your Users Are <span style={{ color: "#C41E2A" }}>Exposed</span></h2>
 
-            <div style={{ ...rv(pV, 0.25), fontFamily: "'JetBrains Mono',monospace", fontSize: "clamp(0.75rem,1.5vw,1.1rem)", color: "#3D4A63", textAlign: "center", margin: "32px 0 48px", padding: 24, border: "1px solid rgba(196,30,42,0.2)", borderRadius: 12, background: "rgba(0,0,0,0.25)", animation: "glitchBLoop 3.5s ease-in-out infinite" }}>
-              <span style={{ display: "inline-block", animation: "glitchLoop 3.5s ease-in-out infinite" }}>
-                0xA7c4f2B8e91D3F6a0C5d12E8b47f9302C61aF9b
-              </span>
-            </div>
+            <div style={rv(pV, 0.25)}><WalletScanner /></div>
 
             <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
               <div style={{ ...card, ...rl(pV, 0.55) }}>
