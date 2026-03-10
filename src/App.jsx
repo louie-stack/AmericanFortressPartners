@@ -314,6 +314,45 @@ function CustomCursor() {
   );
 }
 
+const S1_CHIPS = [
+  { label: "Human-Readable",      desc: "Names like @jakub replace complex wallet addresses" },
+  { label: "Anti-Phishing",       desc: "Eliminates address poisoning — send to names, not addresses" },
+  { label: "Recovery",            desc: "The name recovers entire transaction history linked to it" },
+  { label: "Universal",           desc: "Works with both custodial and non-custodial wallets" },
+  { label: "Stealth Addresses",   desc: "Patented technology ensures every transaction is private" },
+  { label: "Multi-Chain",         desc: "Ethereum, Base, 0G, Litecoin, DASH, and more from Day 1" },
+  { label: "Poisoning Protection",desc: "Address poisoning protection built in" },
+  { label: "Freemium Model",      desc: "Free random names → paid custom names for conversion" },
+];
+
+function FeatureChips({ visibility }) {
+  const [hovChip, setHovChip] = React.useState(null);
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 10, maxWidth: 900 }}
+      className="s1chips">
+      {S1_CHIPS.map((chip, i) => {
+        const h = hovChip === i;
+        return (
+          <div key={i}
+            onMouseEnter={() => setHovChip(i)}
+            onMouseLeave={() => setHovChip(null)}
+            style={{
+              padding: "14px 16px", borderRadius: 8,
+              background: h ? "rgba(200,170,100,0.06)" : "rgba(100,110,150,0.04)",
+              border: `1px solid ${h ? "rgba(200,170,100,0.15)" : "rgba(100,110,150,0.08)"}`,
+              boxShadow: h ? "0 0 20px rgba(200,170,100,0.05)" : "none",
+              transition: "background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease",
+              cursor: "default",
+            }}>
+            <div style={{ fontFamily: "'JetBrains Mono'", fontSize: 9, textTransform: "uppercase", letterSpacing: "1.5px", marginBottom: 8, color: h ? "rgba(200,170,100,0.7)" : "rgba(200,170,100,0.4)", transition: "color 0.25s ease" }}>{chip.label}</div>
+            <div style={{ fontSize: 13, lineHeight: 1.5, color: h ? "rgba(200,210,230,0.7)" : "rgba(160,165,185,0.5)", transition: "color 0.25s ease" }}>{chip.desc}</div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 const HEX_CHARS = "0123456789abcdef";
 const NAME_TARGET = "@JAKUB";
 const NR_CYCLE = 9000;
@@ -625,6 +664,9 @@ export default function AF() {
         .ctab .ac{color:#C9A84C;border-bottom:2px solid #C9A84C}
         .ctab td:first-child{text-align:left;font-weight:500}
         .ctab .afcl{background:rgba(201,168,76,0.03)}
+        @media(max-width:1024px){
+          .s1chips{grid-template-columns:repeat(2,1fr)!important}
+        }
         @media(max-width:768px){
           .msec{padding:100px 20px!important}
           .mgrid2{grid-template-columns:1fr!important}
@@ -632,6 +674,7 @@ export default function AF() {
           .mhero{font-size:3rem!important;white-space:normal!important}
           .ctab{display:block;overflow-x:auto}
           .hero-content{padding-top:80px!important}
+          .s1chips{grid-template-columns:1fr!important}
         }
       `}</style>
       <div className="noise">
@@ -805,6 +848,8 @@ export default function AF() {
 
         {/* SOLUTION 1 */}
         <section ref={s1R} style={{ ...full, position: "relative", overflow: "hidden", minHeight: "100vh", display: "flex", alignItems: "center" }}>
+          {/* Top divider */}
+          <div style={{ position: "absolute", top: 0, left: "8%", right: "8%", height: 1, background: "linear-gradient(90deg,transparent,rgba(100,110,150,0.1),transparent)" }} />
           {/* Liberty background — right half, faded */}
           <div style={{
             position: "absolute", top: 0, right: 0, bottom: 0, width: "55%", zIndex: 0,
@@ -817,19 +862,14 @@ export default function AF() {
           }} />
           <div className="msec" style={{ maxWidth: 1160, margin: "0 auto", padding: "100px 6vw 80px", display: "flex", flexDirection: "column", justifyContent: "center", position: "relative", zIndex: 1, width: "100%" }}>
             <div style={rv(s1V, 0)}><span style={lbl}><span style={dot} /> The Solution — Part 1</span></div>
-            <h2 style={{ ...rv(s1V, 0.12), ...mega("clamp(2.5rem,5.5vw,4.5rem)") }}>FortressNames <span style={{ color: "#C41E2A" }}>Send-to-Name™</span></h2>
-            <p style={{ ...rv(s1V, 0.22), color: "#7A8599", fontSize: "1.05rem", marginBottom: 40 }}>Human-readable names replace complex wallet addresses with patented privacy</p>
+            <h2 style={{ ...rv(s1V, 0.12), ...mega("clamp(2.5rem,5.5vw,4.5rem)"), maxWidth: 600 }}>FortressNames <span style={{ color: "#C41E2A" }}>Send-to-Name™</span></h2>
+            <p style={{ ...rv(s1V, 0.22), color: "#7A8599", fontSize: "1.05rem", marginBottom: 40, maxWidth: 460 }}>Human-readable names replace complex wallet addresses with patented privacy</p>
 
             {/* Animated name resolver */}
-            <NameResolver visibility={s1V} />
+            <div style={{ marginBottom: 44 }}><NameResolver visibility={s1V} /></div>
 
-            <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "18px 48px", marginTop: 48 }}>
-              {["Human-readable names (e.g., @jakub) replace complex wallet addresses","Patented stealth address technology ensures every transaction is private","Eliminates address poisoning & phishing — send to names, not addresses","Address poisoning protection built in","Wallet recovery: the name recovers entire transaction history linked to it","Multi-chain Day 1: Ethereum, Base, 0G, Litecoin, DASH, and more","Works with both custodial and non-custodial wallets — universal compatibility","Freemium model: free random names → paid custom names for conversion"].map((f, i) => (
-                <div key={i} style={feat(s1V, 0.4 + i * 0.08)}>
-                  <span style={fchk}>★</span><span style={mut}>{f}</span>
-                </div>
-              ))}
-            </div>
+            {/* Feature chips — 4 columns */}
+            <FeatureChips visibility={s1V} />
           </div>
         </section>
 
