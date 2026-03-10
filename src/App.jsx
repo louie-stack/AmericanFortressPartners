@@ -504,7 +504,7 @@ export default function AF() {
         <Stripe flip />
 
         {/* QUADRANT — SCROLL PINNED */}
-        <div ref={qWrap} style={{ position: "relative", height: "600vh" }}>
+        <div ref={qWrap} style={{ position: "relative", height: "900vh" }}>
           <section style={{ ...full, position: "sticky", top: 0, height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
             <Stars count={20} color="rgba(201,168,76,0.1)" />
             {/* Progress bar */}
@@ -522,7 +522,7 @@ export default function AF() {
 
               <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 40, alignItems: "start" }}>
                 <div>
-                  <Quad stage={Math.max(0, qStage - 1)} />
+                  <Quad stage={Math.max(2, qStage - 1)} />
                 </div>
                 <div style={{ ...card, opacity: qStage >= 10 ? 1 : 0, transform: `translateX(${qStage >= 10 ? 0 : 60}px)`, transition: "opacity 0.7s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1)" }}>
                   <div style={cardTop} />
