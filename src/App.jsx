@@ -314,6 +314,149 @@ function CustomCursor() {
   );
 }
 
+// ── ComparisonSection ────────────────────────────────────────────────────
+const SLAM_INTERVAL  = 350;
+const IMPACT_DURATION = 150;
+
+function ComparisonSection() {
+  const wrapRef     = useRef(null);
+  const [p, setP]   = useState(0);
+  const hasPlayed   = useRef(false);
+  const [started, setStarted]       = useState(false);
+  const [activeCount, setActiveCount] = useState(0);
+  const [impactIndex, setImpactIndex] = useState(-1);
+  const [shakeOffset, setShakeOffset] = useState({ x: 0, y: 0 });
+  const [footerVis, setFooterVis]     = useState(false);
+
+  // Scroll progress
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const rect = el.getBoundingClientRect();
+      const h = el.offsetHeight - window.innerHeight;
+      if (h <= 0) return;
+      setP(Math.max(0, Math.min(1, -rect.top / h)));
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Entry detection — fires once
+  useEffect(() => {
+    if (p > 0.02 && !hasPlayed.current) {
+      hasPlayed.current = true;
+      setStarted(true);
+    }
+  }, [p]);
+
+  // Timer-driven slam sequence
+  useEffect(() => {
+    if (!started) return;
+    const startDelay = setTimeout(() => {
+      let current = 0;
+      const interval = setInterval(() => {
+        setImpactIndex(current);
+        setActiveCount(prev => prev + 1);
+        setShakeOffset({ x: Math.random() * 4 - 2, y: Math.random() * 3 - 1.5 });
+        const idx = current;
+        setTimeout(() => {
+          setImpactIndex(prev => prev === idx ? -1 : prev);
+          setShakeOffset({ x: 0, y: 0 });
+        }, IMPACT_DURATION);
+        current++;
+        if (current >= tRows.length) {
+          clearInterval(interval);
+          setTimeout(() => setFooterVis(true), 400);
+        }
+      }, SLAM_INTERVAL);
+      return () => clearInterval(interval);
+    }, 600);
+    return () => clearTimeout(startDelay);
+  }, [started]);
+
+  const scrollHintOpacity = Math.max(0, 1 - p * 8);
+
+  return (
+    <div ref={wrapRef} style={{ position: "relative", height: "350vh" }}>
+      <section style={{
+        background: "#0F1D35", position: "sticky", top: 0, height: "100vh",
+        display: "flex", alignItems: "flex-start", justifyContent: "center",
+        overflow: "hidden",
+        transform: `translate(${shakeOffset.x}px, ${shakeOffset.y}px)`,
+      }}>
+        {/* scroll hint */}
+        <div style={{ position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)", opacity: scrollHintOpacity, pointerEvents: "none", zIndex: 5, display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+          <span style={{ fontFamily: "'JetBrains Mono'", fontSize: "0.6rem", color: "#3D4A63", letterSpacing: "0.15em" }}>Scroll to reveal</span>
+          <span style={{ fontSize: "1rem", color: "#3D4A63" }}>↓</span>
+        </div>
+
+        <div className="msec" style={{ maxWidth: 1160, margin: "0 auto", padding: "60px 48px 40px", width: "100%", position: "relative", zIndex: 1 }}>
+          <h2 style={{ ...{ fontFamily: "'Bebas Neue'", letterSpacing: "0.04em", lineHeight: 1.05, color: "#E8D5B5", fontSize: "clamp(2rem,4.5vw,3.8rem)", marginBottom: 8 } }}>
+            Head-to-Head <span style={{ color: "#C41E2A" }}>Feature Comparison</span>
+          </h2>
+
+          <div style={{ overflowX: "auto" }}>
+            <table className="ctab" style={{ margin: "20px 0" }}>
+              <thead>
+                <tr>
+                  <th style={{ textAlign: "left" }}>Feature</th>
+                  <th className="ac">American Fortress</th>
+                  <th>Fluidkey</th><th>Railgun</th><th>Zcash</th><th>Monero</th><th>Canton</th>
+                </tr>
+              </thead>
+              <tbody>
+                {tRows.map(([f, ...vs], i) => {
+                  const isImpact = impactIndex === i;
+                  const isAlive  = i < activeCount;
+                  const rowBg = isImpact
+                    ? "rgba(218,165,69,0.08)"
+                    : i % 2 === 0 ? "transparent" : "rgba(100,110,150,0.02)";
+                  const rowTransition = isImpact ? "none" : "background 0.3s ease";
+                  return (
+                    <tr key={i} style={{ background: rowBg, transition: rowTransition }}>
+                      <td>{f}</td>
+                      {/* American Fortress column — animated */}
+                      <td className="afcl" style={{ textAlign: "center" }}>
+                        <span style={{
+                          display: "inline-block",
+                          fontSize: 18,
+                          color: "#daa545",
+                          transform: isImpact ? "scale(1.8)" : isAlive ? "scale(1)" : "scale(0)",
+                          opacity: isAlive ? 1 : 0,
+                          filter: isImpact
+                            ? "brightness(2.8) drop-shadow(0 0 12px rgba(218,165,69,0.9))"
+                            : isAlive ? "drop-shadow(0 0 3px rgba(218,165,69,0.3))" : "none",
+                          transition: isImpact
+                            ? "transform 0.08s ease-out, filter 0.08s ease-out"
+                            : "transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.1s ease",
+                        }}>★</span>
+                      </td>
+                      {/* Other columns — static */}
+                      {vs.slice(1).map((v, j) => (
+                        <td key={j}><SI s={v} /></td>
+                      ))}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Footer + CTA */}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 20, flexWrap: "wrap", gap: 16, opacity: footerVis ? 1 : 0, transform: footerVis ? "translateY(0)" : "translateY(16px)", transition: "opacity 0.6s ease, transform 0.6s ease" }}>
+            <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", color: "#3D4A63", fontSize: "0.92rem" }}>
+              The technology advantage is clear. Now let's talk about what it means for your bottom line. →
+            </p>
+            <button style={{ ...{ fontFamily: "'JetBrains Mono'", fontSize: "0.72rem", letterSpacing: "0.08em", textTransform: "uppercase", padding: "14px 28px", background: "#C41E2A", color: "#fff", border: "none", borderRadius: 4, cursor: "pointer" } }}>Book a Partnership Call ↗</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
 // ── FinancialSection ─────────────────────────────────────────────────────
 function FinancialSection() {
   const [ref, vis] = useReveal();
@@ -945,30 +1088,7 @@ export default function AF() {
         <Stripe />
 
         {/* COMPARISON TABLE */}
-        <section ref={cR} style={{ ...full, background: "#0F1D35" }}>
-          <div className="msec" style={sec}>
-            <h2 style={{ ...rv(cV, 0), ...mega("clamp(2rem,4.5vw,3.8rem)", 40) }}>Head-to-Head <span style={{ color: "#C41E2A" }}>Feature Comparison</span></h2>
-            <div style={{ overflowX: "auto" }}>
-              <table className="ctab">
-                <thead><tr style={rv(cV, 0.15)}>
-                  <th style={{ textAlign: "left" }}>Feature</th><th className="ac">American Fortress</th>
-                  <th>Fluidkey</th><th>Railgun</th><th>Zcash</th><th>Monero</th><th>Canton</th>
-                </tr></thead>
-                <tbody>{tRows.map(([f,...vs], i) => (
-                  <tr key={i} style={rv(cV, 0.25 + i * 0.08)}>
-                    <td>{f}</td>{vs.map((v, j) => <td key={j} className={j === 0 ? "afcl" : ""}><SI s={v} /></td>)}
-                  </tr>
-                ))}</tbody>
-              </table>
-            </div>
-            <div style={{ ...rv(cV, 1.4), display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 28, flexWrap: "wrap", gap: 16 }}>
-              <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", color: "#3D4A63", fontSize: "0.92rem" }}>
-                The technology advantage is clear. Now let's talk about what it means for your bottom line. →
-              </p>
-              <button style={{ ...btnR, padding: "14px 28px", fontSize: "0.8rem" }}>Book a Partnership Call ↗</button>
-            </div>
-          </div>
-        </section>
+        <ComparisonSection />
 
         <Stripe flip />
 
