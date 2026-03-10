@@ -264,8 +264,9 @@ export default function AF() {
           .msec{padding:100px 20px!important}
           .mgrid2{grid-template-columns:1fr!important}
           .mgrid3{grid-template-columns:1fr!important}
-          .mhero{font-size:3rem!important}
+          .mhero{font-size:3rem!important;white-space:normal!important}
           .ctab{display:block;overflow-x:auto}
+          .hero-content{padding-top:80px!important}
         }
       `}</style>
       <div className="noise">
@@ -282,7 +283,7 @@ export default function AF() {
             position: "absolute", inset: 0, zIndex: 0,
             backgroundImage: `url(${COVER_SRC})`,
             backgroundSize: "cover", backgroundPosition: "center 60%",
-            transform: `translateY(${scrollY * 0.15}px) scale(1.1)`,
+            transform: `translateY(${scrollY * 0.15}px) scale(${Math.max(1, 1.15 - scrollY * 0.0003)})`,
             transition: "transform 0.05s linear",
           }} />
           {/* Heavy center overlay for text readability — radial dark zone */}
@@ -298,7 +299,7 @@ export default function AF() {
           <Stars count={40} color="rgba(201,168,76,0.15)" />
 
           {/* Centered hero content — floating above the cover art */}
-          <div style={{ position: "relative", zIndex: 2, textAlign: "center", maxWidth: 880, padding: "0 40px", marginTop: -40 }}>
+          <div className="hero-content" style={{ position: "relative", zIndex: 2, textAlign: "center", maxWidth: 880, padding: "0 40px", marginTop: -40 }}>
 
             {/* Line 1: PARTNER WITH */}
             <div style={{ overflow: "hidden", marginBottom: 4 }}>
@@ -318,6 +319,7 @@ export default function AF() {
                 fontFamily: "'Bebas Neue',sans-serif", fontSize: "clamp(3.8rem, 11vw, 9rem)",
                 letterSpacing: "0.04em", lineHeight: 0.92, textTransform: "uppercase", color: "#E8D5B5",
                 textShadow: "0 4px 60px rgba(0,0,0,0.5), 0 2px 20px rgba(0,0,0,0.3)",
+                whiteSpace: "nowrap",
                 animation: hV ? "heroLineUp 1.1s cubic-bezier(0.16,1,0.3,1) 0.5s both" : "none",
                 opacity: 0,
               }}>
@@ -356,11 +358,19 @@ export default function AF() {
               <button style={{
                 ...btnR,
                 animation: hV ? "heroBtnUp 0.8s cubic-bezier(0.16,1,0.3,1) 1.5s both" : "none", opacity: 0,
-              }}>Book a Call ↗</button>
+                transition: "box-shadow 0.2s ease, transform 0.2s ease",
+              }}
+                onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 0 24px rgba(196,30,42,0.7), 0 0 48px rgba(196,30,42,0.3)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}
+              >Book a Call ↗</button>
               <button style={{
                 ...btnG,
                 animation: hV ? "heroBtnUp 0.8s cubic-bezier(0.16,1,0.3,1) 1.65s both" : "none", opacity: 0,
-              }}>Download AF Beta ↗</button>
+                transition: "box-shadow 0.2s ease, transform 0.2s ease",
+              }}
+                onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 0 24px rgba(201,168,76,0.5), 0 0 48px rgba(201,168,76,0.2)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}
+              >Download AF Beta ↗</button>
             </div>
 
             {/* Badges — centered */}
@@ -369,10 +379,14 @@ export default function AF() {
                 <span key={i} style={{
                   fontFamily: "'JetBrains Mono',monospace", fontSize: "0.6rem", padding: "7px 16px", borderRadius: 100,
                   border: "1px solid rgba(201,168,76,0.15)", color: "rgba(122,133,153,0.8)", background: "rgba(4,11,24,0.5)",
-                  backdropFilter: "blur(8px)",
+                  backdropFilter: "blur(8px)", cursor: "default",
                   letterSpacing: "0.06em", display: "flex", alignItems: "center", gap: 8,
+                  transition: "border-color 0.2s ease, color 0.2s ease, background 0.2s ease",
                   animation: hV ? `badgeSlide 0.7s cubic-bezier(0.16,1,0.3,1) ${1.8 + i * 0.1}s both` : "none", opacity: 0,
-                }}>
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.6)"; e.currentTarget.style.color = "#C9A84C"; e.currentTarget.style.background = "rgba(201,168,76,0.08)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.15)"; e.currentTarget.style.color = "rgba(122,133,153,0.8)"; e.currentTarget.style.background = "rgba(4,11,24,0.5)"; }}
+                >
                   <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#C9A84C" }} />{b}
                 </span>
               ))}
