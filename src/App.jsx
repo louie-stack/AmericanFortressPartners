@@ -730,8 +730,8 @@ function FeatureChips() {
 function WalletScanner() {
   const ADDR = "0xA7c4f2B8e91D3F6a0C5d12E8b47f9302C61aF9b";
   const CYCLE = 7500;
-  const SCAN_START = 300; const SCAN_END = 2300; const FLASH_END = 2500;
-  const EXPOSED_AT = 2600; const FADE_OUT_AT = 6500; const FADE_END = 7000;
+  const SCAN_START = 300; const SCAN_END = 2300; const FLASH_END = 2600;
+  const EXPOSED_AT = 2700; const FADE_OUT_AT = 6200; const FADE_END = 6900;
   const TAGS = [
     { label: "BALANCE",           value: "142.7 ETH ($384,291)" },
     { label: "TXNS (30D)",        value: "847 transactions" },
@@ -754,84 +754,85 @@ function WalletScanner() {
     return () => cancelAnimationFrame(rafRef.current);
   }, []);
 
-  const isScanning  = time >= SCAN_START && time < SCAN_END;
+  const isScanning   = time >= SCAN_START && time < SCAN_END;
   const scanProgress = time < SCAN_START ? 0 : time >= SCAN_END ? 1 : (time - SCAN_START) / (SCAN_END - SCAN_START);
-  const isFlashing  = time >= SCAN_END && time < FLASH_END;
-  const isExposed   = time >= EXPOSED_AT && time < FADE_OUT_AT;
-  const isFadingOut = time >= FADE_OUT_AT && time < FADE_END;
-  const masterOpacity = isFadingOut ? 1 - (time - FADE_OUT_AT) / (FADE_END - FADE_OUT_AT) : 1;
-  const showScanLabel = time < SCAN_START || isFadingOut;
+  const isFlashing   = time >= SCAN_END && time < FLASH_END;
+  const isExposed    = time >= EXPOSED_AT && time < FADE_OUT_AT;
+  const isFadingOut  = time >= FADE_OUT_AT && time < FADE_END;
+  const dataOpacity  = isFadingOut ? 1 - (time - FADE_OUT_AT) / (FADE_END - FADE_OUT_AT) : 1;
   const showExposedLabel = isExposed;
 
   const tagVisible = (i) => {
-    const tagStart = EXPOSED_AT + i * 120;
+    const tagStart = EXPOSED_AT + i * 110;
     if (time < tagStart) return 0;
-    if (isFadingOut) return masterOpacity;
-    return Math.min(1, (time - tagStart) / 300);
+    if (isFadingOut) return dataOpacity;
+    return Math.min(1, (time - tagStart) / 280);
   };
 
-  const addrBg = isFlashing ? "rgba(197,48,48,0.1)" : isExposed ? "rgba(197,48,48,0.04)" : "rgba(8,14,30,0.6)";
-  const addrBorder = isExposed || isFlashing ? "rgba(197,48,48,0.25)" : "rgba(100,110,150,0.12)";
-  const addrColor = isExposed || isFlashing ? "rgba(220,160,160,0.8)" : "rgba(160,165,185,0.5)";
-  const outerGlow = isFlashing ? "0 0 32px rgba(197,48,48,0.6), 0 0 64px rgba(197,48,48,0.25)" : isExposed ? "0 0 16px rgba(197,48,48,0.2)" : "none";
+  const boxActive   = isFlashing || isExposed || isFadingOut;
+  const addrBg      = isFlashing ? "rgba(196,30,42,0.22)" : boxActive ? "rgba(196,30,42,0.09)" : "rgba(8,14,30,0.6)";
+  const addrBorder  = boxActive ? "rgba(196,30,42,0.5)" : "rgba(100,110,150,0.12)";
+  const addrColor   = boxActive ? "rgba(240,185,185,0.95)" : "rgba(160,165,185,0.5)";
+  const outerBorder = boxActive ? "rgba(196,30,42,0.55)" : "rgba(100,110,150,0.1)";
+  const outerGlow   = isFlashing
+    ? "0 0 40px rgba(196,30,42,0.9), 0 0 90px rgba(196,30,42,0.45), 0 0 140px rgba(196,30,42,0.18)"
+    : boxActive
+    ? "0 0 24px rgba(196,30,42,0.45), 0 0 55px rgba(196,30,42,0.18)"
+    : "none";
 
   return (
-    <div style={{ opacity: masterOpacity, fontFamily: "'JetBrains Mono',monospace", margin: "32px 0 48px", padding: "28px 28px 24px", border: `1px solid ${isExposed || isFlashing ? "rgba(197,48,48,0.3)" : "rgba(100,110,150,0.1)"}`, borderRadius: 14, background: "rgba(6,11,24,0.5)", boxShadow: outerGlow, position: "relative" }}>
+    <div style={{ fontFamily: "'JetBrains Mono',monospace", margin: "32px 0 48px", padding: "28px 28px 24px", border: `1px solid ${outerBorder}`, borderRadius: 14, background: "rgba(6,11,24,0.72)", boxShadow: outerGlow, position: "relative", transition: "border-color 0.4s ease, box-shadow 0.4s ease" }}>
 
       {/* Ambient radial glow */}
-      <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 700, height: 700, borderRadius: "50%", background: `radial-gradient(ellipse at center,${isExposed ? "rgba(197,48,48,0.05)" : "rgba(197,48,48,0.015)"} 0%,transparent 70%)`, pointerEvents: "none", zIndex: 0, transition: "background 0.8s ease" }} />
+      <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 820, height: 620, borderRadius: "50%", background: `radial-gradient(ellipse at center,${boxActive ? "rgba(196,30,42,0.12)" : "rgba(196,30,42,0.02)"} 0%,transparent 70%)`, pointerEvents: "none", zIndex: 0, transition: "background 0.6s ease" }} />
 
       {/* Status label */}
-      <div style={{ position: "relative", zIndex: 1, fontSize: "0.7rem", letterSpacing: "0.14em", textTransform: "uppercase", textAlign: "center", marginBottom: 14, height: 16, color: showExposedLabel ? "rgba(197,48,48,0.9)" : "rgba(160,165,185,0.45)" }}>
-        {showExposedLabel ? "⚠ Wallet Exposed" : "● Scanning address..."}
+      <div style={{ position: "relative", zIndex: 1, fontSize: "0.7rem", letterSpacing: "0.14em", textTransform: "uppercase", textAlign: "center", marginBottom: 14, height: 16, color: showExposedLabel ? "#C41E2A" : "rgba(160,165,185,0.45)", fontWeight: showExposedLabel ? 700 : 400 }}>
+        {showExposedLabel ? "\u26A0 Wallet Exposed" : "\u25CF Scanning address..."}
       </div>
 
       {/* Address bar */}
-      <div style={{ position: "relative", zIndex: 1, padding: "14px 16px", borderRadius: 8, background: addrBg, border: `1px solid ${addrBorder}`, overflow: "hidden" }}>
-        {/* CRT scan lines */}
+      <div style={{ position: "relative", zIndex: 1, padding: "14px 16px", borderRadius: 8, background: addrBg, border: `1px solid ${addrBorder}`, overflow: "hidden", transition: "background 0.35s ease, border-color 0.35s ease" }}>
         {isScanning && (
-          <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(197,48,48,0.02) 3px,rgba(197,48,48,0.02) 4px)", pointerEvents: "none", zIndex: 2, opacity: 0.6 }} />
+          <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(196,30,42,0.08) 2px,rgba(196,30,42,0.08) 3px)", pointerEvents: "none", zIndex: 2 }} />
         )}
-        {/* Trail highlight behind beam */}
-        <div style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: `${scanProgress * 100}%`, background: isScanning ? "linear-gradient(90deg,transparent 70%,rgba(197,48,48,0.06) 100%)" : isExposed ? "rgba(197,48,48,0.02)" : "transparent", zIndex: 1, pointerEvents: "none" }} />
-        {/* Beam */}
+        <div style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: `${scanProgress * 100}%`, background: isScanning ? "linear-gradient(90deg,rgba(196,30,42,0.14) 0%,rgba(196,30,42,0.28) 80%,rgba(196,30,42,0.1) 100%)" : "transparent", zIndex: 1, pointerEvents: "none" }} />
         {isScanning && (
-          <div style={{ position: "absolute", top: -2, bottom: -2, left: `${scanProgress * 100}%`, width: 3, background: "rgba(197,48,48,0.9)", boxShadow: "0 0 8px rgba(197,48,48,0.6),0 0 24px rgba(197,48,48,0.3),0 0 60px rgba(197,48,48,0.15)", borderRadius: 2, zIndex: 5, pointerEvents: "none" }} />
+          <div style={{ position: "absolute", top: -4, bottom: -4, left: `calc(${scanProgress * 100}% - 2px)`, width: 5, background: "linear-gradient(180deg,rgba(255,80,80,0.4),#C41E2A,rgba(255,80,80,0.4))", boxShadow: "0 0 6px 3px rgba(196,30,42,1), 0 0 22px 8px rgba(196,30,42,0.75), 0 0 55px 14px rgba(196,30,42,0.4)", borderRadius: 3, zIndex: 5, pointerEvents: "none" }} />
         )}
-        {/* Address text */}
-        <div style={{ position: "relative", zIndex: 3, fontSize: "clamp(0.65rem,1.2vw,0.88rem)", color: addrColor, wordBreak: "break-all", letterSpacing: "0.03em" }}>{ADDR}</div>
+        {isFlashing && (
+          <div style={{ position: "absolute", inset: 0, background: "rgba(196,30,42,0.18)", zIndex: 4, pointerEvents: "none" }} />
+        )}
+        <div style={{ position: "relative", zIndex: 3, fontSize: "clamp(0.65rem,1.2vw,0.88rem)", color: addrColor, wordBreak: "break-all", letterSpacing: "0.03em", transition: "color 0.4s ease" }}>{ADDR}</div>
       </div>
 
       {/* Progress bar */}
-      <div style={{ position: "relative", zIndex: 1, width: "100%", height: 2, background: "rgba(100,110,150,0.08)", borderRadius: 1, marginTop: 6, overflow: "hidden", opacity: isScanning ? 1 : 0 }}>
-        <div style={{ height: "100%", width: `${scanProgress * 100}%`, background: "linear-gradient(90deg,rgba(197,48,48,0.3),rgba(197,48,48,0.7))" }} />
+      <div style={{ position: "relative", zIndex: 1, width: "100%", height: 3, background: "rgba(100,110,150,0.08)", borderRadius: 2, marginTop: 6, overflow: "hidden", opacity: isScanning ? 1 : 0, transition: "opacity 0.3s ease" }}>
+        <div style={{ height: "100%", width: `${scanProgress * 100}%`, background: "linear-gradient(90deg,rgba(196,30,42,0.5),#C41E2A)", boxShadow: "0 0 8px rgba(196,30,42,0.9)" }} />
       </div>
 
-      {/* Leaked data grid */}
+      {/* Leaked data grid - only this fades on cycle reset */}
       <div style={{ position: "relative", zIndex: 1, display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginTop: 20 }}>
         {TAGS.map(({ label, value }, i) => {
           const op = tagVisible(i);
           const hov = hoveredTag === i;
           return (
-            <div key={i} style={{ opacity: op, transform: `translateY(${op === 0 ? 10 : 0}px)` }}
+            <div key={i} style={{ opacity: op, transform: `translateY(${op < 0.5 ? 8 : 0}px)`, transition: "transform 0.3s ease" }}
               onMouseEnter={() => setHoveredTag(i)} onMouseLeave={() => setHoveredTag(null)}>
-              {/* Connector line */}
               <div style={{ height: 10, display: "flex", justifyContent: "center", alignItems: "flex-start" }}>
-                <div style={{ width: 1, height: "100%", background: hov ? "rgba(197,48,48,0.35)" : "rgba(197,48,48,0.12)", transition: "background 0.25s" }} />
+                <div style={{ width: 1, height: "100%", background: hov ? "rgba(196,30,42,0.65)" : "rgba(196,30,42,0.3)" }} />
               </div>
-              <div style={{ padding: "8px 10px", borderRadius: 6, background: hov ? "rgba(197,48,48,0.1)" : "rgba(197,48,48,0.04)", border: `1px solid ${hov ? "rgba(197,48,48,0.3)" : "rgba(197,48,48,0.12)"}`, boxShadow: hov ? "0 0 20px rgba(197,48,48,0.12),0 0 40px rgba(197,48,48,0.05)" : "none", transition: "background 0.25s,border-color 0.25s,box-shadow 0.25s", cursor: "default" }}>
-                <div style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", color: hov ? "rgba(197,48,48,0.7)" : "rgba(197,48,48,0.4)", marginBottom: 4, transition: "color 0.25s" }}>{label}</div>
-                <div style={{ fontSize: "0.72rem", color: hov ? "rgba(240,190,190,0.9)" : "rgba(210,170,170,0.65)", transition: "color 0.25s" }}>{value}</div>
+              <div style={{ padding: "10px 12px", borderRadius: 6, background: hov ? "rgba(196,30,42,0.2)" : "rgba(196,30,42,0.11)", border: `1px solid ${hov ? "rgba(196,30,42,0.6)" : "rgba(196,30,42,0.3)"}`, boxShadow: hov ? "0 0 22px rgba(196,30,42,0.28), 0 0 44px rgba(196,30,42,0.1)" : "0 0 12px rgba(196,30,42,0.1)", transition: "background 0.25s,border-color 0.25s,box-shadow 0.25s", cursor: "default" }}>
+                <div style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", color: hov ? "rgba(196,30,42,1)" : "rgba(196,30,42,0.75)", marginBottom: 5, transition: "color 0.25s" }}>{label}</div>
+                <div style={{ fontSize: "0.74rem", color: hov ? "rgba(255,205,205,1)" : "rgba(238,190,190,0.9)", transition: "color 0.25s", fontWeight: 500 }}>{value}</div>
               </div>
             </div>
           );
         })}
       </div>
 
-      {/* Footer label */}
-      {isExposed && (
-        <div style={{ position: "relative", zIndex: 1, textAlign: "center", marginTop: 16, fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(197,48,48,0.45)" }}>● Full financial profile exposed</div>
-      )}
+      {/* Footer - fades with data, box stays */}
+      <div style={{ position: "relative", zIndex: 1, textAlign: "center", marginTop: 16, fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#C41E2A", opacity: isExposed ? dataOpacity : 0, transition: "opacity 0.4s ease" }}>\u26A0 Full financial profile exposed</div>
     </div>
   );
 }
