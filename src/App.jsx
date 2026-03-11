@@ -401,16 +401,20 @@ function ComparisonSection() {
 
   return (
     <div ref={wrapRef} style={{ background:"#0F1D35" }}>
-      <section style={{ background:"#0F1D35", overflow:"hidden", transform:`translate(${shakeOffset.x}px,${shakeOffset.y}px)` }}>
-        <div style={{ maxWidth:1000, margin:"0 auto", padding:"80px 48px", width:"100%" }}>
+      <section className="cmp-shake" style={{ background:"#0F1D35", overflow:"hidden", transform:`translate(${shakeOffset.x}px,${shakeOffset.y}px)` }}>
+        <div className="cmp-wrap" style={{ maxWidth:1000, margin:"0 auto", padding:"80px 48px", width:"100%" }}>
           {/* Title */}
           <h2 style={{ fontFamily:"'Bebas Neue'", letterSpacing:"0.04em", lineHeight:1.05, color:"#E8D5B5", fontSize:"clamp(2rem,4.5vw,3.8rem)", marginBottom:16 }}>
             Head-to-Head <span style={{ color:"#C41E2A" }}>Feature Comparison</span>
           </h2>
 
+          {/* Scroll hint — shown on mobile only */}
+          <div className="cmp-scroll-hint">
+            <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:9, letterSpacing:"1.5px", color:"rgba(160,165,185,0.35)", textTransform:"uppercase" }}>← Scroll to compare →</span>
+          </div>
           {/* Grid table */}
 
-          <div style={{ background:"rgba(14,22,45,0.4)", border:"1px solid rgba(100,110,150,0.08)", borderRadius:12, overflow:"hidden" }}>
+          <div className="cmp-table" style={{ background:"rgba(14,22,45,0.4)", border:"1px solid rgba(100,110,150,0.08)", borderRadius:12, overflow:"hidden" }}>
             {/* Header row */}
             <div style={{ display:"grid", gridTemplateColumns:gridCols, padding:"10px 20px", borderBottom:"1px solid rgba(100,110,150,0.1)" }}>
               {COLS.map((col, ci) => (
@@ -479,7 +483,7 @@ function ComparisonSection() {
           </div>
 
           {/* Footer */}
-          <div style={{
+          <div className="cmp-footer" style={{
             display:"flex", justifyContent:"space-between", alignItems:"center",
             marginTop:12, flexWrap:"wrap", gap:12,
             opacity: footerVis ? 1 : 0,
@@ -625,7 +629,7 @@ function SlotNumber({ digits, commas, active, color, fontSize, addShadow, digitD
 function FinRevBtn({ vis }) {
   const [hov, setHov] = useState(false);
   return (
-    <div style={{ marginTop:40, opacity: vis ? 1 : 0,
+    <div className="fin-cta" style={{ marginTop:40, opacity: vis ? 1 : 0,
       transform: vis ? "translateY(0)" : "translateY(12px)",
       transition:"opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s" }}>
       <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer"
@@ -853,7 +857,7 @@ function FinancialSection() {
           <p style={{ fontFamily:"'JetBrains Mono'", fontSize:"0.65rem", letterSpacing:"0.2em",
             color:"#C9A84C", textTransform:"uppercase", marginBottom:20 }}>FORTRESSNAMES REVENUE</p>
           <div style={{ lineHeight:0.9 }}>
-            <span style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(60px,11vw,130px)", color:"#f0ece2", lineHeight:0.9, letterSpacing:"-1px" }}>$</span>
+            <span className="fin-num-lg" style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(60px,11vw,130px)", color:"#f0ece2", lineHeight:0.9, letterSpacing:"-1px" }}>$</span>
             <SlotNumber digits={D1M} commas={CM6} active={phase >= 1} color="#f0ece2"
               fontSize="clamp(60px,11vw,130px)" suffix="/mo" suffixColor="rgba(160,165,185,0.35)" digitDelay={100}/>
           </div>
@@ -921,7 +925,7 @@ function FinancialSection() {
           <div style={{ position:"relative", display:"inline-block",
             animation: impactNum ? "impactScale 0.4s ease-out forwards" : "none",
             overflow:"hidden" }}>
-            <span style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(68px,13vw,155px)", color:"#daa545",
+            <span className="fin-num-xl" style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(68px,13vw,155px)", color:"#daa545",
               lineHeight:0.9, letterSpacing:"-1px",
               textShadow: phase >= 4 ? "0 0 40px rgba(200,170,100,0.2),0 0 80px rgba(200,170,100,0.08)" : "none",
               transition:"text-shadow 0.4s ease" }}>$</span>
@@ -1289,7 +1293,7 @@ function MoatRings() {
     { size: 700, border: "1px dashed rgba(100,110,150,0.05)",       shadow: null,                                                                  anim: "dashedSpin 180s linear infinite" },
   ];
   return (
-    <div style={{ position: "absolute", top: "50%", left: "50%", zIndex: 0, pointerEvents: "none" }}>
+    <div className="moat-rings" style={{ position: "absolute", top: "50%", left: "50%", zIndex: 0, pointerEvents: "none" }}>
       {rings.map((r, i) => (
         <div key={i} style={{
           position: "absolute", top: "50%", left: "50%",
@@ -1319,7 +1323,7 @@ function MoatOrbitDots() {
     ]},
   ];
   return (
-    <div style={{ position: "absolute", top: "50%", left: "50%", zIndex: 0, pointerEvents: "none" }}>
+    <div className="moat-orbits" style={{ position: "absolute", top: "50%", left: "50%", zIndex: 0, pointerEvents: "none" }}>
       {orbits.map((orbit, oi) => (
         <div key={oi} style={{
           position: "absolute", top: "50%", left: "50%",
@@ -1343,7 +1347,7 @@ function MoatOrbitDots() {
 function MoatPowerLines({ hoveredIndex, activated }) {
   const SX = 450; const SY = 300;
   return (
-    <svg width="900" height="600" viewBox="0 0 900 600"
+    <svg className="moat-powerlines" width="900" height="600" viewBox="0 0 900 600"
       style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", zIndex: 1, pointerEvents: "none", overflow: "visible" }}>
       {CARD_POSITIONS.map((pos, i) => {
         if (!activated.has(i)) return null;
@@ -1484,7 +1488,7 @@ function MoatSection({ mR, mV }) {
         </div>
 
         {/* Card grid + rings + shield */}
-        <div style={{ maxWidth: 900, margin: "0 auto", position: "relative" }}>
+        <div className="moat-card-area" style={{ maxWidth: 900, margin: "0 auto", position: "relative" }}>
           {/* Rings — centered on shield, behind everything */}
           <MoatRings/>
           {/* Orbit dots */}
@@ -1493,7 +1497,7 @@ function MoatSection({ mR, mV }) {
           <MoatPowerLines hoveredIndex={hoveredIndex} activated={activated}/>
 
           {/* Top row — cards 0,1,2 */}
-          <div style={{ display: "flex", gap: 16, justifyContent: "center", marginBottom: 16, position: "relative", zIndex: 2 }}>
+          <div className="moat-row" style={{ display: "flex", gap: 16, justifyContent: "center", marginBottom: 16, position: "relative", zIndex: 2 }}>
             {MOAT_CARDS_TOP.map((c, i) => (
               <MoatCard key={i} {...c} delay={0.1 + i * 0.08}
                 hov={hoveredIndex === i}
@@ -1503,12 +1507,12 @@ function MoatSection({ mR, mV }) {
           </div>
 
           {/* Center shield */}
-          <div style={{ display: "flex", justifyContent: "center", padding: "36px 0", position: "relative", zIndex: 3 }}>
+          <div className="moat-shield" style={{ display: "flex", justifyContent: "center", padding: "36px 0", position: "relative", zIndex: 3 }}>
             <AFShieldSVG/>
           </div>
 
           {/* Bottom row — cards 3,4,5 */}
-          <div style={{ display: "flex", gap: 16, justifyContent: "center", marginTop: 16, position: "relative", zIndex: 2 }}>
+          <div className="moat-row" style={{ display: "flex", gap: 16, justifyContent: "center", marginTop: 16, position: "relative", zIndex: 2 }}>
             {MOAT_CARDS_BOT.map((c, i) => (
               <MoatCard key={i} {...c} delay={0.3 + i * 0.08}
                 hov={hoveredIndex === i + 3}
@@ -1562,7 +1566,7 @@ function CTASection({ ctR, ctV }) {
         <h2 style={{ ...G_MEGA("clamp(2.5rem,6vw,4.5rem)", 8) }}>Let's Build <span style={{ color: "#C41E2A" }}>Together</span></h2>
         <p style={{ color: "#3D4A63", fontSize: "0.95rem", marginBottom: 48 }}>Schedule a partnership call or reach out directly</p>
 
-        <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, maxWidth: 800, margin: "0 auto" }}>
+        <div className="mgrid2 cta-cards" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, maxWidth: 800, margin: "0 auto" }}>
 
           {/* Left — Schedule a Call */}
           <div style={{ ...mkCard(hovL), textAlign: "center" }}
@@ -1590,6 +1594,7 @@ function CTASection({ ctR, ctV }) {
             <p style={{ fontSize: "0.85rem", marginBottom: 24, lineHeight: 1.5,
               color: hovL ? "rgba(180,185,210,0.65)" : "rgba(160,165,185,0.45)", transition: "color 0.3s ease" }}>30-minute partnership discussion with our BD team</p>
             <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer"
+              className="cta-book-btn"
               onMouseEnter={() => setHovBtn(true)} onMouseLeave={() => setHovBtn(false)}
               style={{ textDecoration: "none",
                 fontFamily: "Outfit", fontSize: "0.85rem", fontWeight: 600, padding: "14px 32px",
@@ -1632,7 +1637,7 @@ function CTASection({ ctR, ctV }) {
               color: hovR ? "#f0ece2" : "rgba(210,215,230,0.8)", transition: "color 0.3s ease" }}>JAKUB ZURAWINSKI</p>
             <p style={{ fontFamily: "'JetBrains Mono'", fontSize: "0.7rem", color: "#3D4A63", marginBottom: 16, letterSpacing: "0.04em" }}>Head of Business Development</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-              <a href="mailto:jakub@americanfortress.io"
+              <a href="mailto:jakub@americanfortress.io" className="cta-contact-link"
                 onMouseEnter={() => setHovMail(true)} onMouseLeave={() => setHovMail(false)}
                 style={{
                   display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8,
@@ -1726,7 +1731,7 @@ function SiteFooter() {
       background: "linear-gradient(180deg, #0c1225 0%, #070b18 50%, #040710 100%)",
     }}>
       {/* Grid texture */}
-      <div style={{
+      <div className="footer-grid-texture" style={{
         position: "absolute", inset: 0,
         opacity: 0.035,
         backgroundImage: "linear-gradient(rgba(200,210,240,1) 1px, transparent 1px), linear-gradient(90deg, rgba(200,210,240,1) 1px, transparent 1px)",
@@ -2155,6 +2160,116 @@ export default function AF() {
         body{font-family:'Outfit',sans-serif;color:#F5F0EB;background:#0A1628;overflow-x:hidden;-webkit-font-smoothing:antialiased}
         @keyframes twinkle{0%,100%{opacity:0.1}50%{opacity:0.55}}
         @keyframes pulseG{0%,100%{opacity:0.4;transform:scale(1)}50%{opacity:1;transform:scale(1.15)}}
+        /* ── Mobile (≤768px) ─────────────────────────────── */
+        @media (max-width: 768px) {
+
+          /* ── Nav ── */
+          .sitenav-links { display: none !important; }
+          nav[style] { height: 56px !important; padding: 0 16px !important; }
+          nav .sitenav-links { display: none !important; }
+
+          /* ── Hero ── */
+          .mhero { font-size: clamp(36px, 10vw, 80px) !important; white-space: normal !important; }
+          .hero-content { padding: 0 20px !important; }
+          .hero-content p { font-size: 14px !important; max-width: 90% !important; }
+          .hero-ctas {
+            flex-direction: column !important;
+            width: 100% !important;
+            max-width: 320px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            gap: 12px !important;
+          }
+          .hero-ctas a {
+            width: 100% !important;
+            text-align: center !important;
+            justify-content: center !important;
+            box-sizing: border-box !important;
+          }
+          .hero-badges {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 8px !important;
+            max-width: 320px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+          .hero-badges span {
+            font-size: 8px !important;
+            padding: 4px 8px !important;
+            text-align: center !important;
+            justify-content: center !important;
+          }
+
+          /* ── Global section padding ── */
+          .msec { padding: 60px 20px 60px !important; }
+
+          /* ── Two-column → single column ── */
+          .mgrid2 {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+
+          /* ── Wallet scanner ── */
+          .wallet-grid { grid-template-columns: 1fr 1fr !important; }
+          .wallet-grid > div { padding: 10px 12px !important; }
+          .wallet-grid [style*="font-size:"8px""],
+          .wallet-grid [style*="fontSize"] { font-size: 8px !important; }
+
+          /* ── Liberty background (S1) ── */
+          .liberty-bg { opacity: 0.05 !important; width: 100% !important; }
+
+          /* ── Name resolver display ── */
+          .nr-display { font-size: clamp(16px, 6vw, 36px) !important; }
+
+          /* ── Feature chips (S1) ── */
+          .s1chips {
+            grid-template-columns: 1fr 1fr !important;
+            gap: 8px !important;
+          }
+          .s1chips > div { padding: 12px 14px !important; }
+
+          /* ── Below 400px: chips 1 col ── */
+          @media (max-width: 400px) {
+            .s1chips { grid-template-columns: 1fr !important; }
+          }
+
+          /* ── Ghost word (Confidentiality) ── */
+          .ghost-word { display: none !important; }
+
+          /* ── Moat section ── */
+          .moat-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+
+          /* ── Financial numbers ── */
+          .financial-numbers { padding: 0 20px !important; }
+
+          /* ── Comparison table ── */
+          .comparison-scroll { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
+
+          /* ── Footer ── */
+          footer > div[style*="grid"] {
+            grid-template-columns: 1fr !important;
+            gap: 32px !important;
+            padding: 40px 20px 0 !important;
+          }
+          footer > div[style*="justify-content"] {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 16px !important;
+            padding: 20px 20px !important;
+          }
+
+          /* ── CTA section cards ── */
+          .mgrid2[style*="1fr 1fr"] {
+            grid-template-columns: 1fr !important;
+          }
+
+          /* ── No horizontal overflow anywhere ── */
+          section, .msec, .mgrid2 {
+            max-width: 100vw !important;
+            overflow-x: hidden !important;
+          }
+        }
         @keyframes logoGlow {
           0%,100% { filter: drop-shadow(0 0 4px rgba(197,48,48,0.15)); }
           50% { filter: drop-shadow(0 0 10px rgba(197,48,48,0.3)) drop-shadow(0 0 20px rgba(197,48,48,0.1)); }
@@ -2188,6 +2303,180 @@ export default function AF() {
           .mhero{font-size:3rem!important;white-space:normal!important}
           .ctab{display:block;overflow-x:auto}
           .hero-content{padding-top:80px!important}
+
+          /* ── §5 Confidentiality: right card full width ── */
+          .mgrid2 > div > div[style*="card"] {
+            width: 100% !important;
+            box-sizing: border-box !important;
+          }
+
+          /* ── §6 Competitive Landscape: stack insight below chart ── */
+          .mgrid2[style*="320px"] {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+
+          /* ── §7 Comparison: horizontal scroll ── */
+          .cmp-wrap { padding: 40px 20px !important; }
+          .cmp-table {
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+          }
+          .cmp-table > div { min-width: 700px !important; }
+          .cmp-scroll-hint {
+            display: flex !important;
+            justify-content: center !important;
+            margin-bottom: 8px !important;
+          }
+          .cmp-footer {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 12px !important;
+          }
+          .cmp-footer a, .cmp-footer button {
+            width: 100% !important;
+            max-width: 300px !important;
+            text-align: center !important;
+            justify-content: center !important;
+            box-sizing: border-box !important;
+          }
+
+          /* ── §9 Financial: slot number sizes ── */
+          .fin-num-lg { font-size: clamp(40px,10vw,130px) !important; }
+          .fin-num-xl { font-size: clamp(44px,11vw,155px) !important; }
+          .fin-cta {
+            display: flex !important;
+            justify-content: center !important;
+          }
+          .fin-cta a {
+            width: 100% !important;
+            max-width: 300px !important;
+            text-align: center !important;
+            justify-content: center !important;
+          }
+          /* Shockwave rings smaller on mobile */
+          [style*="shockwaveRing"] {
+            width: 300px !important;
+            height: 300px !important;
+          }
+
+          /* ── §10 Technology Moat: 2-col card rows ── */
+          .moat-row {
+            flex-wrap: wrap !important;
+            gap: 10px !important;
+            justify-content: center !important;
+          }
+          .moat-row > * {
+            flex: 1 1 calc(50% - 10px) !important;
+            min-width: 140px !important;
+            max-width: calc(50% - 5px) !important;
+          }
+
+          /* ── §10 Moat: hide rings, orbits, power lines ── */
+          .moat-rings, .moat-orbits, .moat-powerlines { display: none !important; }
+
+          /* ── §10 Moat: shield smaller ── */
+          .moat-shield img { width: 80px !important; }
+          .moat-shield { padding: 20px 0 !important; }
+
+          /* ── §10 Moat: card area full width ── */
+          .moat-card-area { max-width: 100% !important; padding: 0 4px !important; }
+
+          /* ── §10 Moat: each card max 400px centered ── */
+          .moat-row > * {
+            max-width: 400px !important;
+            margin: 0 auto !important;
+          }
+
+          /* ── §10 Moat: 1-col on very small screens ── */
+          @media (max-width: 480px) {
+            .moat-row {
+              flex-direction: column !important;
+              align-items: center !important;
+            }
+            .moat-row > * {
+              flex: none !important;
+              width: 100% !important;
+              max-width: 400px !important;
+            }
+          }
+
+          /* ── §11 Trusted By: logo size ── */
+          .marquee-logo { height: 24px !important; }
+
+          /* ── §12 CTA section: stack cards ── */
+          .cta-cards {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+            max-width: 100% !important;
+          }
+          .cta-book-btn {
+            width: 100% !important;
+            max-width: 280px !important;
+            text-align: center !important;
+            justify-content: center !important;
+            box-sizing: border-box !important;
+            margin: 0 auto !important;
+            display: flex !important;
+          }
+          .cta-contact-link {
+            word-break: break-all !important;
+            font-size: 12px !important;
+          }
+
+          /* ── §13 Footer: single column, centered ── */
+          footer > div:first-of-type + div {
+            grid-template-columns: 1fr !important;
+          }
+          footer [style*="gridTemplateColumns"] {
+            grid-template-columns: 1fr !important;
+            gap: 32px !important;
+            padding: 40px 20px 0 !important;
+          }
+          footer [style*="gap: 88"] {
+            grid-template-columns: 1fr !important;
+            gap: 32px !important;
+            padding: 40px 20px 0 !important;
+            text-align: center !important;
+          }
+          /* Center social icons and pills */
+          footer [style*="gap: 10"] { justify-content: center !important; }
+          footer [style*="gap: 8"]  { justify-content: center !important; }
+          footer [style*="gap: 14"] { align-items: center !important; }
+
+          /* Footer bottom bar: stack vertically */
+          footer [style*="gap: 12"][style*="justifyContent"] {
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+            gap: 12px !important;
+            padding: 16px 20px !important;
+          }
+          footer [style*="gap: 20"] {
+            justify-content: center !important;
+          }
+
+          /* Footer grid texture hidden */
+          .footer-grid-texture { display: none !important; }
+
+          /* ── §15 Disable screen shake on mobile ── */
+          .cmp-shake { transform: none !important; }
+
+          /* ── §15 Sticky: webkit fallback ── */
+          [style*="position: sticky"], [style*="position:sticky"] {
+            position: -webkit-sticky !important;
+            position: sticky !important;
+          }
+
+          /* ── §15 Touch targets min 44px ── */
+          nav a, nav button { min-height: 44px !important; }
+          .hero-ctas a, .cta-book-btn, footer a { min-height: 44px !important; }
+
+          /* ── §14 Typography cap ── */
+          .msec h2, section h2 { max-width: 100% !important; }
+
+          /* Scroll hint hidden on desktop */
+          .cmp-scroll-hint { display: none; }
         }
       `}</style>
       <div className="noise">
@@ -2272,7 +2561,7 @@ export default function AF() {
             </p>
 
             {/* CTAs — centered */}
-            <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap", marginBottom: 44 }}>
+            <div className="hero-ctas" style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap", marginBottom: 44 }}>
               <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer" style={{
                 ...btnR,
                 animation: hV ? "heroBtnUp 0.8s cubic-bezier(0.16,1,0.3,1) 1.5s both" : "none", opacity: 0,
@@ -2294,7 +2583,7 @@ export default function AF() {
             </div>
 
             {/* Badges — centered */}
-            <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
+            <div className="hero-badges" style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
               {["22 Patented Inventions","Multi-Chain from Day 1","SDK Available Q2 2026","Zero Integration Costs"].map((b, i) => (
                 <span key={i} style={{
                   fontFamily: "'JetBrains Mono',monospace", fontSize: "0.6rem", padding: "7px 16px", borderRadius: 100,
@@ -2429,7 +2718,7 @@ export default function AF() {
         {/* SOLUTION 1 */}
         <section id="fortressnames" ref={s1R} style={{ ...full, position:"relative", overflow:"hidden", minHeight:"100vh", display:"flex", alignItems:"center" }}>
           <div style={{ position:"absolute", top:0, left:"8%", right:"8%", height:1, background:"linear-gradient(90deg,transparent,rgba(100,110,150,0.1),transparent)" }} />
-          <div style={{ position:"absolute", top:0, right:0, bottom:0, width:"55%", zIndex:0, backgroundImage:`url(${LIBERTY_SRC})`, backgroundSize:"cover", backgroundPosition:"center", opacity:0.09, filter:"saturate(0.15)", maskImage:"linear-gradient(to right,transparent,black 30%,black 70%,transparent),linear-gradient(to bottom,transparent 0%,black 15%,black 75%,transparent 100%)", maskComposite:"intersect", WebkitMaskImage:"linear-gradient(to right,transparent,black 30%,black 70%,transparent),linear-gradient(to bottom,transparent 0%,black 15%,black 75%,transparent 100%)", WebkitMaskComposite:"destination-in" }} />
+          <div className="liberty-bg" style={{ position:"absolute", top:0, right:0, bottom:0, width:"55%", zIndex:0, backgroundImage:`url(${LIBERTY_SRC})`, backgroundSize:"cover", backgroundPosition:"center", opacity:0.09, filter:"saturate(0.15)", maskImage:"linear-gradient(to right,transparent,black 30%,black 70%,transparent),linear-gradient(to bottom,transparent 0%,black 15%,black 75%,transparent 100%)", maskComposite:"intersect", WebkitMaskImage:"linear-gradient(to right,transparent,black 30%,black 70%,transparent),linear-gradient(to bottom,transparent 0%,black 15%,black 75%,transparent 100%)", WebkitMaskComposite:"destination-in" }} />
           <div className="msec" style={{ maxWidth:900, marginLeft:"6vw", marginRight:"auto", padding:"120px 0 120px", display:"flex", flexDirection:"column", justifyContent:"center", position:"relative", zIndex:1 }}>
             <div style={rv(s1V, 0)}><span style={lbl}><span style={dot} /> The Solution — Part 1</span></div>
             <h2 style={{ ...rv(s1V, 0.12), ...mega("clamp(2.5rem,5.5vw,4.5rem)"), maxWidth:600 }}>FortressNames <span style={{ color:"#C41E2A" }}>Send-to-Name™</span></h2>
@@ -2446,7 +2735,7 @@ export default function AF() {
           {/* Section top divider — subtle boundary signal */}
           <div style={{ position: "absolute", top: 0, left: "8%", right: "8%", height: 1, background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.07),transparent)" }} />
           {/* Ghost background word — depth layer */}
-          <div style={{ position: "absolute", bottom: "-2vw", left: "-1vw", fontSize: "17vw", fontFamily: "'Bebas Neue'", letterSpacing: "-0.02em", color: "#E8D5B5", opacity: 0.025, lineHeight: 1, pointerEvents: "none", userSelect: "none", whiteSpace: "nowrap" }}>CONFIDENTIALITY</div>
+          <div className="ghost-word" style={{ position: "absolute", bottom: "-2vw", left: "-1vw", fontSize: "17vw", fontFamily: "'Bebas Neue'", letterSpacing: "-0.02em", color: "#E8D5B5", opacity: 0.025, lineHeight: 1, pointerEvents: "none", userSelect: "none", whiteSpace: "nowrap" }}>CONFIDENTIALITY</div>
           <div className="msec" style={{ ...sec, position: "relative", zIndex: 1 }}>
             {/* Asymmetric two-column grid */}
             <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 72, alignItems: "start" }}>
@@ -2595,7 +2884,7 @@ export default function AF() {
             <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to left, #0F1D35, transparent)", zIndex: 2, pointerEvents: "none" }} />
             <div className="marquee-track" style={{ alignItems: "center" }}>
               {[0, 1, 2, 3].map(rep => (
-                <img key={rep} src="/logos.png" alt="partners" style={{ height: 36, width: "auto", flexShrink: 0, margin: "0 16px", opacity: 0.85 }} />
+                <img key={rep} src="/logos.png" alt="partners" className="marquee-logo" style={{ height: 36, width: "auto", flexShrink: 0, margin: "0 16px", opacity: 0.85 }} />
               ))}
             </div>
           </div>
