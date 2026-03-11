@@ -763,12 +763,12 @@ function WalletScanner() {
   const showExposedLabel = isExposed;
 
   const tagVisible = (i) => {
+    if (time >= FADE_END) return 0;  // gap before cycle reset - keep data hidden
     const tagStart = EXPOSED_AT + i * 110;
     if (time < tagStart) return 0;
     if (isFadingOut) return dataOpacity;
     return Math.min(1, (time - tagStart) / 280);
   };
-
   const boxActive   = isFlashing || isExposed || isFadingOut;
   const addrBg      = isFlashing ? "rgba(196,30,42,0.22)" : boxActive ? "rgba(196,30,42,0.09)" : "rgba(8,14,30,0.6)";
   const addrBorder  = boxActive ? "rgba(196,30,42,0.5)" : "rgba(100,110,150,0.12)";
