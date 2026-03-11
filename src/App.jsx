@@ -1673,10 +1673,12 @@ function CTASection({ ctR, ctV }) {
 
 // ─── Site Footer ─────────────────────────────────────────────────────────────
 function SiteFooter() {
-  const [hovSocial, setHovSocial] = React.useState(null);
-  const [hovNav,    setHovNav]    = React.useState(null);
+  const [hovSocial,  setHovSocial]  = React.useState(null);
+  const [hovNav,     setHovNav]     = React.useState(null);
   const [hovContact, setHovContact] = React.useState(null);
-  const [hovTop,    setHovTop]    = React.useState(false);
+  const [hovPolicy,  setHovPolicy]  = React.useState(null);
+  const [hovTop,     setHovTop]     = React.useState(false);
+  const [hovCta,     setHovCta]     = React.useState(false);
 
   const socials = [
     {
@@ -1706,48 +1708,15 @@ function SiteFooter() {
   ];
 
   const navLinks = [
-    { label: "The Problem",        href: "#problem" },
-    { label: "Our Solution",       href: "#solution" },
-    { label: "Technology Moat",    href: "#moat" },
-    { label: "Revenue Stream",     href: "#revenue" },
-    { label: "Financial Opportunity", href: "#financial" },
-    { label: "Why Now",            href: "#why-now" },
-    { label: "The Ask",            href: "#ask" },
-  ];
-
-  const contacts = [
-    {
-      key: "email",
-      href: "mailto:jakub@americanfortress.io",
-      label: "jakub@americanfortress.io",
-      icon: (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="2" y="4" width="20" height="16" rx="2"/>
-          <polyline points="22,4 12,13 2,4"/>
-        </svg>
-      )
-    },
-    {
-      key: "telegram",
-      href: "https://t.me/americanfortress",
-      label: "t.me/americanfortress",
-      icon: (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M11.944 0A12 12 0 1 0 12 24a12 12 0 0 0-.056-24zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.504-1.356 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-        </svg>
-      )
-    },
-    {
-      key: "web",
-      href: "https://americanfortress.io",
-      label: "americanfortress.io",
-      icon: (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="10"/>
-          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-        </svg>
-      )
-    }
+    { label: "The Problem",             href: "#exposed" },
+    { label: "FortressNames",           href: "#fortressnames" },
+    { label: "Confidentiality Machine", href: "#confidentiality" },
+    { label: "Competitive Landscape",   href: "#landscape" },
+    { label: "Feature Comparison",      href: "#comparison" },
+    { label: "Revenue Share",           href: "#revenue" },
+    { label: "Financial Opportunity",   href: "#financial" },
+    { label: "Technology Moat",         href: "#moat" },
+    { label: "Contact",                 href: "#contact" },
   ];
 
   return (
@@ -1782,6 +1751,7 @@ function SiteFooter() {
         display: "grid", gridTemplateColumns: "1.5fr 1fr 1fr", gap: 48, alignItems: "start",
         position: "relative", zIndex: 1,
       }}>
+
         {/* ── Col 1: Brand ── */}
         <div>
           {/* Logo row */}
@@ -1848,60 +1818,115 @@ function SiteFooter() {
         {/* ── Col 3: Contact ── */}
         <div>
           <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:9, fontWeight:500, letterSpacing:2, textTransform:"uppercase", color:"rgba(200,170,100,0.4)", marginBottom:18 }}>Contact</div>
-          <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
-            {contacts.map((c, i) => (
-              <a key={c.key} href={c.href} target={c.key !== "email" ? "_blank" : undefined} rel="noopener noreferrer"
+          <div style={{ display:"flex", flexDirection:"column", gap:14, marginBottom:20 }}>
+            {[
+              {
+                key:"email", href:"mailto:jakub@americanfortress.io", label:"jakub@americanfortress.io",
+                icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>
+              },
+              {
+                key:"phone", href:"https://wa.me/971585133461", label:"+971 585 133 461", target:"_blank",
+                icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.9a16 16 0 0 0 6 6l.9-.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              },
+              {
+                key:"web", href:"https://americanfortress.io", label:"americanfortress.io", target:"_blank",
+                icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              },
+            ].map((c, i) => (
+              <a key={c.key} href={c.href} target={c.target} rel="noopener noreferrer"
                 onMouseEnter={() => setHovContact(i)}
                 onMouseLeave={() => setHovContact(null)}
                 style={{
-                  display:"flex", alignItems:"center", gap:10,
-                  fontFamily:"'DM Sans',sans-serif", fontSize:12,
-                  color: hovContact === i ? "rgba(200,170,100,0.8)" : "rgba(160,165,185,0.4)",
+                  display:"flex", alignItems:"center", gap:8,
+                  fontFamily:"'DM Sans',sans-serif", fontSize:13,
+                  color: hovContact === i ? "rgba(200,170,100,0.8)" : "rgba(160,165,185,0.45)",
                   textDecoration: "none", transition:"color 0.2s ease",
                 }}>
-                <span style={{ opacity: hovContact === i ? 0.9 : 0.5, transition:"opacity 0.2s ease", flexShrink:0 }}>{c.icon}</span>
+                <span style={{ flexShrink:0, opacity: hovContact === i ? 0.9 : 0.5, transition:"opacity 0.2s ease" }}>{c.icon}</span>
                 {c.label}
               </a>
             ))}
           </div>
+          {/* CTA button */}
+          <a href="https://calendly.com/jakub-americanfortress" target="_blank" rel="noopener noreferrer"
+            onMouseEnter={() => setHovCta(true)}
+            onMouseLeave={() => setHovCta(false)}
+            style={{
+              display:"inline-flex", alignItems:"center", gap:7,
+              fontFamily:"'DM Sans',sans-serif", fontSize:11, fontWeight:600, letterSpacing:"1px",
+              textTransform:"uppercase", textDecoration:"none",
+              padding:"10px 22px", borderRadius:8, border:"none", cursor:"pointer",
+              background: hovCta
+                ? "linear-gradient(135deg,#d64545 0%,#b83232 100%)"
+                : "linear-gradient(135deg,#c53030 0%,#9b2424 100%)",
+              boxShadow: hovCta ? "0 4px 16px rgba(197,48,48,0.3)" : "0 2px 10px rgba(197,48,48,0.15)",
+              transform: hovCta ? "translateY(-1px)" : "none",
+              color: "#fff",
+              transition: "all 0.25s ease",
+            }}>
+            Book a Call
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M7 17L17 7M7 7h10v10"/>
+            </svg>
+          </a>
         </div>
       </div>
 
       {/* ── Bottom bar ── */}
       <div style={{
-        maxWidth: 1100, margin: "0 auto", padding: "32px 5vw 40px",
-        display: "flex", alignItems: "center", justifyContent: "space-between",
+        maxWidth: 1100, margin: "48px auto 0",
+        padding: "20px 5vw",
+        borderTop: "1px solid rgba(100,110,150,0.06)",
+        display: "flex", justifyContent: "space-between", alignItems: "center",
+        flexWrap: "wrap", gap: 12,
         position: "relative", zIndex: 1,
-        borderTop: "1px solid rgba(100,110,150,0.08)", marginTop: 48,
       }}>
-        <p style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:10, color:"rgba(100,110,150,0.35)", letterSpacing:"0.5px", margin:0 }}>
-          © 2025 American Fortress Partners · All rights reserved
+        <p style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:10, color:"rgba(160,165,185,0.25)", letterSpacing:"0.5px", margin:0 }}>
+          © 2026 American Fortress. All rights reserved.
         </p>
-        {/* Back to top */}
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          onMouseEnter={() => setHovTop(true)}
-          onMouseLeave={() => setHovTop(false)}
-          style={{
-            display:"flex", alignItems:"center", gap:7,
-            background: hovTop ? "rgba(200,170,100,0.07)" : "rgba(100,110,150,0.05)",
-            border: hovTop ? "1px solid rgba(200,170,100,0.2)" : "1px solid rgba(100,110,150,0.1)",
-            borderRadius: 8, padding: "7px 14px", cursor: "pointer",
-            fontFamily:"'IBM Plex Mono',monospace", fontSize:9, letterSpacing:"1.5px",
-            textTransform:"uppercase",
-            color: hovTop ? "rgba(200,170,100,0.8)" : "rgba(160,165,185,0.35)",
-            transform: hovTop ? "translateY(-1px)" : "none",
-            transition: "all 0.25s ease",
-          }}>
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="18,15 12,9 6,15"/>
-          </svg>
-          Back to top
-        </button>
+        <div style={{ display:"flex", alignItems:"center", gap:20 }}>
+          {[["Privacy Policy","#"],["Terms of Service","#"]].map(([label, href], i) => (
+            <a key={label} href={href}
+              onMouseEnter={() => setHovPolicy(i)}
+              onMouseLeave={() => setHovPolicy(null)}
+              style={{
+                fontFamily:"'IBM Plex Mono',monospace", fontSize:10,
+                color: hovPolicy === i ? "rgba(200,170,100,0.5)" : "rgba(160,165,185,0.25)",
+                textDecoration:"none", transition:"color 0.2s ease",
+              }}>
+              {label}
+            </a>
+          ))}
+          {/* Back to top */}
+          <button
+            onClick={() => window.scrollTo({ top:0, behavior:"smooth" })}
+            onMouseEnter={() => setHovTop(true)}
+            onMouseLeave={() => setHovTop(false)}
+            aria-label="Back to top"
+            style={{
+              width:40, height:40, borderRadius:"50%",
+              display:"flex", alignItems:"center", justifyContent:"center",
+              background: hovTop
+                ? "linear-gradient(135deg,rgba(200,170,100,0.12),rgba(200,170,100,0.04))"
+                : "rgba(100,110,150,0.06)",
+              border: hovTop ? "1px solid rgba(200,170,100,0.25)" : "1px solid rgba(100,110,150,0.1)",
+              boxShadow: hovTop ? "0 0 15px rgba(200,170,100,0.08)" : "none",
+              transform: hovTop ? "translateY(-3px)" : "none",
+              cursor:"pointer", transition:"all 0.25s ease",
+            }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={hovTop ? "#daa545" : "rgba(160,165,185,0.4)"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transition:"stroke 0.25s ease" }}>
+              <polyline points="18,15 12,9 6,15"/>
+            </svg>
+          </button>
+        </div>
       </div>
+
+      {/* bottom breathing room */}
+      <div style={{ height: 32 }} />
     </footer>
   );
 }
+
 
 export default function AF() {
   const [scrollY, setScrollY] = useState(0);
@@ -2125,7 +2150,7 @@ export default function AF() {
         <Stripe />
 
         {/* PROBLEM */}
-        <section ref={pR} style={{ ...full, background: "linear-gradient(180deg,#0F1D35,#0A1628)" }}>
+        <section id="exposed" ref={pR} style={{ ...full, background: "linear-gradient(180deg,#0F1D35,#0A1628)" }}>
           <Stars count={15} color="rgba(196,30,42,0.08)" />
           <div className="msec" style={sec}>
             <div style={rv(pV, 0)}><span style={lbl}><span style={dot} /> The Problem</span></div>
@@ -2235,7 +2260,7 @@ export default function AF() {
         <Stripe flip />
 
         {/* SOLUTION 1 */}
-        <section ref={s1R} style={{ ...full, position:"relative", overflow:"hidden", minHeight:"100vh", display:"flex", alignItems:"center" }}>
+        <section id="fortressnames" ref={s1R} style={{ ...full, position:"relative", overflow:"hidden", minHeight:"100vh", display:"flex", alignItems:"center" }}>
           <div style={{ position:"absolute", top:0, left:"8%", right:"8%", height:1, background:"linear-gradient(90deg,transparent,rgba(100,110,150,0.1),transparent)" }} />
           <div style={{ position:"absolute", top:0, right:0, bottom:0, width:"55%", zIndex:0, backgroundImage:`url(${LIBERTY_SRC})`, backgroundSize:"cover", backgroundPosition:"center", opacity:0.09, filter:"saturate(0.15)", maskImage:"linear-gradient(to right,transparent,black 30%,black 70%,transparent),linear-gradient(to bottom,transparent 0%,black 15%,black 75%,transparent 100%)", maskComposite:"intersect", WebkitMaskImage:"linear-gradient(to right,transparent,black 30%,black 70%,transparent),linear-gradient(to bottom,transparent 0%,black 15%,black 75%,transparent 100%)", WebkitMaskComposite:"destination-in" }} />
           <div className="msec" style={{ maxWidth:900, marginLeft:"6vw", marginRight:"auto", padding:"120px 0 120px", display:"flex", flexDirection:"column", justifyContent:"center", position:"relative", zIndex:1 }}>
@@ -2250,7 +2275,7 @@ export default function AF() {
         <Stripe />
 
         {/* SOLUTION 2 */}
-        <section ref={s2R} style={{ ...full, background: "#0F1D35", position: "relative", overflow: "hidden" }}>
+        <section id="confidentiality" ref={s2R} style={{ ...full, background: "#0F1D35", position: "relative", overflow: "hidden" }}>
           {/* Section top divider — subtle boundary signal */}
           <div style={{ position: "absolute", top: 0, left: "8%", right: "8%", height: 1, background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.07),transparent)" }} />
           {/* Ghost background word — depth layer */}
@@ -2294,7 +2319,7 @@ export default function AF() {
 
 
         {/* COMPETITIVE LANDSCAPE */}
-        <section style={{ ...full, background: "#0A1628" }}>
+        <section id="landscape" style={{ ...full, background: "#0A1628" }}>
           <Stars count={20} color="rgba(201,168,76,0.1)" />
           <CompetitiveLandscapeInner />
         </section>
@@ -2302,12 +2327,12 @@ export default function AF() {
         <Stripe />
 
         {/* COMPARISON TABLE */}
-        <ComparisonSection />
+        <div id="comparison"><ComparisonSection /></div>
 
         <Stripe flip />
 
         {/* REVENUE SHARE */}
-        <section ref={rR2} style={full}>
+        <section id="revenue" ref={rR2} style={full}>
           <div className="msec" style={sec}>
             <div style={rv(rV, 0)}><span style={lbl}><span style={dot} /> Revenue Share</span></div>
             <h2 style={{ ...rv(rV, 0.12), ...mega("clamp(2.5rem,5.5vw,4.5rem)") }}>A New Revenue Stream — <span style={{ color: "#C41E2A" }}>Not Just a Feature</span></h2>
@@ -2377,12 +2402,12 @@ export default function AF() {
         <Stripe />
 
         {/* FINANCIAL */}
-        <FinancialSection />
+        <div id="financial"><FinancialSection /></div>
 
         <Stripe flip />
 
         {/* MOAT */}
-        <MoatSection mR={mR} mV={mV} />
+        <div id="moat"><MoatSection mR={mR} mV={mV} /></div>
 
         <Stripe />
 
@@ -2412,7 +2437,7 @@ export default function AF() {
         <Stripe flip />
 
         {/* CTA */}
-        <CTASection ctR={ctR} ctV={ctV} />
+        <div id="contact"><CTASection ctR={ctR} ctV={ctV} /></div>
 
         <Stripe />
         <SiteFooter />
