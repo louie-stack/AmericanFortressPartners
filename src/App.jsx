@@ -622,6 +622,38 @@ function SlotNumber({ digits, commas, active, color, fontSize, addShadow, digitD
   );
 }
 
+function FinRevBtn({ vis }) {
+  const [hov, setHov] = useState(false);
+  return (
+    <div style={{ marginTop:40, opacity: vis ? 1 : 0,
+      transform: vis ? "translateY(0)" : "translateY(12px)",
+      transition:"opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s" }}>
+      <button
+        onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+        style={{
+          fontFamily: "Outfit", fontSize: "0.85rem", fontWeight: 600,
+          padding: "14px 32px", color: "#fff", border: "none", borderRadius: 4,
+          cursor: "pointer", letterSpacing: "0.06em", textTransform: "uppercase",
+          display: "inline-flex", alignItems: "center", gap: 8,
+          background: hov
+            ? "linear-gradient(135deg, #d64545 0%, #b83232 100%)"
+            : "linear-gradient(135deg, #c53030 0%, #9b2424 100%)",
+          boxShadow: hov
+            ? "0 4px 20px rgba(197,48,48,0.35), inset 0 0 0 1px rgba(220,160,80,0.15)"
+            : "0 2px 12px rgba(197,48,48,0.2)",
+          transform: hov ? "translateY(-1px)" : "translateY(0)",
+          transition: "all 0.2s ease",
+        }}>
+        Discuss Revenue Opportunity
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="7" y1="17" x2="17" y2="7"/>
+          <polyline points="7,7 17,7 17,17"/>
+        </svg>
+      </button>
+    </div>
+  );
+}
+
 function FinancialSection() {
   const sectionRef  = useRef(null);
   const hasPlayedRef = useRef(false);
@@ -798,7 +830,6 @@ function FinancialSection() {
         transition:"background 0.5s ease",
       }}/>
 
-      <Stars count={30} color="rgba(201,168,76,0.16)"/>
 
       <div style={{ position:"relative", zIndex:5, textAlign:"center", width:"100%", maxWidth:900 }}>
 
@@ -944,15 +975,7 @@ function FinancialSection() {
         )}
 
         {/* CTA */}
-        <div style={{ marginTop:40, opacity: ctaVis ? 1 : 0,
-          transform: ctaVis ? "translateY(0)" : "translateY(12px)",
-          transition:"opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s" }}>
-          <button style={{ fontFamily:"'JetBrains Mono'", fontSize:"0.72rem", letterSpacing:"0.1em",
-            textTransform:"uppercase", padding:"14px 32px", background:"#C41E2A",
-            color:"#fff", border:"none", borderRadius:4, cursor:"pointer" }}>
-            Discuss Revenue Opportunity ↗
-          </button>
-        </div>
+        <FinRevBtn vis={ctaVis}/>
 
       </div>
     </section>
