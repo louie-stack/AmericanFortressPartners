@@ -498,7 +498,7 @@ function ComparisonSection() {
               The technology advantage is clear. Now let's talk about what it means for your bottom line. →
             </p>
             <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer" style={{ fontFamily:"'JetBrains Mono'", fontSize:"0.72rem", letterSpacing:"0.08em", textTransform:"uppercase", padding:"14px 28px", background:"#C41E2A", color:"#fff", border:"none", borderRadius:4, cursor:"pointer", textDecoration:"none", display:"inline-block" }}>
-              Book a Partnership Call ↗
+              <span style={{display:"inline-flex",alignItems:"center",gap:8}}>Book a Partnership Call <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
             </a>
           </div>
         </div>
@@ -556,7 +556,7 @@ function CompetitiveLandscapeInner() {
   return (
     <div ref={sectionRef} className="msec" style={{ ...G_SEC, padding: "100px 48px 80px", opacity: cp > 0 ? 1 : 0, transform: cp > 0 ? "translateY(0)" : "translateY(30px)", transition: "opacity 0.7s ease, transform 0.7s ease" }}>
       <div><span style={G_LBL}><span style={G_DOT} /> Competitive Landscape</span></div>
-      <h2 style={G_MEGA("clamp(2.5rem,5.5vw,4.5rem)", 48)}>Where We Stand — <span style={{ color: "#C41E2A" }}>Privacy ↔ Usability</span></h2>
+      <h2 style={G_MEGA("clamp(2.5rem,5.5vw,4.5rem)", 48)}>Where We Stand — <span style={{ color: "#C41E2A" }}>Privacy <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{display:"inline-block",verticalAlign:"middle",margin:"0 2px"}}><line x1="5" y1="12" x2="19" y2="12"/><polyline points="8 8 4 12 8 16"/><polyline points="16 8 20 12 16 16"/></svg> Usability</span></h2>
       <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 40, alignItems: "start" }}>
         <CompetitiveChart p={cp} />
         <div style={{ ...G_CARD, opacity: insightF, transform: `translateX(${(1 - insightF) * 24}px)` }}>
@@ -2168,6 +2168,10 @@ export default function AF() {
         /* ── Mobile (≤768px) ─────────────────────────────── */
         @media (max-width: 768px) {
 
+          /* 0 ── HERO: mobile top padding ─────────────────── */
+          .hero-section { padding-top: 56px !important; }
+          .hero-content { padding-top: 48px !important; }
+
           /* 1 ── NAV ────────────────────────────────────────── */
           nav { height: 56px !important; padding: 0 16px !important; }
           .nav-center { display: none !important; }
@@ -2291,7 +2295,7 @@ export default function AF() {
         <SiteNav />
 
         {/* HERO */}
-        <section ref={hR} style={{ ...full, minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+        <section ref={hR} className="hero-section" style={{ ...full, minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
           {/* Full-screen cover photo background with parallax */}
           <div style={{
             position: "absolute", inset: 0, zIndex: 0,
@@ -2377,7 +2381,7 @@ export default function AF() {
               }}
                 onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 0 24px rgba(196,30,42,0.7), 0 0 48px rgba(196,30,42,0.3)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
                 onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}
-              >Book a Call ↗</a>
+              >Book a Call {ARROW_SVG}</a>
               <a href="https://americanfortress.io/partner-wallets" target="_blank" rel="noopener noreferrer" style={{
                 ...btnG,
                 animation: hV ? "heroBtnUp 0.8s cubic-bezier(0.16,1,0.3,1) 1.65s both" : "none", opacity: 0,
@@ -2386,7 +2390,7 @@ export default function AF() {
               }}
                 onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 0 24px rgba(201,168,76,0.5), 0 0 48px rgba(201,168,76,0.2)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
                 onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}
-              >Download AF Beta ↗</a>
+              ><span style={{display:"inline-flex",alignItems:"center",gap:8}}>Download AF Beta <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
             </div>
 
             {/* Badges — centered */}
@@ -2403,7 +2407,7 @@ export default function AF() {
                   onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.6)"; e.currentTarget.style.color = "#C9A84C"; e.currentTarget.style.background = "rgba(201,168,76,0.08)"; }}
                   onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.15)"; e.currentTarget.style.color = "rgba(122,133,153,0.8)"; e.currentTarget.style.background = "rgba(4,11,24,0.5)"; }}
                 >
-                  <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#C9A84C" }} />{b}
+                  <span style={{ width:5, height:5, borderRadius:"50%", background:"rgba(200,170,100,0.6)", flexShrink:0, display:"inline-block" }} />{b}
                 </span>
               ))}
             </div>
