@@ -412,6 +412,10 @@ function ComparisonSection() {
           <div className="cmp-scroll-hint">
             <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:9, letterSpacing:"1.5px", color:"rgba(160,165,185,0.35)", textTransform:"uppercase" }}>← Scroll to compare →</span>
           </div>
+          {/* Scroll hint — shown on mobile only */}
+          <div className="cmp-scroll-hint">
+            <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:9, letterSpacing:"1.5px", color:"rgba(160,165,185,0.35)", textTransform:"uppercase" }}>← Scroll to compare →</span>
+          </div>
           {/* Grid table */}
 
           <div className="cmp-table" style={{ background:"rgba(14,22,45,0.4)", border:"1px solid rgba(100,110,150,0.08)", borderRadius:12, overflow:"hidden" }}>
@@ -845,10 +849,10 @@ function FinancialSection() {
           <div style={{ marginBottom:20 }}>
             <span style={G_LBL}><span style={G_DOT}/> Revenue Projections</span>
           </div>
-          <h2 style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(36px,5.5vw,80px)",
+          <h2 className="fin-title" style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(36px,5.5vw,80px)",
             letterSpacing:"0.02em", lineHeight:0.95, marginBottom:0, whiteSpace:"nowrap" }}>
-            <span style={{ color:"#E8D5B5" }}>The </span>
-            <span style={{ color:"#C41E2A" }}>Financial Opportunity</span>
+            <span className="fin-num-xl" style={{ color:"#E8D5B5" }}>The </span>
+            <span className="fin-num-lg" style={{ color:"#C41E2A" }}>Financial Opportunity</span>
           </h2>
         </div>
 
@@ -1166,7 +1170,7 @@ function WalletScanner() {
         {isFlashing && (
           <div style={{ position: "absolute", inset: 0, background: "rgba(196,30,42,0.18)", zIndex: 4, pointerEvents: "none" }} />
         )}
-        <div style={{ position: "relative", zIndex: 3, fontSize: "clamp(0.65rem,1.2vw,0.88rem)", color: addrColor, wordBreak: "break-all", letterSpacing: "0.03em", transition: "color 0.4s ease" }}>{ADDR}</div>
+        <div className="wallet-addr" style={{ position: "relative", zIndex: 3, fontSize: "clamp(0.65rem,1.2vw,0.88rem)", color: addrColor, wordBreak: "break-all", letterSpacing: "0.03em", transition: "color 0.4s ease" }}>{ADDR}</div>
       </div>
 
       {/* Progress bar */}
@@ -2023,7 +2027,7 @@ function SiteNav() {
       </div>
 
       {/* Center: Nav links */}
-      <div ref={navLinksRef} style={{
+      <div ref={navLinksRef} className="nav-center" style={{
         position: "absolute", left: "50%", transform: "translateX(-50%)",
         display: "flex", alignItems: "center", gap: 4,
       }}>
@@ -2109,7 +2113,8 @@ export default function AF() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  const [hR, hV] = useReveal({ t: 0.05 });
+  const [hR, hV_raw] = useReveal({ t: 0.05 });
+  const hV = true; // Hero is always the first visible section — force animations on
   const [pR, pV] = useReveal({ t: 0.12 });
   const [s1R, s1V] = useReveal({ t: 0.1 });
   const [s2R, s2V] = useReveal({ t: 0.1 });
@@ -2163,116 +2168,101 @@ export default function AF() {
         /* ── Mobile (≤768px) ─────────────────────────────── */
         @media (max-width: 768px) {
 
-          /* ── Nav ── */
+          /* 1 ── NAV ────────────────────────────────────────── */
+          nav { height: 56px !important; padding: 0 16px !important; }
+          .nav-center { display: none !important; }
           .sitenav-links { display: none !important; }
-          nav[style] { height: 56px !important; padding: 0 16px !important; }
-          nav .sitenav-links { display: none !important; }
 
-          /* ── Hero ── */
-          .mhero { font-size: clamp(36px, 10vw, 80px) !important; white-space: normal !important; }
-          .hero-content { padding: 0 20px !important; }
-          .hero-content p { font-size: 14px !important; max-width: 90% !important; }
-          .hero-ctas {
-            flex-direction: column !important;
-            width: 100% !important;
-            max-width: 320px !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-            gap: 12px !important;
-          }
-          .hero-ctas a {
-            width: 100% !important;
-            text-align: center !important;
-            justify-content: center !important;
-            box-sizing: border-box !important;
-          }
-          .hero-badges {
-            display: grid !important;
-            grid-template-columns: 1fr 1fr !important;
-            gap: 8px !important;
-            max-width: 320px !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-          }
-          .hero-badges span {
-            font-size: 8px !important;
-            padding: 4px 8px !important;
-            text-align: center !important;
-            justify-content: center !important;
-          }
+          /* 2 ── GLOBAL OVERFLOW ─────────────────────────────── */
+          html, body { overflow-x: hidden !important; max-width: 100vw !important; }
+          section { overflow-x: hidden !important; max-width: 100vw !important; box-sizing: border-box !important; }
+          .noise { overflow-x: hidden !important; }
+          .msec { padding: 60px 20px !important; max-width: 100vw !important; box-sizing: border-box !important; }
+          .mgrid2 { grid-template-columns: 1fr !important; gap: 20px !important; }
 
-          /* ── Global section padding ── */
-          .msec { padding: 60px 20px 60px !important; }
-
-          /* ── Two-column → single column ── */
-          .mgrid2 {
-            grid-template-columns: 1fr !important;
-            gap: 24px !important;
-          }
-
-          /* ── Wallet scanner ── */
-          .wallet-grid { grid-template-columns: 1fr 1fr !important; }
+          /* 3 ── WALLET SCANNER ──────────────────────────────── */
+          .wallet-grid { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
           .wallet-grid > div { padding: 10px 12px !important; }
-          .wallet-grid [style*="font-size:"8px""],
-          .wallet-grid [style*="fontSize"] { font-size: 8px !important; }
+          .wallet-addr { font-size: 10px !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; }
 
-          /* ── Liberty background (S1) ── */
-          .liberty-bg { opacity: 0.05 !important; width: 100% !important; }
-
-          /* ── Name resolver display ── */
-          .nr-display { font-size: clamp(16px, 6vw, 36px) !important; }
-
-          /* ── Feature chips (S1) ── */
-          .s1chips {
-            grid-template-columns: 1fr 1fr !important;
-            gap: 8px !important;
-          }
+          /* 4 ── FORTRESSNAMES ───────────────────────────────── */
+          .nr-wrap { overflow: hidden !important; max-width: 100% !important; }
+          .nr-row { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+          .nr-hex { font-size: 12px !important; max-width: 100% !important; overflow: hidden !important; text-overflow: ellipsis !important; }
+          .nr-arrow { transform: rotate(90deg) !important; display: block !important; }
+          .nr-display { font-size: clamp(22px, 8vw, 44px) !important; }
+          .s1chips { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
           .s1chips > div { padding: 12px 14px !important; }
+          .liberty-bg { opacity: 0.05 !important; }
 
-          /* ── Below 400px: chips 1 col ── */
-          @media (max-width: 400px) {
-            .s1chips { grid-template-columns: 1fr !important; }
-          }
+          /* 5 ── FINANCIAL OPPORTUNITY ───────────────────────── */
+          .fin-title { white-space: normal !important; font-size: clamp(28px, 8vw, 60px) !important; word-break: break-word !important; }
+          .fin-num-lg { font-size: clamp(36px, 12vw, 110px) !important; }
+          .fin-num-xl { font-size: clamp(40px, 14vw, 130px) !important; }
+          .fin-inner { padding: 0 16px !important; box-sizing: border-box !important; overflow: hidden !important; }
+          .fin-cta { display: flex !important; justify-content: center !important; }
+          .fin-cta a { width: 100% !important; max-width: 300px !important; text-align: center !important; justify-content: center !important; }
+          .cmp-shake { transform: none !important; }
 
-          /* ── Ghost word (Confidentiality) ── */
+          /* 6 ── TRUSTED BY ──────────────────────────────────── */
+          #trusted { min-height: auto !important; }
+          #trusted > .msec { padding: 40px 20px !important; }
+          .marquee-logo { height: 20px !important; }
+
+          /* 7 ── CONFIDENTIALITY ─────────────────────────────── */
           .ghost-word { display: none !important; }
 
-          /* ── Moat section ── */
-          .moat-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+          /* 8 ── TECHNOLOGY MOAT ─────────────────────────────── */
+          .moat-rings, .moat-orbits, .moat-powerlines { display: none !important; }
+          .moat-shield img { width: 70px !important; }
+          .moat-shield { padding: 16px 0 !important; }
+          .moat-card-area { max-width: 100% !important; overflow: hidden !important; }
+          .moat-row { flex-direction: column !important; align-items: center !important; gap: 12px !important; }
+          .moat-row > * { width: 100% !important; max-width: 400px !important; flex: none !important; box-sizing: border-box !important; }
 
-          /* ── Financial numbers ── */
-          .financial-numbers { padding: 0 20px !important; }
+          /* ── HERO ──────────────────────────────────────────── */
+          .mhero { font-size: clamp(36px, 10vw, 72px) !important; white-space: normal !important; }
+          .hero-content { padding: 0 20px !important; }
+          .hero-content p { font-size: 14px !important; max-width: 90% !important; }
+          .hero-ctas { flex-direction: column !important; width: 100% !important; max-width: 320px !important; margin: 0 auto !important; gap: 12px !important; }
+          .hero-ctas a { width: 100% !important; text-align: center !important; justify-content: center !important; box-sizing: border-box !important; }
+          .hero-badges { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; max-width: 320px !important; margin: 0 auto !important; }
+          .hero-badges span { font-size: 8px !important; padding: 4px 8px !important; text-align: center !important; justify-content: center !important; }
 
-          /* ── Comparison table ── */
-          .comparison-scroll { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
+          /* ── COMPARISON ────────────────────────────────────── */
+          .cmp-wrap { padding: 40px 20px !important; }
+          .cmp-table { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
+          .cmp-table > div { min-width: 700px !important; }
+          .cmp-scroll-hint { display: flex !important; justify-content: center !important; margin-bottom: 8px !important; }
+          .cmp-footer { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+          .cmp-footer a, .cmp-footer button { width: 100% !important; max-width: 300px !important; text-align: center !important; justify-content: center !important; box-sizing: border-box !important; }
+          .ctab { display: block !important; overflow-x: auto !important; }
 
-          /* ── Footer ── */
-          footer > div[style*="grid"] {
-            grid-template-columns: 1fr !important;
-            gap: 32px !important;
-            padding: 40px 20px 0 !important;
-          }
-          footer > div[style*="justify-content"] {
-            flex-direction: column !important;
-            align-items: flex-start !important;
-            gap: 16px !important;
-            padding: 20px 20px !important;
-          }
+          /* ── REVENUE CARDS ─────────────────────────────────── */
+          .rev-cards { grid-template-columns: 1fr !important; gap: 16px !important; }
 
-          /* ── CTA section cards ── */
-          .mgrid2[style*="1fr 1fr"] {
-            grid-template-columns: 1fr !important;
-          }
+          /* ── CTA SECTION ───────────────────────────────────── */
+          .cta-cards { grid-template-columns: 1fr !important; gap: 16px !important; max-width: 100% !important; }
+          .cta-book-btn { width: 100% !important; max-width: 280px !important; text-align: center !important; justify-content: center !important; box-sizing: border-box !important; margin: 0 auto !important; display: flex !important; }
+          .cta-contact-link { word-break: break-all !important; font-size: 12px !important; }
 
-          /* ── No horizontal overflow anywhere ── */
-          section, .msec, .mgrid2 {
-            max-width: 100vw !important;
-            overflow-x: hidden !important;
-          }
+          /* ── FOOTER ────────────────────────────────────────── */
+          .footer-grid-texture { display: none !important; }
+          footer [style*="gap: 88"], footer [style*="gridTemplateColumns"] { grid-template-columns: 1fr !important; gap: 32px !important; padding: 40px 20px 0 !important; text-align: center !important; }
+          footer [style*="gap: 10"] { justify-content: center !important; }
+          footer [style*="gap: 8"]  { justify-content: center !important; }
+          footer [style*="gap: 14"] { flex-direction: column !important; align-items: center !important; }
+          footer [style*="gap: 12"], footer [style*="gap: 20"] { flex-direction: column !important; align-items: center !important; text-align: center !important; justify-content: center !important; gap: 12px !important; padding: 16px 20px !important; }
+
+          /* ── TOUCH / A11Y ──────────────────────────────────── */
+          nav a, nav button, .hero-ctas a, .cta-book-btn, footer a { min-height: 44px !important; }
+          [style*="position: sticky"] { position: -webkit-sticky !important; position: sticky !important; }
+          .msec h2, section h2 { max-width: 100% !important; }
+          .cmp-scroll-hint { display: none; }
         }
-        @keyframes logoGlow {
-          0%,100% { filter: drop-shadow(0 0 4px rgba(197,48,48,0.15)); }
-          50% { filter: drop-shadow(0 0 10px rgba(197,48,48,0.3)) drop-shadow(0 0 20px rgba(197,48,48,0.1)); }
+
+        @media (max-width: 480px) {
+          .s1chips { grid-template-columns: 1fr !important; }
         }
         @keyframes heroLineUp{0%{opacity:0;transform:translateY(80px) skewY(2deg)}100%{opacity:1;transform:translateY(0) skewY(0)}}
         @keyframes heroFadeIn{0%{opacity:0}100%{opacity:1}}
@@ -2295,189 +2285,6 @@ export default function AF() {
         .ctab td:first-child{text-align:left;font-weight:500}
         .ctab .afcl{background:rgba(201,168,76,0.03)}
         @media(max-width:1024px){.s1chips{grid-template-columns:repeat(2,1fr)!important}}
-        @media(max-width:768px){
-          .msec{padding:100px 20px!important}
-          .s1chips{grid-template-columns:1fr!important}
-          .mgrid2{grid-template-columns:1fr!important}
-          .mgrid3{grid-template-columns:1fr!important}
-          .mhero{font-size:3rem!important;white-space:normal!important}
-          .ctab{display:block;overflow-x:auto}
-          .hero-content{padding-top:80px!important}
-
-          /* ── §5 Confidentiality: right card full width ── */
-          .mgrid2 > div > div[style*="card"] {
-            width: 100% !important;
-            box-sizing: border-box !important;
-          }
-
-          /* ── §6 Competitive Landscape: stack insight below chart ── */
-          .mgrid2[style*="320px"] {
-            grid-template-columns: 1fr !important;
-            gap: 24px !important;
-          }
-
-          /* ── §7 Comparison: horizontal scroll ── */
-          .cmp-wrap { padding: 40px 20px !important; }
-          .cmp-table {
-            overflow-x: auto !important;
-            -webkit-overflow-scrolling: touch !important;
-          }
-          .cmp-table > div { min-width: 700px !important; }
-          .cmp-scroll-hint {
-            display: flex !important;
-            justify-content: center !important;
-            margin-bottom: 8px !important;
-          }
-          .cmp-footer {
-            flex-direction: column !important;
-            align-items: flex-start !important;
-            gap: 12px !important;
-          }
-          .cmp-footer a, .cmp-footer button {
-            width: 100% !important;
-            max-width: 300px !important;
-            text-align: center !important;
-            justify-content: center !important;
-            box-sizing: border-box !important;
-          }
-
-          /* ── §9 Financial: slot number sizes ── */
-          .fin-num-lg { font-size: clamp(40px,10vw,130px) !important; }
-          .fin-num-xl { font-size: clamp(44px,11vw,155px) !important; }
-          .fin-cta {
-            display: flex !important;
-            justify-content: center !important;
-          }
-          .fin-cta a {
-            width: 100% !important;
-            max-width: 300px !important;
-            text-align: center !important;
-            justify-content: center !important;
-          }
-          /* Shockwave rings smaller on mobile */
-          [style*="shockwaveRing"] {
-            width: 300px !important;
-            height: 300px !important;
-          }
-
-          /* ── §10 Technology Moat: 2-col card rows ── */
-          .moat-row {
-            flex-wrap: wrap !important;
-            gap: 10px !important;
-            justify-content: center !important;
-          }
-          .moat-row > * {
-            flex: 1 1 calc(50% - 10px) !important;
-            min-width: 140px !important;
-            max-width: calc(50% - 5px) !important;
-          }
-
-          /* ── §10 Moat: hide rings, orbits, power lines ── */
-          .moat-rings, .moat-orbits, .moat-powerlines { display: none !important; }
-
-          /* ── §10 Moat: shield smaller ── */
-          .moat-shield img { width: 80px !important; }
-          .moat-shield { padding: 20px 0 !important; }
-
-          /* ── §10 Moat: card area full width ── */
-          .moat-card-area { max-width: 100% !important; padding: 0 4px !important; }
-
-          /* ── §10 Moat: each card max 400px centered ── */
-          .moat-row > * {
-            max-width: 400px !important;
-            margin: 0 auto !important;
-          }
-
-          /* ── §10 Moat: 1-col on very small screens ── */
-          @media (max-width: 480px) {
-            .moat-row {
-              flex-direction: column !important;
-              align-items: center !important;
-            }
-            .moat-row > * {
-              flex: none !important;
-              width: 100% !important;
-              max-width: 400px !important;
-            }
-          }
-
-          /* ── §11 Trusted By: logo size ── */
-          .marquee-logo { height: 24px !important; }
-
-          /* ── §12 CTA section: stack cards ── */
-          .cta-cards {
-            grid-template-columns: 1fr !important;
-            gap: 16px !important;
-            max-width: 100% !important;
-          }
-          .cta-book-btn {
-            width: 100% !important;
-            max-width: 280px !important;
-            text-align: center !important;
-            justify-content: center !important;
-            box-sizing: border-box !important;
-            margin: 0 auto !important;
-            display: flex !important;
-          }
-          .cta-contact-link {
-            word-break: break-all !important;
-            font-size: 12px !important;
-          }
-
-          /* ── §13 Footer: single column, centered ── */
-          footer > div:first-of-type + div {
-            grid-template-columns: 1fr !important;
-          }
-          footer [style*="gridTemplateColumns"] {
-            grid-template-columns: 1fr !important;
-            gap: 32px !important;
-            padding: 40px 20px 0 !important;
-          }
-          footer [style*="gap: 88"] {
-            grid-template-columns: 1fr !important;
-            gap: 32px !important;
-            padding: 40px 20px 0 !important;
-            text-align: center !important;
-          }
-          /* Center social icons and pills */
-          footer [style*="gap: 10"] { justify-content: center !important; }
-          footer [style*="gap: 8"]  { justify-content: center !important; }
-          footer [style*="gap: 14"] { align-items: center !important; }
-
-          /* Footer bottom bar: stack vertically */
-          footer [style*="gap: 12"][style*="justifyContent"] {
-            flex-direction: column !important;
-            align-items: center !important;
-            text-align: center !important;
-            gap: 12px !important;
-            padding: 16px 20px !important;
-          }
-          footer [style*="gap: 20"] {
-            justify-content: center !important;
-          }
-
-          /* Footer grid texture hidden */
-          .footer-grid-texture { display: none !important; }
-
-          /* ── §15 Disable screen shake on mobile ── */
-          .cmp-shake { transform: none !important; }
-
-          /* ── §15 Sticky: webkit fallback ── */
-          [style*="position: sticky"], [style*="position:sticky"] {
-            position: -webkit-sticky !important;
-            position: sticky !important;
-          }
-
-          /* ── §15 Touch targets min 44px ── */
-          nav a, nav button { min-height: 44px !important; }
-          .hero-ctas a, .cta-book-btn, footer a { min-height: 44px !important; }
-
-          /* ── §14 Typography cap ── */
-          .msec h2, section h2 { max-width: 100% !important; }
-
-          /* Scroll hint hidden on desktop */
-          .cmp-scroll-hint { display: none; }
-        }
       `}</style>
       <div className="noise">
         {/* NAV */}
@@ -2718,7 +2525,7 @@ export default function AF() {
         {/* SOLUTION 1 */}
         <section id="fortressnames" ref={s1R} style={{ ...full, position:"relative", overflow:"hidden", minHeight:"100vh", display:"flex", alignItems:"center" }}>
           <div style={{ position:"absolute", top:0, left:"8%", right:"8%", height:1, background:"linear-gradient(90deg,transparent,rgba(100,110,150,0.1),transparent)" }} />
-          <div className="liberty-bg" style={{ position:"absolute", top:0, right:0, bottom:0, width:"55%", zIndex:0, backgroundImage:`url(${LIBERTY_SRC})`, backgroundSize:"cover", backgroundPosition:"center", opacity:0.09, filter:"saturate(0.15)", maskImage:"linear-gradient(to right,transparent,black 30%,black 70%,transparent),linear-gradient(to bottom,transparent 0%,black 15%,black 75%,transparent 100%)", maskComposite:"intersect", WebkitMaskImage:"linear-gradient(to right,transparent,black 30%,black 70%,transparent),linear-gradient(to bottom,transparent 0%,black 15%,black 75%,transparent 100%)", WebkitMaskComposite:"destination-in" }} />
+          <div className="liberty-bg" className="liberty-bg" style={{ position:"absolute", top:0, right:0, bottom:0, width:"55%", zIndex:0, backgroundImage:`url(${LIBERTY_SRC})`, backgroundSize:"cover", backgroundPosition:"center", opacity:0.09, filter:"saturate(0.15)", maskImage:"linear-gradient(to right,transparent,black 30%,black 70%,transparent),linear-gradient(to bottom,transparent 0%,black 15%,black 75%,transparent 100%)", maskComposite:"intersect", WebkitMaskImage:"linear-gradient(to right,transparent,black 30%,black 70%,transparent),linear-gradient(to bottom,transparent 0%,black 15%,black 75%,transparent 100%)", WebkitMaskComposite:"destination-in" }} />
           <div className="msec" style={{ maxWidth:900, marginLeft:"6vw", marginRight:"auto", padding:"120px 0 120px", display:"flex", flexDirection:"column", justifyContent:"center", position:"relative", zIndex:1 }}>
             <div style={rv(s1V, 0)}><span style={lbl}><span style={dot} /> The Solution — Part 1</span></div>
             <h2 style={{ ...rv(s1V, 0.12), ...mega("clamp(2.5rem,5.5vw,4.5rem)"), maxWidth:600 }}>FortressNames <span style={{ color:"#C41E2A" }}>Send-to-Name™</span></h2>
@@ -2735,7 +2542,7 @@ export default function AF() {
           {/* Section top divider — subtle boundary signal */}
           <div style={{ position: "absolute", top: 0, left: "8%", right: "8%", height: 1, background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.07),transparent)" }} />
           {/* Ghost background word — depth layer */}
-          <div className="ghost-word" style={{ position: "absolute", bottom: "-2vw", left: "-1vw", fontSize: "17vw", fontFamily: "'Bebas Neue'", letterSpacing: "-0.02em", color: "#E8D5B5", opacity: 0.025, lineHeight: 1, pointerEvents: "none", userSelect: "none", whiteSpace: "nowrap" }}>CONFIDENTIALITY</div>
+          <div className="ghost-word" className="ghost-word" style={{ position: "absolute", bottom: "-2vw", left: "-1vw", fontSize: "17vw", fontFamily: "'Bebas Neue'", letterSpacing: "-0.02em", color: "#E8D5B5", opacity: 0.025, lineHeight: 1, pointerEvents: "none", userSelect: "none", whiteSpace: "nowrap" }}>CONFIDENTIALITY</div>
           <div className="msec" style={{ ...sec, position: "relative", zIndex: 1 }}>
             {/* Asymmetric two-column grid */}
             <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 72, alignItems: "start" }}>
@@ -2794,7 +2601,7 @@ export default function AF() {
             <h2 style={{ ...rv(rV, 0.12), ...mega("clamp(2.5rem,5.5vw,4.5rem)") }}>A New Revenue Stream — <span style={{ color: "#C41E2A" }}>Not Just a Feature</span></h2>
             <p style={{ ...rv(rV, 0.22), color: "#7A8599", fontSize: "1.05rem", marginBottom: 40 }}>Earn 20% commission on every name upgrade + 20% affiliate commission</p>
 
-            <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+            <div className="mgrid2 rev-cards" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
               <div
                 onMouseEnter={() => setHovRev(0)} onMouseLeave={() => setHovRev(null)}
                 style={{
@@ -2868,8 +2675,8 @@ export default function AF() {
         <Stripe />
 
         {/* TRUSTED BY */}
-        <section ref={lR} style={{ ...full, background: "#0F1D35", overflow: "hidden" }}>
-          <div className="msec" style={{ ...sec, textAlign: "center", paddingBottom: 0, paddingTop: 48 }}>
+        <section id="trusted" ref={lR} style={{ ...full, background: "#0F1D35", overflow: "hidden" }}>
+          <div className="msec trusted-sec" style={{ ...sec, textAlign: "center", paddingBottom: 0, paddingTop: 48 }}>
             <h2 style={{ ...rv(lV, 0), ...mega("clamp(2rem,4.5vw,3.8rem)", 8) }}>Trusted By <span style={{ color: "#C9A84C" }}>Industry Leaders</span></h2>
             <p style={{ ...rv(lV, 0.1), color: "#3D4A63", fontSize: "0.92rem", marginBottom: 48 }}>Integrated with leading wallets, chains, and financial institutions</p>
           </div>
