@@ -777,7 +777,7 @@ function FinancialSection() {
   const D1M   = [1,0,0,0,0,0,0];
   const D200K = [2,0,0,0,0,0];
   const CM6   = [1,4];  // commas at position 1 and 4 → 1,000,000
-  const CM5   = [1,4];  // 200,000
+  const CM5   = [3];     // 200,000
 
   return (
     <section ref={sectionRef} style={{
