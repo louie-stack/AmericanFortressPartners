@@ -2381,7 +2381,7 @@ export default function AF() {
               }}
                 onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 0 24px rgba(196,30,42,0.7), 0 0 48px rgba(196,30,42,0.3)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
                 onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}
-              >Book a Call {ARROW_SVG}</a>
+              ><span style={{display:"inline-flex",alignItems:"center",gap:8}}>Book a Call <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
               <a href="https://americanfortress.io/partner-wallets" target="_blank" rel="noopener noreferrer" style={{
                 ...btnG,
                 animation: hV ? "heroBtnUp 0.8s cubic-bezier(0.16,1,0.3,1) 1.65s both" : "none", opacity: 0,
