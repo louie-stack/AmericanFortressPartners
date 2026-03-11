@@ -841,8 +841,8 @@ function FinancialSection() {
           <div style={{ marginBottom:20 }}>
             <span style={G_LBL}><span style={G_DOT}/> Revenue Projections</span>
           </div>
-          <h2 style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(52px,8vw,100px)",
-            letterSpacing:"0.02em", lineHeight:0.95, marginBottom:0 }}>
+          <h2 style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(36px,5.5vw,80px)",
+            letterSpacing:"0.02em", lineHeight:0.95, marginBottom:0, whiteSpace:"nowrap" }}>
             <span style={{ color:"#E8D5B5" }}>The </span>
             <span style={{ color:"#C41E2A" }}>Financial Opportunity</span>
           </h2>
