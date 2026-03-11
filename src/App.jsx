@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useRef } from "react";
+﻿import React, { useState, useEffect, useRef } from "react";
 
 const useReveal = (opts = {}) => {
   const ref = useRef(null);
@@ -489,9 +489,9 @@ function ComparisonSection() {
             <p style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", color:"rgba(150,155,180,0.35)", fontSize:13 }}>
               The technology advantage is clear. Now let's talk about what it means for your bottom line. →
             </p>
-            <button style={{ fontFamily:"'JetBrains Mono'", fontSize:"0.72rem", letterSpacing:"0.08em", textTransform:"uppercase", padding:"14px 28px", background:"#C41E2A", color:"#fff", border:"none", borderRadius:4, cursor:"pointer" }}>
+            <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer" style={{ fontFamily:"'JetBrains Mono'", fontSize:"0.72rem", letterSpacing:"0.08em", textTransform:"uppercase", padding:"14px 28px", background:"#C41E2A", color:"#fff", border:"none", borderRadius:4, cursor:"pointer", textDecoration:"none", display:"inline-block" }}>
               Book a Partnership Call ↗
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -628,13 +628,13 @@ function FinRevBtn({ vis }) {
     <div style={{ marginTop:40, opacity: vis ? 1 : 0,
       transform: vis ? "translateY(0)" : "translateY(12px)",
       transition:"opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s" }}>
-      <button
+      <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer"
         onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
         style={{
           fontFamily: "Outfit", fontSize: "0.85rem", fontWeight: 600,
           padding: "14px 32px", color: "#fff", border: "none", borderRadius: 4,
           cursor: "pointer", letterSpacing: "0.06em", textTransform: "uppercase",
-          display: "inline-flex", alignItems: "center", gap: 8,
+          display: "inline-flex", alignItems: "center", gap: 8, textDecoration: "none",
           background: hov
             ? "linear-gradient(135deg, #d64545 0%, #b83232 100%)"
             : "linear-gradient(135deg, #c53030 0%, #9b2424 100%)",
@@ -649,7 +649,7 @@ function FinRevBtn({ vis }) {
           <line x1="7" y1="17" x2="17" y2="7"/>
           <polyline points="7,7 17,7 17,17"/>
         </svg>
-      </button>
+      </a>
     </div>
   );
 }
@@ -1589,9 +1589,9 @@ function CTASection({ ctR, ctV }) {
               color: hovL ? "#f0ece2" : "rgba(210,215,230,0.8)", transition: "color 0.3s ease" }}>SCHEDULE A CALL</h3>
             <p style={{ fontSize: "0.85rem", marginBottom: 24, lineHeight: 1.5,
               color: hovL ? "rgba(180,185,210,0.65)" : "rgba(160,165,185,0.45)", transition: "color 0.3s ease" }}>30-minute partnership discussion with our BD team</p>
-            <button
+            <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer"
               onMouseEnter={() => setHovBtn(true)} onMouseLeave={() => setHovBtn(false)}
-              style={{
+              style={{ textDecoration: "none",
                 fontFamily: "Outfit", fontSize: "0.85rem", fontWeight: 600, padding: "14px 32px",
                 color: "#fff", border: "none", borderRadius: 4, cursor: "pointer",
                 letterSpacing: "0.06em", textTransform: "uppercase",
@@ -1610,7 +1610,7 @@ function CTASection({ ctR, ctV }) {
                 <line x1="7" y1="17" x2="17" y2="7"/>
                 <polyline points="7,7 17,7 17,17"/>
               </svg>
-            </button>
+            </a>
           </div>
 
           {/* Right — Jakub contact */}
@@ -1667,6 +1667,428 @@ function CTASection({ ctR, ctV }) {
         </div>
       </div>
     </section>
+  );
+}
+
+
+// ─── Site Footer ─────────────────────────────────────────────────────────────
+function SiteFooter() {
+  const [hovSocial,  setHovSocial]  = useState(null);
+  const [hovNav,     setHovNav]     = useState(null);
+  const [hovContact, setHovContact] = useState(null);
+  const [hovPolicy,  setHovPolicy]  = useState(null);
+  const [hovTop,     setHovTop]     = useState(false);
+  const [hovCta,     setHovCta]     = useState(false);
+
+  const socials = [
+    {
+      key: "telegram",
+      href: "https://t.me/americanfortress",
+      label: "Telegram",
+      path: "M11.944 0A12 12 0 1 0 12 24a12 12 0 0 0-.056-24zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.504-1.356 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"
+    },
+    {
+      key: "x",
+      href: "https://x.com/Americanfort_io",
+      label: "X / Twitter",
+      path: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+    },
+    {
+      key: "discord",
+      href: "https://discord.com/invite/americanfortress",
+      label: "Discord",
+      path: "M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.23A.077.077 0 0 0 8.562 3c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026c.462-.62.874-1.275 1.226-1.963.021-.04.001-.088-.041-.104a13.201 13.201 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .079.009c.12.098.245.195.372.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.028zM8.02 15.278c-1.182 0-2.157-1.069-2.157-2.38 0-1.312.956-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.956 2.38-2.157 2.38zm7.975 0c-1.183 0-2.157-1.069-2.157-2.38 0-1.312.955-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.946 2.38-2.157 2.38z"
+    },
+    {
+      key: "youtube",
+      href: "https://www.youtube.com/@AmericanFortress",
+      label: "YouTube",
+      path: "M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+    }
+  ];
+
+  const navLinks = [
+    { label: "The Problem",             href: "#exposed" },
+    { label: "FortressNames",           href: "#fortressnames" },
+    { label: "Confidentiality Machine", href: "#confidentiality" },
+    { label: "Competitive Landscape",   href: "#landscape" },
+    { label: "Feature Comparison",      href: "#comparison" },
+    { label: "Revenue Share",           href: "#revenue" },
+    { label: "Financial Opportunity",   href: "#financial" },
+    { label: "Technology Moat",         href: "#moat" },
+    { label: "Contact",                 href: "#contact" },
+  ];
+
+  return (
+    <footer style={{
+      position: "relative",
+      overflow: "hidden",
+      background: "linear-gradient(180deg, #0c1225 0%, #070b18 50%, #040710 100%)",
+    }}>
+      {/* Grid texture */}
+      <div style={{
+        position: "absolute", inset: 0,
+        opacity: 0.035,
+        backgroundImage: "linear-gradient(rgba(200,210,240,1) 1px, transparent 1px), linear-gradient(90deg, rgba(200,210,240,1) 1px, transparent 1px)",
+        backgroundSize: "60px 60px",
+        WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 70%)",
+        maskImage: "radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 70%)",
+        pointerEvents: "none",
+      }} />
+      {/* Top border */}
+      <div style={{
+        height: 1,
+        background: "linear-gradient(90deg, transparent 5%, rgba(197,48,48,0.3) 25%, rgba(200,170,100,0.25) 50%, rgba(70,110,180,0.25) 75%, transparent 95%)",
+      }} />
+      {/* Ambient glows */}
+      <div style={{ position:"absolute", top:-20, left:"50%", transform:"translateX(-50%)", width:800, height:300, background:"radial-gradient(ellipse at center, rgba(200,170,100,0.05) 0%, transparent 60%)", pointerEvents:"none" }} />
+      <div style={{ position:"absolute", bottom:-50, left:-50, width:400, height:300, background:"radial-gradient(ellipse at center, rgba(197,48,48,0.04) 0%, transparent 65%)", pointerEvents:"none" }} />
+      <div style={{ position:"absolute", bottom:-50, right:-50, width:400, height:300, background:"radial-gradient(ellipse at center, rgba(70,110,180,0.04) 0%, transparent 65%)", pointerEvents:"none" }} />
+
+      {/* Main grid */}
+      <div style={{
+        maxWidth: 1440, margin: "0 auto", padding: "64px 7vw 0",
+        display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr", gap: 88, alignItems: "start",
+        position: "relative", zIndex: 1,
+      }}>
+
+        {/* ── Col 1: Brand ── */}
+        <div>
+          {/* Logo row */}
+          <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom:18 }}>
+            <img src="/af-shield.png" alt="AF" style={{ width:44, filter:"drop-shadow(0 0 8px rgba(197,48,48,0.15))" }} />
+            <div>
+              <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:20, letterSpacing:3, color:"#f0ece2" }}>American Fortress</div>
+              <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:9, letterSpacing:2, textTransform:"uppercase", color:"rgba(200,170,100,0.4)", marginTop:2 }}>The Universal Privacy Layer</div>
+            </div>
+          </div>
+          {/* Description */}
+          <p style={{ fontFamily:"'DM Sans',sans-serif", fontSize:13, lineHeight:1.7, color:"rgba(160,165,185,0.35)", maxWidth:300, margin:"0 0 18px" }}>
+            Patented Send-to-Name™ privacy technology. Integrates into any custodial or non-custodial wallet via SDK.
+          </p>
+          {/* Pills */}
+          <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginBottom:20 }}>
+            {["22 Patents","Multi-Chain","Compliance-Ready"].map(p => (
+              <span key={p} style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:8, letterSpacing:"1.5px", textTransform:"uppercase", color:"rgba(160,165,185,0.3)", border:"1px solid rgba(100,110,150,0.08)", borderRadius:10, padding:"3px 10px" }}>{p}</span>
+            ))}
+          </div>
+          {/* Social icons */}
+          <div style={{ display:"flex", gap:10 }}>
+            {socials.map((s, i) => (
+              <a key={s.key} href={s.href} target="_blank" rel="noopener noreferrer"
+                aria-label={s.label}
+                onMouseEnter={() => setHovSocial(i)}
+                onMouseLeave={() => setHovSocial(null)}
+                style={{
+                  width:36, height:36, borderRadius:8, display:"flex", alignItems:"center", justifyContent:"center",
+                  background: hovSocial === i ? "rgba(200,170,100,0.08)" : "rgba(100,110,150,0.05)",
+                  border: hovSocial === i ? "1px solid rgba(200,170,100,0.2)" : "1px solid rgba(100,110,150,0.08)",
+                  boxShadow: hovSocial === i ? "0 0 12px rgba(200,170,100,0.06)" : "none",
+                  transform: hovSocial === i ? "translateY(-2px)" : "none",
+                  transition: "all 0.25s ease",
+                  textDecoration: "none",
+                }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill={hovSocial === i ? "#daa545" : "rgba(160,165,185,0.4)"} style={{ transition:"fill 0.25s ease" }}>
+                  <path d={s.path} />
+                </svg>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Col 2: Navigation ── */}
+        <div>
+          <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:9, fontWeight:500, letterSpacing:2, textTransform:"uppercase", color:"rgba(200,170,100,0.4)", marginBottom:18 }}>Sections</div>
+          <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
+            {navLinks.map((n, i) => (
+              <a key={n.href} href={n.href}
+                onMouseEnter={() => setHovNav(i)}
+                onMouseLeave={() => setHovNav(null)}
+                style={{
+                  fontFamily:"'DM Sans',sans-serif", fontSize:13,
+                  color: hovNav === i ? "rgba(200,170,100,0.8)" : "rgba(160,165,185,0.45)",
+                  textDecoration: "none", transition:"color 0.2s ease",
+                }}>
+                {n.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Col 3: Contact ── */}
+        <div>
+          <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:9, fontWeight:500, letterSpacing:2, textTransform:"uppercase", color:"rgba(200,170,100,0.4)", marginBottom:18 }}>Contact</div>
+          <div style={{ display:"flex", flexDirection:"column", gap:14, marginBottom:20 }}>
+            {[
+              {
+                key:"email", href:"mailto:jakub@americanfortress.io", label:"jakub@americanfortress.io",
+                icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>
+              },
+              {
+                key:"phone", href:"https://wa.me/971585133461", label:"+971 585 133 461", target:"_blank",
+                icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.9a16 16 0 0 0 6 6l.9-.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              },
+              {
+                key:"web", href:"https://americanfortress.io", label:"americanfortress.io", target:"_blank",
+                icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              },
+            ].map((c, i) => (
+              <a key={c.key} href={c.href} target={c.target} rel="noopener noreferrer"
+                onMouseEnter={() => setHovContact(i)}
+                onMouseLeave={() => setHovContact(null)}
+                style={{
+                  display:"flex", alignItems:"center", gap:8,
+                  fontFamily:"'DM Sans',sans-serif", fontSize:13,
+                  color: hovContact === i ? "rgba(200,170,100,0.8)" : "rgba(160,165,185,0.45)",
+                  textDecoration: "none", transition:"color 0.2s ease",
+                }}>
+                <span style={{ flexShrink:0, opacity: hovContact === i ? 0.9 : 0.5, transition:"opacity 0.2s ease" }}>{c.icon}</span>
+                {c.label}
+              </a>
+            ))}
+          </div>
+          {/* CTA button */}
+          <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer"
+            onMouseEnter={() => setHovCta(true)}
+            onMouseLeave={() => setHovCta(false)}
+            style={{
+              display:"inline-flex", alignItems:"center", gap:7,
+              fontFamily:"'DM Sans',sans-serif", fontSize:11, fontWeight:600, letterSpacing:"1px",
+              textTransform:"uppercase", textDecoration:"none",
+              padding:"10px 22px", borderRadius:8, border:"none", cursor:"pointer",
+              background: hovCta
+                ? "linear-gradient(135deg,#d64545 0%,#b83232 100%)"
+                : "linear-gradient(135deg,#c53030 0%,#9b2424 100%)",
+              boxShadow: hovCta ? "0 4px 16px rgba(197,48,48,0.3)" : "0 2px 10px rgba(197,48,48,0.15)",
+              transform: hovCta ? "translateY(-1px)" : "none",
+              color: "#fff",
+              transition: "all 0.25s ease",
+            }}>
+            Book a Call
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M7 17L17 7M7 7h10v10"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      {/* ── Bottom bar ── */}
+      <div style={{
+        maxWidth: 1440, margin: "48px auto 0",
+        padding: "20px 7vw",
+        borderTop: "1px solid rgba(100,110,150,0.06)",
+        display: "flex", justifyContent: "space-between", alignItems: "center",
+        flexWrap: "wrap", gap: 12,
+        position: "relative", zIndex: 1,
+      }}>
+        <p style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:10, color:"rgba(160,165,185,0.25)", letterSpacing:"0.5px", margin:0 }}>
+          © 2026 American Fortress. All rights reserved.
+        </p>
+        <div style={{ display:"flex", alignItems:"center", gap:20 }}>
+          {[["Privacy Policy","#"],["Terms of Service","#"]].map(([label, href], i) => (
+            <a key={label} href={href}
+              onMouseEnter={() => setHovPolicy(i)}
+              onMouseLeave={() => setHovPolicy(null)}
+              style={{
+                fontFamily:"'IBM Plex Mono',monospace", fontSize:10,
+                color: hovPolicy === i ? "rgba(200,170,100,0.5)" : "rgba(160,165,185,0.25)",
+                textDecoration:"none", transition:"color 0.2s ease",
+              }}>
+              {label}
+            </a>
+          ))}
+          {/* Back to top */}
+          <button
+            onClick={() => window.scrollTo({ top:0, behavior:"smooth" })}
+            onMouseEnter={() => setHovTop(true)}
+            onMouseLeave={() => setHovTop(false)}
+            aria-label="Back to top"
+            style={{
+              width:40, height:40, borderRadius:"50%",
+              display:"flex", alignItems:"center", justifyContent:"center",
+              background: hovTop
+                ? "linear-gradient(135deg,rgba(200,170,100,0.12),rgba(200,170,100,0.04))"
+                : "rgba(100,110,150,0.06)",
+              border: hovTop ? "1px solid rgba(200,170,100,0.25)" : "1px solid rgba(100,110,150,0.1)",
+              boxShadow: hovTop ? "0 0 15px rgba(200,170,100,0.08)" : "none",
+              transform: hovTop ? "translateY(-3px)" : "none",
+              cursor:"pointer", transition:"all 0.25s ease",
+            }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={hovTop ? "#daa545" : "rgba(160,165,185,0.4)"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transition:"stroke 0.25s ease" }}>
+              <polyline points="18,15 12,9 6,15"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* bottom breathing room */}
+      <div style={{ height: 32 }} />
+    </footer>
+  );
+}
+
+
+
+// ─── Site Nav ─────────────────────────────────────────────────────────────────
+function SiteNav() {
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeSection,  setActiveSection]  = useState("");
+  const [pillStyle,      setPillStyle]      = useState({ opacity: 0 });
+  const [hovNav,         setHovNav]         = useState(null);
+  const [hovBtn,         setHovBtn]         = useState(false);
+  const navLinksRef = useRef(null);
+  const linkRefs    = useRef({});
+
+  const NAV_LINKS = [
+    { label: "Problem",    href: "#exposed" },
+    { label: "Solution",   href: "#fortressnames" },
+    { label: "Comparison", href: "#comparison" },
+    { label: "Revenue",    href: "#revenue" },
+    { label: "Technology", href: "#moat" },
+  ];
+
+  // Scroll progress
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(docHeight > 0 ? scrollTop / docHeight : 0);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Active section via IntersectionObserver
+  useEffect(() => {
+    const ids = NAV_LINKS.map(l => l.href.slice(1));
+    const observers = [];
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+        { rootMargin: "-40% 0px -40% 0px", threshold: 0 }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach(o => o.disconnect());
+  }, []);
+
+  // Sliding pill
+  useEffect(() => {
+    const updatePill = () => {
+      const activeLink = linkRefs.current["#" + activeSection];
+      const container  = navLinksRef.current;
+      if (!activeLink || !container) { setPillStyle({ opacity: 0 }); return; }
+      const cRect = container.getBoundingClientRect();
+      const lRect = activeLink.getBoundingClientRect();
+      setPillStyle({ left: lRect.left - cRect.left, width: lRect.width, opacity: 1 });
+    };
+    updatePill();
+    window.addEventListener("resize", updatePill);
+    return () => window.removeEventListener("resize", updatePill);
+  }, [activeSection]);
+
+  return (
+    <nav style={{
+      position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000,
+      height: 64, display: "flex", alignItems: "center",
+      justifyContent: "space-between", padding: "0 2.5vw",
+      background: "rgba(12,18,37,0.85)",
+      backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)",
+    }}>
+      {/* Bottom border glow */}
+      <div style={{
+        position: "absolute", bottom: 0, left: 0, right: 0, height: 1,
+        background: "linear-gradient(90deg, transparent 10%, rgba(100,110,150,0.1) 30%, rgba(200,170,100,0.06) 50%, rgba(100,110,150,0.1) 70%, transparent 90%)",
+      }} />
+      {/* Scroll progress bar */}
+      <div style={{
+        position: "absolute", bottom: 0, left: 0, zIndex: 2,
+        height: 2, width: scrollProgress * 100 + "%",
+        background: "linear-gradient(90deg, #c53030 0%, #daa545 100%)",
+        boxShadow: "0 0 8px rgba(200,170,100,0.3)",
+        transition: "width 0.1s linear",
+      }} />
+
+      {/* Left: Logo */}
+      <div style={{ animation: "logoGlow 4s ease-in-out infinite", flexShrink: 0 }}>
+        <AFLogo height={36} />
+      </div>
+
+      {/* Center: Nav links */}
+      <div ref={navLinksRef} style={{
+        position: "absolute", left: "50%", transform: "translateX(-50%)",
+        display: "flex", alignItems: "center", gap: 4,
+      }}>
+        {/* Sliding pill */}
+        <div style={{
+          position: "absolute", top: "50%", transform: "translateY(-50%)",
+          height: 30, borderRadius: 8,
+          background: "rgba(200,170,100,0.08)",
+          border: "1px solid rgba(200,170,100,0.12)",
+          pointerEvents: "none", zIndex: 1,
+          transition: "left 0.35s cubic-bezier(0.4,0,0.2,1), width 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease",
+          ...pillStyle,
+        }} />
+
+        {NAV_LINKS.map((link, i) => {
+          const isActive = activeSection === link.href.slice(1);
+          return (
+            <React.Fragment key={link.href}>
+              <a
+                ref={el => linkRefs.current[link.href] = el}
+                href={link.href}
+                onClick={e => { e.preventDefault(); document.querySelector(link.href)?.scrollIntoView({ behavior: "smooth" }); }}
+                onMouseEnter={() => setHovNav(i)}
+                onMouseLeave={() => setHovNav(null)}
+                style={{
+                  fontFamily: "'IBM Plex Mono', monospace", fontSize: 9, fontWeight: 500,
+                  letterSpacing: "2px", textTransform: "uppercase",
+                  padding: "6px 12px", whiteSpace: "nowrap",
+                  position: "relative", zIndex: 2, textDecoration: "none",
+                  color: isActive ? "rgba(200,170,100,0.9)" : hovNav === i ? "rgba(200,170,100,0.7)" : "rgba(160,165,185,0.45)",
+                  transition: "color 0.25s ease", cursor: "pointer",
+                }}>
+                {link.label}
+              </a>
+              {i < NAV_LINKS.length - 1 && (
+                <div style={{ width: 3, height: 3, borderRadius: "50%", background: "rgba(200,170,100,0.2)", flexShrink: 0 }} />
+              )}
+            </React.Fragment>
+          );
+        })}
+      </div>
+
+      {/* Right: Book a Call */}
+      <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer"
+        onMouseEnter={() => setHovBtn(true)}
+        onMouseLeave={() => setHovBtn(false)}
+        style={{
+          fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600,
+          letterSpacing: "1px", textTransform: "uppercase", color: "#fff",
+          padding: "8px 22px", borderRadius: 8, textDecoration: "none",
+          display: "flex", alignItems: "center", gap: 6, flexShrink: 0,
+          background: hovBtn ? "linear-gradient(135deg,#d64545 0%,#b83232 100%)" : "linear-gradient(135deg,#c53030 0%,#9b2424 100%)",
+          boxShadow: hovBtn ? "0 4px 16px rgba(197,48,48,0.3)" : "0 2px 8px rgba(197,48,48,0.15)",
+          transform: hovBtn ? "translateY(-1px)" : "none",
+          transition: "all 0.2s ease",
+        }}>
+        Book a Call
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M7 17L17 7M7 7h10v10"/>
+        </svg>
+      </a>
+
+      {/* Mobile: hide nav links */}
+      <style>{`
+        @media (max-width: 768px) {
+          .sitenav-links { display: none !important; }
+          nav { height: 56px !important; padding: 0 16px !important; }
+        }
+      `}</style>
+    </nav>
   );
 }
 
@@ -1733,6 +2155,10 @@ export default function AF() {
         body{font-family:'Outfit',sans-serif;color:#F5F0EB;background:#0A1628;overflow-x:hidden;-webkit-font-smoothing:antialiased}
         @keyframes twinkle{0%,100%{opacity:0.1}50%{opacity:0.55}}
         @keyframes pulseG{0%,100%{opacity:0.4;transform:scale(1)}50%{opacity:1;transform:scale(1.15)}}
+        @keyframes logoGlow {
+          0%,100% { filter: drop-shadow(0 0 4px rgba(197,48,48,0.15)); }
+          50% { filter: drop-shadow(0 0 10px rgba(197,48,48,0.3)) drop-shadow(0 0 20px rgba(197,48,48,0.1)); }
+        }
         @keyframes heroLineUp{0%{opacity:0;transform:translateY(80px) skewY(2deg)}100%{opacity:1;transform:translateY(0) skewY(0)}}
         @keyframes heroFadeIn{0%{opacity:0}100%{opacity:1}}
         @keyframes heroBtnUp{0%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:translateY(0)}}
@@ -1766,10 +2192,7 @@ export default function AF() {
       `}</style>
       <div className="noise">
         {/* NAV */}
-        <nav style={{ position: "fixed", top: 0, left: 0, width: "100%", zIndex: 100, padding: "16px 48px", display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(10,22,40,0.88)", backdropFilter: "blur(24px)", borderBottom: "1px solid rgba(201,168,76,0.08)" }}>
-          <AFLogo height={36} />
-          <button style={btnR}>Book a Call</button>
-        </nav>
+        <SiteNav />
 
         {/* HERO */}
         <section ref={hR} style={{ ...full, minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
@@ -1850,22 +2273,24 @@ export default function AF() {
 
             {/* CTAs — centered */}
             <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap", marginBottom: 44 }}>
-              <button style={{
+              <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer" style={{
                 ...btnR,
                 animation: hV ? "heroBtnUp 0.8s cubic-bezier(0.16,1,0.3,1) 1.5s both" : "none", opacity: 0,
                 transition: "box-shadow 0.2s ease, transform 0.2s ease",
+                textDecoration: "none",
               }}
                 onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 0 24px rgba(196,30,42,0.7), 0 0 48px rgba(196,30,42,0.3)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
                 onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}
-              >Book a Call ↗</button>
-              <button style={{
+              >Book a Call ↗</a>
+              <a href="https://americanfortress.io/partner-wallets" target="_blank" rel="noopener noreferrer" style={{
                 ...btnG,
                 animation: hV ? "heroBtnUp 0.8s cubic-bezier(0.16,1,0.3,1) 1.65s both" : "none", opacity: 0,
                 transition: "box-shadow 0.2s ease, transform 0.2s ease",
+                textDecoration: "none", display: "inline-block",
               }}
                 onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 0 24px rgba(201,168,76,0.5), 0 0 48px rgba(201,168,76,0.2)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
                 onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}
-              >Download AF Beta ↗</button>
+              >Download AF Beta ↗</a>
             </div>
 
             {/* Badges — centered */}
@@ -1892,7 +2317,7 @@ export default function AF() {
         <Stripe />
 
         {/* PROBLEM */}
-        <section ref={pR} style={{ ...full, background: "linear-gradient(180deg,#0F1D35,#0A1628)" }}>
+        <section id="exposed" ref={pR} style={{ ...full, background: "linear-gradient(180deg,#0F1D35,#0A1628)" }}>
           <Stars count={15} color="rgba(196,30,42,0.08)" />
           <div className="msec" style={sec}>
             <div style={rv(pV, 0)}><span style={lbl}><span style={dot} /> The Problem</span></div>
@@ -2002,7 +2427,7 @@ export default function AF() {
         <Stripe flip />
 
         {/* SOLUTION 1 */}
-        <section ref={s1R} style={{ ...full, position:"relative", overflow:"hidden", minHeight:"100vh", display:"flex", alignItems:"center" }}>
+        <section id="fortressnames" ref={s1R} style={{ ...full, position:"relative", overflow:"hidden", minHeight:"100vh", display:"flex", alignItems:"center" }}>
           <div style={{ position:"absolute", top:0, left:"8%", right:"8%", height:1, background:"linear-gradient(90deg,transparent,rgba(100,110,150,0.1),transparent)" }} />
           <div style={{ position:"absolute", top:0, right:0, bottom:0, width:"55%", zIndex:0, backgroundImage:`url(${LIBERTY_SRC})`, backgroundSize:"cover", backgroundPosition:"center", opacity:0.09, filter:"saturate(0.15)", maskImage:"linear-gradient(to right,transparent,black 30%,black 70%,transparent),linear-gradient(to bottom,transparent 0%,black 15%,black 75%,transparent 100%)", maskComposite:"intersect", WebkitMaskImage:"linear-gradient(to right,transparent,black 30%,black 70%,transparent),linear-gradient(to bottom,transparent 0%,black 15%,black 75%,transparent 100%)", WebkitMaskComposite:"destination-in" }} />
           <div className="msec" style={{ maxWidth:900, marginLeft:"6vw", marginRight:"auto", padding:"120px 0 120px", display:"flex", flexDirection:"column", justifyContent:"center", position:"relative", zIndex:1 }}>
@@ -2017,7 +2442,7 @@ export default function AF() {
         <Stripe />
 
         {/* SOLUTION 2 */}
-        <section ref={s2R} style={{ ...full, background: "#0F1D35", position: "relative", overflow: "hidden" }}>
+        <section id="confidentiality" ref={s2R} style={{ ...full, background: "#0F1D35", position: "relative", overflow: "hidden" }}>
           {/* Section top divider — subtle boundary signal */}
           <div style={{ position: "absolute", top: 0, left: "8%", right: "8%", height: 1, background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.07),transparent)" }} />
           {/* Ghost background word — depth layer */}
@@ -2061,7 +2486,7 @@ export default function AF() {
 
 
         {/* COMPETITIVE LANDSCAPE */}
-        <section style={{ ...full, background: "#0A1628" }}>
+        <section id="landscape" style={{ ...full, background: "#0A1628" }}>
           <Stars count={20} color="rgba(201,168,76,0.1)" />
           <CompetitiveLandscapeInner />
         </section>
@@ -2069,12 +2494,12 @@ export default function AF() {
         <Stripe />
 
         {/* COMPARISON TABLE */}
-        <ComparisonSection />
+        <div id="comparison"><ComparisonSection /></div>
 
         <Stripe flip />
 
         {/* REVENUE SHARE */}
-        <section ref={rR2} style={full}>
+        <section id="revenue" ref={rR2} style={full}>
           <div className="msec" style={sec}>
             <div style={rv(rV, 0)}><span style={lbl}><span style={dot} /> Revenue Share</span></div>
             <h2 style={{ ...rv(rV, 0.12), ...mega("clamp(2.5rem,5.5vw,4.5rem)") }}>A New Revenue Stream — <span style={{ color: "#C41E2A" }}>Not Just a Feature</span></h2>
@@ -2144,12 +2569,12 @@ export default function AF() {
         <Stripe />
 
         {/* FINANCIAL */}
-        <FinancialSection />
+        <div id="financial"><FinancialSection /></div>
 
         <Stripe flip />
 
         {/* MOAT */}
-        <MoatSection mR={mR} mV={mV} />
+        <div id="moat"><MoatSection mR={mR} mV={mV} /></div>
 
         <Stripe />
 
@@ -2179,15 +2604,10 @@ export default function AF() {
         <Stripe flip />
 
         {/* CTA */}
-        <CTASection ctR={ctR} ctV={ctV} />
+        <div id="contact"><CTASection ctR={ctR} ctV={ctV} /></div>
 
         <Stripe />
-        <footer style={{ padding: "40px 48px", textAlign: "center" }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, marginBottom: 8 }}>
-            <AFLogo height={22} />
-          </div>
-          <p style={{ fontSize: "0.75rem", color: "#3D4A63" }}>The Universal Privacy Layer • americanfortress.io</p>
-        </footer>
+        <SiteFooter />
       </div>
     </>
   );
