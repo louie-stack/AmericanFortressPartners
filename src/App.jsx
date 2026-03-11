@@ -2168,9 +2168,9 @@ export default function AF() {
         /* ── Mobile (≤768px) ─────────────────────────────── */
         @media (max-width: 768px) {
 
-          /* 0 ── HERO: mobile top padding ─────────────────── */
+          /* 0 ── HERO TOP PADDING ──────────────────────────── */
           .hero-section { padding-top: 56px !important; }
-          .hero-content { padding-top: 48px !important; }
+          .hero-content { padding-top: 44px !important; }
 
           /* 1 ── NAV ────────────────────────────────────────── */
           nav { height: 56px !important; padding: 0 16px !important; }
