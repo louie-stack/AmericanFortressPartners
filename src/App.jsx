@@ -54,7 +54,7 @@ const Stars = ({ count = 40, color = "rgba(201,168,76,0.15)" }) => {
 const AFLogo = ({ height = 32 }) => {
   const scale = height / 133;
   return (
-    <svg width={601 * scale} height={height} viewBox="0 0 601 133" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={601 * scale} height={height} viewBox="0 0 601 133" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block", verticalAlign: "middle" }}>
       <path d="M517.315 62.2397V10.157H530.748L552.659 49.1652V10.157H562.86V62.2397H549.498L527.516 23.1597V62.2397H517.315Z" fill="#0C75FF"/>
       <path d="M460.788 62.2397L480.328 10.157H491.966L511.65 62.2397H500.299L496.851 52.2542H475.228L471.779 62.2397H460.788ZM478.245 43.6336H493.834L486.003 21.1482L478.245 43.6336Z" fill="#0C75FF"/>
       <path d="M449.485 43.8466H459.757C457.746 55.6999 448.263 63.1711 435.764 63.1711C420.031 63.1711 410.62 52.539 410.62 36.1599C410.62 19.7808 420.534 9.29236 436.195 9.29236C448.479 9.29236 457.459 16.9791 459.398 28.545H449.197C447.689 21.7204 442.588 17.913 435.835 17.913C427.789 17.913 421.54 24.4502 421.54 36.1599C421.54 47.9414 427.718 54.4786 435.979 54.4786C442.373 54.4786 447.976 51.3178 449.485 43.8466Z" fill="#0C75FF"/>
@@ -76,7 +76,7 @@ const AFLogo = ({ height = 32 }) => {
       <path fillRule="evenodd" clipRule="evenodd" d="M62.4972 130.071L43.0046 117.376V92.374H20.2963V102.923L0 89.6428V46.8713H62.4972V130.071ZM20.0957 80.7916H43.0046V58.3359H20.0957V80.7916Z" fill="#F2172B"/>
       <path d="M71.0911 46.8713V132.219L91.9705 118.938V87.8133H129.722V75.946H91.9705V58.6199H114.959V65.0282H137.104V46.8713H71.0911Z" fill="#F2172B"/>
       <path d="M0 0H137.103V37.9692H0V0Z" fill="#0C75FF"/>
-      <path d="M64.6226 15.131L66.3808 10.2994C67.3399 7.63804 68.2101 5.46777 68.2812 5.46777C68.37 5.46777 68.441 5.56282 68.441 5.67371C68.441 5.76876 69.2224 7.95487 71.9042 15.131L84.7624 15.2102L82.8621 16.4617C81.8143 17.1587 79.612 18.6161 77.9426 19.6933C76.2909 20.7706 74.7991 21.721 74.657 21.7844C74.4261 21.8953 74.6925 22.7666 76.3264 27.2022C77.392 30.1011 78.3156 32.5724 78.3688 32.6991C78.4221 32.8259 76.2021 31.3843 73.4138 29.4992C70.6255 27.614 68.2456 26.1091 68.1391 26.1408C68.0148 26.1883 66.8071 26.9645 65.4751 27.8833C64.1253 28.8021 61.9409 30.2912 60.6266 31.1942C59.3124 32.0972 58.2113 32.8259 58.1935 32.81C58.1757 32.81 59.0637 30.3546 62.225 21.9428L61.3015 21.4042C60.7865 21.1191 58.5487 19.6775 56.3287 18.2043C54.1265 16.731 52.1551 15.4479 51.9775 15.337C51.7289 15.1944 53.0609 15.1469 64.6226 15.131Z" fill="#FDFAF4"/>
+      <path d="M64.6226 15.131L66.3808 10.2994C67.3399 7.63804 68.2101 5.46777 68.2812 5.46777C68.37 5.46777 68.441 5.56282 68.441 5.67371C68.441 5.76876 69.2224 7.95487 71.9042 15.131L84.7624 15.2102L82.8621 16.4617C81.8143 17.1587 79.612 18.6161 77.9426 19.6933C76.2909 20.7706 74.7991 21.721 74.657 21.7844C74.4261 21.8953 74.6925 22.7666 76.3264 27.2022C77.392 30.1011 78.3156 32.5724 78.3688 32.6991C78.4221 32.8259 76.2021 31.3843 73.4138 29.4992C70.6255 27.614 68.2456 26.1091 68.1391 26.1408C68.0148 26.1883 66.8071 26.9645 65.4751 27.8833C64.1253 28.8021 61.9409 30.2912 60.6266 31.1942C59.3124 32.0972 58.2113 32.8259 58.1935 32.81C58.1757 32.81 59.0637 30.3546 62.225 21.9428L61.3015 21.4042C60.7865 21.1191 58.5487 19.6775 56.3287 18.2043C54.1265 16.731 52.1551 15.4479 51.9775 15.337C51.7289 15.1944 53.0609 15.1469 64.6226 15.131Z" fill="#F0E0B2"/>
     </svg>
   );
 };
@@ -89,7 +89,7 @@ const AFMark = ({ size = 80 }) => {
       <path fillRule="evenodd" clipRule="evenodd" d="M62.4972 130.071L43.0046 117.376V92.374H20.2963V102.923L0 89.6428V46.8713H62.4972V130.071ZM20.0957 80.7916H43.0046V58.3359H20.0957V80.7916Z" fill="#F2172B"/>
       <path d="M71.0911 46.8713V132.219L91.9705 118.938V87.8133H129.722V75.946H91.9705V58.6199H114.959V65.0282H137.104V46.8713H71.0911Z" fill="#F2172B"/>
       <path d="M0 0H137.103V37.9692H0V0Z" fill="#0C75FF"/>
-      <path d="M64.6226 15.131L66.3808 10.2994C67.3399 7.63804 68.2101 5.46777 68.2812 5.46777C68.37 5.46777 68.441 5.56282 68.441 5.67371C68.441 5.76876 69.2224 7.95487 71.9042 15.131L84.7624 15.2102L82.8621 16.4617C81.8143 17.1587 79.612 18.6161 77.9426 19.6933C76.2909 20.7706 74.7991 21.721 74.657 21.7844C74.4261 21.8953 74.6925 22.7666 76.3264 27.2022C77.392 30.1011 78.3156 32.5724 78.3688 32.6991C78.4221 32.8259 76.2021 31.3843 73.4138 29.4992C70.6255 27.614 68.2456 26.1091 68.1391 26.1408C68.0148 26.1883 66.8071 26.9645 65.4751 27.8833C64.1253 28.8021 61.9409 30.2912 60.6266 31.1942C59.3124 32.0972 58.2113 32.8259 58.1935 32.81C58.1757 32.81 59.0637 30.3546 62.225 21.9428L61.3015 21.4042C60.7865 21.1191 58.5487 19.6775 56.3287 18.2043C54.1265 16.731 52.1551 15.4479 51.9775 15.337C51.7289 15.1944 53.0609 15.1469 64.6226 15.131Z" fill="#FDFAF4"/>
+      <path d="M64.6226 15.131L66.3808 10.2994C67.3399 7.63804 68.2101 5.46777 68.2812 5.46777C68.37 5.46777 68.441 5.56282 68.441 5.67371C68.441 5.76876 69.2224 7.95487 71.9042 15.131L84.7624 15.2102L82.8621 16.4617C81.8143 17.1587 79.612 18.6161 77.9426 19.6933C76.2909 20.7706 74.7991 21.721 74.657 21.7844C74.4261 21.8953 74.6925 22.7666 76.3264 27.2022C77.392 30.1011 78.3156 32.5724 78.3688 32.6991C78.4221 32.8259 76.2021 31.3843 73.4138 29.4992C70.6255 27.614 68.2456 26.1091 68.1391 26.1408C68.0148 26.1883 66.8071 26.9645 65.4751 27.8833C64.1253 28.8021 61.9409 30.2912 60.6266 31.1942C59.3124 32.0972 58.2113 32.8259 58.1935 32.81C58.1757 32.81 59.0637 30.3546 62.225 21.9428L61.3015 21.4042C60.7865 21.1191 58.5487 19.6775 56.3287 18.2043C54.1265 16.731 52.1551 15.4479 51.9775 15.337C51.7289 15.1944 53.0609 15.1469 64.6226 15.131Z" fill="#F0E0B2"/>
     </svg>
   );
 };
@@ -108,8 +108,23 @@ const LibertyImage = ({ style = {} }) => (
   }} />
 );
 
-const Stripe = ({ flip }) => (
-  <div style={{ width: "100%", height: 3, background: `linear-gradient(${flip ? 270 : 90}deg, transparent, rgba(201,168,76,0.3) 20%, rgba(212,43,43,0.5) 50%, rgba(201,168,76,0.3) 80%, transparent)` }} />
+const Stripe = ({ brush = "/images/brush-navy.svg", flip }) => (
+  <div style={{
+    position: "relative",
+    zIndex: 10,
+    width: "100%",
+    height: 80,
+    marginTop: -40,
+    marginBottom: -40,
+    lineHeight: 0,
+    fontSize: 0,
+    pointerEvents: "none",
+  }}>
+    <img src={brush} alt="" role="presentation"
+      style={{ display:"block", width:"100%", height:"100%", objectFit:"fill",
+        transform: flip ? "scaleX(-1)" : "none" }}
+    />
+  </div>
 );
 
 const useScrollPin = (totalStages = 10) => {
@@ -188,8 +203,8 @@ const CompetitiveChart = ({ p }) => {
       <g style={{ opacity: heroF }} transform={`translate(385 70) scale(${0.3 + heroF * 0.7}) translate(-385 -70)`}>
         <circle cx="385" cy="70" r="32" fill="rgba(212,43,43,0.08)" stroke="rgba(212,43,43,0.2)" strokeWidth="1" />
         <circle cx="385" cy="70" r="16" fill="rgba(212,43,43,0.15)" stroke="rgba(212,43,43,0.4)" strokeWidth="1.5" />
-        <polygon points="385,56 388,64 396,64 389.5,69 392,77 385,72.5 378,77 380.5,69 374,64 382,64" fill="#D42B2B" />
-        <text x="385" y="102" textAnchor="middle" fontSize="12" fill="#D42B2B" fontFamily="sans-serif" fontWeight="700">American Fortress</text>
+        <polygon points="385,56 388,64 396,64 389.5,69 392,77 385,72.5 378,77 380.5,69 374,64 382,64" fill="#DD1E21" />
+        <text x="385" y="102" textAnchor="middle" fontSize="12" fill="#DD1E21" fontFamily="sans-serif" fontWeight="700">American Fortress</text>
       </g>
     </svg>
   );
@@ -293,12 +308,12 @@ function CustomCursor() {
 
   const dotSize = clicking ? 8 : 6;
   const dotShadow = clicking
-    ? "0 0 16px rgba(196,30,42,0.9), 0 0 30px rgba(196,30,42,0.5)"
-    : "0 0 8px rgba(196,30,42,0.8), 0 0 16px rgba(196,30,42,0.4)";
+    ? "0 0 16px rgba(221,30,33,0.9), 0 0 30px rgba(221,30,33,0.5)"
+    : "0 0 8px rgba(221,30,33,0.8), 0 0 16px rgba(221,30,33,0.4)";
   const ringSize = clicking ? 16 : hovering ? 48 : 32;
-  const ringBorder = clicking ? "2px solid #C9A84C" : hovering ? "1.5px solid rgba(196,30,42,1)" : "1px solid rgba(196,30,42,0.5)";
-  const ringBg = clicking ? "rgba(196,30,42,0.08)" : "transparent";
-  const ringShadow = hovering ? "0 0 12px rgba(196,30,42,0.3)" : clicking ? "inset 0 0 8px rgba(196,30,42,0.2)" : "none";
+  const ringBorder = clicking ? "2px solid #C9A84C" : hovering ? "1.5px solid rgba(221,30,33,1)" : "1px solid rgba(221,30,33,0.5)";
+  const ringBg = clicking ? "rgba(221,30,33,0.08)" : "transparent";
+  const ringShadow = hovering ? "0 0 12px rgba(221,30,33,0.3)" : clicking ? "inset 0 0 8px rgba(221,30,33,0.2)" : "none";
 
   return (
     <>
@@ -307,7 +322,7 @@ function CustomCursor() {
         <div key={p.id} style={{ position: "fixed", left: p.x, top: p.y, width: 6, height: 6, borderRadius: "50%", background: "rgba(80,140,255,1)", boxShadow: "0 0 8px rgba(80,140,255,0.9), 0 0 16px rgba(80,140,255,0.5)", transform: "translate(-50%,-50%)", pointerEvents: "none", zIndex: 99998, animation: "trailFade 800ms ease-out forwards" }} />
       ))}
       {/* Dot */}
-      <div ref={dot} style={{ position: "fixed", width: dotSize, height: dotSize, borderRadius: "50%", background: "#C41E2A", boxShadow: dotShadow, transform: "translate(-50%,-50%)", pointerEvents: "none", zIndex: 99999, transition: "width 0.2s cubic-bezier(0.16,1,0.3,1), height 0.2s cubic-bezier(0.16,1,0.3,1), box-shadow 0.2s ease" }} />
+      <div ref={dot} style={{ position: "fixed", width: dotSize, height: dotSize, borderRadius: "50%", background: "#DD1E21", boxShadow: dotShadow, transform: "translate(-50%,-50%)", pointerEvents: "none", zIndex: 99999, transition: "width 0.2s cubic-bezier(0.16,1,0.3,1), height 0.2s cubic-bezier(0.16,1,0.3,1), box-shadow 0.2s ease" }} />
       {/* Ring */}
       <div ref={ring} style={{ position: "fixed", width: ringSize, height: ringSize, borderRadius: "50%", border: ringBorder, background: ringBg, boxShadow: ringShadow, transform: "translate(-50%,-50%)", pointerEvents: "none", zIndex: 99998, transition: "width 0.4s cubic-bezier(0.16,1,0.3,1), height 0.4s cubic-bezier(0.16,1,0.3,1), border 0.3s ease, box-shadow 0.3s ease, background 0.3s ease" }} />
     </>
@@ -333,9 +348,9 @@ const CMP_ROWS = [
 ];
 
 function CmpSym({ v }) {
-  if (v === "c") return <span style={{ fontSize:16, color:"rgba(200,170,100,0.6)" }}>★</span>;
-  if (v === "p") return <span style={{ fontSize:14, color:"rgba(200,170,100,0.5)" }}>△</span>;
-  return <span style={{ fontSize:14, color:"rgba(100,110,150,0.2)" }}>—</span>;
+  if (v === "c") return <span style={{ fontSize:16, color:"rgba(24,33,69,0.25)" }}>★</span>;
+  if (v === "p") return <span style={{ fontSize:14, color:"rgba(24,33,69,0.18)" }}>△</span>;
+  return <span style={{ fontSize:14, color:"rgba(24,33,69,0.12)" }}>—</span>;
 }
 
 function ComparisonSection() {
@@ -400,31 +415,23 @@ function ComparisonSection() {
   const cellBase = { padding:"12px 20px", borderBottom:"1px solid rgba(100,110,150,0.05)", display:"contents" };
 
   return (
-    <div ref={wrapRef} style={{ background:"#0F1D35" }}>
-      <section className="cmp-shake" style={{ background:"#0F1D35", overflow:"hidden", transform:`translate(${shakeOffset.x}px,${shakeOffset.y}px)` }}>
+    <div ref={wrapRef} style={{ background:"#F0E0B2" }}>
+      <section className="cmp-shake" style={{ background:"#F0E0B2", overflow:"hidden", transform:`translate(${shakeOffset.x}px,${shakeOffset.y}px)` }}>
         <div className="cmp-wrap" style={{ maxWidth:1000, margin:"0 auto", padding:"80px 48px", width:"100%" }}>
           {/* Title */}
-          <h2 style={{ fontFamily:"'Bebas Neue'", letterSpacing:"0.04em", lineHeight:1.05, color:"#E8D5B5", fontSize:"clamp(2rem,4.5vw,3.8rem)", marginBottom:16 }}>
-            Head-to-Head <span style={{ color:"#C41E2A" }}>Feature Comparison</span>
+          <h2 style={{ fontFamily:"'Monument Extended'", letterSpacing:"0.04em", lineHeight:1.05, color:"#182145", fontSize:"clamp(2rem,4.5vw,3.2rem)", fontWeight:800, textTransform:"uppercase", marginBottom:16 }}>
+            Head-to-Head <span style={{ color:"#DD1E21" }}>Feature Comparison</span>
           </h2>
 
-          {/* Scroll hint — shown on mobile only */}
-          <div className="cmp-scroll-hint">
-            <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:9, letterSpacing:"1.5px", color:"rgba(160,165,185,0.35)", textTransform:"uppercase" }}>← Scroll to compare →</span>
-          </div>
-          {/* Scroll hint — shown on mobile only */}
-          <div className="cmp-scroll-hint">
-            <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:9, letterSpacing:"1.5px", color:"rgba(160,165,185,0.35)", textTransform:"uppercase" }}>← Scroll to compare →</span>
-          </div>
           {/* Grid table */}
 
-          <div className="cmp-table" style={{ background:"rgba(14,22,45,0.4)", border:"1px solid rgba(100,110,150,0.08)", borderRadius:12, overflow:"hidden" }}>
+          <div className="cmp-table" style={{ background:"transparent", border:"1px solid rgba(24,33,69,0.08)", borderRadius:12, overflow:"hidden" }}>
             {/* Header row */}
-            <div style={{ display:"grid", gridTemplateColumns:gridCols, padding:"10px 20px", borderBottom:"1px solid rgba(100,110,150,0.1)" }}>
+            <div style={{ display:"grid", gridTemplateColumns:gridCols, padding:"10px 20px", background:"#182145", borderBottom:"1px solid rgba(100,110,150,0.1)", borderRadius:"12px 12px 0 0" }}>
               {COLS.map((col, ci) => (
                 <div key={ci} style={{
                   fontFamily:"'JetBrains Mono'", fontSize:"0.68rem", textTransform:"uppercase", letterSpacing:"0.08em",
-                  color: ci === 1 ? "#daa545" : "#7A8599",
+                  color: ci === 1 ? "#daa545" : "#F0E0B2",
                   textAlign: ci === 0 ? "left" : "center",
                   borderBottom: ci === 1 ? "2px solid rgba(218,165,69,0.5)" : "none",
                   paddingBottom: ci === 1 ? 4 : 0,
@@ -440,8 +447,8 @@ function ComparisonSection() {
               const isAlive  = i < activeCount;
               const isLast   = i === CMP_ROWS.length - 1;
               const rowBg = isImpact
-                ? "rgba(218,165,69,0.08)"
-                : i % 2 === 0 ? "transparent" : "rgba(100,110,150,0.02)";
+                ? "rgba(221,30,33,0.06)"
+                : i % 2 === 0 ? "transparent" : "rgba(24,33,69,0.03)";
 
               return (
                 <div key={i} style={{
@@ -449,26 +456,26 @@ function ComparisonSection() {
                   padding:"10px 20px",
                   background: rowBg,
                   transition: isImpact ? "none" : "background 0.3s ease",
-                  borderBottom: isLast ? "none" : "1px solid rgba(100,110,150,0.05)",
+                  borderBottom: isLast ? "none" : "1px solid rgba(24,33,69,0.07)",
                 }}>
                   {/* Feature name */}
-                  <div style={{ fontSize:13.5, color:"rgba(200,205,220,0.7)", display:"flex", alignItems:"center" }}>{feat}</div>
+                  <div style={{ fontSize:13.5, color:"#182145", fontWeight: 500, display:"flex", alignItems:"center" }}>{feat}</div>
 
                   {/* AF column — animated */}
                   <div style={{
                     display:"flex", alignItems:"center", justifyContent:"center",
-                    borderLeft:"1px solid rgba(218,165,69,0.08)",
-                    borderRight:"1px solid rgba(218,165,69,0.08)",
-                    background: isAlive && !isImpact ? "rgba(218,165,69,0.04)" : "transparent",
+                    borderLeft:"1px solid rgba(221,30,33,0.08)",
+                    borderRight:"1px solid rgba(221,30,33,0.08)",
+                    background: isAlive && !isImpact ? "rgba(221,30,33,0.04)" : "transparent",
                     transition:"background 0.3s ease",
                   }}>
                     <span style={{
-                      display:"inline-block", fontSize:18, color:"#daa545",
+                      display:"inline-block", fontSize:18, color:"#DD1E21",
                       transform: isImpact ? "scale(1.8)" : isAlive ? "scale(1)" : "scale(0)",
                       opacity: isAlive ? 1 : 0,
                       filter: isImpact
-                        ? "brightness(2.8) drop-shadow(0 0 12px rgba(218,165,69,0.9))"
-                        : isAlive ? "drop-shadow(0 0 3px rgba(218,165,69,0.3))" : "none",
+                        ? "brightness(1.5) drop-shadow(0 0 12px rgba(221,30,33,0.9))"
+                        : isAlive ? "drop-shadow(0 0 3px rgba(221,30,33,0.3))" : "none",
                       transition: isImpact
                         ? "transform 0.08s ease-out, filter 0.08s ease-out"
                         : "transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.1s ease",
@@ -494,10 +501,10 @@ function ComparisonSection() {
             transform: footerVis ? "translateY(0)" : "translateY(8px)",
             transition:"opacity 0.6s ease, transform 0.6s ease",
           }}>
-            <p style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", color:"rgba(150,155,180,0.35)", fontSize:13 }}>
+            <p style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", color:"rgba(24,33,69,0.45)", fontSize:13 }}>
               The technology advantage is clear. Now let's talk about what it means for your bottom line. →
             </p>
-            <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer" style={{ fontFamily:"'JetBrains Mono'", fontSize:"0.72rem", letterSpacing:"0.08em", textTransform:"uppercase", padding:"14px 28px", background:"#C41E2A", color:"#fff", border:"none", borderRadius:4, cursor:"pointer", textDecoration:"none", display:"inline-block" }}>
+            <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer" style={{ fontFamily:"'JetBrains Mono'", fontSize:"0.72rem", letterSpacing:"0.08em", textTransform:"uppercase", padding:"14px 28px", background:"#DD1E21", color:"#fff", border:"none", borderRadius:4, cursor:"pointer", textDecoration:"none", display:"inline-block" }}>
               <span style={{display:"inline-flex",alignItems:"center",gap:8}}>Book a Partnership Call <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
             </a>
           </div>
@@ -512,10 +519,10 @@ const G_SEC     = { maxWidth: 1160, margin: "0 auto", padding: "140px 48px", pos
 const G_FULL    = { width: "100%", position: "relative", overflow: "hidden" };
 const G_LBL     = { fontFamily: "'JetBrains Mono',monospace", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#C9A84C", padding: "7px 16px", border: "1px solid rgba(201,168,76,0.25)", borderRadius: 24, display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(201,168,76,0.06)", marginBottom: "28px" };
 const G_DOT     = { width: 5, height: 5, borderRadius: "50%", background: "#C9A84C", animation: "pulseG 2.5s ease-in-out infinite" };
-const G_MEGA    = (sz, mb = 20) => ({ fontFamily: "'Bebas Neue',sans-serif", fontSize: sz, letterSpacing: "0.04em", lineHeight: 0.95, textTransform: "uppercase", color: "#E8D5B5", marginBottom: mb });
-const G_CARD    = { background: "#121F3A", border: "1px solid rgba(201,168,76,0.1)", borderRadius: 12, padding: 36, position: "relative", overflow: "hidden" };
-const G_CARDTOP = { position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg,transparent,rgba(201,168,76,0.2),transparent)" };
-const G_BTNR    = { fontFamily: "Outfit", fontSize: "0.85rem", fontWeight: 600, padding: "16px 36px", background: "#C41E2A", color: "#fff", border: "none", borderRadius: 4, cursor: "pointer", letterSpacing: "0.06em", textTransform: "uppercase", transition: "all 0.3s ease" };
+const G_MEGA    = (sz, mb = 20) => ({ fontFamily: "'Monument Extended',sans-serif", fontSize: sz, letterSpacing: "0.04em", lineHeight: 0.95, textTransform: "uppercase", color: "#F0E0B2", marginBottom: mb });
+const G_CARD    = { background: "#2a4a7a", border: "2px solid rgba(100,140,200,0.3)", borderRadius: 20, padding: 36, position: "relative", overflow: "hidden" };
+const G_CARDTOP = { position: "absolute", top: 0, left: 0, right: 0, height: 0 };
+const G_BTNR    = { fontFamily: "Space Grotesk", fontSize: "0.85rem", fontWeight: 600, padding: "16px 36px", background: "#DD1E21", color: "#fff", border: "none", borderRadius: 4, cursor: "pointer", letterSpacing: "0.06em", textTransform: "uppercase", transition: "all 0.3s ease" };
 
 // ── CompetitiveLandscapeInner ─────────────────────────────────────────────
 function CompetitiveLandscapeInner() {
@@ -556,14 +563,14 @@ function CompetitiveLandscapeInner() {
   return (
     <div ref={sectionRef} className="msec" style={{ ...G_SEC, padding: "100px 48px 80px", opacity: cp > 0 ? 1 : 0, transform: cp > 0 ? "translateY(0)" : "translateY(30px)", transition: "opacity 0.7s ease, transform 0.7s ease" }}>
       <div><span style={G_LBL}><span style={G_DOT} /> Competitive Landscape</span></div>
-      <h2 style={G_MEGA("clamp(2.5rem,5.5vw,4.5rem)", 48)}>Where We Stand — <span style={{ color: "#C41E2A" }}>Privacy <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{display:"inline-block",verticalAlign:"middle",margin:"0 2px"}}><line x1="5" y1="12" x2="19" y2="12"/><polyline points="8 8 4 12 8 16"/><polyline points="16 8 20 12 16 16"/></svg> Usability</span></h2>
+      <h2 style={G_MEGA("clamp(2rem,4.5vw,3.2rem)", 48)}>Where We Stand<br /><span style={{ color: "#DD1E21" }}>Privacy — Usability</span></h2>
       <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 40, alignItems: "start" }}>
         <CompetitiveChart p={cp} />
         <div style={{ ...G_CARD, opacity: insightF, transform: `translateX(${(1 - insightF) * 24}px)` }}>
           <div style={G_CARDTOP} />
-          <h4 style={{ fontFamily: "'Bebas Neue'", fontSize: "1.3rem", letterSpacing: "0.06em", marginBottom: 16, color: "#C9A84C" }}>KEY INSIGHT</h4>
-          <p style={{ fontSize: "0.9rem", color: "#7A8599", lineHeight: 1.65, marginBottom: 14 }}>Existing privacy solutions force a choice between <strong style={{ color: "#E8D5B5" }}>strong privacy</strong> and <strong style={{ color: "#E8D5B5" }}>ease of use</strong>.</p>
-          <p style={{ fontSize: "0.9rem", color: "#7A8599", lineHeight: 1.65 }}>American Fortress is the <span style={{ color: "#C41E2A", fontWeight: 700 }}>only solution</span> that delivers full privacy AND consumer-grade simplicity in one SDK.</p>
+          <h4 style={{ fontFamily: "'Monument Extended'", fontSize: "1.3rem", letterSpacing: "0.06em", marginBottom: 16, color: "#C9A84C" }}>KEY INSIGHT</h4>
+          <p style={{ fontSize: "0.9rem", color: "#7A8599", lineHeight: 1.65, marginBottom: 14 }}>Existing privacy solutions force a choice between <strong style={{ color: "#F0E0B2" }}>strong privacy</strong> and <strong style={{ color: "#F0E0B2" }}>ease of use</strong>.</p>
+          <p style={{ fontSize: "0.9rem", color: "#7A8599", lineHeight: 1.65 }}>American Fortress is the <span style={{ color: "#DD1E21", fontWeight: 700 }}>only solution</span> that delivers full privacy AND consumer-grade simplicity in one SDK.</p>
         </div>
       </div>
       <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: "0.9rem", color: "#3D4A63", textAlign: "center", marginTop: 40, opacity: footnoteF }}>
@@ -604,7 +611,7 @@ function SlotDigit({ target, active, delay, color, fontSize, addShadow }) {
 
   return (
     <span style={{
-      fontFamily: "'Bebas Neue',sans-serif", fontSize, color,
+      fontFamily: "'Monument Extended',sans-serif", fontSize, color,
       lineHeight: 0.9, letterSpacing: "-1px", display: "inline-block",
       textShadow: addShadow && landed ? "0 0 40px rgba(200,170,100,0.2),0 0 80px rgba(200,170,100,0.08)" : "none",
       transform: spinning ? "scale(1.05)" : "scale(1)",
@@ -620,12 +627,12 @@ function SlotNumber({ digits, commas, active, color, fontSize, addShadow, digitD
       {digits.map((d, i) => (
         <span key={i} style={{ display: "inline-flex", alignItems: "flex-end" }}>
           {commas.includes(i) && (
-            <span style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize, color, opacity: 0.3, lineHeight: 0.9, userSelect: "none" }}>,</span>
+            <span style={{ fontFamily: "'Monument Extended',sans-serif", fontSize, color, opacity: 0.3, lineHeight: 0.9, userSelect: "none" }}>,</span>
           )}
           <SlotDigit target={d} active={active} delay={i * digitDelay} color={color} fontSize={fontSize} addShadow={addShadow}/>
         </span>
       ))}
-      {suffix && <span style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: "clamp(20px,3.5vw,40px)", color: suffixColor, lineHeight: 0.9, paddingBottom: 4, marginLeft: 4 }}>{suffix}</span>}
+      {suffix && <span style={{ fontFamily: "'Monument Extended',sans-serif", fontSize: "0.25em", color: suffixColor, lineHeight: 0.9, paddingBottom: 4, marginLeft: 4 }}>{suffix}</span>}
     </span>
   );
 }
@@ -633,22 +640,22 @@ function SlotNumber({ digits, commas, active, color, fontSize, addShadow, digitD
 function FinRevBtn({ vis }) {
   const [hov, setHov] = useState(false);
   return (
-    <div className="fin-cta" style={{ marginTop:40, opacity: vis ? 1 : 0,
+    <div className="fin-cta" style={{ marginTop:"1.5rem", opacity: vis ? 1 : 0,
       transform: vis ? "translateY(0)" : "translateY(12px)",
       transition:"opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s" }}>
       <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer"
         onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
         style={{
-          fontFamily: "Outfit", fontSize: "0.85rem", fontWeight: 600,
+          fontFamily: "Space Grotesk", fontSize: "0.85rem", fontWeight: 600,
           padding: "14px 32px", color: "#fff", border: "none", borderRadius: 4,
           cursor: "pointer", letterSpacing: "0.06em", textTransform: "uppercase",
           display: "inline-flex", alignItems: "center", gap: 8, textDecoration: "none",
           background: hov
-            ? "linear-gradient(135deg, #d64545 0%, #b83232 100%)"
-            : "linear-gradient(135deg, #c53030 0%, #9b2424 100%)",
+            ? "linear-gradient(135deg, #E6412A 0%, #B01819 100%)"
+            : "linear-gradient(135deg, #DD1E21 0%, #B01819 100%)",
           boxShadow: hov
-            ? "0 4px 20px rgba(197,48,48,0.35), inset 0 0 0 1px rgba(220,160,80,0.15)"
-            : "0 2px 12px rgba(197,48,48,0.2)",
+            ? "0 4px 20px rgba(221,30,33,0.35), inset 0 0 0 1px rgba(220,160,80,0.15)"
+            : "0 2px 12px rgba(221,30,33,0.2)",
           transform: hov ? "translateY(-1px)" : "translateY(0)",
           transition: "all 0.2s ease",
         }}>
@@ -730,8 +737,8 @@ function FinancialSection() {
         const del      = Math.random() * 0.15;
         const isStreak = i % 2 === 0;
         const ci       = i % 3;
-        const color    = ci === 0 ? "#c53030" : ci === 1 ? "#daa545" : "rgba(240,236,226,0.8)";
-        const glow     = ci === 0 ? "rgba(197,48,48,0.6)" : ci === 1 ? "rgba(218,165,69,0.6)" : "rgba(240,236,226,0.4)";
+        const color    = ci === 0 ? "#DD1E21" : ci === 1 ? "#daa545" : "rgba(240,224,178,0.8)";
+        const glow     = ci === 0 ? "rgba(221,30,33,0.6)" : ci === 1 ? "rgba(218,165,69,0.6)" : "rgba(240,224,178,0.4)";
         return { id: i, angle, tx, ty, size, dur, del, isStreak, color, glow };
       });
       setParticles(pts);
@@ -789,9 +796,9 @@ function FinancialSection() {
 
   return (
     <section ref={sectionRef} style={{
-      background: "#0c1225", minHeight: "100vh",
+      background: "#F0E0B2", minHeight: "100vh",
       display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-      padding: "120px 5vw", position: "relative", overflow: "hidden",
+      padding: "80px max(40px, 5vw)", position: "relative", overflow: "hidden",
       transform: `translate(${shakePos.x}px, ${shakePos.y}px)`,
       transition: shakePos.tr,
     }}>
@@ -842,30 +849,32 @@ function FinancialSection() {
       <div style={{ position:"relative", zIndex:5, textAlign:"center", width:"100%", maxWidth:900 }}>
 
         {/* Header */}
-        <div style={{ marginBottom:48 }}>
-          <div style={{ width:8, height:8, borderRadius:"50%", background:"#c53030",
-            boxShadow:"0 0 10px rgba(197,48,48,0.5),0 0 30px rgba(197,48,48,0.15)",
-            margin:"0 auto 20px" }}/>
-          <div style={{ marginBottom:20 }}>
-            <span style={G_LBL}><span style={G_DOT}/> Revenue Projections</span>
+        <div style={{ marginBottom:"2rem", textAlign:"center" }}>
+          <div style={{ width:8, height:8, borderRadius:"50%", background:"#DD1E21",
+            boxShadow:"0 0 10px rgba(221,30,33,0.5),0 0 30px rgba(221,30,33,0.15)",
+            margin:"0 auto 16px" }}/>
+          <div style={{ marginBottom:"0.5rem" }}>
+            <span style={{ ...G_LBL, color:"#182145", border:"2px solid rgba(24,33,69,0.3)", background:"transparent" }}><span style={G_DOT}/> Revenue Projections</span>
           </div>
-          <h2 className="fin-title" style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(36px,5.5vw,80px)",
-            letterSpacing:"0.02em", lineHeight:0.95, marginBottom:0, whiteSpace:"nowrap" }}>
-            <span className="fin-num-xl" style={{ color:"#E8D5B5" }}>The </span>
-            <span className="fin-num-lg" style={{ color:"#C41E2A" }}>Financial Opportunity</span>
+          <h2 className="fin-title" style={{ fontFamily:"'Monument Extended',sans-serif", fontSize:"clamp(1.8rem,4vw,3rem)",
+            fontWeight:800, letterSpacing:"0.03em", lineHeight:1.05, textTransform:"uppercase",
+            whiteSpace:"nowrap", textAlign:"center", display:"block", width:"100%", margin:"0 auto", paddingLeft:0, paddingRight:"14rem" }}>
+            <span style={{ color:"#182145", letterSpacing:"0.03em" }}>The </span>
+            <span style={{ color:"#DD1E21", letterSpacing:"0.03em" }}>Financial Opportunity</span>
           </h2>
         </div>
 
         {/* $1,000,000 */}
-        <div style={{ marginBottom:0 }}>
-          <p style={{ fontFamily:"'JetBrains Mono'", fontSize:"0.65rem", letterSpacing:"0.2em",
-            color:"#C9A84C", textTransform:"uppercase", marginBottom:20 }}>FORTRESSNAMES REVENUE</p>
-          <div style={{ lineHeight:0.9 }}>
-            <span className="fin-num-lg" style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(60px,11vw,130px)", color:"#f0ece2", lineHeight:0.9, letterSpacing:"-1px" }}>$</span>
-            <SlotNumber digits={D1M} commas={CM6} active={phase >= 1} color="#f0ece2"
-              fontSize="clamp(60px,11vw,130px)" suffix="/mo" suffixColor="rgba(160,165,185,0.35)" digitDelay={100}/>
+        <div style={{ marginBottom:0, display:"flex", flexDirection:"column", gap:"0.5rem" }}>
+          <p style={{ fontFamily:"'JetBrains Mono'", fontSize:"14px", letterSpacing:"2px",
+            color:"#555555", textTransform:"uppercase", fontWeight:400, marginBottom:0 }}>FORTRESSNAMES REVENUE</p>
+          <div className="fin-slot-wrap" style={{ opacity: phase >= 1 ? 1 : 0, transition: "opacity 0.5s ease",
+            display:"flex", alignItems:"baseline", justifyContent:"center", flexWrap:"nowrap" }}>
+            <span style={{ color:"#182145", letterSpacing:"-1px", lineHeight:1, display:"inline-block" }}>$</span>
+            <SlotNumber digits={D1M} commas={CM6} active={phase >= 1} color="#182145"
+              fontSize="1em" suffix="/mo" suffixColor="rgba(24,33,69,0.35)" digitDelay={100}/>
           </div>
-          <p style={{ fontSize:"0.88rem", color:"#3D4A63", marginTop:12, fontFamily:"'Outfit'",
+          <p style={{ fontSize:"17px", lineHeight:1.6, color:"#3D4A63", marginTop:0, fontFamily:"'Outfit'",
             opacity: sub1Vis ? 1 : 0, transform: sub1Vis ? "translateY(0)" : "translateY(8px)",
             transition:"opacity 0.5s ease, transform 0.5s ease" }}>
             100,000 names sold at $10/month
@@ -873,21 +882,19 @@ function FinancialSection() {
         </div>
 
         {/* Divider — gradient lines + arrow */}
-        <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:16, margin:"36px auto",
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:16, margin:"1.5rem auto",
           opacity: divVis ? 1 : 0, transition:"opacity 0.5s ease" }}>
-          <div style={{ flex:1, maxWidth:200, height:1, background:"linear-gradient(to right, transparent, rgba(200,170,100,0.2))" }}/>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="rgba(200,170,100,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <div style={{ flex:1, maxWidth:200, height:1, background:"linear-gradient(to right, transparent, rgba(24,33,69,0.3))" }}/>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="rgba(24,33,69,0.3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="5,7 10,13 15,7"/>
           </svg>
-          <div style={{ flex:1, maxWidth:200, height:1, background:"linear-gradient(to left, transparent, rgba(200,170,100,0.2))" }}/>
+          <div style={{ flex:1, maxWidth:200, height:1, background:"linear-gradient(to left, transparent, rgba(24,33,69,0.3))" }}/>
         </div>
 
         {/* $200,000 block */}
-        <div style={{ position:"relative" }}>
-          <p style={{ fontFamily:"'JetBrains Mono'", fontSize:"0.65rem", letterSpacing:"0.2em",
-            color:"#C9A84C", textTransform:"uppercase", marginBottom:20,
-            opacity: labelVis ? 1 : 0, transform: labelVis ? "translateY(0)" : "translateY(8px)",
-            transition:"opacity 0.3s ease, transform 0.3s ease" }}>YOUR 20% SHARE — RECURRING</p>
+        <div style={{ position:"relative", display:"flex", flexDirection:"column", gap:"0.5rem" }}>
+          <p style={{ fontFamily:"'JetBrains Mono'", fontSize:"14px", letterSpacing:"2px",
+            color:"#555555", textTransform:"uppercase", fontWeight:400, marginBottom:0 }}>YOUR 20% SHARE — RECURRING</p>
 
           {/* Pulsing glow behind $200K */}
           {glowPulse && (
@@ -925,18 +932,23 @@ function FinancialSection() {
             }}/>
           ))}
 
-          {/* Number + shimmer + underline */}
-          <div style={{ position:"relative", display:"inline-block",
+          {/* Number + shimmer */}
+          <div className="fin-slot-wrap" style={{
+            position:"relative", display:"inline-flex", alignItems:"baseline", justifyContent:"center",
+            flexWrap:"nowrap", overflow:"hidden",
+            opacity: 1,
             animation: impactNum ? "impactScale 0.4s ease-out forwards" : "none",
-            overflow:"hidden" }}>
-            <span className="fin-num-xl" style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(68px,13vw,155px)", color:"#daa545",
-              lineHeight:0.9, letterSpacing:"-1px",
-              textShadow: phase >= 4 ? "0 0 40px rgba(200,170,100,0.2),0 0 80px rgba(200,170,100,0.08)" : "none",
+          }}>
+            <span style={{ color:"#DD1E21", letterSpacing:"-1px", lineHeight:1, display:"inline-block",
+              textShadow: phase >= 4 ? "0 0 40px rgba(221,30,33,0.2),0 0 80px rgba(221,30,33,0.08)" : "none",
               transition:"text-shadow 0.4s ease" }}>$</span>
-            <SlotNumber digits={D200K} commas={CM5} active={phase >= 3} color="#daa545"
-              fontSize="clamp(68px,13vw,155px)" suffix="/mo" suffixColor="rgba(200,170,100,0.4)"
-              addShadow digitDelay={120}/>
-            {/* Shimmer sweep */}
+            {phase >= 3
+              ? <SlotNumber digits={D200K} commas={CM5} active={true} color="#DD1E21"
+                  fontSize="1em" suffix="/mo" suffixColor="rgba(221,30,33,0.4)"
+                  addShadow digitDelay={120}/>
+              : <><span style={{ fontFamily:"'Monument Extended',sans-serif", fontSize:"1em", color:"#DD1E21", letterSpacing:"-1px", lineHeight:0.9 }}>0</span>
+                 <span style={{ fontFamily:"'Monument Extended',sans-serif", fontSize:"0.25em", color:"rgba(221,30,33,0.4)", lineHeight:0.9, paddingBottom:4, marginLeft:4 }}>/mo</span></>
+            }
             {shimmer && (
               <div style={{ position:"absolute", inset:0, overflow:"hidden", pointerEvents:"none", borderRadius:4 }}>
                 <div style={{ position:"absolute", top:0, bottom:0, width:"30%",
@@ -955,27 +967,26 @@ function FinancialSection() {
           }}/>
 
           <p style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic",
-            fontSize:"0.88rem", color:"#C41E2A", marginTop:20, opacity: affVis ? 0.7 : 0,
-            transform: affVis ? "translateY(0)" : "translateY(8px)",
-            transition:"opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s" }}>
+            fontSize:"17px", lineHeight:1.6, color:"#555555", marginTop:0, opacity: affVis ? 1 : 0.6,
+            transition:"opacity 0.5s ease 0.2s" }}>
             Plus affiliate commissions driving additional volume
           </p>
         </div>
 
         {/* Live ticker */}
         {phase >= 5 && (
-          <div style={{ marginTop:40, animation:"tickerFadeIn 0.6s ease forwards" }}>
+          <div style={{ marginTop:"1rem", animation:"tickerFadeIn 0.6s ease forwards" }}>
             <div style={{ display:"inline-flex", alignItems:"center", gap:10,
               padding:"10px 20px", borderRadius:8,
               background:"rgba(52,211,153,0.04)", border:"1px solid rgba(52,211,153,0.12)" }}>
               <div style={{ width:6, height:6, borderRadius:"50%", background:"#34D399",
                 boxShadow:"0 0 8px rgba(52,211,153,0.6)", animation:"tickerPulse 1.2s ease-in-out infinite" }}/>
-              <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:15,
-                color:"rgba(100,200,120,0.7)", letterSpacing:"0.04em" }}>
+              <span style={{ fontFamily:"'Space Grotesk',sans-serif", fontSize:14,
+                color:"#2a8a4a", letterSpacing:"0.04em" }}>
                 +${tickerVal.toLocaleString()}
               </span>
               <span style={{ fontFamily:"'JetBrains Mono'", fontSize:"0.6rem",
-                color:"rgba(52,211,153,0.4)", letterSpacing:"0.1em", textTransform:"uppercase" }}>
+                color:"#555555", letterSpacing:"0.1em", textTransform:"uppercase" }}>
                 this session
               </span>
             </div>
@@ -1055,7 +1066,7 @@ function NameResolver() {
       </div>
       <div style={{ position:"relative", display:"inline-flex", alignItems:"center", gap: 20, opacity: contentOp, transition: "opacity 0.4s" }}>
         {isResolved && <div style={{ position:"absolute", inset:"-40px -80px", background:"radial-gradient(ellipse,rgba(201,168,76,0.14) 0%,transparent 70%)", pointerEvents:"none" }} />}
-        <span style={{ fontFamily:"'JetBrains Mono'", fontSize:"clamp(12px,1.2vw,16px)", color: isHex ? "rgba(185,190,215,0.7)" : "rgba(100,110,150,0.4)", padding:"10px 18px", background: isHex ? "rgba(196,30,42,0.09)" : "rgba(196,30,42,0.03)", border:`1px solid ${isHex ? "rgba(196,30,42,0.25)" : "rgba(196,30,42,0.08)"}`, borderRadius:6, textDecoration: isHex ? "none" : "line-through" }}>0xA7c4...3F9b</span>
+        <span style={{ fontFamily:"'JetBrains Mono'", fontSize:"clamp(12px,1.2vw,16px)", color: isHex ? "rgba(185,190,215,0.7)" : "rgba(100,110,150,0.4)", padding:"10px 18px", background: isHex ? "rgba(221,30,33,0.09)" : "rgba(221,30,33,0.03)", border:`1px solid ${isHex ? "rgba(221,30,33,0.25)" : "rgba(221,30,33,0.08)"}`, borderRadius:6, textDecoration: isHex ? "none" : "line-through" }}>0xA7c4...3F9b</span>
         <span style={{ fontSize:"1.5rem", color:"#C9A84C", opacity: isHex ? 0.45 : 1, transition:"opacity 0.3s" }}>→</span>
         <div style={{ position:"relative" }}>
           <span style={{ fontFamily:"'JetBrains Mono'", fontSize:"clamp(24px,3.5vw,40px)", fontWeight:500, color:textColor, letterSpacing: isResolved ? "3px" : "1px", transition:"color 0.3s" }}>{text}</span>
@@ -1137,45 +1148,45 @@ function WalletScanner() {
     return Math.min(1, (time - tagStart) / 280);
   };
   const boxActive   = isFlashing || isExposed || isFadingOut;
-  const addrBg      = isFlashing ? "rgba(196,30,42,0.22)" : boxActive ? "rgba(196,30,42,0.09)" : "rgba(8,14,30,0.6)";
-  const addrBorder  = boxActive ? "rgba(196,30,42,0.5)" : "rgba(100,110,150,0.12)";
-  const addrColor   = boxActive ? "rgba(240,185,185,0.95)" : "rgba(160,165,185,0.5)";
-  const outerBorder = boxActive ? "rgba(196,30,42,0.55)" : "rgba(100,110,150,0.1)";
+  const addrBg      = isFlashing ? "rgba(0,0,0,0.4)" : boxActive ? "rgba(0,0,0,0.3)" : "rgba(0,0,0,0.25)";
+  const addrBorder  = boxActive ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.15)";
+  const addrColor   = boxActive ? "#FDFAF4" : "rgba(253,250,244,0.7)";
+  const outerBorder = boxActive ? "rgba(150,20,20,0.8)" : "rgba(180,40,40,0.4)";
   const outerGlow   = isFlashing
-    ? "0 0 40px rgba(196,30,42,0.9), 0 0 90px rgba(196,30,42,0.45), 0 0 140px rgba(196,30,42,0.18)"
+    ? "0 0 40px rgba(221,30,33,0.9), 0 0 90px rgba(221,30,33,0.45), 0 0 140px rgba(221,30,33,0.18)"
     : boxActive
-    ? "0 0 24px rgba(196,30,42,0.45), 0 0 55px rgba(196,30,42,0.18)"
+    ? "0 0 24px rgba(221,30,33,0.45), 0 0 55px rgba(221,30,33,0.18)"
     : "none";
 
   return (
-    <div style={{ fontFamily: "'JetBrains Mono',monospace", margin: "32px 0 48px", padding: "28px 28px 24px", border: `1px solid ${outerBorder}`, borderRadius: 14, background: "rgba(6,11,24,0.72)", boxShadow: outerGlow, position: "relative", transition: "border-color 0.4s ease, box-shadow 0.4s ease" }}>
+    <div style={{ fontFamily: "'JetBrains Mono',monospace", margin: "32px 0 48px", padding: "40px", borderRadius: 20, background: "#DD1E21", border: `2px solid ${outerBorder}`, boxShadow: outerGlow, position: "relative", transition: "border-color 0.4s ease, box-shadow 0.4s ease" }}>
 
       {/* Ambient radial glow */}
-      <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 820, height: 620, borderRadius: "50%", background: `radial-gradient(ellipse at center,${boxActive ? "rgba(196,30,42,0.12)" : "rgba(196,30,42,0.02)"} 0%,transparent 70%)`, pointerEvents: "none", zIndex: 0, transition: "background 0.6s ease" }} />
+      <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 820, height: 620, borderRadius: "50%", background: `radial-gradient(ellipse at center,${boxActive ? "rgba(221,30,33,0.12)" : "rgba(221,30,33,0.02)"} 0%,transparent 70%)`, pointerEvents: "none", zIndex: 0, transition: "background 0.6s ease" }} />
 
       {/* Status label */}
-      <div style={{ position: "relative", zIndex: 1, fontSize: "0.7rem", letterSpacing: "0.14em", textTransform: "uppercase", textAlign: "center", marginBottom: 14, height: 16, color: showExposedLabel ? "#C41E2A" : "rgba(160,165,185,0.45)", fontWeight: showExposedLabel ? 700 : 400 }}>
-        {showExposedLabel ? "\u26A0 Wallet Exposed" : "\u25CF Scanning address..."}
+      <div style={{ position: "relative", zIndex: 1, fontSize: "0.7rem", letterSpacing: "0.14em", textTransform: "uppercase", textAlign: "center", marginBottom: 14, height: 16, color: showExposedLabel ? "#FDFAF4" : "rgba(253,250,244,0.7)", fontWeight: showExposedLabel ? 700 : 400 }}>
+        {showExposedLabel ? "⚠ Wallet Exposed" : "● Scanning address..."}
       </div>
 
       {/* Address bar */}
       <div style={{ position: "relative", zIndex: 1, padding: "14px 16px", borderRadius: 8, background: addrBg, border: `1px solid ${addrBorder}`, overflow: "hidden", transition: "background 0.35s ease, border-color 0.35s ease" }}>
         {isScanning && (
-          <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(196,30,42,0.08) 2px,rgba(196,30,42,0.08) 3px)", pointerEvents: "none", zIndex: 2 }} />
+          <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(221,30,33,0.08) 2px,rgba(221,30,33,0.08) 3px)", pointerEvents: "none", zIndex: 2 }} />
         )}
-        <div style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: `${scanProgress * 100}%`, background: isScanning ? "linear-gradient(90deg,rgba(196,30,42,0.14) 0%,rgba(196,30,42,0.28) 80%,rgba(196,30,42,0.1) 100%)" : "transparent", zIndex: 1, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: `${scanProgress * 100}%`, background: isScanning ? "linear-gradient(90deg,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.2) 80%,rgba(0,0,0,0.05) 100%)" : "transparent", zIndex: 1, pointerEvents: "none" }} />
         {isScanning && (
-          <div style={{ position: "absolute", top: -4, bottom: -4, left: `calc(${scanProgress * 100}% - 2px)`, width: 5, background: "linear-gradient(180deg,rgba(255,80,80,0.4),#C41E2A,rgba(255,80,80,0.4))", boxShadow: "0 0 6px 3px rgba(196,30,42,1), 0 0 22px 8px rgba(196,30,42,0.75), 0 0 55px 14px rgba(196,30,42,0.4)", borderRadius: 3, zIndex: 5, pointerEvents: "none" }} />
+          <div style={{ position: "absolute", top: -4, bottom: -4, left: `calc(${scanProgress * 100}% - 2px)`, width: 5, background: "linear-gradient(180deg,transparent,rgba(255,255,255,0.85),transparent)", boxShadow: "0 0 8px 3px rgba(255,255,255,0.7), 0 0 24px 8px rgba(255,255,255,0.3)", borderRadius: 3, zIndex: 5, pointerEvents: "none" }} />
         )}
         {isFlashing && (
-          <div style={{ position: "absolute", inset: 0, background: "rgba(196,30,42,0.18)", zIndex: 4, pointerEvents: "none" }} />
+          <div style={{ position: "absolute", inset: 0, background: "rgba(221,30,33,0.18)", zIndex: 4, pointerEvents: "none" }} />
         )}
         <div className="wallet-addr" style={{ position: "relative", zIndex: 3, fontSize: "clamp(0.65rem,1.2vw,0.88rem)", color: addrColor, wordBreak: "break-all", letterSpacing: "0.03em", transition: "color 0.4s ease" }}>{ADDR}</div>
       </div>
 
       {/* Progress bar */}
       <div style={{ position: "relative", zIndex: 1, width: "100%", height: 3, background: "rgba(100,110,150,0.08)", borderRadius: 2, marginTop: 6, overflow: "hidden", opacity: isScanning ? 1 : 0, transition: "opacity 0.3s ease" }}>
-        <div style={{ height: "100%", width: `${scanProgress * 100}%`, background: "linear-gradient(90deg,rgba(196,30,42,0.5),#C41E2A)", boxShadow: "0 0 8px rgba(196,30,42,0.9)" }} />
+        <div style={{ height: "100%", width: `${scanProgress * 100}%`, background: "linear-gradient(90deg,rgba(221,30,33,0.5),#DD1E21)", boxShadow: "0 0 8px rgba(221,30,33,0.9)" }} />
       </div>
 
       {/* Leaked data grid - only this fades on cycle reset */}
@@ -1187,11 +1198,11 @@ function WalletScanner() {
             <div key={i} style={{ opacity: op, transform: `translateY(${op < 0.5 ? 8 : 0}px)`, transition: "transform 0.3s ease" }}
               onMouseEnter={() => setHoveredTag(i)} onMouseLeave={() => setHoveredTag(null)}>
               <div style={{ height: 10, display: "flex", justifyContent: "center", alignItems: "flex-start" }}>
-                <div style={{ width: 1, height: "100%", background: hov ? "rgba(196,30,42,0.65)" : "rgba(196,30,42,0.3)" }} />
+                <div style={{ width: 1, height: "100%", background: hov ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.25)" }} />
               </div>
-              <div style={{ padding: "10px 12px", borderRadius: 6, background: hov ? "rgba(196,30,42,0.2)" : "rgba(196,30,42,0.11)", border: `1px solid ${hov ? "rgba(196,30,42,0.6)" : "rgba(196,30,42,0.3)"}`, boxShadow: hov ? "0 0 22px rgba(196,30,42,0.28), 0 0 44px rgba(196,30,42,0.1)" : "0 0 12px rgba(196,30,42,0.1)", transition: "background 0.25s,border-color 0.25s,box-shadow 0.25s", cursor: "default" }}>
-                <div style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", color: hov ? "rgba(196,30,42,1)" : "rgba(196,30,42,0.75)", marginBottom: 5, transition: "color 0.25s" }}>{label}</div>
-                <div style={{ fontSize: "0.74rem", color: hov ? "rgba(255,205,205,1)" : "rgba(238,190,190,0.9)", transition: "color 0.25s", fontWeight: 500 }}>{value}</div>
+              <div style={{ padding: "10px 12px", borderRadius: 6, background: hov ? "rgba(0,0,0,0.3)" : "rgba(0,0,0,0.2)", border: `1px solid ${hov ? "rgba(255,255,255,0.25)" : "rgba(255,255,255,0.12)"}`, boxShadow: hov ? "0 0 12px rgba(0,0,0,0.3)" : "none", transition: "background 0.25s,border-color 0.25s,box-shadow 0.25s", cursor: "default" }}>
+                <div style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#F0E0B2", marginBottom: 5, opacity: hov ? 1 : 0.85, transition: "color 0.25s" }}>{label}</div>
+                <div style={{ fontSize: "0.74rem", color: hov ? "#F0E0B2" : "rgba(240,224,178,0.7)", transition: "color 0.25s", fontWeight: 500 }}>{value}</div>
               </div>
             </div>
           );
@@ -1199,7 +1210,7 @@ function WalletScanner() {
       </div>
 
       {/* Footer - fades with data, box stays */}
-      <div style={{ position: "relative", zIndex: 1, textAlign: "center", marginTop: 16, fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#C41E2A", opacity: isExposed ? dataOpacity : 0, transition: "opacity 0.4s ease" }}>\u26A0 Full financial profile exposed</div>
+      <div style={{ position: "relative", zIndex: 1, textAlign: "center", marginTop: 16, fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#DD1E21", opacity: isExposed ? dataOpacity : 0, transition: "opacity 0.4s ease" }}>\u26A0 Full financial profile exposed</div>
     </div>
   );
 }
@@ -1291,8 +1302,8 @@ const CARD_POSITIONS = [
 
 function MoatRings() {
   const rings = [
-    { size: 130, border: "1.5px solid rgba(197,48,48,0.2)",        shadow: "0 0 12px rgba(197,48,48,0.06), inset 0 0 12px rgba(197,48,48,0.04)", anim: null },
-    { size: 320, border: "1px solid rgba(240,236,226,0.07)",        shadow: "0 0 15px rgba(240,236,226,0.02)",                                     anim: "ringBreath 7s ease-in-out infinite" },
+    { size: 130, border: "1.5px solid rgba(221,30,33,0.2)",        shadow: "0 0 12px rgba(221,30,33,0.06), inset 0 0 12px rgba(221,30,33,0.04)", anim: null },
+    { size: 320, border: "1px solid rgba(240,224,178,0.07)",        shadow: "0 0 15px rgba(240,224,178,0.02)",                                     anim: "ringBreath 7s ease-in-out infinite" },
     { size: 550, border: "1px solid rgba(70,110,180,0.08)",         shadow: "0 0 15px rgba(70,110,180,0.02)",                                      anim: null },
     { size: 700, border: "1px dashed rgba(100,110,150,0.05)",       shadow: null,                                                                  anim: "dashedSpin 180s linear infinite" },
   ];
@@ -1314,15 +1325,15 @@ function MoatRings() {
 function MoatOrbitDots() {
   const orbits = [
     { size: 150, anim: "energyTrail1 8s linear infinite", dots: [
-      { offset:  75, sz: 6, color: "#c53030",              shadow: "0 0 6px rgba(197,48,48,0.7), 0 0 16px rgba(197,48,48,0.3)" },
-      { offset: -75, sz: 5, color: "#f0ece2",              shadow: "0 0 5px rgba(240,236,226,0.6), 0 0 14px rgba(240,236,226,0.2)" },
+      { offset:  75, sz: 6, color: "#DD1E21",              shadow: "0 0 6px rgba(221,30,33,0.7), 0 0 16px rgba(221,30,33,0.3)" },
+      { offset: -75, sz: 5, color: "#F0E0B2",              shadow: "0 0 5px rgba(240,224,178,0.6), 0 0 14px rgba(240,224,178,0.2)" },
     ]},
     { size: 310, anim: "energyTrail2 12s linear infinite", dots: [
-      { offset:  155, sz: 7, color: "#f0ece2",             shadow: "0 0 5px rgba(240,236,226,0.6), 0 0 14px rgba(240,236,226,0.2)" },
+      { offset:  155, sz: 7, color: "#F0E0B2",             shadow: "0 0 5px rgba(240,224,178,0.6), 0 0 14px rgba(240,224,178,0.2)" },
       { offset: -155, sz: 6, color: "rgba(80,120,200,0.9)",shadow: "0 0 6px rgba(80,120,200,0.6), 0 0 16px rgba(80,120,200,0.25)" },
     ]},
     { size: 500, anim: "energyTrail1 18s linear infinite", dots: [
-      { offset:  250, sz: 5, color: "#c53030",             shadow: "0 0 6px rgba(197,48,48,0.7), 0 0 16px rgba(197,48,48,0.3)" },
+      { offset:  250, sz: 5, color: "#DD1E21",             shadow: "0 0 6px rgba(221,30,33,0.7), 0 0 16px rgba(221,30,33,0.3)" },
       { offset: -250, sz: 4, color: "rgba(80,120,200,0.9)",shadow: "0 0 6px rgba(80,120,200,0.6), 0 0 16px rgba(80,120,200,0.25)" },
     ]},
   ];
@@ -1401,10 +1412,8 @@ function MoatCard({ label, desc, icon, delay, hov, onMouseEnter, onMouseLeave })
     <div ref={ref} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
       style={{
         flex: "1 1 0", maxWidth: 260, borderRadius: 12, padding: "26px 22px", textAlign: "center",
-        backdropFilter: "blur(12px)", overflow: "hidden", position: "relative", cursor: "default",
-        background: hov
-          ? "linear-gradient(145deg, rgba(200,170,100,0.08) 0%, rgba(20,32,60,0.9) 40%, rgba(14,22,45,0.95) 100%)"
-          : "linear-gradient(145deg, rgba(25,38,68,0.8) 0%, rgba(16,26,48,0.9) 50%, rgba(12,20,40,0.95) 100%)",
+        overflow: "hidden", position: "relative", cursor: "default",
+        background: "#2a4a7a",
         border: `1px solid ${hov ? "rgba(200,170,100,0.3)" : "rgba(100,120,170,0.15)"}`,
         boxShadow: hov
           ? "0 0 40px rgba(200,170,100,0.1), 0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.03)"
@@ -1414,21 +1423,19 @@ function MoatCard({ label, desc, icon, delay, hov, onMouseEnter, onMouseLeave })
         transition: `all 0.35s ease ${vis ? delay : 0}s`,
       }}>
       <div style={{ position: "absolute", top: 0, left: "10%", right: "10%", height: 1,
-        background: `linear-gradient(90deg, transparent, ${hov ? "rgba(200,170,100,0.5)" : "rgba(150,160,200,0.1)"}, transparent)`,
-        transition: "background 0.35s ease" }}/>
+        background: "transparent" }}/>
       <div style={{ position: "absolute", top: 0, right: 0, width: 60, height: 60,
-        background: `radial-gradient(circle at top right, ${hov ? "rgba(200,170,100,0.06)" : "rgba(100,120,170,0.03)"}, transparent 70%)`,
-        transition: "background 0.35s ease" }}/>
+        background: "transparent" }}/>
       <div style={{ width: 48, height: 48, borderRadius: 12, margin: "0 auto 18px",
-        background: hov ? "rgba(200,170,100,0.08)" : "rgba(100,120,170,0.06)",
+        background: "rgba(255,255,255,0.08)",
         border: `1px solid ${hov ? "rgba(200,170,100,0.2)" : "rgba(100,120,170,0.1)"}`,
         display: "flex", alignItems: "center", justifyContent: "center",
         boxShadow: hov ? "0 0 20px rgba(200,170,100,0.12)" : "none",
         transition: "all 0.35s ease" }}>
         {icon(iconColor)}
       </div>
-      <div style={{ fontFamily: "'Bebas Neue'", fontSize: "1rem", letterSpacing: "0.06em", marginBottom: 10,
-        color: hov ? "#f0ece2" : "rgba(210,215,230,0.8)", transition: "color 0.35s ease" }}>{label}</div>
+      <div style={{ fontFamily: "'Monument Extended'", fontSize: "1rem", letterSpacing: "0.06em", marginBottom: 10,
+        color: hov ? "#F0E0B2" : "rgba(210,215,230,0.8)", transition: "color 0.35s ease" }}>{label}</div>
       <div style={{ fontSize: "0.82rem", lineHeight: 1.6,
         color: hov ? "rgba(190,195,215,0.75)" : "rgba(160,170,195,0.5)", transition: "color 0.35s ease" }}>{desc}</div>
     </div>
@@ -1453,12 +1460,12 @@ function MoatSection({ mR, mV }) {
   const handleLeave = () => setHoveredIndex(null);
 
   return (
-    <section ref={mR} style={{ ...G_FULL, position: "relative", overflow: "hidden", background: "linear-gradient(180deg,#0A1628,#0D172E,#0A1628)" }}>
+    <section ref={mR} style={{ ...G_FULL, position: "relative", overflow: "hidden", background: "linear-gradient(180deg,#182145,#182145,#182145)" }}>
       <Stars count={20} color="rgba(201,168,76,0.06)"/>
       <style>{`
         @keyframes pulseCoreSVG {
-          0%,100% { filter: drop-shadow(0 0 20px rgba(197,48,48,0.3)) drop-shadow(0 0 40px rgba(200,170,100,0.15)); }
-          50%      { filter: drop-shadow(0 0 34px rgba(197,48,48,0.6)) drop-shadow(0 0 70px rgba(200,170,100,0.28)); }
+          0%,100% { filter: drop-shadow(0 0 20px rgba(221,30,33,0.3)) drop-shadow(0 0 40px rgba(200,170,100,0.15)); }
+          50%      { filter: drop-shadow(0 0 34px rgba(221,30,33,0.6)) drop-shadow(0 0 70px rgba(200,170,100,0.28)); }
         }
         @keyframes ringBreath {
           0%,100% { opacity: 0.6; }
@@ -1482,11 +1489,11 @@ function MoatSection({ mR, mV }) {
 
         {/* Header */}
         <div style={{ marginBottom: 0 }}>
-          <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#c53030",
-            boxShadow: "0 0 10px rgba(197,48,48,0.5), 0 0 30px rgba(197,48,48,0.15)",
+          <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#DD1E21",
+            boxShadow: "0 0 10px rgba(221,30,33,0.5), 0 0 30px rgba(221,30,33,0.15)",
             margin: "0 auto 20px" }}/>
           <div style={{ marginBottom: 16 }}><span style={G_LBL}><span style={G_DOT}/> Why Partner With Us</span></div>
-          <h2 style={{ ...G_MEGA("clamp(2.5rem,5.5vw,4.5rem)"), marginBottom: 64 }}>
+          <h2 style={{ ...G_MEGA("clamp(2rem,4.5vw,3.2rem)"), marginBottom: 64 }}>
             The Technology <span style={{ color: "#daa545" }}>Moat</span>
           </h2>
         </div>
@@ -1544,10 +1551,7 @@ function CTASection({ ctR, ctV }) {
 
   const mkCard = (hov) => ({
     borderRadius: 12, padding: 36, position: "relative", overflow: "hidden",
-    backdropFilter: "blur(12px)",
-    background: hov
-      ? "linear-gradient(145deg, rgba(200,170,100,0.06) 0%, rgba(20,32,60,0.9) 40%, rgba(14,22,45,0.95) 100%)"
-      : "linear-gradient(145deg, rgba(25,38,68,0.8) 0%, rgba(16,26,48,0.9) 50%, rgba(12,20,40,0.95) 100%)",
+    background: "#2a4a7a",
     border: `1px solid ${hov ? "rgba(200,170,100,0.25)" : "rgba(100,120,170,0.15)"}`,
     boxShadow: hov
       ? "0 0 40px rgba(200,170,100,0.08), 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.03)"
@@ -1558,17 +1562,17 @@ function CTASection({ ctR, ctV }) {
 
   const topHL = (hov) => ({
     position: "absolute", top: 0, left: "10%", right: "10%", height: 1,
-    background: `linear-gradient(90deg, transparent, ${hov ? "rgba(200,170,100,0.4)" : "rgba(150,160,200,0.1)"}, transparent)`,
-    transition: "background 0.3s ease",
+    background: "transparent",
   });
 
   return (
-    <section ref={ctR} style={G_FULL}>
-      <Stars count={25} color="rgba(196,30,42,0.08)" />
-      <div style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: 600, height: 400, background: "radial-gradient(ellipse,rgba(196,30,42,0.04),transparent 70%)", pointerEvents: "none" }} />
+    <section ref={ctR} style={{ ...G_FULL, background: "#DD1E21", position:"relative", overflow:"hidden" }}>
+      <div className="dot-pattern" style={{ right:"-80px", top:"-40px", opacity:0.15 }} />
+      <Stars count={25} color="rgba(240,224,178,0.08)" />
+      <div style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: 600, height: 400, background: "radial-gradient(ellipse,rgba(240,224,178,0.04),transparent 70%)", pointerEvents: "none" }} />
       <div className="msec" style={{ ...G_SEC, textAlign: "center" }}>
-        <h2 style={{ ...G_MEGA("clamp(2.5rem,6vw,4.5rem)", 8) }}>Let's Build <span style={{ color: "#C41E2A" }}>Together</span></h2>
-        <p style={{ color: "#3D4A63", fontSize: "0.95rem", marginBottom: 48 }}>Schedule a partnership call or reach out directly</p>
+        <h2 style={{ fontFamily:"'Monument Extended',sans-serif", fontSize:"clamp(2rem,4.5vw,3.2rem)", fontWeight:800, letterSpacing:"0.04em", lineHeight:0.95, textTransform:"uppercase", color:"#F0E0B2", marginBottom:8, textAlign:"center", width:"100%", display:"block" }}>Let's Build <span style={{ color:"#F0E0B2" }}>Together</span></h2>
+        <p style={{ color: "rgba(240,224,178,0.75)", fontSize: "0.95rem", marginBottom: 24, textAlign: "center" }}>Schedule a partnership call or reach out directly</p>
 
         <div className="mgrid2 cta-cards" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, maxWidth: 800, margin: "0 auto" }}>
 
@@ -1593,24 +1597,22 @@ function CTASection({ ctR, ctV }) {
                 <line x1="3" y1="10" x2="21" y2="10" />
               </svg>
             </div>
-            <h3 style={{ fontFamily: "'Bebas Neue'", fontSize: "1.2rem", letterSpacing: "0.06em", marginBottom: 8,
-              color: hovL ? "#f0ece2" : "rgba(210,215,230,0.8)", transition: "color 0.3s ease" }}>SCHEDULE A CALL</h3>
+            <h3 style={{ fontFamily: "'Monument Extended'", fontSize: "1.2rem", letterSpacing: "0.06em", marginBottom: 8,
+              color: hovL ? "#F0E0B2" : "rgba(210,215,230,0.8)", transition: "color 0.3s ease" }}>SCHEDULE A CALL</h3>
             <p style={{ fontSize: "0.85rem", marginBottom: 24, lineHeight: 1.5,
               color: hovL ? "rgba(180,185,210,0.65)" : "rgba(160,165,185,0.45)", transition: "color 0.3s ease" }}>30-minute partnership discussion with our BD team</p>
             <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer"
               className="cta-book-btn"
               onMouseEnter={() => setHovBtn(true)} onMouseLeave={() => setHovBtn(false)}
               style={{ textDecoration: "none",
-                fontFamily: "Outfit", fontSize: "0.85rem", fontWeight: 600, padding: "14px 32px",
-                color: "#fff", border: "none", borderRadius: 4, cursor: "pointer",
+                fontFamily: "Space Grotesk", fontSize: "0.85rem", fontWeight: 600, padding: "14px 32px",
+                color: "#DD1E21", border: "none", borderRadius: 4, cursor: "pointer",
                 letterSpacing: "0.06em", textTransform: "uppercase",
                 display: "inline-flex", alignItems: "center", gap: 8,
-                background: hovBtn
-                  ? "linear-gradient(135deg, #d64545 0%, #b83232 100%)"
-                  : "linear-gradient(135deg, #c53030 0%, #9b2424 100%)",
+                background: hovBtn ? "#e8e4da" : "#F0E0B2",
                 boxShadow: hovBtn
-                  ? "0 4px 20px rgba(197,48,48,0.35), inset 0 0 0 1px rgba(220,160,80,0.15)"
-                  : "0 2px 12px rgba(197,48,48,0.2)",
+                  ? "0 4px 16px rgba(0,0,0,0.2)"
+                  : "0 2px 8px rgba(0,0,0,0.12)",
                 transform: hovBtn ? "translateY(-1px)" : "translateY(0)",
                 transition: "all 0.2s ease",
               }}>
@@ -1637,8 +1639,8 @@ function CTASection({ ctR, ctV }) {
               }}>
               <img src="/jakub.jpg" alt="Jakub Zurawinski" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }} />
             </div>
-            <p style={{ fontFamily: "'Bebas Neue'", fontSize: "1.1rem", letterSpacing: "0.06em",
-              color: hovR ? "#f0ece2" : "rgba(210,215,230,0.8)", transition: "color 0.3s ease" }}>JAKUB ZURAWINSKI</p>
+            <p style={{ fontFamily: "'Monument Extended'", fontSize: "1.1rem", letterSpacing: "0.06em",
+              color: hovR ? "#F0E0B2" : "rgba(210,215,230,0.8)", transition: "color 0.3s ease" }}>JAKUB ZURAWINSKI</p>
             <p style={{ fontFamily: "'JetBrains Mono'", fontSize: "0.7rem", color: "#3D4A63", marginBottom: 16, letterSpacing: "0.04em" }}>Head of Business Development</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
               <a href="mailto:jakub@americanfortress.io" className="cta-contact-link"
@@ -1683,121 +1685,71 @@ function CTASection({ ctR, ctV }) {
 // ─── Site Footer ─────────────────────────────────────────────────────────────
 function SiteFooter() {
   const [hovSocial,  setHovSocial]  = useState(null);
-  const [hovNav,     setHovNav]     = useState(null);
   const [hovContact, setHovContact] = useState(null);
   const [hovPolicy,  setHovPolicy]  = useState(null);
   const [hovTop,     setHovTop]     = useState(false);
   const [hovCta,     setHovCta]     = useState(false);
 
   const socials = [
-    {
-      key: "telegram",
-      href: "https://t.me/americanfortress",
-      label: "Telegram",
-      path: "M11.944 0A12 12 0 1 0 12 24a12 12 0 0 0-.056-24zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.504-1.356 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"
-    },
-    {
-      key: "x",
-      href: "https://x.com/Americanfort_io",
-      label: "X / Twitter",
-      path: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-    },
-    {
-      key: "discord",
-      href: "https://discord.com/invite/americanfortress",
-      label: "Discord",
-      path: "M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.23A.077.077 0 0 0 8.562 3c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026c.462-.62.874-1.275 1.226-1.963.021-.04.001-.088-.041-.104a13.201 13.201 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .079.009c.12.098.245.195.372.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.028zM8.02 15.278c-1.182 0-2.157-1.069-2.157-2.38 0-1.312.956-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.956 2.38-2.157 2.38zm7.975 0c-1.183 0-2.157-1.069-2.157-2.38 0-1.312.955-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.946 2.38-2.157 2.38z"
-    },
-    {
-      key: "youtube",
-      href: "https://www.youtube.com/@AmericanFortress",
-      label: "YouTube",
-      path: "M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
-    }
-  ];
-
-  const navLinks = [
-    { label: "The Problem",             href: "#exposed" },
-    { label: "FortressNames",           href: "#fortressnames" },
-    { label: "Confidentiality Machine", href: "#confidentiality" },
-    { label: "Competitive Landscape",   href: "#landscape" },
-    { label: "Feature Comparison",      href: "#comparison" },
-    { label: "Revenue Share",           href: "#revenue" },
-    { label: "Financial Opportunity",   href: "#financial" },
-    { label: "Technology Moat",         href: "#moat" },
-    { label: "Contact",                 href: "#contact" },
+    { key:"telegram", href:"https://t.me/americanfortress",              label:"Telegram",   path:"M11.944 0A12 12 0 1 0 12 24a12 12 0 0 0-.056-24zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.504-1.356 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" },
+    { key:"x",        href:"https://x.com/Americanfort_io",              label:"X / Twitter", path:"M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" },
+    { key:"discord",  href:"https://discord.com/invite/americanfortress", label:"Discord",    path:"M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.23A.077.077 0 0 0 8.562 3c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026c.462-.62.874-1.275 1.226-1.963.021-.04.001-.088-.041-.104a13.201 13.201 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .079.009c.12.098.245.195.372.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.028zM8.02 15.278c-1.182 0-2.157-1.069-2.157-2.38 0-1.312.956-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.956 2.38-2.157 2.38zm7.975 0c-1.183 0-2.157-1.069-2.157-2.38 0-1.312.955-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.946 2.38-2.157 2.38z" },
+    { key:"youtube",  href:"https://www.youtube.com/@AmericanFortress",  label:"YouTube",    path:"M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" },
   ];
 
   return (
     <footer style={{
-      position: "relative",
-      overflow: "hidden",
-      background: "linear-gradient(180deg, #0c1225 0%, #070b18 50%, #040710 100%)",
+      position: "relative", overflow: "hidden",
+      background: "linear-gradient(180deg, #182145 0%, #0f1a35 50%, #0a1229 100%)",
+      borderTop: "none",
     }}>
-      {/* Grid texture */}
-      <div className="footer-grid-texture" style={{
-        position: "absolute", inset: 0,
-        opacity: 0.035,
-        backgroundImage: "linear-gradient(rgba(200,210,240,1) 1px, transparent 1px), linear-gradient(90deg, rgba(200,210,240,1) 1px, transparent 1px)",
-        backgroundSize: "60px 60px",
-        WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 70%)",
-        maskImage: "radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 70%)",
-        pointerEvents: "none",
-      }} />
-      {/* Top border */}
-      <div style={{
-        height: 1,
-        background: "linear-gradient(90deg, transparent 5%, rgba(197,48,48,0.3) 25%, rgba(200,170,100,0.25) 50%, rgba(70,110,180,0.25) 75%, transparent 95%)",
-      }} />
-      {/* Ambient glows */}
-      <div style={{ position:"absolute", top:-20, left:"50%", transform:"translateX(-50%)", width:800, height:300, background:"radial-gradient(ellipse at center, rgba(200,170,100,0.05) 0%, transparent 60%)", pointerEvents:"none" }} />
-      <div style={{ position:"absolute", bottom:-50, left:-50, width:400, height:300, background:"radial-gradient(ellipse at center, rgba(197,48,48,0.04) 0%, transparent 65%)", pointerEvents:"none" }} />
-      <div style={{ position:"absolute", bottom:-50, right:-50, width:400, height:300, background:"radial-gradient(ellipse at center, rgba(70,110,180,0.04) 0%, transparent 65%)", pointerEvents:"none" }} />
 
-      {/* Main grid */}
+      {/* Main two-column layout */}
       <div style={{
-        maxWidth: 1440, margin: "0 auto", padding: "64px 7vw 0",
-        display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr", gap: 88, alignItems: "start",
+        maxWidth: 1440, margin: "0 auto", padding: "64px 48px 0", width: "100%",
+        display: "flex", alignItems: "flex-start",
         position: "relative", zIndex: 1,
+        gap: "4rem",
       }}>
 
-        {/* ── Col 1: Brand ── */}
-        <div>
-          {/* Logo row */}
-          <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom:18 }}>
-            <img src="/af-shield.png" alt="AF" style={{ width:44, filter:"drop-shadow(0 0 8px rgba(197,48,48,0.15))" }} />
-            <div>
-              <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:20, letterSpacing:3, color:"#f0ece2" }}>American Fortress</div>
-              <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:9, letterSpacing:2, textTransform:"uppercase", color:"rgba(200,170,100,0.4)", marginTop:2 }}>The Universal Privacy Layer</div>
-            </div>
+        {/* ── Left column ── */}
+        <div style={{ maxWidth: 500 }}>
+
+          {/* Logo + name */}
+          <div style={{ display:"flex", alignItems:"center", marginBottom:20 }}>
+            <AFLogo height={36} />
           </div>
+
           {/* Description */}
-          <p style={{ fontFamily:"'DM Sans',sans-serif", fontSize:13, lineHeight:1.7, color:"rgba(160,165,185,0.35)", maxWidth:300, margin:"0 0 18px" }}>
+          <p style={{ fontFamily:"'Space Grotesk',sans-serif", fontSize:14, lineHeight:1.65, color:"rgba(240,224,178,0.6)", margin:"0 0 1.5rem" }}>
             Patented Send-to-Name™ privacy technology. Integrates into any custodial or non-custodial wallet via SDK.
           </p>
-          {/* Pills */}
-          <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginBottom:20 }}>
-            {["22 Patents","Multi-Chain","Compliance-Ready"].map(p => (
-              <span key={p} style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:8, letterSpacing:"1.5px", textTransform:"uppercase", color:"rgba(160,165,185,0.3)", border:"1px solid rgba(100,110,150,0.08)", borderRadius:10, padding:"3px 10px" }}>{p}</span>
+
+          {/* Credential pills */}
+          <div style={{ display:"flex", flexWrap:"wrap", gap:10, marginBottom:"1.5rem" }}>
+            {["22 PATENTS","MULTI-CHAIN","COMPLIANCE-READY"].map(p => (
+              <span key={p} style={{
+                fontFamily:"'JetBrains Mono',monospace", fontSize:10, letterSpacing:"1.5px",
+                textTransform:"uppercase", color:"rgba(240,224,178,0.5)",
+                border:"1px solid rgba(240,224,178,0.15)", borderRadius:4,
+                padding:"6px 14px",
+              }}>{p}</span>
             ))}
           </div>
+
           {/* Social icons */}
-          <div style={{ display:"flex", gap:10 }}>
+          <div style={{ display:"flex", gap:20 }}>
             {socials.map((s, i) => (
               <a key={s.key} href={s.href} target="_blank" rel="noopener noreferrer"
                 aria-label={s.label}
                 onMouseEnter={() => setHovSocial(i)}
                 onMouseLeave={() => setHovSocial(null)}
-                style={{
-                  width:36, height:36, borderRadius:8, display:"flex", alignItems:"center", justifyContent:"center",
-                  background: hovSocial === i ? "rgba(200,170,100,0.08)" : "rgba(100,110,150,0.05)",
-                  border: hovSocial === i ? "1px solid rgba(200,170,100,0.2)" : "1px solid rgba(100,110,150,0.08)",
-                  boxShadow: hovSocial === i ? "0 0 12px rgba(200,170,100,0.06)" : "none",
+                style={{ display:"flex", alignItems:"center", justifyContent:"center", textDecoration:"none",
                   transform: hovSocial === i ? "translateY(-2px)" : "none",
-                  transition: "all 0.25s ease",
-                  textDecoration: "none",
+                  transition: "transform 0.2s ease, opacity 0.2s ease",
+                  opacity: hovSocial === i ? 1 : 0.75,
                 }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill={hovSocial === i ? "#daa545" : "rgba(160,165,185,0.4)"} style={{ transition:"fill 0.25s ease" }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#F0E0B2">
                   <path d={s.path} />
                 </svg>
               </a>
@@ -1805,92 +1757,79 @@ function SiteFooter() {
           </div>
         </div>
 
-        {/* ── Col 2: Navigation ── */}
-        <div>
-          <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:9, fontWeight:500, letterSpacing:2, textTransform:"uppercase", color:"rgba(200,170,100,0.4)", marginBottom:18 }}>Sections</div>
-          <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
-            {navLinks.map((n, i) => (
-              <a key={n.href} href={n.href}
-                onMouseEnter={() => setHovNav(i)}
-                onMouseLeave={() => setHovNav(null)}
-                style={{
-                  fontFamily:"'DM Sans',sans-serif", fontSize:13,
-                  color: hovNav === i ? "rgba(200,170,100,0.8)" : "rgba(160,165,185,0.45)",
-                  textDecoration: "none", transition:"color 0.2s ease",
-                }}>
-                {n.label}
-              </a>
-            ))}
-          </div>
-        </div>
+        {/* ── Right column ── */}
+        <div style={{ textAlign:"right", paddingTop:6, flexShrink:0, marginLeft:"auto" }}>
 
-        {/* ── Col 3: Contact ── */}
-        <div>
-          <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:9, fontWeight:500, letterSpacing:2, textTransform:"uppercase", color:"rgba(200,170,100,0.4)", marginBottom:18 }}>Contact</div>
-          <div style={{ display:"flex", flexDirection:"column", gap:14, marginBottom:20 }}>
+          {/* Contact lines */}
+          <div style={{ display:"flex", flexDirection:"column", gap:10, marginBottom:"1.5rem" }}>
             {[
               {
                 key:"email", href:"mailto:jakub@americanfortress.io", label:"jakub@americanfortress.io",
-                icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>
+                icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(240,224,178,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>
               },
               {
-                key:"phone", href:"https://wa.me/971585133461", label:"+971 585 133 461", target:"_blank",
-                icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.9a16 16 0 0 0 6 6l.9-.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                key:"phone", href:"https://wa.me/971585133461", label:"+971 585 133 461 (WhatsApp)", target:"_blank",
+                icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(240,224,178,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.9a16 16 0 0 0 6 6l.9-.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
               },
               {
                 key:"web", href:"https://americanfortress.io", label:"americanfortress.io", target:"_blank",
-                icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(240,224,178,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
               },
             ].map((c, i) => (
               <a key={c.key} href={c.href} target={c.target} rel="noopener noreferrer"
                 onMouseEnter={() => setHovContact(i)}
                 onMouseLeave={() => setHovContact(null)}
                 style={{
-                  display:"flex", alignItems:"center", gap:8,
-                  fontFamily:"'DM Sans',sans-serif", fontSize:13,
-                  color: hovContact === i ? "rgba(200,170,100,0.8)" : "rgba(160,165,185,0.45)",
+                  display:"flex", alignItems:"center", justifyContent:"flex-end", gap:8,
+                  fontFamily:"'Space Grotesk',sans-serif", fontSize:14,
+                  color: hovContact === i ? "rgba(240,224,178,1)" : "rgba(240,224,178,0.7)",
                   textDecoration: "none", transition:"color 0.2s ease",
                 }}>
-                <span style={{ flexShrink:0, opacity: hovContact === i ? 0.9 : 0.5, transition:"opacity 0.2s ease" }}>{c.icon}</span>
+                <span style={{ flexShrink:0 }}>{c.icon}</span>
                 {c.label}
               </a>
             ))}
           </div>
-          {/* CTA button */}
+
+          {/* Book a Call CTA */}
+          <div style={{ display:"flex", justifyContent:"flex-end" }}>
           <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer"
             onMouseEnter={() => setHovCta(true)}
             onMouseLeave={() => setHovCta(false)}
             style={{
-              display:"inline-flex", alignItems:"center", gap:7,
-              fontFamily:"'DM Sans',sans-serif", fontSize:11, fontWeight:600, letterSpacing:"1px",
-              textTransform:"uppercase", textDecoration:"none",
-              padding:"10px 22px", borderRadius:8, border:"none", cursor:"pointer",
-              background: hovCta
-                ? "linear-gradient(135deg,#d64545 0%,#b83232 100%)"
-                : "linear-gradient(135deg,#c53030 0%,#9b2424 100%)",
-              boxShadow: hovCta ? "0 4px 16px rgba(197,48,48,0.3)" : "0 2px 10px rgba(197,48,48,0.15)",
+              display:"inline-flex", alignItems:"center", gap:8,
+              fontFamily:"'Space Grotesk',sans-serif", fontSize:13, fontWeight:500,
+              letterSpacing:"1.5px", textTransform:"uppercase", textDecoration:"none",
+              padding:"10px 24px", borderRadius:4, cursor:"pointer",
+              background: hovCta ? "#E6412A" : "#DD1E21",
+              color:"#FDFAF4",
+              boxShadow: hovCta ? "0 4px 16px rgba(221,30,33,0.4)" : "0 2px 10px rgba(221,30,33,0.2)",
               transform: hovCta ? "translateY(-1px)" : "none",
-              color: "#fff",
-              transition: "all 0.25s ease",
+              transition: "all 0.2s ease",
             }}>
             Book a Call
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M7 17L17 7M7 7h10v10"/>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
             </svg>
           </a>
+          </div>
         </div>
+      </div>
+
+      {/* Divider */}
+      <div style={{ maxWidth:1440, margin:"2.5rem auto 0", padding:"0 48px", width:"100%", position:"relative", zIndex:1 }}>
+        <div style={{ borderTop:"1px solid rgba(240,224,178,0.12)" }} />
       </div>
 
       {/* ── Bottom bar ── */}
       <div style={{
-        maxWidth: 1440, margin: "48px auto 0",
-        padding: "20px 7vw",
-        borderTop: "1px solid rgba(100,110,150,0.06)",
+        maxWidth: 1440, margin: "0 auto", width: "100%",
+        padding: "1.25rem 48px 2rem",
         display: "flex", justifyContent: "space-between", alignItems: "center",
         flexWrap: "wrap", gap: 12,
         position: "relative", zIndex: 1,
       }}>
-        <p style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:10, color:"rgba(160,165,185,0.25)", letterSpacing:"0.5px", margin:0 }}>
+        <p style={{ fontFamily:"'Space Grotesk',sans-serif", fontSize:12, color:"rgba(240,224,178,0.35)", margin:0 }}>
           © 2026 American Fortress. All rights reserved.
         </p>
         <div style={{ display:"flex", alignItems:"center", gap:20 }}>
@@ -1899,39 +1838,32 @@ function SiteFooter() {
               onMouseEnter={() => setHovPolicy(i)}
               onMouseLeave={() => setHovPolicy(null)}
               style={{
-                fontFamily:"'IBM Plex Mono',monospace", fontSize:10,
-                color: hovPolicy === i ? "rgba(200,170,100,0.5)" : "rgba(160,165,185,0.25)",
+                fontFamily:"'Space Grotesk',sans-serif", fontSize:12,
+                color: hovPolicy === i ? "rgba(240,224,178,0.7)" : "rgba(240,224,178,0.4)",
                 textDecoration:"none", transition:"color 0.2s ease",
               }}>
               {label}
             </a>
           ))}
-          {/* Back to top */}
           <button
             onClick={() => window.scrollTo({ top:0, behavior:"smooth" })}
             onMouseEnter={() => setHovTop(true)}
             onMouseLeave={() => setHovTop(false)}
             aria-label="Back to top"
             style={{
-              width:40, height:40, borderRadius:"50%",
+              width:32, height:32, borderRadius:"50%",
               display:"flex", alignItems:"center", justifyContent:"center",
-              background: hovTop
-                ? "linear-gradient(135deg,rgba(200,170,100,0.12),rgba(200,170,100,0.04))"
-                : "rgba(100,110,150,0.06)",
-              border: hovTop ? "1px solid rgba(200,170,100,0.25)" : "1px solid rgba(100,110,150,0.1)",
-              boxShadow: hovTop ? "0 0 15px rgba(200,170,100,0.08)" : "none",
-              transform: hovTop ? "translateY(-3px)" : "none",
-              cursor:"pointer", transition:"all 0.25s ease",
+              background:"transparent",
+              border: hovTop ? "1px solid rgba(240,224,178,0.4)" : "1px solid rgba(240,224,178,0.15)",
+              transform: hovTop ? "translateY(-2px)" : "none",
+              cursor:"pointer", transition:"all 0.2s ease",
             }}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={hovTop ? "#daa545" : "rgba(160,165,185,0.4)"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transition:"stroke 0.25s ease" }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(240,224,178,0.7)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="18,15 12,9 6,15"/>
             </svg>
           </button>
         </div>
       </div>
-
-      {/* bottom breathing room */}
-      <div style={{ height: 32 }} />
     </footer>
   );
 }
@@ -2004,8 +1936,9 @@ function SiteNav() {
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000,
       height: 64, display: "flex", alignItems: "center",
       justifyContent: "space-between", padding: "0 2.5vw",
-      background: "rgba(12,18,37,0.85)",
+      background: "rgba(24,33,69,0.95)",
       backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)",
+      borderBottom: "1px solid rgba(240,224,178,0.08)",
     }}>
       {/* Bottom border glow */}
       <div style={{
@@ -2016,13 +1949,13 @@ function SiteNav() {
       <div style={{
         position: "absolute", bottom: 0, left: 0, zIndex: 2,
         height: 2, width: scrollProgress * 100 + "%",
-        background: "linear-gradient(90deg, #c53030 0%, #daa545 100%)",
+        background: "linear-gradient(90deg, #DD1E21 0%, #E6412A 100%)",
         boxShadow: "0 0 8px rgba(200,170,100,0.3)",
         transition: "width 0.1s linear",
       }} />
 
       {/* Left: Logo */}
-      <div style={{ animation: "logoGlow 4s ease-in-out infinite", flexShrink: 0 }}>
+      <div style={{ animation: "logoGlow 4s ease-in-out infinite", flexShrink: 0, display: "flex", alignItems: "center" }}>
         <AFLogo height={36} />
       </div>
 
@@ -2035,8 +1968,9 @@ function SiteNav() {
         <div style={{
           position: "absolute", top: "50%", transform: "translateY(-50%)",
           height: 30, borderRadius: 8,
-          background: "rgba(200,170,100,0.08)",
-          border: "1px solid rgba(200,170,100,0.12)",
+          background: "transparent",
+          borderBottom: "2px solid #DD1E21",
+          borderRadius: 0, height: 2, top: "auto", bottom: 0,
           pointerEvents: "none", zIndex: 1,
           transition: "left 0.35s cubic-bezier(0.4,0,0.2,1), width 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease",
           ...pillStyle,
@@ -2053,17 +1987,17 @@ function SiteNav() {
                 onMouseEnter={() => setHovNav(i)}
                 onMouseLeave={() => setHovNav(null)}
                 style={{
-                  fontFamily: "'IBM Plex Mono', monospace", fontSize: 9, fontWeight: 500,
+                  fontFamily: "'Space Grotesk', monospace", fontSize: 9, fontWeight: 500,
                   letterSpacing: "2px", textTransform: "uppercase",
                   padding: "6px 12px", whiteSpace: "nowrap",
                   position: "relative", zIndex: 2, textDecoration: "none",
-                  color: isActive ? "rgba(200,170,100,0.9)" : hovNav === i ? "rgba(200,170,100,0.7)" : "rgba(160,165,185,0.45)",
+                  color: isActive ? "#F0E0B2" : hovNav === i ? "#F0E0B2" : "rgba(240,224,178,0.55)",
                   transition: "color 0.25s ease", cursor: "pointer",
                 }}>
                 {link.label}
               </a>
               {i < NAV_LINKS.length - 1 && (
-                <div style={{ width: 3, height: 3, borderRadius: "50%", background: "rgba(200,170,100,0.2)", flexShrink: 0 }} />
+                <div style={{ width: 3, height: 3, borderRadius: "50%", background: "rgba(240,224,178,0.2)", flexShrink: 0 }} />
               )}
             </React.Fragment>
           );
@@ -2075,12 +2009,12 @@ function SiteNav() {
         onMouseEnter={() => setHovBtn(true)}
         onMouseLeave={() => setHovBtn(false)}
         style={{
-          fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600,
+          fontFamily: "'Space Grotesk', sans-serif", fontSize: 11, fontWeight: 600,
           letterSpacing: "1px", textTransform: "uppercase", color: "#fff",
-          padding: "8px 22px", borderRadius: 8, textDecoration: "none",
+          padding: "8px 22px", borderRadius: 4, textDecoration: "none",
           display: "flex", alignItems: "center", gap: 6, flexShrink: 0,
-          background: hovBtn ? "linear-gradient(135deg,#d64545 0%,#b83232 100%)" : "linear-gradient(135deg,#c53030 0%,#9b2424 100%)",
-          boxShadow: hovBtn ? "0 4px 16px rgba(197,48,48,0.3)" : "0 2px 8px rgba(197,48,48,0.15)",
+          background: hovBtn ? "#c41b1e" : "#DD1E21",
+          boxShadow: hovBtn ? "0 4px 16px rgba(221,30,33,0.3)" : "0 2px 8px rgba(221,30,33,0.15)",
           transform: hovBtn ? "translateY(-1px)" : "none",
           transition: "all 0.2s ease",
         }}>
@@ -2148,29 +2082,99 @@ export default function AF() {
   const card = G_CARD;
   const cardTop = G_CARDTOP;
   const btnR = G_BTNR;
-  const btnG = { ...G_BTNR, background: "transparent", color: "#E8D5B5", border: "1px solid rgba(201,168,76,0.3)" };
+  const btnG = { ...G_BTNR, background: "transparent", color: "#F0E0B2", border: "1px solid rgba(201,168,76,0.3)" };
   const feat = (v, d) => ({ ...rv(v, d), display: "flex", alignItems: "flex-start", gap: 12 });
   const fchk = { flexShrink: 0, width: 22, height: 22, borderRadius: 4, background: "rgba(201,168,76,0.06)", border: "1px solid rgba(201,168,76,0.25)", display: "flex", alignItems: "center", justifyContent: "center", color: "#C9A84C", fontSize: "0.6rem", marginTop: 2 };
   const mut = { fontSize: "0.88rem", color: "#7A8599", lineHeight: 1.55 };
-  const bpt = (color = "#C41E2A") => ({ fontSize: "0.88rem", color: "#7A8599", lineHeight: 1.6, paddingLeft: 18, position: "relative", marginBottom: 12 });
-  const bpdot = (color = "#C41E2A") => ({ position: "absolute", left: 0, top: 8, width: 6, height: 6, borderRadius: "50%", background: color });
+  const bpt = (color = "#DD1E21") => ({ fontSize: "0.88rem", lineHeight: 1.6, marginBottom: 12, display: "flex", alignItems: "flex-start", gap: "0.75rem", textAlign: "left" });
+  const bpdot = (color = "#DD1E21") => ({ width: 6, height: 6, borderRadius: "50%", background: color, flexShrink: 0, marginTop: 7 });
 
   return (
     <>
       <CustomCursor />
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        @font-face {
+          font-family: 'Monument Extended';
+          src: url('/fonts/MonumentExtended-Regular.otf') format('opentype');
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: 'Monument Extended';
+          src: url('/fonts/MonumentExtended-Ultrabold.otf') format('opentype');
+          font-weight: 800;
+          font-style: normal;
+          font-display: swap;
+        }
+        
+        :root {
+          --red: #DD1E21; --red-dark: #b91c1c; --red-glow: rgba(221,30,33,0.4);
+          --navy: #103F6E; --indigo: #182145; --cream: #F0E0B2; --beige: #F0E0B2;
+          --blue-light: #85BAFF; --gold: #daa545; --green: #22c55e;
+          --bg-dark: #182145; --bg-light: #F0E0B2; --bg-red: #DD1E21;
+          --font-heading: 'Monument Extended', sans-serif;
+          --font-body: 'Space Grotesk', sans-serif;
+          --text-on-dark: #F0E0B2; --text-on-dark-muted: rgba(240,224,178,0.55);
+          --text-on-light: #182145; --text-on-light-muted: #555555;
+        }
+        .card-on-dark { background: #2a4a7a; border: 2px solid rgba(100,140,200,0.35); border-radius: 20px; padding: 32px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+        .card-on-dark:hover { transform: translateY(-4px); border-color: rgba(133,186,255,0.35); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+        .card-on-dark h3 { color: #F0E0B2; } .card-on-dark p { color: rgba(240,224,178,0.7); }
+        .card-on-light { background: #2a4a7a; border: 2px solid rgba(100,140,200,0.25); border-radius: 20px; padding: 32px; box-shadow: 0 4px 20px rgba(24,33,69,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-on-light:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(24,33,69,0.25); }
+        .card-on-light h3 { color: #F0E0B2; } .card-on-light p { color: rgba(240,224,178,0.7); }
+        .card-on-red { background: #2a4a7a; border: 2px solid rgba(100,140,200,0.3); border-radius: 20px; padding: 32px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+        .card-on-red:hover { transform: translateY(-4px); border-color: rgba(240,224,178,0.2); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+        /* Legacy aliases kept for safety */ .card-glass { background: #2a4a7a; border: 2px solid rgba(100,140,200,0.35); border-radius: 20px; padding: 32px; }
+        .card-dark { background: #2a4a7a; border: 2px solid rgba(100,140,200,0.25); border-radius: 20px; padding: 32px; box-shadow: 0 4px 20px rgba(24,33,69,0.15); }
+        .card-inverted { background: #2a4a7a; border: 2px solid rgba(100,140,200,0.3); border-radius: 20px; padding: 32px; }
+        .icon-badge { width:72px; height:72px; min-width:72px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:transform 0.25s ease; flex-shrink:0; }
+        .icon-badge svg { width:32px; height:32px; stroke:white; fill:none; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+        .card-on-dark:hover .icon-badge,.card-on-light:hover .icon-badge,.card-on-red:hover .icon-badge { transform: scale(1.08); }
+        @media(max-width:768px){ .icon-badge { width:60px; height:60px; min-width:60px; } .icon-badge svg { width:28px; height:28px; } }
+        .icon-badge--red  { background: #DD1E21; box-shadow: 0 4px 12px rgba(221,30,33,0.3); }
+        .icon-badge--navy { background: #103F6E; box-shadow: 0 4px 12px rgba(16,63,110,0.3); }
+        .icon-badge--gold { background: #daa545; box-shadow: 0 4px 12px rgba(218,165,69,0.3); }
+        .btn-primary { display:inline-flex; align-items:center; gap:8px; background:#DD1E21; color:#FDFAF4; font-family:var(--font-heading); font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; padding:16px 32px; border:none; border-radius:4px; cursor:pointer; transition:all 0.25s ease; text-decoration:none; }
+        .btn-primary:hover { background:#c41b1e; transform:translateY(-2px); box-shadow:0 4px 16px rgba(221,30,33,0.3); }
+        .btn-blue { display:inline-flex; align-items:center; gap:8px; background:#4a7ab5; color:#FDFAF4; font-family:var(--font-heading); font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; padding:16px 32px; border:none; border-radius:4px; cursor:pointer; transition:all 0.25s ease; text-decoration:none; }
+        .btn-blue:hover { background:#3d6a9e; transform:translateY(-2px); box-shadow:0 4px 16px rgba(74,122,181,0.3); }
+        .btn-outline { display:inline-flex; align-items:center; gap:8px; background:transparent; color:#F0E0B2; font-family:var(--font-heading); font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; padding:14px 32px; border:2px solid rgba(240,224,178,0.3); border-radius:4px; cursor:pointer; transition:all 0.25s ease; text-decoration:none; }
+        .btn-outline:hover { border-color:rgba(240,224,178,0.6); background:rgba(240,224,178,0.05); }
+        .btn-inverted { display:inline-flex; align-items:center; gap:8px; background:#F0E0B2; color:#DD1E21; font-family:var(--font-heading); font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; padding:16px 32px; border:none; border-radius:4px; cursor:pointer; transition:all 0.25s ease; text-decoration:none; }
+        .btn-inverted:hover { background:#e8d4a0; transform:translateY(-2px); box-shadow:0 4px 16px rgba(0,0,0,0.2); }
+        .section-brush { display:block; width:100%; line-height:0; overflow:hidden; font-size:0; }
+        .section-brush img { display:block; width:100%; height:70px; max-width:100%; object-fit:fill; }
+        @media(max-width:768px){ .section-brush img { height:44px; } }
+        .section-badge { display:inline-flex; align-items:center; gap:8px; padding:6px 16px; border:1px solid rgba(180,170,140,0.18); border-radius:999px; font-family:var(--font-heading); font-size:10px; text-transform:uppercase; letter-spacing:2.5px; margin-bottom:20px; }
+        .section-badge--dark  { border-color:rgba(240,224,178,0.12); color:rgba(240,224,178,0.5); }
+        .section-badge--light { border-color:rgba(24,33,69,0.12);    color:rgba(24,33,69,0.5); }
+        .section-dot { width:8px; height:8px; border-radius:50%; background:#DD1E21; box-shadow:0 0 10px rgba(221,30,33,0.5); margin-bottom:16px; }
+        .section-dot--light { box-shadow:0 0 8px rgba(221,30,33,0.3); }
+        .dot-pattern { position:absolute; width:400px; height:534px; background:url('/images/dot-pattern.svg') no-repeat center; background-size:contain; pointer-events:none; z-index:1; opacity:0.6; }
+        @media(max-width:768px){ .dot-pattern { width:250px; height:334px; } }
+        /* TODO: convert .otf font files to .woff2 for better performance */
+        h1, h2 { font-family: var(--font-heading); font-weight: 800; text-transform: uppercase; }
+        h3 { font-family: var(--font-heading); font-weight: 400; }
+        button, .btn, [class*="btn"] { font-family: var(--font-heading); font-weight: 400; font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px; border-radius: 4px; }
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
         *{margin:0;padding:0;box-sizing:border-box}
-        html{background:#0A1628;scroll-behavior:smooth}
-        body{font-family:'Outfit',sans-serif;color:#F5F0EB;background:#0A1628;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+        html{background:#182145;scroll-behavior:smooth}
+        body{font-family:'Space Grotesk',sans-serif;color:#F5F0EB;background:#182145;overflow-x:hidden;-webkit-font-smoothing:antialiased}
         @keyframes twinkle{0%,100%{opacity:0.1}50%{opacity:0.55}}
         @keyframes pulseG{0%,100%{opacity:0.4;transform:scale(1)}50%{opacity:1;transform:scale(1.15)}}
+        /* ── Financial Opportunity Numbers ───────────────── */
+        .fin-slot-wrap { font-family: var(--font-heading) !important; font-weight: 800 !important; font-size: clamp(2.5rem, 5vw, 4rem) !important; line-height: 1.0 !important; white-space: nowrap !important; }
+        .fin-slot-wrap span { font-size: inherit !important; font-weight: inherit !important; font-family: inherit !important; line-height: inherit !important; }
+        .per-month { font-size: 0.25em !important; font-weight: 400 !important; opacity: 0.4 !important; margin-left: 4px !important; vertical-align: baseline !important; }
+
         /* ── Mobile (≤768px) ─────────────────────────────── */
         @media (max-width: 768px) {
 
           /* 0 ── HERO TOP PADDING ──────────────────────────── */
-          .hero-section { padding-top: 56px !important; }
-          .hero-content { padding-top: 44px !important; }
+          .hero-section { padding-top: 0 !important; }
+          .hero-content { padding-top: 96px !important; padding-bottom: 0 !important; }
 
           /* 1 ── NAV ────────────────────────────────────────── */
           nav { height: 56px !important; padding: 0 16px !important; }
@@ -2200,9 +2204,9 @@ export default function AF() {
           .liberty-bg { opacity: 0.05 !important; }
 
           /* 5 ── FINANCIAL OPPORTUNITY ───────────────────────── */
-          .fin-title { white-space: normal !important; font-size: clamp(28px, 8vw, 60px) !important; word-break: break-word !important; }
-          .fin-num-lg { font-size: clamp(36px, 12vw, 110px) !important; }
-          .fin-num-xl { font-size: clamp(40px, 14vw, 130px) !important; }
+          .fin-title { white-space: normal !important; font-size: clamp(1.4rem,6vw,2rem) !important; word-break: break-word !important; }
+          .fin-num-lg { font-size: inherit !important; white-space: normal; display: inline; }
+          .fin-num-xl { font-size: inherit !important; white-space: normal; display: inline; }
           .fin-inner { padding: 0 16px !important; box-sizing: border-box !important; overflow: hidden !important; }
           .fin-cta { display: flex !important; justify-content: center !important; }
           .fin-cta a { width: 100% !important; max-width: 300px !important; text-align: center !important; justify-content: center !important; }
@@ -2214,7 +2218,7 @@ export default function AF() {
           .marquee-logo { height: 20px !important; }
 
           /* 7 ── CONFIDENTIALITY ─────────────────────────────── */
-          .ghost-word { display: none !important; }
+          .ghost-word { display: none !important; } /* legacy — ghost word now uses inline style, not this class */
 
           /* 8 ── TECHNOLOGY MOAT ─────────────────────────────── */
           .moat-rings, .moat-orbits, .moat-powerlines { display: none !important; }
@@ -2226,7 +2230,7 @@ export default function AF() {
 
           /* ── HERO ──────────────────────────────────────────── */
           .mhero { font-size: clamp(36px, 10vw, 72px) !important; white-space: normal !important; }
-          .hero-content { padding: 0 20px !important; }
+          .hero-content { padding-left: 20px !important; padding-right: 20px !important; }
           .hero-content p { font-size: 14px !important; max-width: 90% !important; }
           .hero-ctas { flex-direction: column !important; width: 100% !important; max-width: 320px !important; margin: 0 auto !important; gap: 12px !important; }
           .hero-ctas a { width: 100% !important; text-align: center !important; justify-content: center !important; box-sizing: border-box !important; }
@@ -2252,11 +2256,9 @@ export default function AF() {
 
           /* ── FOOTER ────────────────────────────────────────── */
           .footer-grid-texture { display: none !important; }
-          footer [style*="gap: 88"], footer [style*="gridTemplateColumns"] { grid-template-columns: 1fr !important; gap: 32px !important; padding: 40px 20px 0 !important; text-align: center !important; }
-          footer [style*="gap: 10"] { justify-content: center !important; }
-          footer [style*="gap: 8"]  { justify-content: center !important; }
-          footer [style*="gap: 14"] { flex-direction: column !important; align-items: center !important; }
-          footer [style*="gap: 12"], footer [style*="gap: 20"] { flex-direction: column !important; align-items: center !important; text-align: center !important; justify-content: center !important; gap: 12px !important; padding: 16px 20px !important; }
+          footer > div:first-of-type { flex-direction: column !important; gap: 32px !important; padding: 40px 20px 0 !important; }
+          footer > div:first-of-type > div:last-child { text-align: left !important; }
+          footer > div:first-of-type > div:last-child a { justify-content: flex-start !important; }
 
           /* ── TOUCH / A11Y ──────────────────────────────────── */
           nav a, nav button, .hero-ctas a, .cta-book-btn, footer a { min-height: 44px !important; }
@@ -2272,15 +2274,16 @@ export default function AF() {
         @keyframes heroFadeIn{0%{opacity:0}100%{opacity:1}}
         @keyframes heroBtnUp{0%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:translateY(0)}}
         @keyframes libertyReveal{0%{opacity:0;transform:translateY(40px) scale(0.96)}100%{opacity:1;transform:translateY(0) scale(1)}}
-        @keyframes heroMarkPulse{0%,100%{filter:drop-shadow(0 0 20px rgba(196,30,42,0.2))}50%{filter:drop-shadow(0 0 40px rgba(196,30,42,0.4))}}
+        @keyframes heroMarkPulse{0%,100%{filter:drop-shadow(0 0 20px rgba(221,30,33,0.2))}50%{filter:drop-shadow(0 0 40px rgba(221,30,33,0.4))}}
         @keyframes badgeSlide{0%{opacity:0;transform:translateY(20px) scale(0.9)}100%{opacity:1;transform:translateY(0) scale(1)}}
         @keyframes heroGlowPulse{0%,100%{opacity:0.4}50%{opacity:0.7}}
         @keyframes glitchT{0%{transform:translate(0)}15%{transform:translate(-4px,3px)}30%{transform:translate(4px,-2px)}45%{transform:translate(-3px,-1px)}60%{transform:translate(2px,2px)}100%{transform:translate(0);opacity:.5}}
-        @keyframes glitchB{0%{border-color:rgba(201,168,76,0.1);box-shadow:none}30%{border-color:#C41E2A;box-shadow:0 0 40px rgba(196,30,42,0.25),inset 0 0 20px rgba(196,30,42,0.05)}100%{border-color:rgba(196,30,42,0.2);box-shadow:0 0 20px rgba(196,30,42,0.08)}}
-        @keyframes glitchLoop{0%,100%{transform:translate(0);opacity:1;color:#C41E2A;text-shadow:0 0 20px rgba(196,30,42,0.25)}10%{transform:translate(-3px,2px);clip-path:inset(10% 0 80% 0)}20%{transform:translate(3px,-1px);clip-path:inset(60% 0 20% 0);color:#fff;text-shadow:-2px 0 rgba(196,30,42,0.5),2px 0 rgba(42,30,196,0.4)}30%{transform:translate(0);clip-path:none}50%{transform:translate(-2px,1px);opacity:0.85}70%{transform:translate(2px,-1px);color:#C41E2A}85%{transform:translate(-1px,0);opacity:1}}
-        @keyframes glitchBLoop{0%,100%{border-color:rgba(196,30,42,0.2);box-shadow:0 0 10px rgba(196,30,42,0.06)}40%{border-color:#C41E2A;box-shadow:0 0 30px rgba(196,30,42,0.2),inset 0 0 10px rgba(196,30,42,0.04)}70%{border-color:rgba(196,30,42,0.35);box-shadow:0 0 15px rgba(196,30,42,0.1)}}
+        @keyframes glitchB{0%{border-color:rgba(201,168,76,0.1);box-shadow:none}30%{border-color:#DD1E21;box-shadow:0 0 40px rgba(221,30,33,0.25),inset 0 0 20px rgba(221,30,33,0.05)}100%{border-color:rgba(221,30,33,0.2);box-shadow:0 0 20px rgba(221,30,33,0.08)}}
+        @keyframes glitchLoop{0%,100%{transform:translate(0);opacity:1;color:#DD1E21;text-shadow:0 0 20px rgba(221,30,33,0.25)}10%{transform:translate(-3px,2px);clip-path:inset(10% 0 80% 0)}20%{transform:translate(3px,-1px);clip-path:inset(60% 0 20% 0);color:#fff;text-shadow:-2px 0 rgba(221,30,33,0.5),2px 0 rgba(42,30,196,0.4)}30%{transform:translate(0);clip-path:none}50%{transform:translate(-2px,1px);opacity:0.85}70%{transform:translate(2px,-1px);color:#DD1E21}85%{transform:translate(-1px,0);opacity:1}}
+        @keyframes glitchBLoop{0%,100%{border-color:rgba(221,30,33,0.2);box-shadow:0 0 10px rgba(221,30,33,0.06)}40%{border-color:#DD1E21;box-shadow:0 0 30px rgba(221,30,33,0.2),inset 0 0 10px rgba(221,30,33,0.04)}70%{border-color:rgba(221,30,33,0.35);box-shadow:0 0 15px rgba(221,30,33,0.1)}}
         @keyframes trailFade{0%{opacity:0.7;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(0)}}
-        @keyframes partnerGlow{0%,100%{text-shadow:none;opacity:0.7}50%{text-shadow:0 0 10px rgba(201,168,76,0.8),0 0 22px rgba(201,168,76,0.4),0 0 40px rgba(201,168,76,0.2);opacity:1}}
+        @keyframes partnerGlow{0%,100%{text-shadow:0 0 8px rgba(240,224,178,0)}50%{text-shadow:0 0 20px rgba(240,224,178,0.5),0 0 40px rgba(240,224,178,0.2)}}
+        @keyframes partnerWarmGlow{0%,100%{text-shadow:0 0 8px rgba(240,224,178,0)}50%{text-shadow:0 0 20px rgba(240,224,178,0.5),0 0 40px rgba(240,224,178,0.2)}}
         .noise::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px}
         .ctab{width:100%;border-collapse:separate;border-spacing:0;margin:32px 0}
         .ctab th,.ctab td{padding:14px 16px;text-align:center;font-size:.82rem;border-bottom:1px solid rgba(201,168,76,0.06)}
@@ -2295,7 +2298,7 @@ export default function AF() {
         <SiteNav />
 
         {/* HERO */}
-        <section ref={hR} className="hero-section" style={{ ...full, minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+        <section ref={hR} className="hero-section" style={{ ...full, minHeight: "100vh", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column" }}>
           {/* Full-screen cover photo background with parallax */}
           <div style={{
             position: "absolute", inset: 0, zIndex: 0,
@@ -2312,19 +2315,23 @@ export default function AF() {
           {/* Top fade for nav blending */}
           <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 200, zIndex: 1, pointerEvents: "none", background: "linear-gradient(180deg, rgba(4,11,24,0.9) 0%, transparent 100%)" }} />
           {/* Bottom fade for section transition */}
-          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 180, zIndex: 1, pointerEvents: "none", background: "linear-gradient(0deg, #0A1628 0%, transparent 100%)" }} />
+          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 180, zIndex: 1, pointerEvents: "none", background: "linear-gradient(0deg, #182145 0%, transparent 100%)" }} />
           {/* Noise texture */}
           <Stars count={40} color="rgba(201,168,76,0.15)" />
 
-          {/* Centered hero content — floating above the cover art */}
-          <div className="hero-content" style={{ position: "relative", zIndex: 2, textAlign: "center", maxWidth: "min(95vw, 1100px)", padding: "0 24px", marginTop: -40 }}>
+          {/* Hero main content — top-anchored with padding, not flex-centred */}
+          <div className="hero-content" style={{
+            position: "relative", zIndex: 2, textAlign: "center",
+            width: "100%", maxWidth: "min(95vw, 1100px)", margin: "0 auto",
+            padding: "160px 24px 0",
+          }}>
 
             {/* Line 1: PARTNER WITH */}
-            <div style={{ overflow: "hidden", marginBottom: 4 }}>
+            <div style={{ overflow: "hidden", marginBottom: "1rem" }}>
               <div style={{
-                fontFamily: "'Bebas Neue',sans-serif", fontSize: "clamp(1rem, 2vw, 1.5rem)",
-                letterSpacing: "0.35em", color: "rgba(201,168,76,0.6)", textTransform: "uppercase",
-                animation: hV ? "heroLineUp 1s cubic-bezier(0.16,1,0.3,1) 0.3s both" : "none",
+                fontFamily: "'Monument Extended',sans-serif", fontSize: "clamp(0.8rem, 1.5vw, 1.1rem)",
+                letterSpacing: "0.45em", color: "rgba(201,168,76,0.6)", textTransform: "uppercase",
+                animation: hV ? "heroLineUp 1s cubic-bezier(0.16,1,0.3,1) 0.3s both, partnerGlow 3s ease-in-out 1.5s infinite" : "none",
                 opacity: 0,
               }}>
                 Partner With
@@ -2332,12 +2339,12 @@ export default function AF() {
             </div>
 
             {/* Line 2: AMERICAN FORTRESS — massive, dominant */}
-            <div style={{ overflow: "hidden", marginBottom: 0 }}>
+            <div style={{ overflow: "visible", marginBottom: "2rem" }}>
               <h1 className="mhero" style={{
-                fontFamily: "'Bebas Neue',sans-serif", fontSize: "clamp(3.8rem, 11vw, 9rem)",
-                letterSpacing: "0.04em", lineHeight: 0.92, textTransform: "uppercase", color: "#E8D5B5",
+                fontFamily: "'Monument Extended',sans-serif",
+                letterSpacing: "0.04em", lineHeight: 0.92, textTransform: "uppercase", color: "#F0E0B2",
                 textShadow: "0 4px 60px rgba(0,0,0,0.5), 0 2px 20px rgba(0,0,0,0.3)",
-                whiteSpace: "nowrap", fontSize: "clamp(2rem, 8.5vw, 9rem)",
+                fontSize: "clamp(2rem, 4vw, 3.5rem)", wordBreak: "break-word", overflowWrap: "break-word",
                 animation: hV ? "heroLineUp 1.1s cubic-bezier(0.16,1,0.3,1) 0.5s both" : "none",
                 opacity: 0,
               }}>
@@ -2347,15 +2354,15 @@ export default function AF() {
 
             {/* Gold accent line — centered */}
             <div style={{
-              width: 60, height: 2, margin: "20px auto 24px",
+              width: 60, height: 2, margin: "0 auto 24px",
               background: "linear-gradient(90deg, transparent, #C9A84C, transparent)",
               animation: hV ? "heroFadeIn 0.8s ease 0.9s both" : "none", opacity: 0,
             }} />
 
             {/* Italic serif subtitle */}
             <p style={{
-              fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(1.15rem, 2.5vw, 1.7rem)",
-              color: "#C9A84C", fontWeight: 600, marginBottom: 24, lineHeight: 1.3, fontStyle: "italic",
+              fontFamily: "'Space Grotesk',sans-serif", fontSize: "clamp(1.15rem, 2.5vw, 1.7rem)",
+              color: "#C9A84C", fontWeight: 500, marginBottom: "1.5rem", lineHeight: 1.3, fontStyle: "italic",
               textShadow: "0 2px 20px rgba(0,0,0,0.5)",
               animation: hV ? "heroFadeIn 1s cubic-bezier(0.16,1,0.3,1) 1s both" : "none", opacity: 0,
             }}>
@@ -2364,7 +2371,8 @@ export default function AF() {
 
             {/* Body text */}
             <p style={{
-              fontSize: "0.95rem", color: "rgba(122,133,153,0.9)", lineHeight: 1.75, maxWidth: 560, margin: "0 auto 36px",
+              fontSize: "0.95rem", color: "rgba(122,133,153,0.9)", lineHeight: 1.75, maxWidth: 560, margin: "0 auto",
+              marginBottom: "2.5rem",
               textShadow: "0 1px 10px rgba(0,0,0,0.4)",
               animation: hV ? "heroFadeIn 1s cubic-bezier(0.16,1,0.3,1) 1.2s both" : "none", opacity: 0,
             }}>
@@ -2372,14 +2380,14 @@ export default function AF() {
             </p>
 
             {/* CTAs — centered */}
-            <div className="hero-ctas" style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap", marginBottom: 44 }}>
+            <div className="hero-ctas" style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap", marginBottom: 0 }}>
               <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer" style={{
                 ...btnR,
                 animation: hV ? "heroBtnUp 0.8s cubic-bezier(0.16,1,0.3,1) 1.5s both" : "none", opacity: 0,
                 transition: "box-shadow 0.2s ease, transform 0.2s ease",
                 textDecoration: "none",
               }}
-                onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 0 24px rgba(196,30,42,0.7), 0 0 48px rgba(196,30,42,0.3)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 0 24px rgba(221,30,33,0.7), 0 0 48px rgba(221,30,33,0.3)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
                 onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}
               ><span style={{display:"inline-flex",alignItems:"center",gap:8}}>Book a Call <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
               <a href="https://americanfortress.io/partner-wallets" target="_blank" rel="noopener noreferrer" style={{
@@ -2392,36 +2400,39 @@ export default function AF() {
                 onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}
               ><span style={{display:"inline-flex",alignItems:"center",gap:8}}>Download AF Beta <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
             </div>
+          </div>
 
-            {/* Badges — centered */}
-            <div className="hero-badges" style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
-              {["22 Patented Inventions","Multi-Chain from Day 1","SDK Available Q2 2026","Zero Integration Costs"].map((b, i) => (
-                <span key={i} style={{
-                  fontFamily: "'JetBrains Mono',monospace", fontSize: "0.6rem", padding: "7px 16px", borderRadius: 100,
-                  border: "1px solid rgba(201,168,76,0.15)", color: "rgba(122,133,153,0.8)", background: "rgba(4,11,24,0.5)",
-                  backdropFilter: "blur(8px)", cursor: "default",
-                  letterSpacing: "0.06em", display: "flex", alignItems: "center", gap: 8,
-                  transition: "border-color 0.2s ease, color 0.2s ease, background 0.2s ease",
-                  animation: hV ? `badgeSlide 0.7s cubic-bezier(0.16,1,0.3,1) ${1.8 + i * 0.1}s both` : "none", opacity: 0,
-                }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.6)"; e.currentTarget.style.color = "#C9A84C"; e.currentTarget.style.background = "rgba(201,168,76,0.08)"; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.15)"; e.currentTarget.style.color = "rgba(122,133,153,0.8)"; e.currentTarget.style.background = "rgba(4,11,24,0.5)"; }}
-                >
-                  <span style={{ width:5, height:5, borderRadius:"50%", background:"rgba(200,170,100,0.6)", flexShrink:0, display:"inline-block" }} />{b}
-                </span>
-              ))}
-            </div>
+          {/* Badges — anchored to bottom of hero */}
+          <div className="hero-badges" style={{
+            position: "absolute", bottom: "5rem", left: 0, right: 0, zIndex: 2,
+            display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap", padding: "0 24px",
+          }}>
+            {["22 Patented Inventions","Multi-Chain from Day 1","SDK Available Q2 2026","Zero Integration Costs"].map((b, i) => (
+              <span key={i} style={{
+                fontFamily: "'JetBrains Mono',monospace", fontSize: "0.6rem", padding: "7px 16px", borderRadius: 100,
+                border: "1px solid rgba(240,224,178,0.12)", color: "rgba(240,224,178,0.6)", background: "rgba(18,33,69,0.5)",
+                cursor: "default",
+                letterSpacing: "0.06em", display: "flex", alignItems: "center", gap: 8,
+                transition: "border-color 0.2s ease, color 0.2s ease, background 0.2s ease",
+                animation: hV ? `badgeSlide 0.7s cubic-bezier(0.16,1,0.3,1) ${1.8 + i * 0.1}s both` : "none", opacity: 0,
+              }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.6)"; e.currentTarget.style.color = "#C9A84C"; e.currentTarget.style.background = "rgba(201,168,76,0.08)"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.15)"; e.currentTarget.style.color = "rgba(122,133,153,0.8)"; e.currentTarget.style.background = "rgba(4,11,24,0.5)"; }}
+              >
+                <span style={{ width:5, height:5, borderRadius:"50%", background:"#DD1E21", flexShrink:0, display:"inline-block" }} />{b}
+              </span>
+            ))}
           </div>
         </section>
 
-        <Stripe />
+        <Stripe brush="/images/brush-navy.svg" />
 
         {/* PROBLEM */}
-        <section id="exposed" ref={pR} style={{ ...full, background: "linear-gradient(180deg,#0F1D35,#0A1628)" }}>
-          <Stars count={15} color="rgba(196,30,42,0.08)" />
-          <div className="msec" style={sec}>
-            <div style={rv(pV, 0)}><span style={lbl}><span style={dot} /> The Problem</span></div>
-            <h2 style={{ ...rv(pV, 0.12), ...mega("clamp(2.5rem,5.5vw,4.5rem)") }}>Your Users Are <span style={{ color: "#C41E2A" }}>Exposed</span></h2>
+        <section id="exposed" ref={pR} style={{ ...full, background: "#F0E0B2" }}>
+          <Stars count={15} color="rgba(221,30,33,0.08)" />
+          <div className="msec" style={{ ...sec, textAlign: "center" }}>
+            <div style={{ ...rv(pV, 0), textAlign: "center" }}><span style={{ ...lbl, color:"#182145", border:"2px solid rgba(24,33,69,0.3)", background:"transparent" }}><span style={{ ...dot, background:"#DD1E21" }} /> The Problem</span></div>
+            <h2 style={{ ...rv(pV, 0.12), ...mega("clamp(2rem,4.5vw,3.2rem)"), color: "#182145", textAlign: "center" }}>Your Users Are <span style={{ color: "#DD1E21" }}>Exposed</span></h2>
 
             <div style={rv(pV, 0.25)}><WalletScanner /></div>
 
@@ -2429,14 +2440,9 @@ export default function AF() {
               <div
                 style={{
                   flex: "1 1 0", borderRadius: 12, padding: 36, position: "relative", overflow: "hidden",
-                  backdropFilter: "blur(12px)",
-                  background: hovCard === 0
-                    ? "linear-gradient(145deg, rgba(200,170,100,0.06) 0%, rgba(20,32,60,0.9) 40%, rgba(14,22,45,0.95) 100%)"
-                    : "linear-gradient(145deg, rgba(25,38,68,0.8) 0%, rgba(16,26,48,0.9) 50%, rgba(12,20,40,0.95) 100%)",
-                  border: `1px solid ${hovCard === 0 ? "rgba(200,170,100,0.25)" : "rgba(100,120,170,0.15)"}`,
-                  boxShadow: hovCard === 0
-                    ? "0 0 40px rgba(200,170,100,0.08), 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.03)"
-                    : "0 4px 16px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.02)",
+                  background: "#182145",
+                  border: "1px solid rgba(24,33,69,0.1)",
+                  boxShadow: hovCard === 0 ? "0 8px 32px rgba(24,33,69,0.25)" : "0 4px 20px rgba(24,33,69,0.15)",
                   transform: hovCard === 0 ? "translateY(-3px) scale(1.01)" : "translateY(0) scale(1)",
                   transition: "all 0.35s ease",
                 }}
@@ -2450,7 +2456,7 @@ export default function AF() {
                 <div style={{ position: "absolute", top: 0, right: 0, width: 60, height: 60,
                   background: `radial-gradient(circle at top right, ${hovCard === 0 ? "rgba(200,170,100,0.06)" : "rgba(100,120,170,0.03)"}, transparent 70%)`,
                   transition: "background 0.35s ease" }}/>
-                <h3 style={{ fontFamily: "'Bebas Neue'", fontSize: "1.3rem", letterSpacing: "0.08em", marginBottom: 20, display: "flex", alignItems: "center", gap: 12 }}>
+                <h3 style={{ fontFamily: "'Monument Extended'", fontSize: "1.3rem", letterSpacing: "0.08em", marginBottom: 20, display: "flex", alignItems: "center", gap: 12 }}>
                   <div style={{
                     width: 44, height: 44, borderRadius: 10, flexShrink: 0,
                     background: hovCard === 0
@@ -2468,23 +2474,18 @@ export default function AF() {
                       <path d="M22 6V4a2 2 0 00-2-2H4a2 2 0 00-2 2v2" />
                     </svg>
                   </div>
-                  <span style={{ color: hovCard === 0 ? "#f0ece2" : "rgba(210,215,230,0.8)", transition: "color 0.35s ease" }}>FOR WALLETS</span>
+                  <span style={{ color: hovCard === 0 ? "#F0E0B2" : "rgba(210,215,230,0.8)", transition: "color 0.35s ease" }}>FOR WALLETS</span>
                 </h3>
                 {["Address poisoning, dust attacks & phishing from transparent public addresses","Every transaction is traceable — zero financial privacy","Copy-pasting long hex strings prone to costly errors","No recovery path tied to identity"].map((t, i) => (
-                  <p key={i} style={{ ...bpt(), color: hovCard === 0 ? "rgba(180,185,210,0.7)" : "rgba(160,170,195,0.5)", transition: "color 0.35s ease" }}><span style={bpdot()} />{t}</p>
+                  <p key={i} style={{ ...bpt(), color: hovCard === 0 ? "rgba(180,185,210,0.7)" : "rgba(160,170,195,0.5)", transition: "color 0.35s ease" }}><span style={bpdot()} /><span>{t}</span></p>
                 ))}
               </div>
               <div
                 style={{
                   flex: "1 1 0", borderRadius: 12, padding: 36, position: "relative", overflow: "hidden",
-                  backdropFilter: "blur(12px)",
-                  background: hovCard === 1
-                    ? "linear-gradient(145deg, rgba(200,170,100,0.06) 0%, rgba(20,32,60,0.9) 40%, rgba(14,22,45,0.95) 100%)"
-                    : "linear-gradient(145deg, rgba(25,38,68,0.8) 0%, rgba(16,26,48,0.9) 50%, rgba(12,20,40,0.95) 100%)",
-                  border: `1px solid ${hovCard === 1 ? "rgba(200,170,100,0.25)" : "rgba(100,120,170,0.15)"}`,
-                  boxShadow: hovCard === 1
-                    ? "0 0 40px rgba(200,170,100,0.08), 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.03)"
-                    : "0 4px 16px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.02)",
+                  background: "#182145",
+                  border: "1px solid rgba(24,33,69,0.1)",
+                  boxShadow: hovCard === 1 ? "0 8px 32px rgba(24,33,69,0.25)" : "0 4px 20px rgba(24,33,69,0.15)",
                   transform: hovCard === 1 ? "translateY(-3px) scale(1.01)" : "translateY(0) scale(1)",
                   transition: "all 0.35s ease",
                 }}
@@ -2498,7 +2499,7 @@ export default function AF() {
                 <div style={{ position: "absolute", top: 0, right: 0, width: 60, height: 60,
                   background: `radial-gradient(circle at top right, ${hovCard === 1 ? "rgba(200,170,100,0.06)" : "rgba(100,120,170,0.03)"}, transparent 70%)`,
                   transition: "background 0.35s ease" }}/>
-                <h3 style={{ fontFamily: "'Bebas Neue'", fontSize: "1.3rem", letterSpacing: "0.08em", marginBottom: 20, display: "flex", alignItems: "center", gap: 12 }}>
+                <h3 style={{ fontFamily: "'Monument Extended'", fontSize: "1.3rem", letterSpacing: "0.08em", marginBottom: 20, display: "flex", alignItems: "center", gap: 12 }}>
                   <div style={{
                     width: 44, height: 44, borderRadius: 10, flexShrink: 0,
                     background: hovCard === 1
@@ -2514,65 +2515,66 @@ export default function AF() {
                       <line x1="7" y1="7" x2="7.01" y2="7" strokeWidth="2.5" />
                     </svg>
                   </div>
-                  <span style={{ color: hovCard === 1 ? "#f0ece2" : "rgba(210,215,230,0.8)", transition: "color 0.35s ease" }}>FOR NAME SERVICES</span>
+                  <span style={{ color: hovCard === 1 ? "#F0E0B2" : "rgba(210,215,230,0.8)", transition: "color 0.35s ease" }}>FOR NAME SERVICES</span>
                 </h3>
                 {["Sold domains (.eth, .sol) permanently link to public wallet addresses — exposing entire transaction history","No privacy layer exists for the 10M+ names already sold","Missed recurring revenue opportunity after initial sale"].map((t, i) => (
-                  <p key={i} style={{ ...bpt("#FBBF24"), color: hovCard === 1 ? "rgba(180,185,210,0.7)" : "rgba(160,170,195,0.5)", transition: "color 0.35s ease" }}><span style={bpdot("#FBBF24")} />{t}</p>
+                  <p key={i} style={{ ...bpt("#FBBF24"), color: hovCard === 1 ? "rgba(180,185,210,0.7)" : "rgba(160,170,195,0.5)", transition: "color 0.35s ease" }}><span style={bpdot("#FBBF24")} /><span>{t}</span></p>
                 ))}
               </div>
             </div>
           </div>
         </section>
 
-        <Stripe flip />
+        <Stripe brush="/images/brush-beige.svg" flip />
 
         {/* SOLUTION 1 */}
         <section id="fortressnames" ref={s1R} style={{ ...full, position:"relative", overflow:"hidden", minHeight:"100vh", display:"flex", alignItems:"center" }}>
           <div style={{ position:"absolute", top:0, left:"8%", right:"8%", height:1, background:"linear-gradient(90deg,transparent,rgba(100,110,150,0.1),transparent)" }} />
           <div className="liberty-bg" className="liberty-bg" style={{ position:"absolute", top:0, right:0, bottom:0, width:"55%", zIndex:0, backgroundImage:`url(${LIBERTY_SRC})`, backgroundSize:"cover", backgroundPosition:"center", opacity:0.09, filter:"saturate(0.15)", maskImage:"linear-gradient(to right,transparent,black 30%,black 70%,transparent),linear-gradient(to bottom,transparent 0%,black 15%,black 75%,transparent 100%)", maskComposite:"intersect", WebkitMaskImage:"linear-gradient(to right,transparent,black 30%,black 70%,transparent),linear-gradient(to bottom,transparent 0%,black 15%,black 75%,transparent 100%)", WebkitMaskComposite:"destination-in" }} />
+
           <div className="msec" style={{ maxWidth:900, marginLeft:"6vw", marginRight:"auto", padding:"120px 0 120px", display:"flex", flexDirection:"column", justifyContent:"center", position:"relative", zIndex:1 }}>
             <div style={rv(s1V, 0)}><span style={lbl}><span style={dot} /> The Solution — Part 1</span></div>
-            <h2 style={{ ...rv(s1V, 0.12), ...mega("clamp(2.5rem,5.5vw,4.5rem)"), maxWidth:600 }}>FortressNames <span style={{ color:"#C41E2A" }}>Send-to-Name™</span></h2>
+            <h2 style={{ ...rv(s1V, 0.12), ...mega("clamp(1.8rem,4vw,3rem)"), maxWidth:700 }}>FortressNames<br /><span style={{ color:"#DD1E21", whiteSpace:"nowrap" }}>Send-to-Name™</span></h2>
             <p style={{ ...rv(s1V, 0.22), color:"#7A8599", fontSize:"1.05rem", marginBottom:40, maxWidth:460 }}>Human-readable names replace complex wallet addresses with patented privacy</p>
             <div style={{ marginBottom:44 }}><NameResolver /></div>
             <FeatureChips />
           </div>
         </section>
 
-        <Stripe />
+        <Stripe brush="/images/brush-navy.svg" />
 
         {/* SOLUTION 2 */}
-        <section id="confidentiality" ref={s2R} style={{ ...full, background: "#0F1D35", position: "relative", overflow: "hidden" }}>
+        <section id="confidentiality" ref={s2R} style={{ ...full, background: "#F0E0B2", position: "relative", overflow: "hidden" }}>
           {/* Section top divider — subtle boundary signal */}
           <div style={{ position: "absolute", top: 0, left: "8%", right: "8%", height: 1, background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.07),transparent)" }} />
           {/* Ghost background word — depth layer */}
-          <div className="ghost-word" className="ghost-word" style={{ position: "absolute", bottom: "-2vw", left: "-1vw", fontSize: "17vw", fontFamily: "'Bebas Neue'", letterSpacing: "-0.02em", color: "#E8D5B5", opacity: 0.025, lineHeight: 1, pointerEvents: "none", userSelect: "none", whiteSpace: "nowrap" }}>CONFIDENTIALITY</div>
+          <div style={{ position: "absolute", bottom: "-0.5em", left: "50%", transform: "translateX(-50%)", fontSize: "clamp(8rem,18vw,16rem)", fontFamily: "'Monument Extended',sans-serif", fontWeight: 800, letterSpacing: "-0.02em", color: "#182145", opacity: 0.03, lineHeight: 1, pointerEvents: "none", userSelect: "none", whiteSpace: "nowrap", textTransform: "uppercase", zIndex: 0 }}>CONFIDENTIALITY</div>
           <div className="msec" style={{ ...sec, position: "relative", zIndex: 1 }}>
             {/* Asymmetric two-column grid */}
             <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 72, alignItems: "start" }}>
               {/* Left column: badge + title + subtitle + bullets */}
               <div>
-                <div style={{ ...rv(s2V, 0), marginBottom: 20 }}><span style={lbl}><span style={dot} /> The Solution - Part 2</span></div>
-                <h2 style={{ ...rv(s2V, 0.12), ...mega("clamp(2.5rem,5.5vw,4.5rem)"), marginBottom: 16 }}>Confidentiality <span style={{ color: "#C41E2A" }}>Machine</span></h2>
-                <p style={{ ...rv(s2V, 0.22), color: "#7A8599", fontSize: "1.05rem", marginBottom: 32 }}>On-chain transaction privacy layer - compliance-ready, not a mixer</p>
+                <div style={{ ...rv(s2V, 0), marginBottom: 20 }}><span style={{ ...lbl, color:"#182145", border:"2px solid rgba(24,33,69,0.3)", background:"transparent" }}><span style={{ ...dot, background:"#DD1E21" }} /> The Solution - Part 2</span></div>
+                <h2 style={{ ...rv(s2V, 0.12), ...mega("clamp(2rem,4.5vw,3.2rem)"), marginBottom: 16, color: "#182145" }}>Confidentiality <span style={{ color: "#DD1E21" }}>Machine</span></h2>
+                <p style={{ ...rv(s2V, 0.22), color: "#555555", fontSize: "16px", marginBottom: 32 }}>On-chain transaction privacy layer — compliance-ready, not a mixer</p>
                 {["Hides amounts, sender, and receiver details on-chain","Compliance-ready: selective disclosure for regulators (CM Proof of Funds)","Works across DeFi protocols and standard transfers"].map((f, i) => (
                   <div key={i} style={{ ...feat(s2V, 0.3 + i * 0.1), marginBottom: 16 }}>
-                    <span style={fchk}><span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(201,168,76,0.6)", display: "block" }} /></span>
-                    <span style={mut}>{f}</span>
+                    <span style={fchk}><span style={{ width: 5, height: 5, borderRadius: "50%", background: "#182145", display: "block" }} /></span>
+                    <span style={{ fontSize: "16px", color: "#333333", lineHeight: 1.7 }}>{f}</span>
                   </div>
                 ))}
               </div>
               {/* Right column: revenue card, staggered lower */}
               <div style={{ marginTop: 60 }}>
-                <div style={{ ...rr(s2V, 0.5), ...card, background: "linear-gradient(135deg,#121F3A,rgba(196,30,42,0.03))", borderImage: "linear-gradient(135deg,rgba(201,168,76,0.3),transparent 50%,rgba(196,30,42,0.2)) 1" }}>
+                <div style={{ ...rr(s2V, 0.5), ...card, background: "#2a4a7a", border: "2px solid rgba(100,140,200,0.35)", borderRadius: 20 }}>
                   <div style={cardTop} />
-                  <h3 style={{ fontFamily: "'Bebas Neue'", fontSize: "1.6rem", letterSpacing: "0.06em", marginBottom: 24, color: "#E8D5B5" }}>
+                  <h3 style={{ fontFamily: "'Monument Extended'", fontSize: "1.6rem", letterSpacing: "0.06em", marginBottom: 24, color: "#F0E0B2" }}>
                     Two Revenue Engines, <span style={{ color: "#C9A84C" }}>One SDK</span>
                   </h3>
                   {[["FortressNames","name sales & upgrades"],["Confidentiality Machine","transaction fees"],["Single SDK integration","for both"]].map(([a, b], i) => (
                     <div key={i} style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
-                      <span style={{ width: 8, height: 8, borderRadius: "50%", background: i < 2 ? "#C41E2A" : "#3D4A63", flexShrink: 0 }} />
-                      <span style={{ fontSize: "0.9rem", color: "#7A8599" }}><strong style={{ color: "#E8D5B5" }}>{a}</strong> - {b}</span>
+                      <span style={{ width: 8, height: 8, borderRadius: "50%", background: i < 2 ? "#DD1E21" : "#3D4A63", flexShrink: 0 }} />
+                      <span style={{ fontSize: "14px", color: "rgba(240,224,178,0.7)" }}><strong style={{ color: "#F0E0B2" }}>{a}</strong> — {b}</span>
                     </div>
                   ))}
                   <button style={{ ...btnG, marginTop: 20, padding: "12px 28px", fontSize: "0.8rem" }}>View SDK Documentation</button>
@@ -2582,27 +2584,27 @@ export default function AF() {
           </div>
         </section>
 
-        <Stripe flip />
-
+        <Stripe brush="/images/brush-beige.svg" flip />
 
         {/* COMPETITIVE LANDSCAPE */}
-        <section id="landscape" style={{ ...full, background: "#0A1628" }}>
+        <section id="landscape" style={{ ...full, background: "#182145" }}>
           <Stars count={20} color="rgba(201,168,76,0.1)" />
           <CompetitiveLandscapeInner />
         </section>
 
-        <Stripe />
+        <Stripe brush="/images/brush-navy.svg" />
 
         {/* COMPARISON TABLE */}
         <div id="comparison"><ComparisonSection /></div>
 
-        <Stripe flip />
+        <Stripe brush="/images/brush-beige.svg" flip />
 
         {/* REVENUE SHARE */}
-        <section id="revenue" ref={rR2} style={full}>
+        <section id="revenue" ref={rR2} style={{ ...full, position:"relative", overflow:"hidden" }}>
+          <div className="dot-pattern" style={{ right:"-100px", bottom:"-60px", opacity:0.4 }} />
           <div className="msec" style={sec}>
             <div style={rv(rV, 0)}><span style={lbl}><span style={dot} /> Revenue Share</span></div>
-            <h2 style={{ ...rv(rV, 0.12), ...mega("clamp(2.5rem,5.5vw,4.5rem)") }}>A New Revenue Stream — <span style={{ color: "#C41E2A" }}>Not Just a Feature</span></h2>
+            <h2 style={{ ...rv(rV, 0.12), ...mega("clamp(2rem,4.5vw,3.2rem)") }}>A New Revenue Stream<br /><span style={{ color: "#DD1E21" }}>Not Just a Feature</span></h2>
             <p style={{ ...rv(rV, 0.22), color: "#7A8599", fontSize: "1.05rem", marginBottom: 40 }}>Earn 20% commission on every name upgrade + 20% affiliate commission</p>
 
             <div className="mgrid2 rev-cards" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
@@ -2610,14 +2612,9 @@ export default function AF() {
                 onMouseEnter={() => setHovRev(0)} onMouseLeave={() => setHovRev(null)}
                 style={{
                   borderRadius: 12, padding: 36, position: "relative", overflow: "hidden",
-                  backdropFilter: "blur(12px)",
-                  background: hovRev === 0
-                    ? "linear-gradient(145deg, rgba(200,170,100,0.06) 0%, rgba(20,32,60,0.9) 40%, rgba(14,22,45,0.95) 100%)"
-                    : "linear-gradient(145deg, rgba(25,38,68,0.8) 0%, rgba(16,26,48,0.9) 50%, rgba(12,20,40,0.95) 100%)",
-                  border: `1px solid ${hovRev === 0 ? "rgba(200,170,100,0.25)" : "rgba(100,120,170,0.15)"}`,
-                  boxShadow: hovRev === 0
-                    ? "0 0 40px rgba(200,170,100,0.08), 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.03)"
-                    : "0 4px 16px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.02)",
+                  background: hovRev === 0 ? "rgba(50,75,120,0.5)" : "rgba(40,60,105,0.45)",
+                  border: `1px solid ${hovRev === 0 ? "rgba(133,186,255,0.35)" : "rgba(80,110,170,0.25)"}`,
+                  boxShadow: hovRev === 0 ? "0 8px 32px rgba(0,0,0,0.2)" : "none",
                   transform: hovRev === 0 ? "translateY(-3px) scale(1.01)" : "translateY(0) scale(1)",
                   transition: "all 0.35s ease",
                 }}>
@@ -2627,26 +2624,21 @@ export default function AF() {
                 <div style={{ position: "absolute", top: 0, right: 0, width: 60, height: 60,
                   background: `radial-gradient(circle at top right, ${hovRev === 0 ? "rgba(200,170,100,0.06)" : "rgba(100,120,170,0.03)"}, transparent 70%)`,
                   transition: "background 0.35s ease" }}/>
-                <h3 style={{ fontFamily: "'Bebas Neue'", fontSize: "1.3rem", letterSpacing: "0.06em", marginBottom: 4,
-                  color: hovRev === 0 ? "#f0ece2" : "rgba(210,215,230,0.8)", transition: "color 0.35s ease" }}>FOR NAME SERVICES</h3>
+                <h3 style={{ fontFamily: "'Monument Extended'", fontSize: "1.3rem", letterSpacing: "0.06em", marginBottom: 4,
+                  color: hovRev === 0 ? "#F0E0B2" : "rgba(210,215,230,0.8)", transition: "color 0.35s ease" }}>FOR NAME SERVICES</h3>
                 <p style={{ fontFamily: "'JetBrains Mono'", fontSize: "0.7rem", color: "#3D4A63", marginBottom: 20, letterSpacing: "0.06em",
                   opacity: hovRev === 0 ? 0.75 : 1, transition: "opacity 0.35s ease" }}>ENS, Space ID, SNS, etc.</p>
                 {["Privacy upgrade for all existing sold domain names","20% commission on every privacy name upgrade","Additional 20% for affiliate/community promoters","Pricing adjustable per partner"].map((t, i) => (
-                  <p key={i} style={{ ...bpt("#C9A84C"), color: hovRev === 0 ? "rgba(180,185,210,0.7)" : "rgba(160,170,195,0.5)", transition: "color 0.35s ease" }}><span style={bpdot("#C9A84C")} />{t}</p>
+                  <p key={i} style={{ ...bpt("#C9A84C"), color: hovRev === 0 ? "rgba(180,185,210,0.7)" : "rgba(160,170,195,0.5)", transition: "color 0.35s ease" }}><span style={bpdot("#C9A84C")} /><span>{t}</span></p>
                 ))}
               </div>
               <div
                 onMouseEnter={() => setHovRev(1)} onMouseLeave={() => setHovRev(null)}
                 style={{
                   borderRadius: 12, padding: 36, position: "relative", overflow: "hidden",
-                  backdropFilter: "blur(12px)",
-                  background: hovRev === 1
-                    ? "linear-gradient(145deg, rgba(200,170,100,0.06) 0%, rgba(20,32,60,0.9) 40%, rgba(14,22,45,0.95) 100%)"
-                    : "linear-gradient(145deg, rgba(25,38,68,0.8) 0%, rgba(16,26,48,0.9) 50%, rgba(12,20,40,0.95) 100%)",
-                  border: `1px solid ${hovRev === 1 ? "rgba(200,170,100,0.25)" : "rgba(100,120,170,0.15)"}`,
-                  boxShadow: hovRev === 1
-                    ? "0 0 40px rgba(200,170,100,0.08), 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.03)"
-                    : "0 4px 16px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.02)",
+                  background: hovRev === 1 ? "rgba(50,75,120,0.5)" : "rgba(40,60,105,0.45)",
+                  border: `1px solid ${hovRev === 1 ? "rgba(133,186,255,0.35)" : "rgba(80,110,170,0.25)"}`,
+                  boxShadow: hovRev === 1 ? "0 8px 32px rgba(0,0,0,0.2)" : "none",
                   transform: hovRev === 1 ? "translateY(-3px) scale(1.01)" : "translateY(0) scale(1)",
                   transition: "all 0.35s ease",
                 }}>
@@ -2656,32 +2648,32 @@ export default function AF() {
                 <div style={{ position: "absolute", top: 0, right: 0, width: 60, height: 60,
                   background: `radial-gradient(circle at top right, ${hovRev === 1 ? "rgba(200,170,100,0.06)" : "rgba(100,120,170,0.03)"}, transparent 70%)`,
                   transition: "background 0.35s ease" }}/>
-                <h3 style={{ fontFamily: "'Bebas Neue'", fontSize: "1.3rem", letterSpacing: "0.06em", marginBottom: 20,
-                  color: hovRev === 1 ? "#f0ece2" : "rgba(210,215,230,0.8)", transition: "color 0.35s ease" }}>FOR WALLETS</h3>
+                <h3 style={{ fontFamily: "'Monument Extended'", fontSize: "1.3rem", letterSpacing: "0.06em", marginBottom: 20,
+                  color: hovRev === 1 ? "#F0E0B2" : "rgba(210,215,230,0.8)", transition: "color 0.35s ease" }}>FOR WALLETS</h3>
                 {["Same 20% + 20% affiliate revenue share","Native Send-to-Name™ enhances UX & retention","Free random names drive onboarding","Paid custom names drive revenue"].map((t, i) => (
-                  <p key={i} style={{ ...bpt("#C9A84C"), color: hovRev === 1 ? "rgba(180,185,210,0.7)" : "rgba(160,170,195,0.5)", transition: "color 0.35s ease" }}><span style={bpdot("#C9A84C")} />{t}</p>
+                  <p key={i} style={{ ...bpt("#C9A84C"), color: hovRev === 1 ? "rgba(180,185,210,0.7)" : "rgba(160,170,195,0.5)", transition: "color 0.35s ease" }}><span style={bpdot("#C9A84C")} /><span>{t}</span></p>
                 ))}
               </div>
             </div>
           </div>
         </section>
 
-        <Stripe />
+        <Stripe brush="/images/brush-navy.svg" />
 
         {/* FINANCIAL */}
         <div id="financial"><FinancialSection /></div>
 
-        <Stripe flip />
+        <Stripe brush="/images/brush-beige.svg" flip />
 
         {/* MOAT */}
         <div id="moat"><MoatSection mR={mR} mV={mV} /></div>
 
-        <Stripe />
+        <Stripe brush="/images/brush-navy.svg" />
 
         {/* TRUSTED BY */}
-        <section id="trusted" ref={lR} style={{ ...full, background: "#0F1D35", overflow: "hidden" }}>
+        <section id="trusted" ref={lR} style={{ ...full, background: "#182145", overflow: "hidden" }}>
           <div className="msec trusted-sec" style={{ ...sec, textAlign: "center", paddingBottom: 0, paddingTop: 48 }}>
-            <h2 style={{ ...rv(lV, 0), ...mega("clamp(2rem,4.5vw,3.8rem)", 8) }}>Trusted By <span style={{ color: "#C9A84C" }}>Industry Leaders</span></h2>
+            <h2 style={{ ...rv(lV, 0), ...mega("clamp(1.8rem,3.5vw,2.8rem)", 8) }}>Trusted By <span style={{ color: "#C9A84C" }}>Industry Leaders</span></h2>
             <p style={{ ...rv(lV, 0.1), color: "#3D4A63", fontSize: "0.92rem", marginBottom: 48 }}>Integrated with leading wallets, chains, and financial institutions</p>
           </div>
           {/* Marquee strip */}
@@ -2691,8 +2683,8 @@ export default function AF() {
             .marquee-track:hover { animation-play-state: paused; }
           `}</style>
           <div style={{ position: "relative", width: "100%", overflow: "hidden", paddingBottom: 64 }}>
-            <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to right, #0F1D35, transparent)", zIndex: 2, pointerEvents: "none" }} />
-            <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to left, #0F1D35, transparent)", zIndex: 2, pointerEvents: "none" }} />
+            <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to right, #182145, transparent)", zIndex: 2, pointerEvents: "none" }} />
+            <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to left, #182145, transparent)", zIndex: 2, pointerEvents: "none" }} />
             <div className="marquee-track" style={{ alignItems: "center" }}>
               {[0, 1, 2, 3].map(rep => (
                 <img key={rep} src="/logos.png" alt="partners" className="marquee-logo" style={{ height: 36, width: "auto", flexShrink: 0, margin: "0 16px", opacity: 0.85 }} />
@@ -2701,12 +2693,12 @@ export default function AF() {
           </div>
         </section>
 
-        <Stripe flip />
+        <Stripe brush="/images/brush-navy.svg" flip />
 
         {/* CTA */}
         <div id="contact"><CTASection ctR={ctR} ctV={ctV} /></div>
 
-        <Stripe />
+        <Stripe brush="/images/brush-red.svg" />
         <SiteFooter />
       </div>
     </>
