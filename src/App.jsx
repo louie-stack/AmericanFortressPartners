@@ -2245,122 +2245,416 @@ export default function AF() {
 
         /* -- Mobile (=768px) ------------------------------- */
         @media (max-width: 768px) {
-          /* -- GLOBAL ----------------------------------------- */
-          html, body { overflow-x: hidden !important; max-width: 100vw !important; }
-          *, *::before, *::after { box-sizing: border-box; }
-          section { overflow-x: hidden !important; max-width: 100vw !important; box-sizing: border-box !important; }
-          section, .msec { padding: 40px 20px !important; box-sizing: border-box !important; }
-          .mgrid2 { grid-template-columns: 1fr !important; gap: 20px !important; }
-          /* -- NAV -------------------------------------------- */
+
+          /* ====================================================
+             GLOBAL
+          ==================================================== */
+          html, body { overflow-x: hidden !important; }
+          *, *::before, *::after { box-sizing: border-box !important; max-width: 100%; }
+          img, svg { max-width: 100% !important; height: auto !important; }
+          section, .msec { padding: 48px 24px !important; }
+
+          /* Section headings */
+          section h2, .msec h2,
+          [style*="Monument Extended"] h2,
+          h2 { font-size: 1.6rem !important; line-height: 1.2 !important; }
+
+          /* Red accent heading line (second line of split headings) */
+          h2 span[style*="#DD1E21"],
+          h2 > span { font-size: inherit !important; }
+
+          /* No heading below 1.4rem */
+          h3, h4 { font-size: 1rem !important; line-height: 1.25 !important; }
+          h3 { max-font-size: 1.1rem; }
+
+          /* Body text */
+          p, li { font-size: 15px !important; line-height: 1.6 !important; }
+
+          /* Card body */
+          .card-on-dark p, .card-on-light p, .card-on-red p {
+            font-size: 14px !important; line-height: 1.55 !important;
+            color: rgba(240,224,178,0.82) !important;
+          }
+          .card-on-dark h3, .card-on-light h3, .card-on-red h3 {
+            font-size: 1.1rem !important; color: #F0E0B2 !important;
+          }
+
+          /* Brushstroke / divider images */
+          img[src*="brush"], img[src*="stroke"], img[src*="wave"], img[src*="divider"],
+          .section-divider, .brush-divider { height: 20px !important; object-fit: cover !important; }
+
+          /* Gap: heading → first content */
+          section h2 + *, .msec h2 + * { margin-top: 20px !important; }
+
+          /* Nav */
           nav { height: 56px !important; padding: 0 16px !important; }
           .nav-center, .sitenav-links, .nav-book-cta { display: none !important; }
           .nav-hamburger { display: flex !important; }
-          /* -- HERO ------------------------------------------- */
+
+          /* ====================================================
+             HERO
+          ==================================================== */
           .hero-cover { display: none !important; }
-          .hero-section { min-height: auto !important; }
-          .hero-content { padding: 88px 20px 40px !important; text-align: center !important; overflow: hidden !important; }
-          .mhero { font-size: clamp(1.4rem, 7.5vw, 2.5rem) !important; white-space: nowrap !important; overflow-wrap: break-word !important; word-break: break-word !important; }
-          .hero-partner-label { font-size: 10px !important; text-align: center !important; }
-          .hero-subtitle { font-size: 16px !important; text-align: center !important; }
-          .hero-desc { font-size: 14px !important; text-align: center !important; max-width: 100% !important; }
-          .hero-ctas { flex-direction: column !important; width: 100% !important; max-width: 320px !important; margin: 0 auto !important; gap: 10px !important; }
-          .hero-ctas a { width: 100% !important; height: 48px !important; min-height: 48px !important; text-align: center !important; justify-content: center !important; box-sizing: border-box !important; }
-          /* Pills: 2-row wrap, centered */
-          .hero-badges { display: flex !important; flex-wrap: wrap !important; justify-content: center !important; gap: 6px !important; padding: 0 4px 4px !important; margin-top: 20px !important; max-width: 100% !important; overflow: hidden !important; }
-          .hero-badges span { flex-shrink: 0 !important; font-size: 9px !important; padding: 5px 10px !important; white-space: nowrap !important; }
-          .hero-badges span > span:first-child { width: 4px !important; height: 4px !important; }
-          /* -- WALLET SCANNER --------------------------------- */
-          .scanner-box { padding: 16px !important; border-radius: 16px !important; margin: 16px 0 32px !important; width: 100% !important; box-sizing: border-box !important; }
-          .wallet-addr { font-size: 10px !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; }
-          .leak-grid { grid-template-columns: 1fr 1fr !important; gap: 8px !important; align-items: stretch !important; }
-          .leak-grid > div > div:last-child { border-radius: 10px !important; padding: 12px !important; text-align: center !important; }
-          .leak-label { font-size: 9px !important; }
-          .leak-value { font-size: 13px !important; }
-          /* -- EXPOSED CARDS ---------------------------------- */
-          .exposed-card-h3 { justify-content: flex-start !important; text-align: left !important; }
-          /* -- FORTRESSNAMES: name resolver ------------------- */
-          .nr-wrap { overflow: hidden !important; max-width: 100% !important; width: 100% !important; }
-          .nr-row { flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; max-width: 100% !important; overflow: hidden !important; }
-          .nr-hex { font-size: 12px !important; max-width: 100% !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; }
-          .nr-arrow { transform: rotate(90deg) !important; display: block !important; }
-          .nr-display { font-size: clamp(18px, 6.5vw, 32px) !important; max-width: 100% !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; }
-          .s1chips { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
-          .s1chips > div { padding: 12px 14px !important; }
-          .liberty-bg { opacity: 0.05 !important; }
-          /* -- COMPETITIVE SCATTER ---------------------------- */
-          .scatter-layout { grid-template-columns: 1fr !important; gap: 24px !important; }
-          .scatter-wrapper { width: 100% !important; max-width: 100% !important; overflow: hidden !important; padding: 0 !important; box-sizing: border-box !important; }
-          .scatter-wrapper svg { width: 100% !important; height: auto !important; }
-          .scatter-insight { width: 100% !important; opacity: 1 !important; transform: none !important; }
-          .scatter-insight p { color: rgba(240,224,178,0.8) !important; font-size: 15px !important; }
-          /* -- COMPARISON TABLE ------------------------------- */
-          .cmp-wrap { padding: 40px 0 !important; }
-          .cmp-table { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; padding: 0 !important; }
-          .cmp-table > div { min-width: 600px !important; }
-          .cmp-header-row > div, .cmp-row > div { font-size: 10px !important; min-width: 90px !important; padding: 8px 6px !important; }
-          .cmp-header-row > div:first-child { min-width: 110px !important; position: sticky !important; left: 0 !important; z-index: 2 !important; background: #182145 !important; color: rgba(240,224,178,0.5) !important; }
-          .cmp-row > div:first-child { min-width: 110px !important; position: sticky !important; left: 0 !important; z-index: 2 !important; background: #F0E0B2 !important; }
-          .cmp-scroll-hint { display: flex !important; justify-content: center !important; margin-bottom: 8px !important; padding: 0 20px !important; }
-          .cmp-footer { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; padding: 0 20px !important; }
-          .cmp-footer a, .cmp-footer button { width: 100% !important; max-width: 300px !important; text-align: center !important; justify-content: center !important; box-sizing: border-box !important; }
-          /* -- FINANCIAL -------------------------------------- */
-          .fin-slot-wrap { font-size: clamp(2rem, 8vw, 3rem) !important; }
-          .fin-title { white-space: normal !important; font-size: clamp(1.2rem, 5vw, 2rem) !important; padding-right: 0 !important; word-break: break-word !important; }
-          .fin-inner { padding: 0 16px !important; box-sizing: border-box !important; overflow: hidden !important; }
-          .fin-cta a { width: 100% !important; max-width: 300px !important; text-align: center !important; justify-content: center !important; }
-          /* -- TECHNOLOGY MOAT -------------------------------- */
-          .moat-rings, .moat-orbits, .moat-powerlines { display: none !important; }
-          .moat-shield img { width: 84px !important; }
-          .moat-shield { padding: 12px 0 !important; }
-          .moat-card-area { max-width: 100% !important; overflow: hidden !important; }
-          .moat-row { flex-direction: column !important; align-items: center !important; gap: 12px !important; }
-          .moat-row > * { width: 100% !important; max-width: 400px !important; flex: none !important; box-sizing: border-box !important; }
-          .card-on-dark h3, .card-on-light h3, .card-on-red h3 { color: #F0E0B2 !important; font-size: 1rem !important; }
-          .card-on-dark p, .card-on-light p, .card-on-red p { font-size: 14px !important; color: rgba(240,224,178,0.8) !important; }
-          /* -- TRUSTED BY ------------------------------------- */
-          #trusted { min-height: auto !important; }
-          .trusted-sec { padding-top: 40px !important; padding-bottom: 30px !important; }
-          .trusted-sec h2 { margin-bottom: 12px !important; }
-          .trusted-sec p { margin-bottom: 20px !important; }
+          .hero-section { min-height: auto !important; overflow: hidden !important; }
+          .hero-content {
+            padding: 88px 24px 40px !important;
+            text-align: center !important;
+            overflow: hidden !important;
+          }
+
+          .hero-partner-label {
+            font-size: 11px !important;
+            letter-spacing: 3px !important;
+            margin-bottom: 8px !important;
+            text-align: center !important;
+          }
+
+          .mhero {
+            font-size: clamp(1.5rem, 9vw, 2.8rem) !important;
+            white-space: nowrap !important;
+            text-align: center !important;
+            transform-origin: center !important;
+            overflow: visible !important;
+          }
+
+          /* Gold divider below title */
+          .hero-title-line {
+            width: 40px !important; height: 2px !important;
+            margin: 16px auto !important; display: block !important;
+          }
+
+          .hero-subtitle {
+            font-size: 17px !important;
+            margin-bottom: 8px !important;
+            text-align: center !important;
+          }
+
+          .hero-desc {
+            font-size: 14px !important;
+            color: rgba(240,224,178,0.7) !important;
+            text-align: center !important;
+            max-width: 340px !important;
+            margin: 0 auto 28px auto !important;
+          }
+
+          /* CTA buttons */
+          .hero-ctas {
+            flex-direction: column !important;
+            align-items: center !important;
+            width: 100% !important;
+            gap: 0 !important;
+          }
+          .hero-ctas a:first-child {
+            width: 100% !important; max-width: 320px !important;
+            height: 50px !important; min-height: 50px !important;
+            display: flex !important; align-items: center !important;
+            justify-content: center !important;
+            margin: 0 auto 10px auto !important;
+            box-sizing: border-box !important;
+          }
+          .hero-ctas a:last-child {
+            width: 100% !important; max-width: 320px !important;
+            height: 50px !important; min-height: 50px !important;
+            display: flex !important; align-items: center !important;
+            justify-content: center !important;
+            margin: 0 auto 24px auto !important;
+            box-sizing: border-box !important;
+          }
+
+          /* Credential pills */
+          .hero-badges {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            gap: 6px !important;
+            padding: 0 12px !important;
+            margin-top: 0 !important;
+            overflow: visible !important;
+            max-width: 100% !important;
+          }
+          .hero-badges > span {
+            padding: 5px 10px !important;
+            font-size: 9px !important;
+            letter-spacing: 1px !important;
+            border-radius: 4px !important;
+            white-space: nowrap !important;
+            background: #182145 !important;
+            border: 1px solid rgba(240,224,178,0.2) !important;
+            color: #F0E0B2 !important;
+            flex-shrink: 0 !important;
+          }
+          /* Red dot — perfect 5px circle */
+          .hero-badges > span > span:first-child {
+            width: 5px !important;
+            height: 5px !important;
+            min-width: 5px !important;
+            min-height: 5px !important;
+            border-radius: 50% !important;
+            flex-shrink: 0 !important;
+            aspect-ratio: 1 / 1 !important;
+            display: inline-block !important;
+          }
+
+          /* ====================================================
+             TRUSTED BY
+          ==================================================== */
+          .trusted-sec { padding: 32px 24px !important; }
+          .trusted-sec h2 { font-size: 1.4rem !important; text-align: center !important; }
+          .trusted-sec p { font-size: 13px !important; text-align: center !important; margin-bottom: 16px !important; }
           .marquee-logo { height: 20px !important; }
-          /* -- REVENUE ---------------------------------------- */
-          #revenue .msec { padding-top: 40px !important; }
-          .rev-cards { grid-template-columns: 1fr !important; gap: 16px !important; }
-          /* -- CONFIDENTIALITY -------------------------------- */
+
+          /* ====================================================
+             EXPOSED (WALLET SCANNER)
+          ==================================================== */
+          #exposed .msec h2 { font-size: 1.6rem !important; text-align: center !important; }
+          .scanner-box {
+            width: calc(100% - 48px) !important;
+            margin: 0 auto !important;
+            border-radius: 16px !important;
+            padding: 20px 16px !important;
+            box-sizing: border-box !important;
+          }
+          .wallet-addr {
+            font-size: 11px !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            white-space: nowrap !important;
+          }
+          .leak-grid {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 8px !important;
+          }
+          .leak-grid > div {
+            border-radius: 8px !important;
+            padding: 10px !important;
+            text-align: center !important;
+          }
+          .leak-label { font-size: 9px !important; letter-spacing: 1px !important; }
+          .leak-value { font-size: 13px !important; }
+          .exposed-card-h3 { justify-content: flex-start !important; }
+
+          /* For Wallets / For Name Services cards */
+          .mgrid2.exposed-grid { grid-template-columns: 1fr !important; gap: 0 !important; }
+          .card-on-red {
+            width: 100% !important;
+            margin-top: 20px !important;
+            padding: 20px !important;
+            border-radius: 16px !important;
+          }
+
+          /* ====================================================
+             FORTRESSNAMES
+          ==================================================== */
+          #fortressnames .msec h2 { font-size: 1.6rem !important; }
+          #fortressnames .msec > p { font-size: 14px !important; }
+
+          .nr-wrap { max-width: 100% !important; overflow: hidden !important; width: 100% !important; }
+          .nr-row {
+            max-width: 100% !important;
+            overflow: hidden !important;
+            flex-wrap: nowrap !important;
+            align-items: center !important;
+            gap: 6px !important;
+          }
+          .nr-hex { font-size: 12px !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; flex-shrink: 1 !important; min-width: 0 !important; }
+          .nr-arrow { font-size: 16px !important; flex-shrink: 0 !important; }
+          .nr-display { font-size: 18px !important; white-space: nowrap !important; flex-shrink: 0 !important; }
+
+          .s1chips {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 10px !important;
+          }
+          .s1chips > div { padding: 16px !important; border-radius: 12px !important; }
+          /* Chip label */
+          .s1chips > div > div:first-child { font-size: 10px !important; letter-spacing: 1px !important; }
+          /* Chip body */
+          .s1chips > div > div:last-child { font-size: 13px !important; line-height: 1.45 !important; }
+
+          /* ====================================================
+             CONFIDENTIALITY
+          ==================================================== */
+          .mgrid2 { grid-template-columns: 1fr !important; gap: 0 !important; }
+          #confidentiality .msec h2 { font-size: 1.6rem !important; }
+          #confidentiality .msec > p { font-size: 14px !important; }
+          #confidentiality .card-on-dark, #confidentiality .card-on-light {
+            width: 100% !important;
+            margin-top: 24px !important;
+            padding: 24px !important;
+            border-radius: 16px !important;
+          }
           .ghost-word { display: none !important; }
-          /* -- CTA SECTION ------------------------------------ */
-          #cta .msec, [id="cta"] > .msec { padding-top: 40px !important; }
-          .cta-cards { grid-template-columns: 1fr !important; gap: 16px !important; max-width: 100% !important; margin-top: 24px !important; }
-          .cta-cards > div { padding: 24px !important; }
-          .cta-book-btn { width: 100% !important; max-width: 280px !important; text-align: center !important; justify-content: center !important; box-sizing: border-box !important; margin: 0 auto !important; display: flex !important; }
-          .cta-contact-link { word-break: break-all !important; font-size: 12px !important; }
-          /* -- FOOTER ----------------------------------------- */
+
+          /* ====================================================
+             COMPETITIVE LANDSCAPE
+          ==================================================== */
+          .scatter-layout { grid-template-columns: 1fr !important; gap: 0 !important; }
+          .scatter-wrapper {
+            width: 100% !important;
+            overflow: hidden !important;
+            padding: 0 !important;
+            margin: 20px 0 !important;
+          }
+          .scatter-wrapper svg { width: 100% !important; height: auto !important; }
+          .scatter-insight {
+            width: 100% !important;
+            opacity: 1 !important;
+            transform: none !important;
+            padding: 20px !important;
+            border-radius: 16px !important;
+            margin-top: 0 !important;
+          }
+          .scatter-insight h4 { font-size: 1rem !important; }
+          .scatter-insight p { font-size: 14px !important; color: rgba(240,224,178,0.82) !important; }
+
+          /* ====================================================
+             FEATURE COMPARISON
+          ==================================================== */
+          .cmp-wrap { padding: 48px 0 !important; }
+          .cmp-wrap > div:first-child { padding: 0 24px !important; }
+          .cmp-table {
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+          }
+          .cmp-table > div { min-width: 520px !important; }
+          .cmp-header-row > div {
+            min-width: 80px !important;
+            padding: 8px 6px !important;
+            font-size: 10px !important;
+          }
+          .cmp-header-row > div:first-child, .cmp-row > div:first-child {
+            min-width: 120px !important;
+            position: sticky !important;
+            left: 0 !important;
+            z-index: 2 !important;
+            background: #F0E0B2 !important;
+          }
+          .cmp-header-row > div:first-child {
+            background: #182145 !important;
+            color: rgba(240,224,178,0.6) !important;
+          }
+          .cmp-row > div {
+            font-size: 13px !important;
+            padding: 10px 6px !important;
+          }
+          .cmp-scroll-hint { display: flex !important; justify-content: center !important; padding: 0 24px !important; margin-bottom: 8px !important; }
+          .cmp-footer { flex-direction: column !important; align-items: center !important; gap: 12px !important; padding: 0 24px !important; }
+          .cmp-footer a, .cmp-footer button {
+            width: 100% !important; max-width: 320px !important;
+            text-align: center !important; justify-content: center !important;
+          }
+
+          /* ====================================================
+             REVENUE
+          ==================================================== */
+          #revenue .msec h2 { font-size: 1.6rem !important; }
+          .rev-cards { grid-template-columns: 1fr !important; gap: 16px !important; }
+          .rev-cards > div { padding: 20px !important; }
+          .rev-cards h3 { font-size: 1rem !important; }
+
+          /* ====================================================
+             FINANCIAL
+          ==================================================== */
+          #financial .msec h2 { font-size: 1.6rem !important; }
+          .fin-slot-wrap { font-size: clamp(1.8rem, 8vw, 3rem) !important; }
+          .fin-title { white-space: normal !important; font-size: clamp(1.2rem, 5vw, 1.8rem) !important; padding-right: 0 !important; }
+          .fin-inner { padding: 0 !important; overflow: hidden !important; }
+
+          /* ====================================================
+             TECHNOLOGY MOAT
+          ==================================================== */
+          .moat-rings, .moat-orbits, .moat-powerlines { display: none !important; }
+          .moat-row { flex-direction: column !important; align-items: center !important; gap: 12px !important; }
+          .moat-row > * { width: 100% !important; max-width: 100% !important; flex: none !important; padding: 20px !important; }
+          .moat-shield { margin: 20px auto !important; display: flex !important; justify-content: center !important; padding: 0 !important; }
+          .moat-shield img { width: 100px !important; height: auto !important; }
+          .card-on-dark h3, .card-on-light h3 { font-size: 1rem !important; color: #F0E0B2 !important; }
+          .card-on-dark p, .card-on-light p { font-size: 14px !important; color: rgba(240,224,178,0.82) !important; line-height: 1.55 !important; }
+
+          /* ====================================================
+             CTA SECTION
+          ==================================================== */
+          .cta-cards { grid-template-columns: 1fr !important; gap: 16px !important; margin-top: 0 !important; }
+          .cta-cards > div { padding: 24px !important; width: 100% !important; }
+          .cta-book-btn {
+            width: 100% !important; max-width: 280px !important;
+            margin: 0 auto !important; display: flex !important;
+            justify-content: center !important;
+          }
+
+          /* ====================================================
+             FOOTER
+          ==================================================== */
           .footer-grid-texture { display: none !important; }
-          .footer-cols { flex-direction: column !important; align-items: center !important; padding: 40px 20px 24px !important; gap: 0 !important; width: 100% !important; box-sizing: border-box !important; }
-          .footer-left, .footer-right { width: 100% !important; max-width: 320px !important; text-align: center !important; margin: 0 auto !important; margin-bottom: 24px !important; flex-shrink: 0 !important; }
+          .footer-cols {
+            flex-direction: column !important;
+            align-items: center !important;
+            padding: 40px 24px !important;
+            gap: 0 !important;
+          }
+          .footer-left, .footer-right {
+            width: 100% !important; max-width: 360px !important;
+            text-align: center !important; margin: 0 auto 24px auto !important;
+            flex-shrink: 0 !important;
+          }
           .footer-right { text-align: center !important; margin-left: auto !important; margin-right: auto !important; }
           .footer-left > div:first-child { justify-content: center !important; }
-          .footer-right a { justify-content: center !important; font-size: 16px !important; min-height: 44px !important; display: flex !important; align-items: center !important; }
+          .footer-left p, .footer-right p { font-size: 14px !important; margin-bottom: 8px !important; }
+          .footer-badges-row {
+            display: flex !important; flex-wrap: wrap !important;
+            justify-content: center !important; gap: 8px !important;
+            margin-bottom: 20px !important;
+          }
+          .footer-social-row {
+            display: flex !important; flex-wrap: nowrap !important;
+            justify-content: center !important; gap: 16px !important;
+            margin-bottom: 24px !important;
+          }
+          .footer-social-row a {
+            width: 44px !important; height: 44px !important;
+            display: flex !important; align-items: center !important; justify-content: center !important;
+          }
+          .footer-right a {
+            justify-content: center !important;
+            font-size: 14px !important;
+            min-height: 44px !important;
+            display: flex !important;
+            align-items: center !important;
+          }
           .footer-cta-wrap { justify-content: center !important; }
-          .footer-cta-wrap a { width: 100% !important; max-width: 280px !important; justify-content: center !important; }
-          .footer-social-row { justify-content: center !important; gap: 16px !important; }
-          .footer-social-row a { width: 44px !important; height: 44px !important; display: flex !important; align-items: center !important; justify-content: center !important; }
-          .footer-badges-row { justify-content: center !important; }
-          .footer-bottom { flex-direction: column !important; align-items: center !important; gap: 12px !important; padding: 16px 20px 24px !important; text-align: center !important; }
-          .footer-bottom p { font-size: 13px !important; text-align: center !important; }
-          .footer-policy { justify-content: center !important; flex-wrap: wrap !important; gap: 16px !important; }
-          .footer-policy a { font-size: 14px !important; min-height: 44px !important; display: flex !important; align-items: center !important; }
-          /* -- TYPOGRAPHY ------------------------------------- */
-          body { font-size: 15px !important; }
-          section h2, .msec h2 { font-size: clamp(1.2rem, 5vw, 1.8rem) !important; max-width: 100% !important; margin-bottom: 12px !important; }
-          /* -- TOUCH TARGETS ---------------------------------- */
-          nav a, nav button { min-height: 44px !important; min-width: 44px !important; }
-          footer a { min-height: 44px !important; padding-top: 10px !important; padding-bottom: 10px !important; }
-          .footer-social a { width: 44px !important; height: 44px !important; display: flex !important; align-items: center !important; justify-content: center !important; }
-          /* -- SPACING & DIVIDERS ----------------------------- */
-          .card-on-dark, .card-on-light, .card-on-red { padding: 20px !important; }
+          .footer-cta-wrap a {
+            width: 100% !important; max-width: 280px !important;
+            justify-content: center !important;
+            margin: 20px auto !important; display: flex !important;
+          }
+          .footer-bottom {
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 8px !important;
+            padding: 16px 24px 24px !important;
+            text-align: center !important;
+          }
+          .footer-bottom p { font-size: 12px !important; margin-top: 24px !important; text-align: center !important; }
+          .footer-policy {
+            justify-content: center !important;
+            flex-wrap: wrap !important;
+            gap: 16px !important;
+          }
+          .footer-policy a {
+            font-size: 13px !important;
+            min-height: 44px !important;
+            display: flex !important; align-items: center !important;
+          }
+
+          /* ====================================================
+             MISC / SAFETY NETS
+          ==================================================== */
+          .nr-arrow svg { width: 16px !important; height: 16px !important; }
+          .liberty-bg { opacity: 0.05 !important; }
           .cmp-shake { transform: none !important; }
-          img[src*="brush"], img[src*="stroke"], img[src*="divider"] { height: 25px !important; object-fit: cover !important; width: 100% !important; }
+          footer a { min-height: 44px !important; }
+          nav a, nav button { min-height: 44px !important; min-width: 44px !important; }
         }
         @media (max-width: 480px) {
           .s1chips { grid-template-columns: 1fr !important; }
