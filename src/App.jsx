@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const useReveal = (opts = {}) => {
   const ref = useRef(null);
@@ -210,9 +210,19 @@ const CompetitiveChart = ({ p }) => {
   );
 };
 
-const Chk = () => <span style={{ color: "#C9A84C", fontSize: "1rem" }}>★</span>;
-const Prt = () => <span style={{ color: "#FBBF24", fontSize: "0.85rem" }}>△</span>;
-const No = () => <span style={{ color: "rgba(255,255,255,0.1)" }}>—</span>;
+const StarSVG = ({ fill, size }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill={fill} xmlns="http://www.w3.org/2000/svg" style={{ display:"inline-block", verticalAlign:"middle", flexShrink:0 }}>
+    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+  </svg>
+);
+const TriSVG = ({ fill, size }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill={fill} xmlns="http://www.w3.org/2000/svg" style={{ display:"inline-block", verticalAlign:"middle", flexShrink:0 }}>
+    <polygon points="12,3 22,21 2,21" />
+  </svg>
+);
+const Chk = () => <StarSVG fill="#C9A84C" size={18} />;
+const Prt = () => <TriSVG fill="#FBBF24" size={15} />;
+const No = () => <span style={{ color: "rgba(255,255,255,0.15)", fontSize: 16, lineHeight:1 }}>—</span>;
 const SI = ({ s }) => s === "c" ? <Chk /> : s === "p" ? <Prt /> : <No />;
 
 const tRows = [
@@ -329,7 +339,7 @@ function CustomCursor() {
   );
 }
 
-// ── ComparisonSection ────────────────────────────────────────────────────
+// -- ComparisonSection ----------------------------------------------------
 const SLAM_INTERVAL   = 350;
 const IMPACT_DURATION = 150;
 
@@ -348,9 +358,9 @@ const CMP_ROWS = [
 ];
 
 function CmpSym({ v }) {
-  if (v === "c") return <span style={{ fontSize:16, color:"rgba(24,33,69,0.25)" }}>★</span>;
-  if (v === "p") return <span style={{ fontSize:14, color:"rgba(24,33,69,0.18)" }}>△</span>;
-  return <span style={{ fontSize:14, color:"rgba(24,33,69,0.12)" }}>—</span>;
+  if (v === "c") return <StarSVG fill="#888888" size={16} />;
+  if (v === "p") return <TriSVG fill="#bbbbbb" size={14} />;
+  return <span style={{ fontSize:14, color:"rgba(24,33,69,0.25)", lineHeight:1 }}>—</span>;
 }
 
 function ComparisonSection() {
@@ -479,7 +489,7 @@ function ComparisonSection() {
                       transition: isImpact
                         ? "transform 0.08s ease-out, filter 0.08s ease-out"
                         : "transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.1s ease",
-                    }}>★</span>
+                    }}><StarSVG fill="#DD1E21" size={20} /></span>
                   </div>
 
                   {/* Competitor columns — static */}
@@ -502,7 +512,7 @@ function ComparisonSection() {
             transition:"opacity 0.6s ease, transform 0.6s ease",
           }}>
             <p style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", color:"rgba(24,33,69,0.45)", fontSize:13 }}>
-              The technology advantage is clear. Now let's talk about what it means for your bottom line. →
+              The technology advantage is clear. Now let's talk about what it means for your bottom line. ?
             </p>
             <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer" style={{ fontFamily:"'JetBrains Mono'", fontSize:"0.72rem", letterSpacing:"0.08em", textTransform:"uppercase", padding:"14px 28px", background:"#DD1E21", color:"#fff", border:"none", borderRadius:4, cursor:"pointer", textDecoration:"none", display:"inline-block" }}>
               <span style={{display:"inline-flex",alignItems:"center",gap:8}}>Book a Partnership Call <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
@@ -514,7 +524,7 @@ function ComparisonSection() {
   );
 }
 
-// ── Global style constants (shared across module-level components) ────────
+// -- Global style constants (shared across module-level components) --------
 const G_SEC     = { maxWidth: 1160, margin: "0 auto", padding: "140px 48px", position: "relative" };
 const G_FULL    = { width: "100%", position: "relative", overflow: "hidden" };
 const G_LBL     = { fontFamily: "'JetBrains Mono',monospace", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "#C9A84C", padding: "7px 16px", border: "1px solid rgba(201,168,76,0.25)", borderRadius: 24, display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(201,168,76,0.06)", marginBottom: "28px" };
@@ -524,7 +534,7 @@ const G_CARD    = { background: "#2a4a7a", border: "2px solid rgba(100,140,200,0
 const G_CARDTOP = { position: "absolute", top: 0, left: 0, right: 0, height: 0 };
 const G_BTNR    = { fontFamily: "Space Grotesk", fontSize: "0.85rem", fontWeight: 600, padding: "16px 36px", background: "#DD1E21", color: "#fff", border: "none", borderRadius: 4, cursor: "pointer", letterSpacing: "0.06em", textTransform: "uppercase", transition: "all 0.3s ease" };
 
-// ── CompetitiveLandscapeInner ─────────────────────────────────────────────
+// -- CompetitiveLandscapeInner ---------------------------------------------
 function CompetitiveLandscapeInner() {
   const [cp, setCp]  = useState(0);
   const startedRef   = useRef(false);
@@ -566,7 +576,7 @@ function CompetitiveLandscapeInner() {
       <h2 style={G_MEGA("clamp(2rem,4.5vw,3.2rem)", 48)}>Where We Stand<br /><span style={{ color: "#DD1E21" }}>Privacy — Usability</span></h2>
       <div className="mgrid2 scatter-layout" style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 40, alignItems: "start" }}>
         <div className="scatter-wrapper"><CompetitiveChart p={cp} /></div>
-        <div style={{ ...G_CARD, opacity: insightF, transform: `translateX(${(1 - insightF) * 24}px)` }}>
+        <div className="scatter-insight" style={{ ...G_CARD, opacity: insightF, transform: `translateX(${(1 - insightF) * 24}px)` }}>
           <div style={G_CARDTOP} />
           <h4 style={{ fontFamily: "'Monument Extended'", fontSize: "1.3rem", letterSpacing: "0.06em", marginBottom: 16, color: "#C9A84C" }}>KEY INSIGHT</h4>
           <p style={{ fontSize: "1rem", color: "#7A8599", lineHeight: 1.7, marginBottom: 14 }}>Existing privacy solutions force a choice between <strong style={{ color: "#F0E0B2" }}>strong privacy</strong> and <strong style={{ color: "#F0E0B2" }}>ease of use</strong>.</p>
@@ -580,7 +590,7 @@ function CompetitiveLandscapeInner() {
   );
 }
 
-// ── FinancialSection ────────────────────────────────────────────────────────────────────────
+// -- FinancialSection ------------------------------------------------------------------------
 
 function SlotDigit({ target, active, delay, color, fontSize, addShadow }) {
   const [display,  setDisplay]  = useState(String(target));
@@ -791,7 +801,7 @@ function FinancialSection() {
 
   const D1M   = [1,0,0,0,0,0,0];
   const D200K = [2,0,0,0,0,0];
-  const CM6   = [1,4];  // commas at position 1 and 4 → 1,000,000
+  const CM6   = [1,4];  // commas at position 1 and 4 ? 1,000,000
   const CM5   = [3];     // 200,000
 
   return (
@@ -1001,13 +1011,13 @@ function FinancialSection() {
   );
 }
 
-// ── NameResolver ──────────────────────────────────────────────────────────
+// -- NameResolver ----------------------------------------------------------
 const NR_HEX   = "0123456789abcdef";
 const NR_TGT   = "@JAKUB";
 const NR_CYCLE = 9000;
-const NR_S0    = 3000;   // hex → scramble
-const NR_S1    = 5000;   // scramble → resolved
-const NR_S2    = 7500;   // resolved → fading
+const NR_S0    = 3000;   // hex ? scramble
+const NR_S1    = 5000;   // scramble ? resolved
+const NR_S2    = 7500;   // resolved ? fading
 const NR_TICKS = 30;
 const NR_MS    = 65;
 
@@ -1061,13 +1071,15 @@ function NameResolver() {
   return (
     <div>
       <div style={{ height: 22, marginBottom: 10, opacity: contentOp, transition: "opacity 0.3s" }}>
-        {isScramble && <span style={{ fontFamily:"'JetBrains Mono'", fontSize: 9, textTransform:"uppercase", letterSpacing:"3px", color:"rgba(201,168,76,0.95)" }}>● Resolving name...</span>}
-        {isResolved && <span style={{ fontFamily:"'JetBrains Mono'", fontSize: 9, textTransform:"uppercase", letterSpacing:"3px", color:"#34D399" }}>✓ Identity verified — private transfer ready</span>}
+        {isScramble && <span style={{ fontFamily:"'JetBrains Mono'", fontSize: 9, textTransform:"uppercase", letterSpacing:"3px", color:"rgba(201,168,76,0.95)" }}>? Resolving name...</span>}
+        {isResolved && <span style={{ fontFamily:"'JetBrains Mono'", fontSize: 9, textTransform:"uppercase", letterSpacing:"3px", color:"#34D399" }}>? Identity verified — private transfer ready</span>}
       </div>
       <div style={{ position:"relative", display:"inline-flex", alignItems:"center", gap: 20, opacity: contentOp, transition: "opacity 0.4s" }}>
         {isResolved && <div style={{ position:"absolute", inset:"-40px -80px", background:"radial-gradient(ellipse,rgba(201,168,76,0.14) 0%,transparent 70%)", pointerEvents:"none" }} />}
         <span style={{ fontFamily:"'JetBrains Mono'", fontSize:"clamp(12px,1.2vw,16px)", color: isHex ? "rgba(185,190,215,0.7)" : "rgba(100,110,150,0.4)", padding:"10px 18px", background: isHex ? "rgba(221,30,33,0.09)" : "rgba(221,30,33,0.03)", border:`1px solid ${isHex ? "rgba(221,30,33,0.25)" : "rgba(221,30,33,0.08)"}`, borderRadius:6, textDecoration: isHex ? "none" : "line-through" }}>0xA7c4...3F9b</span>
-        <span style={{ fontSize:"1.5rem", color:"#C9A84C", opacity: isHex ? 0.45 : 1, transition:"opacity 0.3s" }}>→</span>
+        <span style={{ opacity: isHex ? 0.45 : 1, transition:"opacity 0.3s", display:"flex", alignItems:"center" }}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg>
+        </span>
         <div style={{ position:"relative" }}>
           <span style={{ fontFamily:"'JetBrains Mono'", fontSize:"clamp(24px,3.5vw,40px)", fontWeight:500, color:textColor, letterSpacing: isResolved ? "3px" : "1px", transition:"color 0.3s" }}>{text}</span>
           <div style={{ position:"absolute", bottom:4, left:0, height:2, width: isResolved ? "100%" : "0%", background:"linear-gradient(90deg,#C9A84C,rgba(201,168,76,0.2))", transition:"width 0.5s ease" }} />
@@ -1077,7 +1089,7 @@ function NameResolver() {
   );
 }
 
-// ── FeatureChips ──────────────────────────────────────────────────────────
+// -- FeatureChips ----------------------------------------------------------
 const S1_CHIPS = [
   { label:"Human-Readable",       desc:"Names like @jakub replace complex wallet addresses" },
   { label:"Anti-Phishing",        desc:"Eliminates address poisoning — send to names, not addresses" },
@@ -1166,7 +1178,9 @@ function WalletScanner() {
 
       {/* Status label */}
       <div style={{ position: "relative", zIndex: 1, fontSize: "0.7rem", letterSpacing: "0.14em", textTransform: "uppercase", textAlign: "center", marginBottom: 14, height: 16, color: showExposedLabel ? "#FDFAF4" : "rgba(253,250,244,0.9)", fontWeight: showExposedLabel ? 700 : 400 }}>
-        {showExposedLabel ? "⚠ Wallet Exposed" : "● Scanning address..."}
+        {showExposedLabel
+          ? <><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FDFAF4" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display:"inline-block", verticalAlign:"middle", marginRight:5, marginTop:-2 }}><polygon points="12,2 22,21 2,21"/><line x1="12" y1="9" x2="12" y2="13"/><circle cx="12" cy="17" r="0.5" fill="#FDFAF4" stroke="none"/></svg>Wallet Exposed</>
+          : <><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(253,250,244,0.7)" strokeWidth="2" strokeLinecap="round" style={{ display:"inline-block", verticalAlign:"middle", marginRight:5, marginTop:-2 }}><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r="0.5" fill="rgba(253,250,244,0.7)" stroke="none"/></svg>Scanning address...</> }
       </div>
 
       {/* Address bar */}
@@ -1201,8 +1215,8 @@ function WalletScanner() {
                 <div style={{ width: 1, height: "100%", background: hov ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.25)" }} />
               </div>
               <div style={{ padding: "10px 12px", borderRadius: 6, background: hov ? "rgba(0,0,0,0.3)" : "rgba(0,0,0,0.2)", border: `1px solid ${hov ? "rgba(255,255,255,0.25)" : "rgba(255,255,255,0.12)"}`, boxShadow: hov ? "0 0 12px rgba(0,0,0,0.3)" : "none", transition: "background 0.25s,border-color 0.25s,box-shadow 0.25s", cursor: "default" }}>
-                <div style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#F0E0B2", marginBottom: 5, opacity: hov ? 1 : 0.85, transition: "color 0.25s" }}>{label}</div>
-                <div style={{ fontSize: "0.74rem", color: hov ? "#F0E0B2" : "rgba(240,224,178,0.9)", transition: "color 0.25s", fontWeight: 500 }}>{value}</div>
+                <div className="leak-label" style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#F0E0B2", marginBottom: 5, opacity: hov ? 1 : 0.85, transition: "color 0.25s" }}>{label}</div>
+                <div className="leak-value" style={{ fontSize: "0.74rem", color: hov ? "#F0E0B2" : "rgba(240,224,178,0.9)", transition: "color 0.25s", fontWeight: 500 }}>{value}</div>
               </div>
             </div>
           );
@@ -1215,7 +1229,7 @@ function WalletScanner() {
   );
 }
 
-// ── MoatSection ─────────────────────────────────────────────────────────────────────────────
+// -- MoatSection -----------------------------------------------------------------------------
 
 const MOAT_CARDS_TOP = [
   {
@@ -1537,7 +1551,7 @@ function MoatSection({ mR, mV }) {
   );
 }
 
-// ── CTASection ─────────────────────────────────────────────────────────────────────────────
+// -- CTASection -----------------------------------------------------------------------------
 
 function CTASection({ ctR, ctV }) {
   const [hovL,     setHovL]     = useState(false);
@@ -1686,7 +1700,7 @@ function CTASection({ ctR, ctV }) {
 }
 
 
-// ─── Site Footer ─────────────────────────────────────────────────────────────
+// --- Site Footer -------------------------------------------------------------
 function SiteFooter() {
   const [hovSocial,  setHovSocial]  = useState(null);
   const [hovContact, setHovContact] = useState(null);
@@ -1716,8 +1730,8 @@ function SiteFooter() {
         gap: "4rem",
       }}>
 
-        {/* ── Left column ── */}
-        <div style={{ maxWidth: 500 }}>
+        {/* -- Left column -- */}
+        <div className="footer-left" style={{ maxWidth: 500 }}>
 
           {/* Logo + name */}
           <div style={{ display:"flex", alignItems:"center", marginBottom:20 }}>
@@ -1730,7 +1744,7 @@ function SiteFooter() {
           </p>
 
           {/* Credential pills */}
-          <div style={{ display:"flex", flexWrap:"wrap", gap:10, marginBottom:"1.5rem" }}>
+          <div className="footer-badges-row" style={{ display:"flex", flexWrap:"wrap", gap:10, marginBottom:"1.5rem" }}>
             {["11 PATENTS","MULTI-CHAIN","COMPLIANCE-READY"].map(p => (
               <span key={p} style={{
                 fontFamily:"'JetBrains Mono',monospace", fontSize:10, letterSpacing:"1.5px",
@@ -1742,7 +1756,7 @@ function SiteFooter() {
           </div>
 
           {/* Social icons */}
-          <div style={{ display:"flex", gap:20 }}>
+          <div className="footer-social-row" style={{ display:"flex", gap:20 }}>
             {socials.map((s, i) => (
               <a key={s.key} href={s.href} target="_blank" rel="noopener noreferrer"
                 aria-label={s.label}
@@ -1761,8 +1775,8 @@ function SiteFooter() {
           </div>
         </div>
 
-        {/* ── Right column ── */}
-        <div style={{ textAlign:"right", paddingTop:6, flexShrink:0, marginLeft:"auto" }}>
+        {/* -- Right column -- */}
+        <div className="footer-right" style={{ textAlign:"right", paddingTop:6, flexShrink:0, marginLeft:"auto" }}>
 
           {/* Contact lines */}
           <div style={{ display:"flex", flexDirection:"column", gap:10, marginBottom:"1.5rem" }}>
@@ -1782,7 +1796,7 @@ function SiteFooter() {
                 onMouseLeave={() => setHovContact(null)}
                 style={{
                   display:"flex", alignItems:"center", justifyContent:"flex-end", gap:8,
-                  fontFamily:"'Space Grotesk',sans-serif", fontSize:14,
+                  fontFamily:"'Space Grotesk',sans-serif", fontSize:16,
                   color: hovContact === i ? "rgba(240,224,178,1)" : "rgba(240,224,178,0.85)",
                   textDecoration: "none", transition:"color 0.2s ease",
                 }}>
@@ -1793,7 +1807,7 @@ function SiteFooter() {
           </div>
 
           {/* Book a Call CTA */}
-          <div style={{ display:"flex", justifyContent:"flex-end" }}>
+          <div className="footer-cta-wrap" style={{ display:"flex", justifyContent:"flex-end" }}>
           <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer"
             onMouseEnter={() => setHovCta(true)}
             onMouseLeave={() => setHovCta(false)}
@@ -1822,7 +1836,7 @@ function SiteFooter() {
         <div style={{ borderTop:"1px solid rgba(240,224,178,0.12)" }} />
       </div>
 
-      {/* ── Bottom bar ── */}
+      {/* -- Bottom bar -- */}
       <div className="footer-bottom" style={{
         maxWidth: 1440, margin: "0 auto", width: "100%",
         padding: "1.25rem 48px 2rem",
@@ -1871,7 +1885,7 @@ function SiteFooter() {
 
 
 
-// ─── Site Nav ─────────────────────────────────────────────────────────────────
+// --- Site Nav -----------------------------------------------------------------
 function SiteNav() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection,  setActiveSection]  = useState("");
@@ -2224,153 +2238,147 @@ export default function AF() {
         body{font-family:'Space Grotesk',sans-serif;font-size:17px;line-height:1.7;color:#F5F0EB;background:#182145;overflow-x:hidden;-webkit-font-smoothing:antialiased}
         @keyframes twinkle{0%,100%{opacity:0.1}50%{opacity:0.55}}
         @keyframes pulseG{0%,100%{opacity:0.4;transform:scale(1)}50%{opacity:1;transform:scale(1.15)}}
-        /* ── Financial Opportunity Numbers ───────────────── */
+        /* -- Financial Opportunity Numbers ----------------- */
         .fin-slot-wrap { font-family: var(--font-heading) !important; font-weight: 800 !important; font-size: clamp(2.5rem, 5vw, 4rem) !important; line-height: 1.0 !important; white-space: nowrap !important; }
         .fin-slot-wrap span { font-size: inherit !important; font-weight: inherit !important; font-family: inherit !important; line-height: inherit !important; }
         .per-month { font-size: 0.25em !important; font-weight: 400 !important; opacity: 0.4 !important; margin-left: 4px !important; vertical-align: baseline !important; }
 
-        /* ── Mobile (≤768px) ─────────────────────────────── */
+        /* -- Mobile (=768px) ------------------------------- */
         @media (max-width: 768px) {
-
-          /* 0 ── HERO TOP PADDING ──────────────────────────── */
-          .hero-section { padding-top: 0 !important; }
-          .hero-content { padding-top: 96px !important; padding-bottom: 0 !important; }
-
-          /* 1 ── NAV ────────────────────────────────────────── */
-          nav { height: 56px !important; padding: 0 16px !important; }
-          .nav-center { display: none !important; }
-          .sitenav-links { display: none !important; }
-
-          /* 2 ── GLOBAL OVERFLOW ─────────────────────────────── */
+          /* -- GLOBAL ----------------------------------------- */
           html, body { overflow-x: hidden !important; max-width: 100vw !important; }
           section { overflow-x: hidden !important; max-width: 100vw !important; box-sizing: border-box !important; }
-          .noise { overflow-x: hidden !important; }
-          .msec { padding: 60px 20px !important; max-width: 100vw !important; box-sizing: border-box !important; }
+          .msec { padding: 48px 20px !important; max-width: 100vw !important; box-sizing: border-box !important; }
           .mgrid2 { grid-template-columns: 1fr !important; gap: 20px !important; }
-
-          /* 3 ── WALLET SCANNER ──────────────────────────────── */
-          .wallet-grid { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
-          .wallet-grid > div { padding: 10px 12px !important; }
+          /* -- NAV -------------------------------------------- */
+          nav { height: 56px !important; padding: 0 16px !important; }
+          .nav-center, .sitenav-links, .nav-book-cta { display: none !important; }
+          .nav-hamburger { display: flex !important; }
+          /* -- HERO ------------------------------------------- */
+          .hero-cover { display: none !important; }
+          .hero-section { min-height: auto !important; }
+          .hero-content { padding: 88px 20px 40px !important; text-align: center !important; }
+          .mhero { font-size: clamp(1.6rem, 8vw, 2.5rem) !important; white-space: nowrap !important; }
+          .hero-partner-label { font-size: 10px !important; text-align: center !important; }
+          .hero-subtitle { font-size: 16px !important; text-align: center !important; }
+          .hero-desc { font-size: 14px !important; text-align: center !important; max-width: 100% !important; }
+          .hero-ctas { flex-direction: column !important; width: 100% !important; max-width: 320px !important; margin: 0 auto !important; gap: 10px !important; }
+          .hero-ctas a { width: 100% !important; height: 48px !important; min-height: 48px !important; text-align: center !important; justify-content: center !important; box-sizing: border-box !important; }
+          .hero-badges { display: flex !important; flex-wrap: nowrap !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; gap: 8px !important; padding: 0 20px 4px !important; margin-top: 20px !important; scrollbar-width: none !important; justify-content: flex-start !important; max-width: 100% !important; }
+          .hero-badges::-webkit-scrollbar { display: none !important; }
+          .hero-badges span { flex-shrink: 0 !important; font-size: 9px !important; padding: 5px 10px !important; white-space: nowrap !important; }
+          .hero-badges span > span:first-child { width: 4px !important; height: 4px !important; }
+          /* -- WALLET SCANNER --------------------------------- */
+          .scanner-box { padding: 16px !important; border-radius: 16px !important; margin: 16px 0 32px !important; width: 100% !important; box-sizing: border-box !important; }
           .wallet-addr { font-size: 10px !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; }
-
-          /* 4 ── FORTRESSNAMES ───────────────────────────────── */
+          .leak-grid { grid-template-columns: 1fr 1fr !important; gap: 8px !important; align-items: stretch !important; }
+          .leak-grid > div > div:last-child { border-radius: 10px !important; padding: 12px !important; text-align: center !important; }
+          .leak-label { font-size: 9px !important; }
+          .leak-value { font-size: 13px !important; }
+          /* -- EXPOSED CARDS ---------------------------------- */
+          .exposed-card-h3 { justify-content: flex-start !important; text-align: left !important; }
+          /* -- FORTRESSNAMES ---------------------------------- */
           .nr-wrap { overflow: hidden !important; max-width: 100% !important; }
           .nr-row { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
           .nr-hex { font-size: 12px !important; max-width: 100% !important; overflow: hidden !important; text-overflow: ellipsis !important; }
           .nr-arrow { transform: rotate(90deg) !important; display: block !important; }
-          .nr-display { font-size: clamp(22px, 8vw, 44px) !important; }
+          .nr-display { font-size: clamp(20px, 7vw, 36px) !important; }
           .s1chips { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
           .s1chips > div { padding: 12px 14px !important; }
           .liberty-bg { opacity: 0.05 !important; }
-
-          /* 5 ── FINANCIAL OPPORTUNITY ───────────────────────── */
-          .fin-title { white-space: normal !important; font-size: clamp(1.4rem,6vw,2rem) !important; word-break: break-word !important; }
-          .fin-num-lg { font-size: inherit !important; white-space: normal; display: inline; }
-          .fin-num-xl { font-size: inherit !important; white-space: normal; display: inline; }
+          /* -- COMPETITIVE SCATTER ---------------------------- */
+          .scatter-layout { grid-template-columns: 1fr !important; gap: 24px !important; }
+          .scatter-wrapper { width: 100% !important; max-width: 100% !important; overflow: hidden !important; padding: 0 16px !important; box-sizing: border-box !important; }
+          .scatter-wrapper svg { width: 100% !important; height: auto !important; }
+          .scatter-insight { width: 100% !important; opacity: 1 !important; transform: none !important; }
+          .scatter-insight p { color: rgba(240,224,178,0.8) !important; font-size: 15px !important; }
+          /* -- COMPARISON TABLE ------------------------------- */
+          .cmp-wrap { padding: 40px 0 !important; }
+          .cmp-table { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; padding: 0 20px !important; }
+          .cmp-table > div { min-width: 580px !important; }
+          .cmp-scroll-hint { display: flex !important; justify-content: center !important; margin-bottom: 8px !important; padding: 0 20px !important; }
+          .cmp-footer { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; padding: 0 20px !important; }
+          .cmp-footer a, .cmp-footer button { width: 100% !important; max-width: 300px !important; text-align: center !important; justify-content: center !important; box-sizing: border-box !important; }
+          .cmp-header-row > div, .cmp-row > div { font-size: 12px !important; }
+          .cmp-header-row > div:first-child { position: sticky !important; left: 0 !important; z-index: 2 !important; background: #182145 !important; color: rgba(240,224,178,0.5) !important; }
+          .cmp-row > div:first-child { position: sticky !important; left: 0 !important; z-index: 2 !important; background: #F0E0B2 !important; }
+          /* -- FINANCIAL -------------------------------------- */
+          .fin-slot-wrap { font-size: clamp(2rem, 8vw, 3rem) !important; }
+          .fin-title { white-space: normal !important; font-size: clamp(1.2rem, 5vw, 2rem) !important; padding-right: 0 !important; word-break: break-word !important; }
           .fin-inner { padding: 0 16px !important; box-sizing: border-box !important; overflow: hidden !important; }
-          .fin-cta { display: flex !important; justify-content: center !important; }
           .fin-cta a { width: 100% !important; max-width: 300px !important; text-align: center !important; justify-content: center !important; }
-          .cmp-shake { transform: none !important; }
-
-          /* 6 ── TRUSTED BY ──────────────────────────────────── */
-          #trusted { min-height: auto !important; }
-          #trusted > .msec { padding: 40px 20px !important; }
-          .marquee-logo { height: 20px !important; }
-
-          /* 7 ── CONFIDENTIALITY ─────────────────────────────── */
-          .ghost-word { display: none !important; } /* legacy — ghost word now uses inline style, not this class */
-
-          /* 8 ── TECHNOLOGY MOAT ─────────────────────────────── */
+          /* -- TECHNOLOGY MOAT -------------------------------- */
           .moat-rings, .moat-orbits, .moat-powerlines { display: none !important; }
           .moat-shield img { width: 84px !important; }
           .moat-shield { padding: 12px 0 !important; }
           .moat-card-area { max-width: 100% !important; overflow: hidden !important; }
           .moat-row { flex-direction: column !important; align-items: center !important; gap: 12px !important; }
           .moat-row > * { width: 100% !important; max-width: 400px !important; flex: none !important; box-sizing: border-box !important; }
-
-          /* ── HERO ──────────────────────────────────────────── */
-          .hero-cover { display: none !important; }
-          .mhero { font-size: clamp(32px, 9vw, 64px) !important; white-space: normal !important; }
-          .hero-section { min-height: auto !important; }
-          .hero-content { padding: 96px 20px 40px !important; }
-          .hero-content p { font-size: 14px !important; max-width: 90% !important; }
-          .hero-ctas { flex-direction: column !important; width: 100% !important; max-width: 320px !important; margin: 0 auto !important; gap: 12px !important; }
-          .hero-ctas a { width: 100% !important; text-align: center !important; justify-content: center !important; box-sizing: border-box !important; }
-          .hero-badges { display: flex !important; flex-wrap: wrap !important; gap: 6px !important; justify-content: center !important; max-width: 340px !important; margin: 0 auto !important; }
-          .hero-badges span { font-size: 9px !important; padding: 5px 10px !important; flex: 0 0 auto !important; white-space: nowrap !important; }
-
-          /* ── COMPARISON ────────────────────────────────────── */
-          .cmp-wrap { padding: 40px 20px !important; }
-          .cmp-table { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
-          .cmp-table > div { min-width: 600px !important; }
-          .cmp-scroll-hint { display: flex !important; justify-content: center !important; margin-bottom: 8px !important; }
-          .cmp-footer { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
-          .cmp-footer a, .cmp-footer button { width: 100% !important; max-width: 300px !important; text-align: center !important; justify-content: center !important; box-sizing: border-box !important; }
-          .ctab { display: block !important; overflow-x: auto !important; }
-          .cmp-header-row > div:first-child, .cmp-row > div:first-child { position: sticky !important; left: 0 !important; z-index: 2 !important; background: #F0E0B2 !important; }
-          .cmp-header-row > div:nth-child(2) { position: sticky !important; left: 0 !important; }
-
-          /* ── COMPETITIVE SCATTER ───────────────────────────── */
-          .scatter-layout { grid-template-columns: 1fr !important; }
-          .scatter-wrapper { width: 100% !important; max-width: 100% !important; overflow: hidden !important; }
-          .scatter-wrapper svg { width: 100% !important; height: auto !important; }
-
-          /* ── FINANCIAL SLOT NUMBERS ────────────────────────── */
-          .fin-slot-wrap { font-size: clamp(2rem, 8vw, 3.5rem) !important; }
-          .fin-title { font-size: clamp(1.2rem, 5vw, 2rem) !important; padding-right: 0 !important; white-space: normal !important; }
-
-          /* ── WALLET SCANNER ────────────────────────────────── */
-          .scanner-box { padding: 20px !important; margin: 16px 0 32px !important; }
-          .leak-grid { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
-          .wallet-addr { font-size: 0.6rem !important; }
-
-          /* ── REVENUE CARDS ─────────────────────────────────── */
+          .card-on-dark p, .card-on-light p, .card-on-red p { font-size: 14px !important; color: rgba(240,224,178,0.8) !important; }
+          /* -- TRUSTED BY ------------------------------------- */
+          #trusted { min-height: auto !important; }
+          #trusted > .msec { padding: 40px 20px !important; }
+          .marquee-logo { height: 20px !important; }
+          /* -- CONFIDENTIALITY -------------------------------- */
+          .ghost-word { display: none !important; }
+          /* -- REVENUE CARDS ---------------------------------- */
           .rev-cards { grid-template-columns: 1fr !important; gap: 16px !important; }
-
-          /* ── CTA SECTION ───────────────────────────────────── */
+          /* -- CTA SECTION ------------------------------------ */
           .cta-cards { grid-template-columns: 1fr !important; gap: 16px !important; max-width: 100% !important; }
           .cta-book-btn { width: 100% !important; max-width: 280px !important; text-align: center !important; justify-content: center !important; box-sizing: border-box !important; margin: 0 auto !important; display: flex !important; }
           .cta-contact-link { word-break: break-all !important; font-size: 12px !important; }
-
-          /* ── FOOTER ────────────────────────────────────────── */
+          /* -- FOOTER ----------------------------------------- */
           .footer-grid-texture { display: none !important; }
-          .footer-cols { flex-direction: column !important; gap: 32px !important; padding: 40px 20px 24px !important; align-items: center !important; text-align: center !important; }
-          .footer-cols > div { width: 100% !important; max-width: 320px !important; align-items: center !important; text-align: center !important; }
-          .footer-cols a { justify-content: center !important; }
-          .footer-bottom { padding: 16px 20px !important; text-align: center !important; }
-          .footer-policy { justify-content: center !important; flex-wrap: wrap !important; }
-
-          /* ── HAMBURGER ─────────────────────────────────────── */
-          .nav-hamburger { display: flex !important; }
-          .nav-center { display: none !important; }
-          .nav-book-cta { display: none !important; }
-
-          /* ── TYPOGRAPHY ────────────────────────────────────── */
-          .mhero { font-size: 2.2rem !important; white-space: normal !important; }
-          .hero-partner-label { font-size: 10px !important; }
-          .hero-subtitle { font-size: 18px !important; }
-          .hero-desc { font-size: 15px !important; }
+          /* Main wrapper: single column, centered */
+          .footer-cols { flex-direction: column !important; align-items: center !important; padding: 40px 20px 24px !important; gap: 0 !important; width: 100% !important; box-sizing: border-box !important; }
+          /* Each column block: full width, centered, 24px gap below */
+          .footer-left, .footer-right { width: 100% !important; max-width: 320px !important; text-align: center !important; margin: 0 auto !important; margin-bottom: 24px !important; flex-shrink: 0 !important; }
+          /* Right col overrides */
+          .footer-right { text-align: center !important; margin-left: auto !important; margin-right: auto !important; }
+          /* Logo row: centered */
+          .footer-left > div:first-child { justify-content: center !important; }
+          /* Contact links: centered */
+          .footer-right a { justify-content: center !important; font-size: 16px !important; min-height: 44px !important; display: flex !important; align-items: center !important; }
+          /* Book a Call CTA: full width centered */
+          .footer-cta-wrap { justify-content: center !important; }
+          .footer-cta-wrap a { width: 100% !important; max-width: 280px !important; justify-content: center !important; }
+          /* Social icons: centered row, 44px tap targets */
+          .footer-social-row { justify-content: center !important; gap: 16px !important; flex-wrap: nowrap !important; }
+          .footer-social-row a { width: 44px !important; height: 44px !important; display: flex !important; align-items: center !important; justify-content: center !important; }
+          /* Badges: centered wrapping row */
+          .footer-badges-row { justify-content: center !important; }
+          /* Bottom bar */
+          .footer-bottom { flex-direction: column !important; align-items: center !important; gap: 12px !important; padding: 16px 20px 24px !important; text-align: center !important; }
+          .footer-bottom p { font-size: 13px !important; text-align: center !important; }
+          .footer-policy { justify-content: center !important; flex-wrap: wrap !important; gap: 16px !important; }
+          .footer-policy a { font-size: 14px !important; min-height: 44px !important; display: flex !important; align-items: center !important; }
+          /* -- TYPOGRAPHY ------------------------------------- */
+          body { font-size: 15px !important; }
           section h2, .msec h2 { font-size: clamp(1.4rem, 5vw, 1.8rem) !important; max-width: 100% !important; }
           .card-on-dark h3, .card-on-light h3, .card-on-red h3 { font-size: 1rem !important; }
-          .nr-display { font-size: clamp(20px, 7vw, 36px) !important; }
-          body { font-size: 15px !important; }
-
-          /* ── TOUCH TARGETS ─────────────────────────────────── */
-          .hero-ctas a { height: 52px !important; min-height: 52px !important; box-sizing: border-box !important; }
+          /* -- TOUCH TARGETS ---------------------------------- */
           nav a, nav button { min-height: 44px !important; min-width: 44px !important; }
           footer a { min-height: 44px !important; padding-top: 10px !important; padding-bottom: 10px !important; }
           .footer-social a { width: 44px !important; height: 44px !important; display: flex !important; align-items: center !important; justify-content: center !important; }
-          button, .btn, [class*="btn-"] { min-height: 48px !important; min-width: 48px !important; }
-
-          /* ── SPACING ───────────────────────────────────────── */
+          /* -- SPACING ---------------------------------------- */
           .msec h2 { margin-bottom: 12px !important; }
           .card-on-dark, .card-on-light, .card-on-red { padding: 20px !important; }
-
-          /* ── TOUCH / A11Y ──────────────────────────────────── */
-          [style*="position: sticky"] { position: -webkit-sticky !important; position: sticky !important; }
-          .cmp-scroll-hint { display: none; }
+          .cmp-shake { transform: none !important; }
+          /* -- GLOBAL FIXES ----------------------------------- */
+          html, body { overflow-x: hidden !important; }
+          * { max-width: 100vw; }
+          /* Body text minimums */
+          p, li, span, div { font-size: max(14px, inherit); }
+          .card-on-dark p, .card-on-light p, .card-on-red p { font-size: 14px !important; color: rgba(240,224,178,0.8) !important; }
+          /* Section padding */
+          section, .msec { padding-left: 20px !important; padding-right: 20px !important; box-sizing: border-box !important; }
+          /* Brushstroke dividers */
+          [class*="brushstroke"], [class*="divider"] { height: 30px !important; }
+          /* Prevent text clip under navbar */
+          .hero-content { padding-top: 88px !important; }
+          /* Section title minimum */
+          section h2, .msec h2 { font-size: clamp(1.2rem, 5vw, 1.8rem) !important; }
         }
-
         @media (max-width: 480px) {
           .s1chips { grid-template-columns: 1fr !important; }
         }
@@ -2559,7 +2567,7 @@ export default function AF() {
                 <div style={{ position: "absolute", top: 0, right: 0, width: 60, height: 60,
                   background: `radial-gradient(circle at top right, ${hovCard === 0 ? "rgba(200,170,100,0.06)" : "rgba(100,120,170,0.03)"}, transparent 70%)`,
                   transition: "background 0.35s ease" }}/>
-                <h3 style={{ fontFamily: "'Monument Extended'", fontSize: "1.3rem", letterSpacing: "0.08em", marginBottom: 20, display: "flex", alignItems: "center", gap: 12 }}>
+                <h3 className="exposed-card-h3" style={{ fontFamily: "'Monument Extended'", fontSize: "1.3rem", letterSpacing: "0.08em", marginBottom: 20, display: "flex", alignItems: "center", gap: 12 }}>
                   <div style={{
                     width: 44, height: 44, borderRadius: 10, flexShrink: 0,
                     background: hovCard === 0
@@ -2602,7 +2610,7 @@ export default function AF() {
                 <div style={{ position: "absolute", top: 0, right: 0, width: 60, height: 60,
                   background: `radial-gradient(circle at top right, ${hovCard === 1 ? "rgba(200,170,100,0.06)" : "rgba(100,120,170,0.03)"}, transparent 70%)`,
                   transition: "background 0.35s ease" }}/>
-                <h3 style={{ fontFamily: "'Monument Extended'", fontSize: "1.3rem", letterSpacing: "0.08em", marginBottom: 20, display: "flex", alignItems: "center", gap: 12 }}>
+                <h3 className="exposed-card-h3" style={{ fontFamily: "'Monument Extended'", fontSize: "1.3rem", letterSpacing: "0.08em", marginBottom: 20, display: "flex", alignItems: "center", gap: 12 }}>
                   <div style={{
                     width: 44, height: 44, borderRadius: 10, flexShrink: 0,
                     background: hovCard === 1
