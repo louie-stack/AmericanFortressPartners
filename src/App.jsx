@@ -427,7 +427,7 @@ function ComparisonSection() {
 
           <div className="cmp-table" style={{ background:"transparent", border:"1px solid rgba(24,33,69,0.08)", borderRadius:12, overflow:"hidden" }}>
             {/* Header row */}
-            <div style={{ display:"grid", gridTemplateColumns:gridCols, padding:"10px 20px", background:"#182145", borderBottom:"1px solid rgba(100,110,150,0.1)", borderRadius:"12px 12px 0 0" }}>
+            <div className="cmp-header-row" style={{ display:"grid", gridTemplateColumns:gridCols, padding:"10px 20px", background:"#182145", borderBottom:"1px solid rgba(100,110,150,0.1)", borderRadius:"12px 12px 0 0" }}>
               {COLS.map((col, ci) => (
                 <div key={ci} style={{
                   fontFamily:"'JetBrains Mono'", fontSize:"0.68rem", textTransform:"uppercase", letterSpacing:"0.08em",
@@ -451,7 +451,7 @@ function ComparisonSection() {
                 : i % 2 === 0 ? "transparent" : "rgba(24,33,69,0.03)";
 
               return (
-                <div key={i} style={{
+                <div key={i} className="cmp-row" style={{
                   display:"grid", gridTemplateColumns:gridCols,
                   padding:"10px 20px",
                   background: rowBg,
@@ -564,13 +564,13 @@ function CompetitiveLandscapeInner() {
     <div ref={sectionRef} className="msec" style={{ ...G_SEC, padding: "100px 48px 80px", opacity: cp > 0 ? 1 : 0, transform: cp > 0 ? "translateY(0)" : "translateY(30px)", transition: "opacity 0.7s ease, transform 0.7s ease" }}>
       <div><span style={G_LBL}><span style={G_DOT} /> Competitive Landscape</span></div>
       <h2 style={G_MEGA("clamp(2rem,4.5vw,3.2rem)", 48)}>Where We Stand<br /><span style={{ color: "#DD1E21" }}>Privacy — Usability</span></h2>
-      <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 40, alignItems: "start" }}>
-        <CompetitiveChart p={cp} />
+      <div className="mgrid2 scatter-layout" style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 40, alignItems: "start" }}>
+        <div className="scatter-wrapper"><CompetitiveChart p={cp} /></div>
         <div style={{ ...G_CARD, opacity: insightF, transform: `translateX(${(1 - insightF) * 24}px)` }}>
           <div style={G_CARDTOP} />
           <h4 style={{ fontFamily: "'Monument Extended'", fontSize: "1.3rem", letterSpacing: "0.06em", marginBottom: 16, color: "#C9A84C" }}>KEY INSIGHT</h4>
-          <p style={{ fontSize: "0.9rem", color: "#7A8599", lineHeight: 1.65, marginBottom: 14 }}>Existing privacy solutions force a choice between <strong style={{ color: "#F0E0B2" }}>strong privacy</strong> and <strong style={{ color: "#F0E0B2" }}>ease of use</strong>.</p>
-          <p style={{ fontSize: "0.9rem", color: "#7A8599", lineHeight: 1.65 }}>American Fortress is the <span style={{ color: "#DD1E21", fontWeight: 700 }}>only solution</span> that delivers full privacy AND consumer-grade simplicity in one SDK.</p>
+          <p style={{ fontSize: "1rem", color: "#7A8599", lineHeight: 1.7, marginBottom: 14 }}>Existing privacy solutions force a choice between <strong style={{ color: "#F0E0B2" }}>strong privacy</strong> and <strong style={{ color: "#F0E0B2" }}>ease of use</strong>.</p>
+          <p style={{ fontSize: "1rem", color: "#7A8599", lineHeight: 1.7 }}>American Fortress is the <span style={{ color: "#DD1E21", fontWeight: 700 }}>only solution</span> that delivers full privacy AND consumer-grade simplicity in one SDK.</p>
         </div>
       </div>
       <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: "0.9rem", color: "#3D4A63", textAlign: "center", marginTop: 40, opacity: footnoteF }}>
@@ -1086,7 +1086,7 @@ const S1_CHIPS = [
   { label:"Stealth Addresses",    desc:"Patented technology ensures every transaction is private" },
   { label:"Multi-Chain",          desc:"Ethereum, Base, 0G, Litecoin, DASH, and more from Day 1" },
   { label:"Poisoning Protection", desc:"Address poisoning protection built in" },
-  { label:"Freemium Model",       desc:"Free random names → paid custom names for conversion" },
+  { label:"Quantum-Proof",         desc:"Post-quantum cryptography ensures long-term security against future threats" },
 ];
 function FeatureChips() {
   const [hov, setHov] = useState(null);
@@ -1097,7 +1097,7 @@ function FeatureChips() {
         return (
           <div key={i} onMouseEnter={() => setHov(i)} onMouseLeave={() => setHov(null)} style={{ padding:"14px 16px", borderRadius:8, background: h ? "rgba(201,168,76,0.1)" : "rgba(201,168,76,0.05)", border:`1px solid ${h ? "rgba(201,168,76,0.35)" : "rgba(201,168,76,0.14)"}`, boxShadow: h ? "0 0 24px rgba(201,168,76,0.14), 0 0 48px rgba(201,168,76,0.05)" : "0 0 8px rgba(201,168,76,0.04)", transition:"background 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease", cursor:"default" }}>
             <div style={{ fontFamily:"'JetBrains Mono'", fontSize:9, textTransform:"uppercase", letterSpacing:"1.5px", marginBottom:8, color: h ? "#C9A84C" : "rgba(201,168,76,0.7)", transition:"color 0.25s ease" }}>{c.label}</div>
-            <div style={{ fontSize:13, lineHeight:1.5, color: h ? "rgba(220,225,240,0.9)" : "rgba(185,190,215,0.7)", transition:"color 0.25s ease" }}>{c.desc}</div>
+            <div style={{ fontSize:16, lineHeight:1.7, color: h ? "rgba(220,225,240,0.9)" : "rgba(185,190,215,0.85)", transition:"color 0.25s ease" }}>{c.desc}</div>
           </div>
         );
       })}
@@ -1150,7 +1150,7 @@ function WalletScanner() {
   const boxActive   = isFlashing || isExposed || isFadingOut;
   const addrBg      = isFlashing ? "rgba(0,0,0,0.4)" : boxActive ? "rgba(0,0,0,0.3)" : "rgba(0,0,0,0.25)";
   const addrBorder  = boxActive ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.15)";
-  const addrColor   = boxActive ? "#FDFAF4" : "rgba(253,250,244,0.7)";
+  const addrColor   = boxActive ? "#FDFAF4" : "rgba(253,250,244,0.9)";
   const outerBorder = boxActive ? "rgba(150,20,20,0.8)" : "rgba(180,40,40,0.4)";
   const outerGlow   = isFlashing
     ? "0 0 40px rgba(221,30,33,0.9), 0 0 90px rgba(221,30,33,0.45), 0 0 140px rgba(221,30,33,0.18)"
@@ -1159,13 +1159,13 @@ function WalletScanner() {
     : "none";
 
   return (
-    <div style={{ fontFamily: "'JetBrains Mono',monospace", margin: "32px 0 48px", padding: "40px", borderRadius: 20, background: "#DD1E21", border: `2px solid ${outerBorder}`, boxShadow: outerGlow, position: "relative", transition: "border-color 0.4s ease, box-shadow 0.4s ease" }}>
+    <div className="scanner-box" style={{ fontFamily: "'JetBrains Mono',monospace", margin: "32px 0 48px", padding: "40px", borderRadius: 20, background: "#DD1E21", border: `2px solid ${outerBorder}`, boxShadow: outerGlow, position: "relative", transition: "border-color 0.4s ease, box-shadow 0.4s ease" }}>
 
       {/* Ambient radial glow */}
       <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 820, height: 620, borderRadius: "50%", background: `radial-gradient(ellipse at center,${boxActive ? "rgba(221,30,33,0.12)" : "rgba(221,30,33,0.02)"} 0%,transparent 70%)`, pointerEvents: "none", zIndex: 0, transition: "background 0.6s ease" }} />
 
       {/* Status label */}
-      <div style={{ position: "relative", zIndex: 1, fontSize: "0.7rem", letterSpacing: "0.14em", textTransform: "uppercase", textAlign: "center", marginBottom: 14, height: 16, color: showExposedLabel ? "#FDFAF4" : "rgba(253,250,244,0.7)", fontWeight: showExposedLabel ? 700 : 400 }}>
+      <div style={{ position: "relative", zIndex: 1, fontSize: "0.7rem", letterSpacing: "0.14em", textTransform: "uppercase", textAlign: "center", marginBottom: 14, height: 16, color: showExposedLabel ? "#FDFAF4" : "rgba(253,250,244,0.9)", fontWeight: showExposedLabel ? 700 : 400 }}>
         {showExposedLabel ? "⚠ Wallet Exposed" : "● Scanning address..."}
       </div>
 
@@ -1190,7 +1190,7 @@ function WalletScanner() {
       </div>
 
       {/* Leaked data grid - only this fades on cycle reset */}
-      <div style={{ position: "relative", zIndex: 1, display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginTop: 20 }}>
+      <div className="leak-grid" style={{ position: "relative", zIndex: 1, display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginTop: 20 }}>
         {TAGS.map(({ label, value }, i) => {
           const op = tagVisible(i);
           const hov = hoveredTag === i;
@@ -1202,7 +1202,7 @@ function WalletScanner() {
               </div>
               <div style={{ padding: "10px 12px", borderRadius: 6, background: hov ? "rgba(0,0,0,0.3)" : "rgba(0,0,0,0.2)", border: `1px solid ${hov ? "rgba(255,255,255,0.25)" : "rgba(255,255,255,0.12)"}`, boxShadow: hov ? "0 0 12px rgba(0,0,0,0.3)" : "none", transition: "background 0.25s,border-color 0.25s,box-shadow 0.25s", cursor: "default" }}>
                 <div style={{ fontSize: "0.6rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#F0E0B2", marginBottom: 5, opacity: hov ? 1 : 0.85, transition: "color 0.25s" }}>{label}</div>
-                <div style={{ fontSize: "0.74rem", color: hov ? "#F0E0B2" : "rgba(240,224,178,0.7)", transition: "color 0.25s", fontWeight: 500 }}>{value}</div>
+                <div style={{ fontSize: "0.74rem", color: hov ? "#F0E0B2" : "rgba(240,224,178,0.9)", transition: "color 0.25s", fontWeight: 500 }}>{value}</div>
               </div>
             </div>
           );
@@ -1220,7 +1220,7 @@ function WalletScanner() {
 const MOAT_CARDS_TOP = [
   {
     label: "Patented Technology",
-    desc: "22 inventions protected. 1 granted, 1 allowed, 3 published, 2 pending.",
+    desc: "11 inventions protected. 1 granted, 1 allowed, 3 published, and more pending. A defensible IP portfolio.",
     icon: (color) => (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M10 2L4 5v5c0 3.5 2.5 6.5 6 7.5C14.5 16.5 17 13.5 17 10V5l-7-3z"/>
@@ -1242,8 +1242,8 @@ const MOAT_CARDS_TOP = [
     ),
   },
   {
-    label: "Multi-Chain Day 1",
-    desc: "Ethereum, Base, 0G, Litecoin, DASH at launch. More chains continuously.",
+    label: <>Multi-Chain<br />Day One</>,
+    desc: "Ethereum, Base, OG, Litecoin, DASH and more at launch. New chains added continuously.",
     icon: (color) => (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="5" cy="10" r="2"/>
@@ -1572,7 +1572,7 @@ function CTASection({ ctR, ctV }) {
       <div style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: 600, height: 400, background: "radial-gradient(ellipse,rgba(240,224,178,0.04),transparent 70%)", pointerEvents: "none" }} />
       <div className="msec" style={{ ...G_SEC, textAlign: "center" }}>
         <h2 style={{ fontFamily:"'Monument Extended',sans-serif", fontSize:"clamp(2rem,4.5vw,3.2rem)", fontWeight:800, letterSpacing:"0.04em", lineHeight:0.95, textTransform:"uppercase", color:"#F0E0B2", marginBottom:8, textAlign:"center", width:"100%", display:"block" }}>Let's Build <span style={{ color:"#F0E0B2" }}>Together</span></h2>
-        <p style={{ color: "rgba(240,224,178,0.75)", fontSize: "0.95rem", marginBottom: 24, textAlign: "center" }}>Schedule a partnership call or reach out directly</p>
+        <p style={{ color: "rgba(240,224,178,0.85)", fontSize: "0.95rem", marginBottom: 24, textAlign: "center" }}>Schedule a partnership call or reach out directly</p>
 
         <div className="mgrid2 cta-cards" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, maxWidth: 800, margin: "0 auto" }}>
 
@@ -1658,7 +1658,7 @@ function CTASection({ ctR, ctV }) {
                 </svg>
                 jakub@americanfortress.io
               </a>
-              <a href="https://wa.me/971585133461" target="_blank" rel="noreferrer"
+              <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noreferrer"
                 onMouseEnter={() => setHovPhone(true)} onMouseLeave={() => setHovPhone(false)}
                 style={{
                   display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8,
@@ -1668,10 +1668,14 @@ function CTASection({ ctR, ctV }) {
                   transition: "all 0.2s ease",
                 }}>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 015.13 12.7a19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+                  <rect x="3" y="4" width="18" height="18" rx="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
                 </svg>
-                +971 585 133 461 (WhatsApp)
+                Book a Call
               </a>
+
             </div>
           </div>
 
@@ -1705,7 +1709,7 @@ function SiteFooter() {
     }}>
 
       {/* Main two-column layout */}
-      <div style={{
+      <div className="footer-cols" style={{
         maxWidth: 1440, margin: "0 auto", padding: "64px 48px 0", width: "100%",
         display: "flex", alignItems: "flex-start",
         position: "relative", zIndex: 1,
@@ -1721,13 +1725,13 @@ function SiteFooter() {
           </div>
 
           {/* Description */}
-          <p style={{ fontFamily:"'Space Grotesk',sans-serif", fontSize:14, lineHeight:1.65, color:"rgba(240,224,178,0.6)", margin:"0 0 1.5rem" }}>
+          <p style={{ fontFamily:"'Space Grotesk',sans-serif", fontSize:17, lineHeight:1.7, color:"rgba(240,224,178,0.85)", margin:"0 0 1.5rem" }}>
             Patented Send-to-Name™ privacy technology. Integrates into any custodial or non-custodial wallet via SDK.
           </p>
 
           {/* Credential pills */}
           <div style={{ display:"flex", flexWrap:"wrap", gap:10, marginBottom:"1.5rem" }}>
-            {["22 PATENTS","MULTI-CHAIN","COMPLIANCE-READY"].map(p => (
+            {["11 PATENTS","MULTI-CHAIN","COMPLIANCE-READY"].map(p => (
               <span key={p} style={{
                 fontFamily:"'JetBrains Mono',monospace", fontSize:10, letterSpacing:"1.5px",
                 textTransform:"uppercase", color:"rgba(240,224,178,0.5)",
@@ -1767,10 +1771,7 @@ function SiteFooter() {
                 key:"email", href:"mailto:jakub@americanfortress.io", label:"jakub@americanfortress.io",
                 icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(240,224,178,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>
               },
-              {
-                key:"phone", href:"https://wa.me/971585133461", label:"+971 585 133 461 (WhatsApp)", target:"_blank",
-                icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(240,224,178,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.9a16 16 0 0 0 6 6l.9-.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              },
+
               {
                 key:"web", href:"https://americanfortress.io", label:"americanfortress.io", target:"_blank",
                 icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(240,224,178,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
@@ -1782,7 +1783,7 @@ function SiteFooter() {
                 style={{
                   display:"flex", alignItems:"center", justifyContent:"flex-end", gap:8,
                   fontFamily:"'Space Grotesk',sans-serif", fontSize:14,
-                  color: hovContact === i ? "rgba(240,224,178,1)" : "rgba(240,224,178,0.7)",
+                  color: hovContact === i ? "rgba(240,224,178,1)" : "rgba(240,224,178,0.85)",
                   textDecoration: "none", transition:"color 0.2s ease",
                 }}>
                 <span style={{ flexShrink:0 }}>{c.icon}</span>
@@ -1822,7 +1823,7 @@ function SiteFooter() {
       </div>
 
       {/* ── Bottom bar ── */}
-      <div style={{
+      <div className="footer-bottom" style={{
         maxWidth: 1440, margin: "0 auto", width: "100%",
         padding: "1.25rem 48px 2rem",
         display: "flex", justifyContent: "space-between", alignItems: "center",
@@ -1832,7 +1833,7 @@ function SiteFooter() {
         <p style={{ fontFamily:"'Space Grotesk',sans-serif", fontSize:12, color:"rgba(240,224,178,0.35)", margin:0 }}>
           © 2026 American Fortress. All rights reserved.
         </p>
-        <div style={{ display:"flex", alignItems:"center", gap:20 }}>
+        <div className="footer-policy" style={{ display:"flex", alignItems:"center", gap:20 }}>
           {[["Privacy Policy","#"],["Terms of Service","#"]].map(([label, href], i) => (
             <a key={label} href={href}
               onMouseEnter={() => setHovPolicy(i)}
@@ -1877,6 +1878,7 @@ function SiteNav() {
   const [pillStyle,      setPillStyle]      = useState({ opacity: 0 });
   const [hovNav,         setHovNav]         = useState(null);
   const [hovBtn,         setHovBtn]         = useState(false);
+  const [menuOpen,       setMenuOpen]       = useState(false);
   const navLinksRef = useRef(null);
   const linkRefs    = useRef({});
 
@@ -2005,11 +2007,11 @@ function SiteNav() {
       </div>
 
       {/* Right: Book a Call */}
-      <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer"
+      <a className="nav-book-cta" href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer"
         onMouseEnter={() => setHovBtn(true)}
         onMouseLeave={() => setHovBtn(false)}
         style={{
-          fontFamily: "'Space Grotesk', sans-serif", fontSize: 11, fontWeight: 600,
+          fontFamily: "'Space Grotesk', sans-serif", fontSize: 12, fontWeight: 600,
           letterSpacing: "1px", textTransform: "uppercase", color: "#fff",
           padding: "8px 22px", borderRadius: 4, textDecoration: "none",
           display: "flex", alignItems: "center", gap: 6, flexShrink: 0,
@@ -2024,13 +2026,71 @@ function SiteNav() {
         </svg>
       </a>
 
-      {/* Mobile: hide nav links */}
-      <style>{`
-        @media (max-width: 768px) {
-          .sitenav-links { display: none !important; }
-          nav { height: 56px !important; padding: 0 16px !important; }
+      {/* Mobile: hamburger button */}
+      <button
+        className="nav-hamburger"
+        aria-label="Open menu"
+        onClick={() => setMenuOpen(o => !o)}
+        style={{
+          display: "none", /* shown via CSS on mobile */
+          background: "none", border: "none", cursor: "pointer",
+          width: 44, height: 44, alignItems: "center", justifyContent: "center",
+          padding: 0, flexShrink: 0, color: "#F0E0B2",
+        }}>
+        {menuOpen
+          ? <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          : <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
         }
-      `}</style>
+      </button>
+
+      {/* Mobile full-screen overlay menu */}
+      {menuOpen && (
+        <div style={{
+          position: "fixed", inset: 0, zIndex: 999,
+          background: "#182145",
+          display: "flex", flexDirection: "column",
+          paddingTop: 80,
+        }}>
+          {NAV_LINKS.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={e => {
+                e.preventDefault();
+                setMenuOpen(false);
+                setTimeout(() => document.querySelector(link.href)?.scrollIntoView({ behavior: "smooth" }), 50);
+              }}
+              style={{
+                display: "flex", alignItems: "center",
+                height: 52, padding: "0 28px",
+                fontFamily: "'Space Grotesk', sans-serif", fontSize: 16, fontWeight: 600,
+                letterSpacing: "1.5px", textTransform: "uppercase", textDecoration: "none",
+                color: activeSection === link.href.slice(1) ? "#F0E0B2" : "rgba(240,224,178,0.65)",
+                borderBottom: "1px solid rgba(240,224,178,0.06)",
+                transition: "color 0.2s ease",
+              }}
+              onMouseEnter={e => e.currentTarget.style.color = "#F0E0B2"}
+              onMouseLeave={e => e.currentTarget.style.color = activeSection === link.href.slice(1) ? "#F0E0B2" : "rgba(240,224,178,0.65)"}
+            >
+              {link.label}
+            </a>
+          ))}
+          <div style={{ padding: "24px 28px" }}>
+            <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer"
+              onClick={() => setMenuOpen(false)}
+              style={{
+                display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                height: 52, borderRadius: 4, textDecoration: "none",
+                fontFamily: "'Space Grotesk', sans-serif", fontSize: 14, fontWeight: 700,
+                letterSpacing: "1px", textTransform: "uppercase", color: "#fff",
+                background: "#DD1E21",
+              }}>
+              Book a Call
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
@@ -2120,10 +2180,10 @@ export default function AF() {
         }
         .card-on-dark { background: #2a4a7a; border: 2px solid rgba(100,140,200,0.35); border-radius: 20px; padding: 32px; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
         .card-on-dark:hover { transform: translateY(-4px); border-color: rgba(133,186,255,0.35); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
-        .card-on-dark h3 { color: #F0E0B2; } .card-on-dark p { color: rgba(240,224,178,0.7); }
+        .card-on-dark h3 { color: #F0E0B2; } .card-on-dark p { color: rgba(240,224,178,0.85); font-size: 16px; }
         .card-on-light { background: #2a4a7a; border: 2px solid rgba(100,140,200,0.25); border-radius: 20px; padding: 32px; box-shadow: 0 4px 20px rgba(24,33,69,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .card-on-light:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(24,33,69,0.25); }
-        .card-on-light h3 { color: #F0E0B2; } .card-on-light p { color: rgba(240,224,178,0.7); }
+        .card-on-light h3 { color: #F0E0B2; } .card-on-light p { color: rgba(240,224,178,0.85); font-size: 16px; }
         .card-on-red { background: #2a4a7a; border: 2px solid rgba(100,140,200,0.3); border-radius: 20px; padding: 32px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
         .card-on-red:hover { transform: translateY(-4px); border-color: rgba(240,224,178,0.2); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
         /* Legacy aliases kept for safety */ .card-glass { background: #2a4a7a; border: 2px solid rgba(100,140,200,0.35); border-radius: 20px; padding: 32px; }
@@ -2161,7 +2221,7 @@ export default function AF() {
         @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
         *{margin:0;padding:0;box-sizing:border-box}
         html{background:#182145;scroll-behavior:smooth}
-        body{font-family:'Space Grotesk',sans-serif;color:#F5F0EB;background:#182145;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+        body{font-family:'Space Grotesk',sans-serif;font-size:17px;line-height:1.7;color:#F5F0EB;background:#182145;overflow-x:hidden;-webkit-font-smoothing:antialiased}
         @keyframes twinkle{0%,100%{opacity:0.1}50%{opacity:0.55}}
         @keyframes pulseG{0%,100%{opacity:0.4;transform:scale(1)}50%{opacity:1;transform:scale(1.15)}}
         /* ── Financial Opportunity Numbers ───────────────── */
@@ -2222,29 +2282,47 @@ export default function AF() {
 
           /* 8 ── TECHNOLOGY MOAT ─────────────────────────────── */
           .moat-rings, .moat-orbits, .moat-powerlines { display: none !important; }
-          .moat-shield img { width: 70px !important; }
-          .moat-shield { padding: 16px 0 !important; }
+          .moat-shield img { width: 84px !important; }
+          .moat-shield { padding: 12px 0 !important; }
           .moat-card-area { max-width: 100% !important; overflow: hidden !important; }
           .moat-row { flex-direction: column !important; align-items: center !important; gap: 12px !important; }
           .moat-row > * { width: 100% !important; max-width: 400px !important; flex: none !important; box-sizing: border-box !important; }
 
           /* ── HERO ──────────────────────────────────────────── */
-          .mhero { font-size: clamp(36px, 10vw, 72px) !important; white-space: normal !important; }
-          .hero-content { padding-left: 20px !important; padding-right: 20px !important; }
+          .hero-cover { display: none !important; }
+          .mhero { font-size: clamp(32px, 9vw, 64px) !important; white-space: normal !important; }
+          .hero-section { min-height: auto !important; }
+          .hero-content { padding: 96px 20px 40px !important; }
           .hero-content p { font-size: 14px !important; max-width: 90% !important; }
           .hero-ctas { flex-direction: column !important; width: 100% !important; max-width: 320px !important; margin: 0 auto !important; gap: 12px !important; }
           .hero-ctas a { width: 100% !important; text-align: center !important; justify-content: center !important; box-sizing: border-box !important; }
-          .hero-badges { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; max-width: 320px !important; margin: 0 auto !important; }
-          .hero-badges span { font-size: 8px !important; padding: 4px 8px !important; text-align: center !important; justify-content: center !important; }
+          .hero-badges { display: flex !important; flex-wrap: wrap !important; gap: 6px !important; justify-content: center !important; max-width: 340px !important; margin: 0 auto !important; }
+          .hero-badges span { font-size: 9px !important; padding: 5px 10px !important; flex: 0 0 auto !important; white-space: nowrap !important; }
 
           /* ── COMPARISON ────────────────────────────────────── */
           .cmp-wrap { padding: 40px 20px !important; }
           .cmp-table { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
-          .cmp-table > div { min-width: 700px !important; }
+          .cmp-table > div { min-width: 600px !important; }
           .cmp-scroll-hint { display: flex !important; justify-content: center !important; margin-bottom: 8px !important; }
           .cmp-footer { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
           .cmp-footer a, .cmp-footer button { width: 100% !important; max-width: 300px !important; text-align: center !important; justify-content: center !important; box-sizing: border-box !important; }
           .ctab { display: block !important; overflow-x: auto !important; }
+          .cmp-header-row > div:first-child, .cmp-row > div:first-child { position: sticky !important; left: 0 !important; z-index: 2 !important; background: #F0E0B2 !important; }
+          .cmp-header-row > div:nth-child(2) { position: sticky !important; left: 0 !important; }
+
+          /* ── COMPETITIVE SCATTER ───────────────────────────── */
+          .scatter-layout { grid-template-columns: 1fr !important; }
+          .scatter-wrapper { width: 100% !important; max-width: 100% !important; overflow: hidden !important; }
+          .scatter-wrapper svg { width: 100% !important; height: auto !important; }
+
+          /* ── FINANCIAL SLOT NUMBERS ────────────────────────── */
+          .fin-slot-wrap { font-size: clamp(2rem, 8vw, 3.5rem) !important; }
+          .fin-title { font-size: clamp(1.2rem, 5vw, 2rem) !important; padding-right: 0 !important; white-space: normal !important; }
+
+          /* ── WALLET SCANNER ────────────────────────────────── */
+          .scanner-box { padding: 20px !important; margin: 16px 0 32px !important; }
+          .leak-grid { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
+          .wallet-addr { font-size: 0.6rem !important; }
 
           /* ── REVENUE CARDS ─────────────────────────────────── */
           .rev-cards { grid-template-columns: 1fr !important; gap: 16px !important; }
@@ -2256,14 +2334,40 @@ export default function AF() {
 
           /* ── FOOTER ────────────────────────────────────────── */
           .footer-grid-texture { display: none !important; }
-          footer > div:first-of-type { flex-direction: column !important; gap: 32px !important; padding: 40px 20px 0 !important; }
-          footer > div:first-of-type > div:last-child { text-align: left !important; }
-          footer > div:first-of-type > div:last-child a { justify-content: flex-start !important; }
+          .footer-cols { flex-direction: column !important; gap: 32px !important; padding: 40px 20px 24px !important; align-items: center !important; text-align: center !important; }
+          .footer-cols > div { width: 100% !important; max-width: 320px !important; align-items: center !important; text-align: center !important; }
+          .footer-cols a { justify-content: center !important; }
+          .footer-bottom { padding: 16px 20px !important; text-align: center !important; }
+          .footer-policy { justify-content: center !important; flex-wrap: wrap !important; }
+
+          /* ── HAMBURGER ─────────────────────────────────────── */
+          .nav-hamburger { display: flex !important; }
+          .nav-center { display: none !important; }
+          .nav-book-cta { display: none !important; }
+
+          /* ── TYPOGRAPHY ────────────────────────────────────── */
+          .mhero { font-size: 2.2rem !important; white-space: normal !important; }
+          .hero-partner-label { font-size: 10px !important; }
+          .hero-subtitle { font-size: 18px !important; }
+          .hero-desc { font-size: 15px !important; }
+          section h2, .msec h2 { font-size: clamp(1.4rem, 5vw, 1.8rem) !important; max-width: 100% !important; }
+          .card-on-dark h3, .card-on-light h3, .card-on-red h3 { font-size: 1rem !important; }
+          .nr-display { font-size: clamp(20px, 7vw, 36px) !important; }
+          body { font-size: 15px !important; }
+
+          /* ── TOUCH TARGETS ─────────────────────────────────── */
+          .hero-ctas a { height: 52px !important; min-height: 52px !important; box-sizing: border-box !important; }
+          nav a, nav button { min-height: 44px !important; min-width: 44px !important; }
+          footer a { min-height: 44px !important; padding-top: 10px !important; padding-bottom: 10px !important; }
+          .footer-social a { width: 44px !important; height: 44px !important; display: flex !important; align-items: center !important; justify-content: center !important; }
+          button, .btn, [class*="btn-"] { min-height: 48px !important; min-width: 48px !important; }
+
+          /* ── SPACING ───────────────────────────────────────── */
+          .msec h2 { margin-bottom: 12px !important; }
+          .card-on-dark, .card-on-light, .card-on-red { padding: 20px !important; }
 
           /* ── TOUCH / A11Y ──────────────────────────────────── */
-          nav a, nav button, .hero-ctas a, .cta-book-btn, footer a { min-height: 44px !important; }
           [style*="position: sticky"] { position: -webkit-sticky !important; position: sticky !important; }
-          .msec h2, section h2 { max-width: 100% !important; }
           .cmp-scroll-hint { display: none; }
         }
 
@@ -2300,7 +2404,7 @@ export default function AF() {
         {/* HERO */}
         <section ref={hR} className="hero-section" style={{ ...full, minHeight: "100vh", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column" }}>
           {/* Full-screen cover photo background with parallax */}
-          <div style={{
+          <div className="hero-cover" style={{
             position: "absolute", inset: 0, zIndex: 0,
             backgroundImage: `url(${COVER_SRC})`,
             backgroundSize: "cover", backgroundPosition: "center 60%",
@@ -2323,12 +2427,12 @@ export default function AF() {
           <div className="hero-content" style={{
             position: "relative", zIndex: 2, textAlign: "center",
             width: "100%", maxWidth: "min(95vw, 1100px)", margin: "0 auto",
-            padding: "160px 24px 0",
+            padding: "160px 24px 60px",
           }}>
 
             {/* Line 1: PARTNER WITH */}
             <div style={{ overflow: "hidden", marginBottom: "1rem" }}>
-              <div style={{
+              <div className="hero-partner-label" style={{
                 fontFamily: "'Monument Extended',sans-serif", fontSize: "clamp(0.8rem, 1.5vw, 1.1rem)",
                 letterSpacing: "0.45em", color: "rgba(201,168,76,0.6)", textTransform: "uppercase",
                 animation: hV ? "heroLineUp 1s cubic-bezier(0.16,1,0.3,1) 0.3s both, partnerGlow 3s ease-in-out 1.5s infinite" : "none",
@@ -2342,9 +2446,9 @@ export default function AF() {
             <div style={{ overflow: "visible", marginBottom: "2rem" }}>
               <h1 className="mhero" style={{
                 fontFamily: "'Monument Extended',sans-serif",
-                letterSpacing: "0.04em", lineHeight: 0.92, textTransform: "uppercase", color: "#F0E0B2",
-                textShadow: "0 4px 60px rgba(0,0,0,0.5), 0 2px 20px rgba(0,0,0,0.3)",
-                fontSize: "clamp(2rem, 4vw, 3.5rem)", wordBreak: "break-word", overflowWrap: "break-word",
+                letterSpacing: "0.02em", lineHeight: 0.92, textTransform: "uppercase",
+                fontSize: "clamp(2.5rem, 5vw, 4.5rem)", wordBreak: "keep-all", overflowWrap: "normal",
+                color: "#F0E0B2", whiteSpace: "nowrap",
                 animation: hV ? "heroLineUp 1.1s cubic-bezier(0.16,1,0.3,1) 0.5s both" : "none",
                 opacity: 0,
               }}>
@@ -2360,7 +2464,7 @@ export default function AF() {
             }} />
 
             {/* Italic serif subtitle */}
-            <p style={{
+            <p className="hero-subtitle" style={{
               fontFamily: "'Space Grotesk',sans-serif", fontSize: "clamp(1.15rem, 2.5vw, 1.7rem)",
               color: "#C9A84C", fontWeight: 500, marginBottom: "1.5rem", lineHeight: 1.3, fontStyle: "italic",
               textShadow: "0 2px 20px rgba(0,0,0,0.5)",
@@ -2370,7 +2474,7 @@ export default function AF() {
             </p>
 
             {/* Body text */}
-            <p style={{
+            <p className="hero-desc" style={{
               fontSize: "0.95rem", color: "rgba(122,133,153,0.9)", lineHeight: 1.75, maxWidth: 560, margin: "0 auto",
               marginBottom: "2.5rem",
               textShadow: "0 1px 10px rgba(0,0,0,0.4)",
@@ -2380,7 +2484,7 @@ export default function AF() {
             </p>
 
             {/* CTAs — centered */}
-            <div className="hero-ctas" style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap", marginBottom: 0 }}>
+            <div className="hero-ctas" style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap", marginBottom: 40 }}>
               <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer" style={{
                 ...btnR,
                 animation: hV ? "heroBtnUp 0.8s cubic-bezier(0.16,1,0.3,1) 1.5s both" : "none", opacity: 0,
@@ -2400,28 +2504,27 @@ export default function AF() {
                 onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}
               ><span style={{display:"inline-flex",alignItems:"center",gap:8}}>Download AF Beta <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
             </div>
-          </div>
 
-          {/* Badges — anchored to bottom of hero */}
-          <div className="hero-badges" style={{
-            position: "absolute", bottom: "5rem", left: 0, right: 0, zIndex: 2,
-            display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap", padding: "0 24px",
-          }}>
-            {["22 Patented Inventions","Multi-Chain from Day 1","SDK Available Q2 2026","Zero Integration Costs"].map((b, i) => (
-              <span key={i} style={{
-                fontFamily: "'JetBrains Mono',monospace", fontSize: "0.6rem", padding: "7px 16px", borderRadius: 100,
-                border: "1px solid rgba(240,224,178,0.12)", color: "rgba(240,224,178,0.6)", background: "rgba(18,33,69,0.5)",
-                cursor: "default",
-                letterSpacing: "0.06em", display: "flex", alignItems: "center", gap: 8,
-                transition: "border-color 0.2s ease, color 0.2s ease, background 0.2s ease",
-                animation: hV ? `badgeSlide 0.7s cubic-bezier(0.16,1,0.3,1) ${1.8 + i * 0.1}s both` : "none", opacity: 0,
-              }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.6)"; e.currentTarget.style.color = "#C9A84C"; e.currentTarget.style.background = "rgba(201,168,76,0.08)"; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.15)"; e.currentTarget.style.color = "rgba(122,133,153,0.8)"; e.currentTarget.style.background = "rgba(4,11,24,0.5)"; }}
-              >
-                <span style={{ width:5, height:5, borderRadius:"50%", background:"#DD1E21", flexShrink:0, display:"inline-block" }} />{b}
-              </span>
-            ))}
+            {/* Badges — in flow below CTAs */}
+            <div className="hero-badges" style={{
+              display: "flex", gap: 8, justifyContent: "center", flexWrap: "wrap",
+            }}>
+              {["11 Patented Inventions","Multi-Chain from Day 1","SDK Available Q2 2026","Zero Integration Costs","Quantum-Proof Technology"].map((b, i) => (
+                <span key={i} style={{
+                  fontFamily: "'Space Grotesk',sans-serif", fontSize: "10px", fontWeight: 500, padding: "6px 14px", borderRadius: 12,
+                  border: "1px solid rgba(100,140,200,0.2)", color: "rgba(240,224,178,0.85)", background: "#1a2a4a",
+                  cursor: "default", textTransform: "uppercase", letterSpacing: "1.5px",
+                  display: "inline-flex", alignItems: "center", gap: 6,
+                  transition: "border-color 0.2s ease, color 0.2s ease",
+                  animation: hV ? `badgeSlide 0.7s cubic-bezier(0.16,1,0.3,1) ${1.8 + i * 0.1}s both` : "none", opacity: 0,
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(100,140,200,0.4)"; e.currentTarget.style.color = "#F0E0B2"; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(100,140,200,0.2)"; e.currentTarget.style.color = "rgba(240,224,178,0.85)"; }}
+                >
+                  <span style={{ width:5, height:5, borderRadius:"50%", background:"#DD1E21", flexShrink:0, display:"inline-block" }} />{b}
+                </span>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -2560,7 +2663,7 @@ export default function AF() {
                 {["Hides amounts, sender, and receiver details on-chain","Compliance-ready: selective disclosure for regulators (CM Proof of Funds)","Works across DeFi protocols and standard transfers"].map((f, i) => (
                   <div key={i} style={{ ...feat(s2V, 0.3 + i * 0.1), marginBottom: 16 }}>
                     <span style={fchk}><span style={{ width: 5, height: 5, borderRadius: "50%", background: "#182145", display: "block" }} /></span>
-                    <span style={{ fontSize: "16px", color: "#333333", lineHeight: 1.7 }}>{f}</span>
+                    <span style={{ fontSize: "16px", color: "#222222", lineHeight: 1.7 }}>{f}</span>
                   </div>
                 ))}
               </div>
@@ -2574,10 +2677,10 @@ export default function AF() {
                   {[["FortressNames","name sales & upgrades"],["Confidentiality Machine","transaction fees"],["Single SDK integration","for both"]].map(([a, b], i) => (
                     <div key={i} style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
                       <span style={{ width: 8, height: 8, borderRadius: "50%", background: i < 2 ? "#DD1E21" : "#3D4A63", flexShrink: 0 }} />
-                      <span style={{ fontSize: "14px", color: "rgba(240,224,178,0.7)" }}><strong style={{ color: "#F0E0B2" }}>{a}</strong> — {b}</span>
+                      <span style={{ fontSize: "16px", color: "rgba(240,224,178,0.85)" }}><strong style={{ color: "#F0E0B2" }}>{a}</strong> — {b}</span>
                     </div>
                   ))}
-                  <button style={{ ...btnG, marginTop: 20, padding: "12px 28px", fontSize: "0.8rem" }}>View SDK Documentation</button>
+                  <a href="https://americanfortress.io/sdk" target="_blank" rel="noopener noreferrer" style={{ ...btnG, marginTop: 20, padding: "12px 28px", fontSize: "0.8rem", textDecoration: "none", display: "inline-block", textAlign: "center" }}>View SDK Documentation</a>
                 </div>
               </div>
             </div>
