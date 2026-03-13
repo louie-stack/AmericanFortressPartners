@@ -2247,8 +2247,9 @@ export default function AF() {
         @media (max-width: 768px) {
           /* -- GLOBAL ----------------------------------------- */
           html, body { overflow-x: hidden !important; max-width: 100vw !important; }
+          *, *::before, *::after { box-sizing: border-box; }
           section { overflow-x: hidden !important; max-width: 100vw !important; box-sizing: border-box !important; }
-          .msec { padding: 48px 20px !important; max-width: 100vw !important; box-sizing: border-box !important; }
+          section, .msec { padding: 40px 20px !important; box-sizing: border-box !important; }
           .mgrid2 { grid-template-columns: 1fr !important; gap: 20px !important; }
           /* -- NAV -------------------------------------------- */
           nav { height: 56px !important; padding: 0 16px !important; }
@@ -2257,15 +2258,15 @@ export default function AF() {
           /* -- HERO ------------------------------------------- */
           .hero-cover { display: none !important; }
           .hero-section { min-height: auto !important; }
-          .hero-content { padding: 88px 20px 40px !important; text-align: center !important; }
-          .mhero { font-size: clamp(1.6rem, 8vw, 2.5rem) !important; white-space: nowrap !important; }
+          .hero-content { padding: 88px 20px 40px !important; text-align: center !important; overflow: hidden !important; }
+          .mhero { font-size: clamp(1.4rem, 7.5vw, 2.5rem) !important; white-space: nowrap !important; overflow-wrap: break-word !important; word-break: break-word !important; }
           .hero-partner-label { font-size: 10px !important; text-align: center !important; }
           .hero-subtitle { font-size: 16px !important; text-align: center !important; }
           .hero-desc { font-size: 14px !important; text-align: center !important; max-width: 100% !important; }
           .hero-ctas { flex-direction: column !important; width: 100% !important; max-width: 320px !important; margin: 0 auto !important; gap: 10px !important; }
           .hero-ctas a { width: 100% !important; height: 48px !important; min-height: 48px !important; text-align: center !important; justify-content: center !important; box-sizing: border-box !important; }
-          .hero-badges { display: flex !important; flex-wrap: nowrap !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; gap: 8px !important; padding: 0 20px 4px !important; margin-top: 20px !important; scrollbar-width: none !important; justify-content: flex-start !important; max-width: 100% !important; }
-          .hero-badges::-webkit-scrollbar { display: none !important; }
+          /* Pills: 2-row wrap, centered */
+          .hero-badges { display: flex !important; flex-wrap: wrap !important; justify-content: center !important; gap: 6px !important; padding: 0 4px 4px !important; margin-top: 20px !important; max-width: 100% !important; overflow: hidden !important; }
           .hero-badges span { flex-shrink: 0 !important; font-size: 9px !important; padding: 5px 10px !important; white-space: nowrap !important; }
           .hero-badges span > span:first-child { width: 4px !important; height: 4px !important; }
           /* -- WALLET SCANNER --------------------------------- */
@@ -2277,31 +2278,31 @@ export default function AF() {
           .leak-value { font-size: 13px !important; }
           /* -- EXPOSED CARDS ---------------------------------- */
           .exposed-card-h3 { justify-content: flex-start !important; text-align: left !important; }
-          /* -- FORTRESSNAMES ---------------------------------- */
-          .nr-wrap { overflow: hidden !important; max-width: 100% !important; }
-          .nr-row { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
-          .nr-hex { font-size: 12px !important; max-width: 100% !important; overflow: hidden !important; text-overflow: ellipsis !important; }
+          /* -- FORTRESSNAMES: name resolver ------------------- */
+          .nr-wrap { overflow: hidden !important; max-width: 100% !important; width: 100% !important; }
+          .nr-row { flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; max-width: 100% !important; overflow: hidden !important; }
+          .nr-hex { font-size: 12px !important; max-width: 100% !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; }
           .nr-arrow { transform: rotate(90deg) !important; display: block !important; }
-          .nr-display { font-size: clamp(20px, 7vw, 36px) !important; }
+          .nr-display { font-size: clamp(18px, 6.5vw, 32px) !important; max-width: 100% !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; }
           .s1chips { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
           .s1chips > div { padding: 12px 14px !important; }
           .liberty-bg { opacity: 0.05 !important; }
           /* -- COMPETITIVE SCATTER ---------------------------- */
           .scatter-layout { grid-template-columns: 1fr !important; gap: 24px !important; }
-          .scatter-wrapper { width: 100% !important; max-width: 100% !important; overflow: hidden !important; padding: 0 16px !important; box-sizing: border-box !important; }
+          .scatter-wrapper { width: 100% !important; max-width: 100% !important; overflow: hidden !important; padding: 0 !important; box-sizing: border-box !important; }
           .scatter-wrapper svg { width: 100% !important; height: auto !important; }
           .scatter-insight { width: 100% !important; opacity: 1 !important; transform: none !important; }
           .scatter-insight p { color: rgba(240,224,178,0.8) !important; font-size: 15px !important; }
           /* -- COMPARISON TABLE ------------------------------- */
           .cmp-wrap { padding: 40px 0 !important; }
-          .cmp-table { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; padding: 0 20px !important; }
-          .cmp-table > div { min-width: 580px !important; }
+          .cmp-table { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; padding: 0 !important; }
+          .cmp-table > div { min-width: 600px !important; }
+          .cmp-header-row > div, .cmp-row > div { font-size: 10px !important; min-width: 90px !important; padding: 8px 6px !important; }
+          .cmp-header-row > div:first-child { min-width: 110px !important; position: sticky !important; left: 0 !important; z-index: 2 !important; background: #182145 !important; color: rgba(240,224,178,0.5) !important; }
+          .cmp-row > div:first-child { min-width: 110px !important; position: sticky !important; left: 0 !important; z-index: 2 !important; background: #F0E0B2 !important; }
           .cmp-scroll-hint { display: flex !important; justify-content: center !important; margin-bottom: 8px !important; padding: 0 20px !important; }
           .cmp-footer { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; padding: 0 20px !important; }
           .cmp-footer a, .cmp-footer button { width: 100% !important; max-width: 300px !important; text-align: center !important; justify-content: center !important; box-sizing: border-box !important; }
-          .cmp-header-row > div, .cmp-row > div { font-size: 12px !important; }
-          .cmp-header-row > div:first-child { position: sticky !important; left: 0 !important; z-index: 2 !important; background: #182145 !important; color: rgba(240,224,178,0.5) !important; }
-          .cmp-row > div:first-child { position: sticky !important; left: 0 !important; z-index: 2 !important; background: #F0E0B2 !important; }
           /* -- FINANCIAL -------------------------------------- */
           .fin-slot-wrap { font-size: clamp(2rem, 8vw, 3rem) !important; }
           .fin-title { white-space: normal !important; font-size: clamp(1.2rem, 5vw, 2rem) !important; padding-right: 0 !important; word-break: break-word !important; }
@@ -2314,70 +2315,52 @@ export default function AF() {
           .moat-card-area { max-width: 100% !important; overflow: hidden !important; }
           .moat-row { flex-direction: column !important; align-items: center !important; gap: 12px !important; }
           .moat-row > * { width: 100% !important; max-width: 400px !important; flex: none !important; box-sizing: border-box !important; }
+          .card-on-dark h3, .card-on-light h3, .card-on-red h3 { color: #F0E0B2 !important; font-size: 1rem !important; }
           .card-on-dark p, .card-on-light p, .card-on-red p { font-size: 14px !important; color: rgba(240,224,178,0.8) !important; }
           /* -- TRUSTED BY ------------------------------------- */
           #trusted { min-height: auto !important; }
-          #trusted > .msec { padding: 40px 20px !important; }
+          .trusted-sec { padding-top: 40px !important; padding-bottom: 30px !important; }
+          .trusted-sec h2 { margin-bottom: 12px !important; }
+          .trusted-sec p { margin-bottom: 20px !important; }
           .marquee-logo { height: 20px !important; }
+          /* -- REVENUE ---------------------------------------- */
+          #revenue .msec { padding-top: 40px !important; }
+          .rev-cards { grid-template-columns: 1fr !important; gap: 16px !important; }
           /* -- CONFIDENTIALITY -------------------------------- */
           .ghost-word { display: none !important; }
-          /* -- REVENUE CARDS ---------------------------------- */
-          .rev-cards { grid-template-columns: 1fr !important; gap: 16px !important; }
           /* -- CTA SECTION ------------------------------------ */
-          .cta-cards { grid-template-columns: 1fr !important; gap: 16px !important; max-width: 100% !important; }
+          #cta .msec, [id="cta"] > .msec { padding-top: 40px !important; }
+          .cta-cards { grid-template-columns: 1fr !important; gap: 16px !important; max-width: 100% !important; margin-top: 24px !important; }
+          .cta-cards > div { padding: 24px !important; }
           .cta-book-btn { width: 100% !important; max-width: 280px !important; text-align: center !important; justify-content: center !important; box-sizing: border-box !important; margin: 0 auto !important; display: flex !important; }
           .cta-contact-link { word-break: break-all !important; font-size: 12px !important; }
           /* -- FOOTER ----------------------------------------- */
           .footer-grid-texture { display: none !important; }
-          /* Main wrapper: single column, centered */
           .footer-cols { flex-direction: column !important; align-items: center !important; padding: 40px 20px 24px !important; gap: 0 !important; width: 100% !important; box-sizing: border-box !important; }
-          /* Each column block: full width, centered, 24px gap below */
           .footer-left, .footer-right { width: 100% !important; max-width: 320px !important; text-align: center !important; margin: 0 auto !important; margin-bottom: 24px !important; flex-shrink: 0 !important; }
-          /* Right col overrides */
           .footer-right { text-align: center !important; margin-left: auto !important; margin-right: auto !important; }
-          /* Logo row: centered */
           .footer-left > div:first-child { justify-content: center !important; }
-          /* Contact links: centered */
           .footer-right a { justify-content: center !important; font-size: 16px !important; min-height: 44px !important; display: flex !important; align-items: center !important; }
-          /* Book a Call CTA: full width centered */
           .footer-cta-wrap { justify-content: center !important; }
           .footer-cta-wrap a { width: 100% !important; max-width: 280px !important; justify-content: center !important; }
-          /* Social icons: centered row, 44px tap targets */
-          .footer-social-row { justify-content: center !important; gap: 16px !important; flex-wrap: nowrap !important; }
+          .footer-social-row { justify-content: center !important; gap: 16px !important; }
           .footer-social-row a { width: 44px !important; height: 44px !important; display: flex !important; align-items: center !important; justify-content: center !important; }
-          /* Badges: centered wrapping row */
           .footer-badges-row { justify-content: center !important; }
-          /* Bottom bar */
           .footer-bottom { flex-direction: column !important; align-items: center !important; gap: 12px !important; padding: 16px 20px 24px !important; text-align: center !important; }
           .footer-bottom p { font-size: 13px !important; text-align: center !important; }
           .footer-policy { justify-content: center !important; flex-wrap: wrap !important; gap: 16px !important; }
           .footer-policy a { font-size: 14px !important; min-height: 44px !important; display: flex !important; align-items: center !important; }
           /* -- TYPOGRAPHY ------------------------------------- */
           body { font-size: 15px !important; }
-          section h2, .msec h2 { font-size: clamp(1.4rem, 5vw, 1.8rem) !important; max-width: 100% !important; }
-          .card-on-dark h3, .card-on-light h3, .card-on-red h3 { font-size: 1rem !important; }
+          section h2, .msec h2 { font-size: clamp(1.2rem, 5vw, 1.8rem) !important; max-width: 100% !important; margin-bottom: 12px !important; }
           /* -- TOUCH TARGETS ---------------------------------- */
           nav a, nav button { min-height: 44px !important; min-width: 44px !important; }
           footer a { min-height: 44px !important; padding-top: 10px !important; padding-bottom: 10px !important; }
           .footer-social a { width: 44px !important; height: 44px !important; display: flex !important; align-items: center !important; justify-content: center !important; }
-          /* -- SPACING ---------------------------------------- */
-          .msec h2 { margin-bottom: 12px !important; }
+          /* -- SPACING & DIVIDERS ----------------------------- */
           .card-on-dark, .card-on-light, .card-on-red { padding: 20px !important; }
           .cmp-shake { transform: none !important; }
-          /* -- GLOBAL FIXES ----------------------------------- */
-          html, body { overflow-x: hidden !important; }
-          * { max-width: 100vw; }
-          /* Body text minimums */
-          p, li, span, div { font-size: max(14px, inherit); }
-          .card-on-dark p, .card-on-light p, .card-on-red p { font-size: 14px !important; color: rgba(240,224,178,0.8) !important; }
-          /* Section padding */
-          section, .msec { padding-left: 20px !important; padding-right: 20px !important; box-sizing: border-box !important; }
-          /* Brushstroke dividers */
-          [class*="brushstroke"], [class*="divider"] { height: 30px !important; }
-          /* Prevent text clip under navbar */
-          .hero-content { padding-top: 88px !important; }
-          /* Section title minimum */
-          section h2, .msec h2 { font-size: clamp(1.2rem, 5vw, 1.8rem) !important; }
+          img[src*="brush"], img[src*="stroke"], img[src*="divider"] { height: 25px !important; object-fit: cover !important; width: 100% !important; }
         }
         @media (max-width: 480px) {
           .s1chips { grid-template-columns: 1fr !important; }
@@ -2782,7 +2765,7 @@ export default function AF() {
         <Stripe brush="/images/brush-navy.svg" />
 
         {/* TRUSTED BY */}
-        <section id="trusted" ref={lR} style={{ ...full, background: "#182145", overflow: "hidden" }}>
+        <section id="trusted" ref={lR} className="trusted-sec" style={{ ...full, background: "#182145", overflow: "hidden" }}>
           <div className="msec trusted-sec" style={{ ...sec, textAlign: "center", paddingBottom: 0, paddingTop: 48 }}>
             <h2 style={{ ...rv(lV, 0), ...mega("clamp(1.8rem,3.5vw,2.8rem)", 8) }}>Trusted By <span style={{ color: "#C9A84C" }}>Industry Leaders</span></h2>
             <p style={{ ...rv(lV, 0.1), color: "#3D4A63", fontSize: "0.92rem", marginBottom: 48 }}>Integrated with leading wallets, chains, and financial institutions</p>
