@@ -1069,18 +1069,18 @@ function NameResolver() {
   const textColor  = isResolved ? "#f5ede0" : isScramble ? "rgba(201,168,76,0.95)" : isFading ? "rgba(130,135,155,0.5)" : "rgba(170,175,200,0.55)";
 
   return (
-    <div>
+    <div className="nr-wrap">
       <div style={{ height: 22, marginBottom: 10, opacity: contentOp, transition: "opacity 0.3s" }}>
         {isScramble && <span style={{ fontFamily:"'JetBrains Mono'", fontSize: 9, textTransform:"uppercase", letterSpacing:"3px", color:"rgba(201,168,76,0.95)" }}>? Resolving name...</span>}
         {isResolved && <span style={{ fontFamily:"'JetBrains Mono'", fontSize: 9, textTransform:"uppercase", letterSpacing:"3px", color:"#34D399" }}>? Identity verified — private transfer ready</span>}
       </div>
-      <div style={{ position:"relative", display:"inline-flex", alignItems:"center", gap: 20, opacity: contentOp, transition: "opacity 0.4s" }}>
+      <div className="nr-row" style={{ position:"relative", display:"inline-flex", alignItems:"center", gap: 20, opacity: contentOp, transition: "opacity 0.4s" }}>
         {isResolved && <div style={{ position:"absolute", inset:"-40px -80px", background:"radial-gradient(ellipse,rgba(201,168,76,0.14) 0%,transparent 70%)", pointerEvents:"none" }} />}
-        <span style={{ fontFamily:"'JetBrains Mono'", fontSize:"clamp(12px,1.2vw,16px)", color: isHex ? "rgba(185,190,215,0.7)" : "rgba(100,110,150,0.4)", padding:"10px 18px", background: isHex ? "rgba(221,30,33,0.09)" : "rgba(221,30,33,0.03)", border:`1px solid ${isHex ? "rgba(221,30,33,0.25)" : "rgba(221,30,33,0.08)"}`, borderRadius:6, textDecoration: isHex ? "none" : "line-through" }}>0xA7c4...3F9b</span>
-        <span style={{ opacity: isHex ? 0.45 : 1, transition:"opacity 0.3s", display:"flex", alignItems:"center" }}>
+        <span className="nr-hex" style={{ fontFamily:"'JetBrains Mono'", fontSize:"clamp(12px,1.2vw,16px)", color: isHex ? "rgba(185,190,215,0.7)" : "rgba(100,110,150,0.4)", padding:"10px 18px", background: isHex ? "rgba(221,30,33,0.09)" : "rgba(221,30,33,0.03)", border:`1px solid ${isHex ? "rgba(221,30,33,0.25)" : "rgba(221,30,33,0.08)"}`, borderRadius:6, textDecoration: isHex ? "none" : "line-through" }}>0xA7c4...3F9b</span>
+        <span className="nr-arrow" style={{ opacity: isHex ? 0.45 : 1, transition:"opacity 0.3s", display:"flex", alignItems:"center" }}>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg>
         </span>
-        <div style={{ position:"relative" }}>
+        <div className="nr-display" style={{ position:"relative" }}>
           <span style={{ fontFamily:"'JetBrains Mono'", fontSize:"clamp(24px,3.5vw,40px)", fontWeight:500, color:textColor, letterSpacing: isResolved ? "3px" : "1px", transition:"color 0.3s" }}>{text}</span>
           <div style={{ position:"absolute", bottom:4, left:0, height:2, width: isResolved ? "100%" : "0%", background:"linear-gradient(90deg,#C9A84C,rgba(201,168,76,0.2))", transition:"width 0.5s ease" }} />
         </div>
@@ -1423,7 +1423,7 @@ function MoatCard({ label, desc, icon, delay, hov, onMouseEnter, onMouseLeave })
   }, []);
   const iconColor = hov ? "#daa545" : "rgba(140,155,195,0.6)";
   return (
-    <div ref={ref} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
+    <div ref={ref} className="moat-card" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
       style={{
         flex: "1 1 0", maxWidth: 260, borderRadius: 12, padding: "26px 22px", textAlign: "center",
         overflow: "hidden", position: "relative", cursor: "default",
@@ -1440,7 +1440,7 @@ function MoatCard({ label, desc, icon, delay, hov, onMouseEnter, onMouseLeave })
         background: "transparent" }}/>
       <div style={{ position: "absolute", top: 0, right: 0, width: 60, height: 60,
         background: "transparent" }}/>
-      <div style={{ width: 48, height: 48, borderRadius: 12, margin: "0 auto 18px",
+      <div className="moat-icon-badge" style={{ width: 48, height: 48, borderRadius: 12, margin: "0 auto 18px",
         background: "rgba(255,255,255,0.08)",
         border: `1px solid ${hov ? "rgba(200,170,100,0.2)" : "rgba(100,120,170,0.1)"}`,
         display: "flex", alignItems: "center", justifyContent: "center",
@@ -1448,9 +1448,9 @@ function MoatCard({ label, desc, icon, delay, hov, onMouseEnter, onMouseLeave })
         transition: "all 0.35s ease" }}>
         {icon(iconColor)}
       </div>
-      <div style={{ fontFamily: "'Monument Extended'", fontSize: "1rem", letterSpacing: "0.06em", marginBottom: 10,
+      <div className="moat-card-title" style={{ fontFamily: "'Monument Extended'", fontSize: "1rem", letterSpacing: "0.06em", marginBottom: 10,
         color: hov ? "#F0E0B2" : "rgba(210,215,230,0.8)", transition: "color 0.35s ease" }}>{label}</div>
-      <div style={{ fontSize: "0.82rem", lineHeight: 1.6,
+      <div className="moat-card-body" style={{ fontSize: "0.82rem", lineHeight: 1.6,
         color: hov ? "rgba(190,195,215,0.75)" : "rgba(160,170,195,0.5)", transition: "color 0.35s ease" }}>{desc}</div>
     </div>
   );
@@ -1533,7 +1533,7 @@ function MoatSection({ mR, mV }) {
 
           {/* Center shield */}
           <div className="moat-shield" style={{ display: "flex", justifyContent: "center", padding: "36px 0", position: "relative", zIndex: 3 }}>
-            <AFShieldSVG/>
+            <div className="moat-shield-inner"><AFShieldSVG/></div>
           </div>
 
           {/* Bottom row — cards 3,4,5 */}
@@ -2310,11 +2310,13 @@ export default function AF() {
           }
 
           .mhero {
-            font-size: clamp(1.5rem, 9vw, 2.8rem) !important;
-            white-space: nowrap !important;
+            font-size: 2.4rem !important;
+            white-space: normal !important;
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
             text-align: center !important;
-            transform-origin: center !important;
-            overflow: visible !important;
+            padding: 0 20px !important;
+            line-height: 1.1 !important;
           }
 
           /* Gold divider below title */
@@ -2398,253 +2400,936 @@ export default function AF() {
           /* ====================================================
              TRUSTED BY
           ==================================================== */
-          .trusted-sec { padding: 32px 24px !important; }
-          .trusted-sec h2 { font-size: 1.4rem !important; text-align: center !important; }
-          .trusted-sec p { font-size: 13px !important; text-align: center !important; margin-bottom: 16px !important; }
+          .trusted-sec { padding: 32px 24px !important; min-height: 0 !important; height: auto !important; }
+          .trusted-sec h2 { font-size: 1.4rem !important; line-height: 1.2 !important; text-align: center !important; margin-bottom: 12px !important; }
+          .trusted-sec p { font-size: 13px !important; text-align: center !important; margin-bottom: 20px !important; }
+          .trusted-sec > div[style] { margin: 0 !important; padding-bottom: 20px !important; padding-top: 0 !important; }
           .marquee-logo { height: 20px !important; }
 
           /* ====================================================
              EXPOSED (WALLET SCANNER)
           ==================================================== */
-          #exposed .msec h2 { font-size: 1.6rem !important; text-align: center !important; }
+          #exposed { padding: 40px 20px !important; }
+          #exposed .msec { padding: 0 !important; }
+          #exposed .msec h2 { font-size: 1.5rem !important; text-align: center !important; margin-bottom: 20px !important; }
+
+          /* Scanner box */
           .scanner-box {
-            width: calc(100% - 48px) !important;
-            margin: 0 auto !important;
-            border-radius: 16px !important;
-            padding: 20px 16px !important;
+            width: 100% !important;
+            max-width: 100% !important;
             box-sizing: border-box !important;
+            padding: 16px !important;
+            border-radius: 14px !important;
+            margin: 0 auto !important;
           }
+
+          /* WALLET EXPOSED status label */
+          .scanner-box > div:first-child {
+            font-size: 10px !important;
+            letter-spacing: 1.5px !important;
+          }
+
+          /* Hex address bar */
           .wallet-addr {
-            font-size: 11px !important;
+            font-size: 10px !important;
             overflow: hidden !important;
             text-overflow: ellipsis !important;
             white-space: nowrap !important;
+            padding: 8px 12px !important;
           }
+
+          /* Data tags grid */
           .leak-grid {
             display: grid !important;
             grid-template-columns: 1fr 1fr !important;
             gap: 8px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
           }
           .leak-grid > div {
+            width: 100% !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+          }
+          .leak-grid > div > div:last-child {
+            width: 100% !important;
+            box-sizing: border-box !important;
             border-radius: 8px !important;
-            padding: 10px !important;
+            padding: 10px 8px !important;
             text-align: center !important;
           }
-          .leak-label { font-size: 9px !important; letter-spacing: 1px !important; }
-          .leak-value { font-size: 13px !important; }
-          .exposed-card-h3 { justify-content: flex-start !important; }
+          .leak-label { font-size: 8px !important; letter-spacing: 1px !important; }
+          .leak-value { font-size: 12px !important; }
 
-          /* For Wallets / For Name Services cards */
-          .mgrid2.exposed-grid { grid-template-columns: 1fr !important; gap: 0 !important; }
-          .card-on-red {
+          /* For Wallets / For Name Services cards — stack vertically */
+          #exposed .mgrid2 {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 16px !important;
+          }
+          #exposed .mgrid2 > div {
             width: 100% !important;
-            margin-top: 20px !important;
+            box-sizing: border-box !important;
             padding: 20px !important;
             border-radius: 16px !important;
           }
+          .exposed-card-h3 { justify-content: flex-start !important; }
+          .exposed-card-h3 > span { font-size: 1.1rem !important; }
+          #exposed .mgrid2 > div p { font-size: 14px !important; line-height: 1.55 !important; }
 
           /* ====================================================
              FORTRESSNAMES
           ==================================================== */
-          #fortressnames .msec h2 { font-size: 1.6rem !important; }
-          #fortressnames .msec > p { font-size: 14px !important; }
+          #fortressnames { padding: 40px 20px !important; }
+          #fortressnames .msec { padding: 0 !important; }
+          #fortressnames .msec > div:first-child span { font-size: 10px !important; margin-bottom: 16px !important; }
+          #fortressnames .msec h2 { font-size: 1.5rem !important; line-height: 1.15 !important; overflow: hidden !important; }
+          #fortressnames .msec > p { font-size: 14px !important; margin-bottom: 24px !important; }
 
-          .nr-wrap { max-width: 100% !important; overflow: hidden !important; width: 100% !important; }
-          .nr-row {
+          /* Name resolver row */
+          .nr-wrap {
             max-width: 100% !important;
             overflow: hidden !important;
-            flex-wrap: nowrap !important;
-            align-items: center !important;
-            gap: 6px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            padding: 0 4px !important;
           }
-          .nr-hex { font-size: 12px !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; flex-shrink: 1 !important; min-width: 0 !important; }
-          .nr-arrow { font-size: 16px !important; flex-shrink: 0 !important; }
-          .nr-display { font-size: 18px !important; white-space: nowrap !important; flex-shrink: 0 !important; }
+          .nr-row {
+            display: flex !important;
+            align-items: center !important;
+            flex-wrap: nowrap !important;
+            max-width: 100% !important;
+            overflow: hidden !important;
+            box-sizing: border-box !important;
+            gap: 0 !important;
+          }
+          .nr-hex {
+            font-size: 11px !important;
+            padding: 6px 10px !important;
+            max-width: 40% !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            white-space: nowrap !important;
+            flex-shrink: 1 !important;
+            min-width: 0 !important;
+            box-sizing: border-box !important;
+          }
+          .nr-arrow {
+            flex-shrink: 0 !important;
+            margin: 0 8px !important;
+            display: flex !important;
+            align-items: center !important;
+          }
+          .nr-arrow svg { width: 16px !important; height: 16px !important; }
+          .nr-display {
+            max-width: 45% !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            flex-shrink: 1 !important;
+            min-width: 0 !important;
+          }
+          .nr-display span { font-size: 18px !important; }
 
+          /* Feature chips */
           .s1chips {
             display: grid !important;
             grid-template-columns: 1fr 1fr !important;
             gap: 10px !important;
           }
-          .s1chips > div { padding: 16px !important; border-radius: 12px !important; }
-          /* Chip label */
-          .s1chips > div > div:first-child { font-size: 10px !important; letter-spacing: 1px !important; }
-          /* Chip body */
-          .s1chips > div > div:last-child { font-size: 13px !important; line-height: 1.45 !important; }
+          .s1chips > div {
+            padding: 14px !important;
+            border-radius: 12px !important;
+            box-sizing: border-box !important;
+          }
+          .s1chips > div > div:first-child {
+            font-size: 9px !important;
+            letter-spacing: 1px !important;
+            margin-bottom: 6px !important;
+          }
+          .s1chips > div > div:last-child {
+            font-size: 12px !important;
+            line-height: 1.4 !important;
+            color: rgba(240, 224, 178, 0.8) !important;
+          }
 
           /* ====================================================
              CONFIDENTIALITY
           ==================================================== */
-          .mgrid2 { grid-template-columns: 1fr !important; gap: 0 !important; }
-          #confidentiality .msec h2 { font-size: 1.6rem !important; }
-          #confidentiality .msec > p { font-size: 14px !important; }
-          #confidentiality .card-on-dark, #confidentiality .card-on-light {
+          #confidentiality { padding: 40px 20px !important; }
+          #confidentiality .msec { padding: 0 !important; }
+
+          /* Single column — no side-by-side */
+          #confidentiality .mgrid2 { grid-template-columns: 1fr !important; gap: 0 !important; }
+
+          /* Badge */
+          #confidentiality .msec > div:first-child span { font-size: 10px !important; margin-bottom: 16px !important; }
+
+          /* Heading */
+          #confidentiality .msec h2 { font-size: 1.5rem !important; line-height: 1.15 !important; margin-bottom: 12px !important; }
+
+          /* Subtitle */
+          #confidentiality .msec > p { font-size: 14px !important; color: #333 !important; margin-bottom: 20px !important; }
+
+          /* Bullet list container */
+          .conf-bullets { margin-bottom: 24px !important; }
+
+          /* Each bullet row */
+          .conf-bullet-item { display: flex !important; align-items: flex-start !important; gap: 10px !important; margin-bottom: 16px !important; }
+
+          /* Bullet dot — perfect circle */
+          .conf-bullet-dot { display: flex !important; align-items: flex-start !important; padding-top: 0 !important; flex-shrink: 0 !important; }
+          .conf-bullet-dot > span { width: 6px !important; height: 6px !important; border-radius: 50% !important; flex-shrink: 0 !important; margin-top: 8px !important; }
+
+          /* Bullet text */
+          .conf-bullet-text { font-size: 15px !important; line-height: 1.6 !important; color: #222 !important; }
+
+          /* Revenue card */
+          .conf-revenue-card {
             width: 100% !important;
-            margin-top: 24px !important;
+            box-sizing: border-box !important;
             padding: 24px !important;
             border-radius: 16px !important;
+            margin-top: 0 !important;
           }
+
+          /* Remove the staggered margin-top from the right column wrapper */
+          #confidentiality .mgrid2 > div:last-child { margin-top: 0 !important; }
+
+          /* Card title */
+          .conf-revenue-card h3 { font-size: 1.1rem !important; line-height: 1.2 !important; margin-bottom: 16px !important; }
+
+          /* Card bullet items */
+          .conf-revenue-card > div { font-size: 14px !important; line-height: 1.5 !important; }
+          .conf-revenue-card > div span:first-child { width: 6px !important; height: 6px !important; border-radius: 50% !important; flex-shrink: 0 !important; }
+
+          /* SDK button */
+          .conf-revenue-card a {
+            width: 100% !important;
+            max-width: 280px !important;
+            height: 44px !important;
+            font-size: 12px !important;
+            margin-top: 16px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            box-sizing: border-box !important;
+          }
+
+          /* Hide ghost watermark */
           .ghost-word { display: none !important; }
 
           /* ====================================================
              COMPETITIVE LANDSCAPE
           ==================================================== */
-          .scatter-layout { grid-template-columns: 1fr !important; gap: 0 !important; }
-          .scatter-wrapper {
-            width: 100% !important;
-            overflow: hidden !important;
-            padding: 0 !important;
-            margin: 20px 0 !important;
+
+          /* Section — static, no pinning */
+          #landscape {
+            height: auto !important;
+            min-height: unset !important;
+            position: relative !important;
+            padding: 40px 20px !important;
           }
-          .scatter-wrapper svg { width: 100% !important; height: auto !important; }
-          .scatter-insight {
-            width: 100% !important;
+
+          /* Inner msec container — kill scroll-triggered hide/transform */
+          #landscape .msec {
             opacity: 1 !important;
             transform: none !important;
+            transition: none !important;
+            padding: 0 !important;
+          }
+
+          /* Badge */
+          #landscape .msec > div:first-child span { font-size: 10px !important; margin-bottom: 16px !important; }
+
+          /* Heading */
+          #landscape .msec h2 { font-size: 1.5rem !important; line-height: 1.15 !important; margin-bottom: 20px !important; }
+
+          /* Layout — single column */
+          .scatter-layout {
+            grid-template-columns: 1fr !important;
+            gap: 0 !important;
+          }
+
+          /* Scatter plot wrapper */
+          .scatter-wrapper {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+            padding: 0 !important;
+            margin: 0 auto 20px auto !important;
+            aspect-ratio: 1 / 1 !important;
+          }
+          .scatter-wrapper svg {
+            width: 100% !important;
+            height: 100% !important;
+            display: block !important;
+          }
+
+          /* Key insight card — below plot, full width */
+          .scatter-insight {
+            width: 100% !important;
+            box-sizing: border-box !important;
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
             padding: 20px !important;
             border-radius: 16px !important;
-            margin-top: 0 !important;
+            margin-top: 16px !important;
           }
-          .scatter-insight h4 { font-size: 1rem !important; }
-          .scatter-insight p { font-size: 14px !important; color: rgba(240,224,178,0.82) !important; }
+          .scatter-insight h4 {
+            font-size: 1rem !important;
+            margin-bottom: 12px !important;
+          }
+          .scatter-insight p {
+            font-size: 14px !important;
+            line-height: 1.55 !important;
+            color: rgba(240,224,178,0.85) !important;
+          }
+
+          /* Footnote — no pinned opacity, tight spacing */
+          #landscape .msec > p:last-child {
+            opacity: 1 !important;
+            font-size: 13px !important;
+            text-align: center !important;
+            margin-top: 20px !important;
+            margin-bottom: 0 !important;
+            padding: 0 12px !important;
+          }
 
           /* ====================================================
              FEATURE COMPARISON
           ==================================================== */
-          .cmp-wrap { padding: 48px 0 !important; }
-          .cmp-wrap > div:first-child { padding: 0 24px !important; }
+
+          /* Section — static, no pinning, no shake (breaks sticky) */
+          #comparison { height: auto !important; min-height: unset !important; position: relative !important; }
+          .cmp-shake { height: auto !important; position: relative !important; overflow: hidden !important; transform: none !important; }
+          .cmp-wrap { padding: 40px 20px !important; width: 100% !important; box-sizing: border-box !important; }
+
+          /* Heading */
+          .cmp-wrap h2 { font-size: 1.5rem !important; line-height: 1.15 !important; margin-bottom: 20px !important; }
+
+          /* Scrollable table container — overrides inline overflow:hidden */
           .cmp-table {
             overflow-x: auto !important;
+            overflow-y: visible !important;
             -webkit-overflow-scrolling: touch !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            border-radius: 12px !important;
+            box-shadow: inset -20px 0 15px -15px rgba(0,0,0,0.1) !important;
           }
-          .cmp-table > div { min-width: 520px !important; }
+
+          /* Header row and data rows — force min-width so all 7 cols render */
+          .cmp-header-row, .cmp-row {
+            min-width: 650px !important;
+          }
+
+          /* Header row */
+          .cmp-header-row {
+            background: #182145 !important;
+            padding: 0 !important;
+          }
+
+          /* All header cells */
           .cmp-header-row > div {
             min-width: 80px !important;
-            padding: 8px 6px !important;
+            padding: 10px 8px !important;
             font-size: 10px !important;
+            letter-spacing: 1px !important;
+            color: #F0E0B2 !important;
+            text-align: center !important;
+            white-space: nowrap !important;
           }
-          .cmp-header-row > div:first-child, .cmp-row > div:first-child {
-            min-width: 120px !important;
+
+          /* FEATURE header cell */
+          .cmp-header-row > div:nth-child(1) {
+            min-width: 130px !important;
+            text-align: left !important;
+            position: sticky !important;
+            left: 0 !important;
+            z-index: 3 !important;
+            background: #182145 !important;
+          }
+
+          /* AMERICAN FORTRESS header cell */
+          .cmp-header-row > div:nth-child(2) {
+            min-width: 90px !important;
+            position: sticky !important;
+            left: 130px !important;
+            z-index: 3 !important;
+            background: #182145 !important;
+            color: #daa545 !important;
+          }
+
+          /* Data rows */
+          .cmp-row {
+            padding: 0 !important;
+          }
+
+          /* All body cells */
+          .cmp-row > div {
+            padding: 10px 8px !important;
+            font-size: 12px !important;
+            text-align: center !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+          }
+
+          /* Feature name cell — sticky left */
+          .cmp-row > div:nth-child(1) {
+            min-width: 130px !important;
+            text-align: left !important;
+            justify-content: flex-start !important;
+            font-size: 13px !important;
+            font-weight: 600 !important;
             position: sticky !important;
             left: 0 !important;
             z-index: 2 !important;
             background: #F0E0B2 !important;
           }
-          .cmp-header-row > div:first-child {
-            background: #182145 !important;
-            color: rgba(240,224,178,0.6) !important;
+
+          /* AF cell — sticky second column */
+          .cmp-row > div:nth-child(2) {
+            min-width: 90px !important;
+            position: sticky !important;
+            left: 130px !important;
+            z-index: 2 !important;
+            background: #F0E0B2 !important;
           }
-          .cmp-row > div {
-            font-size: 13px !important;
-            padding: 10px 6px !important;
+          .cmp-row:nth-child(even) > div:nth-child(1),
+          .cmp-row:nth-child(even) > div:nth-child(2) {
+            background: rgba(240,224,178,0.92) !important;
           }
-          .cmp-scroll-hint { display: flex !important; justify-content: center !important; padding: 0 24px !important; margin-bottom: 8px !important; }
-          .cmp-footer { flex-direction: column !important; align-items: center !important; gap: 12px !important; padding: 0 24px !important; }
-          .cmp-footer a, .cmp-footer button {
-            width: 100% !important; max-width: 320px !important;
-            text-align: center !important; justify-content: center !important;
+
+          /* Red stars in AF column */
+          .cmp-row > div:nth-child(2) svg { color: #DD1E21 !important; }
+          .cmp-row > div:nth-child(2) span[style] { font-size: 18px !important; }
+
+          /* Stars and icons */
+          .cmp-row svg { width: 16px !important; height: 16px !important; }
+
+          /* Dashes */
+          .cmp-row span[style*="rgba(24,33,69"] { color: #999 !important; }
+
+          /* Alternating rows — override inline rowBg for odd/even */
+          .cmp-row:nth-child(odd)  { background: #F0E0B2 !important; }
+          .cmp-row:nth-child(even) { background: rgba(24,33,69,0.05) !important; }
+
+          /* Footer */
+          .cmp-footer {
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 12px !important;
+            padding: 0 !important;
+            opacity: 1 !important;
+            transform: none !important;
+          }
+          .cmp-footer p { display: none !important; }
+          .cmp-footer a {
+            width: 100% !important;
+            max-width: 300px !important;
+            margin: 24px auto 0 auto !important;
+            display: block !important;
+            text-align: center !important;
+            box-sizing: border-box !important;
           }
 
           /* ====================================================
-             REVENUE
+             REVENUE SHARE
           ==================================================== */
-          #revenue .msec h2 { font-size: 1.6rem !important; }
-          .rev-cards { grid-template-columns: 1fr !important; gap: 16px !important; }
-          .rev-cards > div { padding: 20px !important; }
-          .rev-cards h3 { font-size: 1rem !important; }
+          #revenue { height: auto !important; min-height: unset !important; padding: 40px 20px !important; }
+          #revenue .msec { padding: 0 !important; }
+
+          /* Hide dot pattern */
+          #revenue .dot-pattern { display: none !important; }
+
+          /* Badge */
+          #revenue .msec > div:first-child span { font-size: 10px !important; margin-bottom: 16px !important; }
+
+          /* Heading */
+          #revenue .msec h2 { font-size: 1.5rem !important; line-height: 1.15 !important; margin-bottom: 12px !important; }
+
+          /* Subtitle */
+          #revenue .msec > p { font-size: 14px !important; margin-bottom: 24px !important; }
+
+          /* Cards — stacked column */
+          .rev-cards {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 16px !important;
+          }
+          .rev-cards > div {
+            width: 100% !important;
+            box-sizing: border-box !important;
+            padding: 20px !important;
+            border-radius: 16px !important;
+            transform: none !important;
+          }
+
+          /* Card title */
+          .rev-cards h3 { font-size: 1.1rem !important; margin-bottom: 4px !important; }
+
+          /* Card subtitle */
+          .rev-cards > div > p:first-of-type {
+            font-size: 12px !important;
+            color: rgba(240,224,178,0.5) !important;
+            margin-bottom: 14px !important;
+          }
+
+          /* Bullet items */
+          .rev-cards p[style] { font-size: 14px !important; line-height: 1.55 !important; margin-bottom: 12px !important; }
+
+          /* Bullet dots — perfect circles */
+          .rev-cards span[style*="border-radius"] { width: 6px !important; height: 6px !important; border-radius: 50% !important; flex-shrink: 0 !important; }
 
           /* ====================================================
              FINANCIAL
           ==================================================== */
-          #financial .msec h2 { font-size: 1.6rem !important; }
-          .fin-slot-wrap { font-size: clamp(1.8rem, 8vw, 3rem) !important; }
-          .fin-title { white-space: normal !important; font-size: clamp(1.2rem, 5vw, 1.8rem) !important; padding-right: 0 !important; }
-          .fin-inner { padding: 0 !important; overflow: hidden !important; }
+          /* ====================================================
+             FINANCIAL OPPORTUNITY
+          ==================================================== */
+
+          /* Section — kill minHeight:100vh, reset padding, no shake */
+          #financial > section {
+            min-height: unset !important;
+            height: auto !important;
+            padding: 40px 20px !important;
+            transform: none !important;
+            text-align: center !important;
+          }
+
+          /* Badge label */
+          #financial > section span[style*="Revenue Projections"],
+          #financial .fin-badge { font-size: 10px !important; margin-bottom: 16px !important; }
+
+          /* Heading */
+          .fin-title {
+            font-size: 1.5rem !important;
+            line-height: 1.15 !important;
+            white-space: normal !important;
+            padding-right: 0 !important;
+            margin-bottom: 24px !important;
+          }
+
+          /* FORTRESSNAMES REVENUE / YOUR 20% SHARE labels */
+          #financial p[style*="JetBrains Mono"][style*="letterSpacing"] {
+            font-size: 11px !important;
+            letter-spacing: 2px !important;
+            margin-bottom: 8px !important;
+          }
+
+          /* Both slot numbers — fit on one line */
+          .fin-slot-wrap {
+            font-size: clamp(2rem, 9vw, 3.5rem) !important;
+            white-space: nowrap !important;
+            flex-wrap: nowrap !important;
+          }
+          .fin-slot-wrap span { white-space: nowrap !important; }
+
+          /* Supporting text under $1M */
+          #financial p[style*="Outfit"],
+          #financial p[style*="100,000"] { font-size: 13px !important; margin-bottom: 20px !important; }
+
+          /* Divider arrow */
+          #financial > section > div[style*="alignItems"] > div[style*="1.5rem auto"],
+          #financial div[style*="margin"][style*="1.5rem auto"] { margin: 16px auto !important; }
+
+          /* Supporting italic text under $200K */
+          #financial p[style*="Cormorant"] { font-size: 13px !important; margin-bottom: 20px !important; }
+
+          /* Live ticker pill */
+          #financial div[style*="tickerFadeIn"] span[style*="Space Grotesk"],
+          #financial div[style*="tickerFadeIn"] { font-size: 12px !important; margin-bottom: 16px !important; }
+
+          /* CTA button */
+          .fin-cta { margin-top: 16px !important; }
+          .fin-cta a {
+            width: 100% !important;
+            max-width: 300px !important;
+            height: 48px !important;
+            font-size: 13px !important;
+            margin: 0 auto !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            box-sizing: border-box !important;
+          }
+
+          /* Hide ambient glow blob — takes up space on mobile */
+          #financial > section > div[style*="900px"] { display: none !important; }
 
           /* ====================================================
              TECHNOLOGY MOAT
           ==================================================== */
+
+          /* Section */
+          #moat > section {
+            min-height: unset !important;
+            height: auto !important;
+          }
+          #moat .msec {
+            padding: 40px 20px !important;
+          }
+
+          /* Hide decorative elements — rings, orbits, power lines */
           .moat-rings, .moat-orbits, .moat-powerlines { display: none !important; }
-          .moat-row { flex-direction: column !important; align-items: center !important; gap: 12px !important; }
-          .moat-row > * { width: 100% !important; max-width: 100% !important; flex: none !important; padding: 20px !important; }
-          .moat-shield { margin: 20px auto !important; display: flex !important; justify-content: center !important; padding: 0 !important; }
-          .moat-shield img { width: 100px !important; height: auto !important; }
-          .card-on-dark h3, .card-on-light h3 { font-size: 1rem !important; color: #F0E0B2 !important; }
-          .card-on-dark p, .card-on-light p { font-size: 14px !important; color: rgba(240,224,178,0.82) !important; line-height: 1.55 !important; }
+
+          /* Badge */
+          #moat .msec > div:first-child span { font-size: 10px !important; margin-bottom: 16px !important; }
+
+          /* Heading */
+          #moat .msec h2 { font-size: 1.5rem !important; line-height: 1.15 !important; text-align: center !important; margin-bottom: 24px !important; }
+
+          /* Card area — remove relative positioning that reserved space for rings */
+          .moat-card-area { position: static !important; max-width: 100% !important; }
+
+          /* Card rows — single column stack */
+          .moat-row {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 12px !important;
+            margin-bottom: 0 !important;
+            margin-top: 0 !important;
+          }
+
+          /* Individual cards */
+          .moat-card {
+            width: 100% !important;
+            max-width: 100% !important;
+            flex: none !important;
+            box-sizing: border-box !important;
+            padding: 20px !important;
+            border-radius: 16px !important;
+            text-align: center !important;
+            transform: none !important;
+            opacity: 1 !important;
+          }
+
+          /* Icon badge */
+          .moat-icon-badge {
+            width: 48px !important;
+            height: 48px !important;
+            margin: 0 auto 12px auto !important;
+          }
+
+          /* Card title */
+          .moat-card-title {
+            font-size: 1rem !important;
+            color: #F0E0B2 !important;
+            margin-bottom: 8px !important;
+          }
+
+          /* Card body */
+          .moat-card-body {
+            font-size: 13px !important;
+            line-height: 1.5 !important;
+            color: rgba(240,224,178,0.8) !important;
+          }
+
+          /* Shield — compact, centred */
+          .moat-shield {
+            padding: 0 !important;
+            margin: 20px auto !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            max-height: 120px !important;
+            overflow: hidden !important;
+          }
+          .moat-shield-inner {
+            width: 80px !important;
+            height: auto !important;
+            display: block !important;
+          }
+          .moat-shield-inner img {
+            width: 80px !important;
+            height: auto !important;
+            display: block !important;
+          }
 
           /* ====================================================
              CTA SECTION
           ==================================================== */
-          .cta-cards { grid-template-columns: 1fr !important; gap: 16px !important; margin-top: 0 !important; }
-          .cta-cards > div { padding: 24px !important; width: 100% !important; }
+
+          /* Section — kill G_SEC 140px padding */
+          #contact > section {
+            min-height: unset !important;
+            height: auto !important;
+            padding: 40px 20px !important;
+          }
+          #contact .msec {
+            padding: 0 !important;
+          }
+
+          /* Heading */
+          #contact .msec h2 {
+            font-size: 1.5rem !important;
+            line-height: 1.15 !important;
+            text-align: center !important;
+            color: #FDFAF4 !important;
+            margin-bottom: 8px !important;
+          }
+
+          /* Subtitle */
+          #contact .msec > p {
+            font-size: 14px !important;
+            text-align: center !important;
+            color: rgba(253,250,244,0.8) !important;
+            margin-bottom: 24px !important;
+          }
+
+          /* Cards — single column, no gap above */
+          .cta-cards {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 16px !important;
+            margin-top: 0 !important;
+            max-width: 100% !important;
+          }
+          .cta-cards > div {
+            width: 100% !important;
+            box-sizing: border-box !important;
+            padding: 24px !important;
+            border-radius: 16px !important;
+            text-align: center !important;
+            transform: none !important;
+          }
+
+          /* Schedule a Call card — calendar icon */
+          .cta-cards > div:first-child > div:nth-child(2) {
+            width: 40px !important;
+            height: 40px !important;
+            margin: 0 auto 12px auto !important;
+          }
+          .cta-cards > div:first-child h3 {
+            font-size: 1rem !important;
+            color: #F0E0B2 !important;
+            margin-bottom: 8px !important;
+          }
+          .cta-cards > div:first-child > p {
+            font-size: 13px !important;
+            color: rgba(240,224,178,0.7) !important;
+            margin-bottom: 16px !important;
+          }
+
+          /* Book a Call button */
           .cta-book-btn {
-            width: 100% !important; max-width: 280px !important;
-            margin: 0 auto !important; display: flex !important;
+            width: 100% !important;
+            max-width: 240px !important;
+            height: 44px !important;
+            font-size: 12px !important;
+            margin: 0 auto !important;
+            display: flex !important;
+            align-items: center !important;
             justify-content: center !important;
+            box-sizing: border-box !important;
+          }
+
+          /* Jakub card — photo */
+          .cta-cards > div:last-child > div:nth-child(2) {
+            width: 60px !important;
+            height: 60px !important;
+            border-radius: 50% !important;
+            margin: 0 auto 12px auto !important;
+          }
+          /* Name */
+          .cta-cards > div:last-child > p:nth-child(3) {
+            font-size: 1rem !important;
+            color: #F0E0B2 !important;
+            margin-bottom: 12px !important;
+          }
+          /* Email link */
+          .cta-contact-link {
+            font-size: 13px !important;
+            color: rgba(240,224,178,0.75) !important;
           }
 
           /* ====================================================
              FOOTER
           ==================================================== */
+
+          /* Footer container */
+          footer {
+            overflow: hidden !important;
+          }
+
+          /* Hide decorative grid texture */
           .footer-grid-texture { display: none !important; }
+
+          /* Main cols wrapper — single centered column, no two-col layout */
           .footer-cols {
+            display: flex !important;
             flex-direction: column !important;
             align-items: center !important;
-            padding: 40px 24px !important;
+            text-align: center !important;
+            padding: 40px 20px 0 !important;
             gap: 0 !important;
+            max-width: 100% !important;
           }
-          .footer-left, .footer-right {
-            width: 100% !important; max-width: 360px !important;
-            text-align: center !important; margin: 0 auto 24px auto !important;
-            flex-shrink: 0 !important;
+
+          /* Left column — full width, centred */
+          .footer-left {
+            width: 100% !important;
+            max-width: 100% !important;
+            text-align: center !important;
+            margin: 0 0 0 0 !important;
+            flex-shrink: unset !important;
           }
-          .footer-right { text-align: center !important; margin-left: auto !important; margin-right: auto !important; }
-          .footer-left > div:first-child { justify-content: center !important; }
-          .footer-left p, .footer-right p { font-size: 14px !important; margin-bottom: 8px !important; }
-          .footer-badges-row {
-            display: flex !important; flex-wrap: wrap !important;
-            justify-content: center !important; gap: 8px !important;
+
+          /* Logo wrapper — centre it */
+          .footer-left > div:first-child {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            margin-bottom: 16px !important;
+            max-width: 160px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+
+          /* Description */
+          .footer-left > p {
+            font-size: 14px !important;
+            line-height: 1.6 !important;
+            color: rgba(240,224,178,0.7) !important;
+            text-align: center !important;
             margin-bottom: 20px !important;
+            max-width: 320px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
           }
+
+          /* Badges */
+          .footer-badges-row {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            gap: 8px !important;
+            margin-bottom: 24px !important;
+          }
+          .footer-badges-row span {
+            padding: 4px 10px !important;
+            font-size: 9px !important;
+            letter-spacing: 1px !important;
+            border-radius: 4px !important;
+          }
+
+          /* Social icons — single row, centred, good tap targets */
           .footer-social-row {
-            display: flex !important; flex-wrap: nowrap !important;
-            justify-content: center !important; gap: 16px !important;
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            justify-content: center !important;
+            gap: 0 !important;
             margin-bottom: 24px !important;
           }
           .footer-social-row a {
-            width: 44px !important; height: 44px !important;
-            display: flex !important; align-items: center !important; justify-content: center !important;
+            min-width: 44px !important;
+            min-height: 44px !important;
+            width: auto !important;
+            height: auto !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 10px !important;
+          }
+          .footer-social-row a svg {
+            width: 24px !important;
+            height: 24px !important;
+          }
+
+          /* Right column — full width, centred below left */
+          .footer-right {
+            width: 100% !important;
+            max-width: 100% !important;
+            text-align: center !important;
+            margin: 0 !important;
+            padding-top: 0 !important;
+            flex-shrink: unset !important;
+          }
+
+          /* Contact links — centred */
+          .footer-right > div:first-child {
+            margin-bottom: 20px !important;
           }
           .footer-right a {
             justify-content: center !important;
             font-size: 14px !important;
+            color: rgba(240,224,178,0.75) !important;
+            min-height: 44px !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            margin-bottom: 10px !important;
+          }
+          .footer-right a svg { flex-shrink: 0 !important; }
+
+          /* Book a Call CTA */
+          .footer-cta-wrap {
+            justify-content: center !important;
+            display: flex !important;
+          }
+          .footer-cta-wrap a {
+            width: 100% !important;
+            max-width: 260px !important;
+            height: 44px !important;
+            font-size: 12px !important;
+            justify-content: center !important;
+            margin: 20px auto 0 auto !important;
+            display: flex !important;
+            align-items: center !important;
+            box-sizing: border-box !important;
+          }
+
+          /* Divider */
+          footer > div[style*="border-top"],
+          footer > div > div[style*="border-top"] {
+            margin: 24px 0 !important;
+            padding: 0 !important;
+          }
+
+          /* Bottom bar */
+          .footer-bottom {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 8px !important;
+            padding: 0 20px 40px !important;
+            text-align: center !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+          }
+          .footer-bottom > p {
+            font-size: 12px !important;
+            color: rgba(240,224,178,0.4) !important;
+            text-align: center !important;
+            margin: 0 0 8px 0 !important;
+          }
+
+          /* Privacy / Terms links */
+          .footer-policy {
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: center !important;
+            flex-wrap: nowrap !important;
+            gap: 20px !important;
+          }
+          .footer-policy a {
+            font-size: 12px !important;
+            color: rgba(240,224,178,0.5) !important;
             min-height: 44px !important;
             display: flex !important;
             align-items: center !important;
           }
-          .footer-cta-wrap { justify-content: center !important; }
-          .footer-cta-wrap a {
-            width: 100% !important; max-width: 280px !important;
-            justify-content: center !important;
-            margin: 20px auto !important; display: flex !important;
-          }
-          .footer-bottom {
-            flex-direction: column !important;
-            align-items: center !important;
-            gap: 8px !important;
-            padding: 16px 24px 24px !important;
-            text-align: center !important;
-          }
-          .footer-bottom p { font-size: 12px !important; margin-top: 24px !important; text-align: center !important; }
-          .footer-policy {
-            justify-content: center !important;
-            flex-wrap: wrap !important;
-            gap: 16px !important;
-          }
-          .footer-policy a {
-            font-size: 13px !important;
-            min-height: 44px !important;
-            display: flex !important; align-items: center !important;
+
+          /* Back-to-top button */
+          .footer-policy button {
+            margin-top: 16px !important;
+            width: 40px !important;
+            height: 40px !important;
           }
 
           /* ====================================================
@@ -2657,7 +3342,7 @@ export default function AF() {
           nav a, nav button { min-height: 44px !important; min-width: 44px !important; }
         }
         @media (max-width: 480px) {
-          .s1chips { grid-template-columns: 1fr !important; }
+          /* chips stay 2-col per FORTRESSNAMES-MOBILE spec */
         }
         @keyframes heroLineUp{0%{opacity:0;transform:translateY(80px) skewY(2deg)}100%{opacity:1;transform:translateY(0) skewY(0)}}
         @keyframes heroFadeIn{0%{opacity:0}100%{opacity:1}}
@@ -2936,7 +3621,7 @@ export default function AF() {
           {/* Section top divider — subtle boundary signal */}
           <div style={{ position: "absolute", top: 0, left: "8%", right: "8%", height: 1, background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.07),transparent)" }} />
           {/* Ghost background word — depth layer */}
-          <div style={{ position: "absolute", bottom: "-0.5em", left: "50%", transform: "translateX(-50%)", fontSize: "clamp(8rem,18vw,16rem)", fontFamily: "'Monument Extended',sans-serif", fontWeight: 800, letterSpacing: "-0.02em", color: "#182145", opacity: 0.03, lineHeight: 1, pointerEvents: "none", userSelect: "none", whiteSpace: "nowrap", textTransform: "uppercase", zIndex: 0 }}>CONFIDENTIALITY</div>
+          <div className="ghost-word" style={{ position: "absolute", bottom: "-0.5em", left: "50%", transform: "translateX(-50%)", fontSize: "clamp(8rem,18vw,16rem)", fontFamily: "'Monument Extended',sans-serif", fontWeight: 800, letterSpacing: "-0.02em", color: "#182145", opacity: 0.03, lineHeight: 1, pointerEvents: "none", userSelect: "none", whiteSpace: "nowrap", textTransform: "uppercase", zIndex: 0 }}>CONFIDENTIALITY</div>
           <div className="msec" style={{ ...sec, position: "relative", zIndex: 1 }}>
             {/* Asymmetric two-column grid */}
             <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 72, alignItems: "start" }}>
@@ -2945,16 +3630,18 @@ export default function AF() {
                 <div style={{ ...rv(s2V, 0), marginBottom: 20 }}><span style={{ ...lbl, color:"#182145", border:"2px solid rgba(24,33,69,0.3)", background:"transparent" }}><span style={{ ...dot, background:"#DD1E21" }} /> The Solution - Part 2</span></div>
                 <h2 style={{ ...rv(s2V, 0.12), ...mega("clamp(2rem,4.5vw,3.2rem)"), marginBottom: 16, color: "#182145" }}>Confidentiality <span style={{ color: "#DD1E21" }}>Machine</span></h2>
                 <p style={{ ...rv(s2V, 0.22), color: "#555555", fontSize: "16px", marginBottom: 32 }}>On-chain transaction privacy layer — compliance-ready, not a mixer</p>
+                <div className="conf-bullets">
                 {["Hides amounts, sender, and receiver details on-chain","Compliance-ready: selective disclosure for regulators (CM Proof of Funds)","Works across DeFi protocols and standard transfers"].map((f, i) => (
-                  <div key={i} style={{ ...feat(s2V, 0.3 + i * 0.1), marginBottom: 16 }}>
-                    <span style={fchk}><span style={{ width: 5, height: 5, borderRadius: "50%", background: "#182145", display: "block" }} /></span>
-                    <span style={{ fontSize: "16px", color: "#222222", lineHeight: 1.7 }}>{f}</span>
+                  <div key={i} className="conf-bullet-item" style={{ ...feat(s2V, 0.3 + i * 0.1), marginBottom: 16 }}>
+                    <span className="conf-bullet-dot" style={fchk}><span style={{ width: 5, height: 5, borderRadius: "50%", background: "#182145", display: "block" }} /></span>
+                    <span className="conf-bullet-text" style={{ fontSize: "16px", color: "#222222", lineHeight: 1.7 }}>{f}</span>
                   </div>
                 ))}
+                </div>
               </div>
               {/* Right column: revenue card, staggered lower */}
               <div style={{ marginTop: 60 }}>
-                <div style={{ ...rr(s2V, 0.5), ...card, background: "#2a4a7a", border: "2px solid rgba(100,140,200,0.35)", borderRadius: 20 }}>
+                <div className="conf-revenue-card" style={{ ...rr(s2V, 0.5), ...card, background: "#2a4a7a", border: "2px solid rgba(100,140,200,0.35)", borderRadius: 20 }}>
                   <div style={cardTop} />
                   <h3 style={{ fontFamily: "'Monument Extended'", fontSize: "1.6rem", letterSpacing: "0.06em", marginBottom: 24, color: "#F0E0B2" }}>
                     Two Revenue Engines, <span style={{ color: "#C9A84C" }}>One SDK</span>
@@ -3069,8 +3756,15 @@ export default function AF() {
             @keyframes marquee { 0% { transform: translateX(0) } 100% { transform: translateX(-25%) } }
             .marquee-track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
             .marquee-track:hover { animation-play-state: paused; }
+            @media (max-width: 768px) {
+              section#trusted { padding: 32px 24px !important; min-height: unset !important; height: auto !important; }
+              section#trusted .msec.trusted-sec { padding-top: 0 !important; padding-bottom: 0 !important; }
+              section#trusted h2 { font-size: 1.4rem !important; line-height: 1.2 !important; text-align: center !important; margin-bottom: 12px !important; }
+              section#trusted p { font-size: 13px !important; text-align: center !important; margin-bottom: 20px !important; }
+              section#trusted .marquee-wrapper { margin: 0 !important; padding: 0 !important; padding-bottom: 20px !important; }
+            }
           `}</style>
-          <div style={{ position: "relative", width: "100%", overflow: "hidden", paddingBottom: 64 }}>
+          <div className="marquee-wrapper" style={{ position: "relative", width: "100%", overflow: "hidden", paddingBottom: 64 }}>
             <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to right, #182145, transparent)", zIndex: 2, pointerEvents: "none" }} />
             <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(to left, #182145, transparent)", zIndex: 2, pointerEvents: "none" }} />
             <div className="marquee-track" style={{ alignItems: "center" }}>
