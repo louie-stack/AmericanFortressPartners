@@ -1971,7 +1971,7 @@ function SiteNav() {
       }} />
 
       {/* Left: Logo */}
-      <div style={{ animation: "logoGlow 4s ease-in-out infinite", flexShrink: 0, display: "flex", alignItems: "center" }}>
+      <div className="nav-logo" style={{ animation: "logoGlow 4s ease-in-out infinite", flexShrink: 0, display: "flex", alignItems: "center" }}>
         <AFLogo height={36} />
       </div>
 
@@ -2319,11 +2319,24 @@ export default function AF() {
              HERO
           ==================================================== */
 
-          /* Restore cover photo — subtle on mobile */
+          /* Nav logo — slightly reduced */
+          .nav-logo {
+            max-height: 36px !important;
+            overflow: visible !important;
+          }
+          .nav-logo svg {
+            max-height: 36px !important;
+            width: auto !important;
+            height: 30px !important;
+          }
+
+          /* Restore cover photo — slightly more visible on mobile */
           .hero-cover {
             display: block !important;
-            opacity: 0.15 !important;
+            opacity: 0.18 !important;
             transform: none !important;
+            background-size: cover !important;
+            background-position: center !important;
           }
 
           .hero-section { min-height: auto !important; overflow: hidden !important; }
@@ -2340,15 +2353,15 @@ export default function AF() {
             text-align: center !important;
           }
 
-          /* Title — word-level wrap only, no mid-word breaks */
+          /* Title — dominant, natural word-break */
           .mhero {
-            font-size: 1.9rem !important;
+            font-size: 2.8rem !important;
             white-space: normal !important;
             word-break: normal !important;
             overflow-wrap: normal !important;
             text-align: center !important;
             padding: 0 !important;
-            line-height: 1.1 !important;
+            line-height: 1.05 !important;
           }
 
           /* Gold divider below title */
