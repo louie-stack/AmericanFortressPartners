@@ -2297,8 +2297,8 @@ export default function AF() {
           section h2 + *, .msec h2 + * { margin-top: 20px !important; }
           .section-pill { display: inline-flex !important; align-items: center !important; gap: 8px !important; line-height: 1 !important; padding-top: 7px !important; padding-bottom: 7px !important; }
           .pill-dot { display: none !important; }
-          .stripe-wrap { display: block !important; height: 48px !important; margin-top: -24px !important; margin-bottom: -24px !important; }
-          .stripe-wrap img { display: block !important; height: 48px !important; width: 100% !important; object-fit: fill !important; }
+          .stripe-wrap { display: block !important; height: 60px !important; margin-top: -30px !important; margin-bottom: -30px !important; position: relative !important; z-index: 10 !important; max-width: 100% !important; }
+          .stripe-wrap img { display: block !important; height: 60px !important; width: 100% !important; object-fit: fill !important; max-width: 100% !important; }
           nav { height: 56px !important; padding: 0 16px !important; }
           .nav-center, .sitenav-links, .nav-book-cta { display: none !important; }
           .nav-hamburger { display: flex !important; }
@@ -2321,9 +2321,9 @@ export default function AF() {
           .hero-badges > span { display: inline-flex !important; width: auto !important; max-width: none !important; flex-basis: auto !important; flex-shrink: 0 !important; flex-grow: 0 !important; padding: 5px 8px !important; font-size: 7.5px !important; letter-spacing: 0.5px !important; white-space: nowrap !important; flex-direction: row !important; align-items: center !important; border-radius: 8px !important; }
           .hero-badges > span > span:first-child { width: 5px !important; height: 5px !important; min-width: 5px !important; min-height: 5px !important; border-radius: 50% !important; flex-shrink: 0 !important; display: inline-block !important; }
           .trusted-sec { padding: 32px 24px !important; min-height: 0 !important; height: auto !important; }
-          /* Issue 4+5: Trusted By heading — bigger, 2 lines */
-          .trusted-sec h2 { font-size: 2rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 12px !important; white-space: normal !important; }
-          .trusted-sec h2 span { font-size: 2rem !important; }
+          /* Issue 4+5: Trusted By heading — bigger, 2 lines via <br/> in JSX */
+          .trusted-sec h2 { font-size: 2.2rem !important; line-height: 1.05 !important; text-align: center !important; margin-bottom: 12px !important; white-space: normal !important; }
+          .trusted-sec h2 span { font-size: 2.2rem !important; display: inline !important; }
           .trusted-sec p { font-size: 13px !important; text-align: center !important; margin-bottom: 20px !important; color: rgba(240,224,178,0.6) !important; }
           .trusted-sec > div[style] { margin: 0 !important; padding-bottom: 20px !important; padding-top: 0 !important; }
           .marquee-logo { height: 20px !important; }
@@ -2387,8 +2387,10 @@ export default function AF() {
           #landscape .msec { opacity: 1 !important; transform: none !important; transition: none !important; padding: 0 !important; height: auto !important; display: block !important; }
           #landscape .msec .section-pill { font-size: 10px !important; margin-bottom: 16px !important; }
           /* Issue 1: Landscape heading — left-aligned, 2 lines */
+          #landscape .msec { text-align: left !important; }
           #landscape .msec h2 { font-size: 2rem !important; line-height: 1.1 !important; text-align: left !important; white-space: normal !important; }
           #landscape .msec h2 span { font-size: 1.6rem !important; display: block !important; white-space: nowrap !important; }
+          #landscape .section-pill { margin-left: 0 !important; }
           #landscape .msec > p { font-size: 14px !important; text-align: center !important; margin-bottom: 24px !important; }
           .scatter-layout { grid-template-columns: 1fr !important; gap: 0 !important; }
           .scatter-wrapper { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; overflow: hidden !important; padding: 0 !important; margin: 0 auto 20px auto !important; aspect-ratio: 1 / 1 !important; }
@@ -2400,10 +2402,13 @@ export default function AF() {
           #landscape .msec > p:last-child { opacity: 1 !important; font-size: 13px !important; color: rgba(240,224,178,0.6) !important; text-align: center !important; margin-top: 20px !important; margin-bottom: 0 !important; padding: 0 12px !important; }
           #comparison { height: auto !important; min-height: unset !important; position: relative !important; padding: 40px 20px !important; }
           #comparison .msec { opacity: 1 !important; transform: none !important; transition: none !important; padding: 0 !important; text-align: left !important; }
-          /* Issue 2: Comparison heading — left-aligned, 2 lines max */
-          #comparison .msec h2 { font-size: 2rem !important; line-height: 1.1 !important; text-align: left !important; margin-bottom: 24px !important; font-weight: 800 !important; white-space: normal !important; word-break: normal !important; }
-          #comparison .msec h2 br { display: none !important; }
-          #comparison .msec h2 span { font-size: 1.8rem !important; display: block !important; }
+          /* Issue 2: Comparison heading — fix selector to target .cmp-wrap h2 */
+          #comparison { height: auto !important; min-height: unset !important; padding: 0 !important; }
+          .cmp-shake { transform: none !important; }
+          .cmp-wrap { padding: 40px 20px !important; width: 100% !important; box-sizing: border-box !important; }
+          .cmp-wrap h2 { font-size: 2rem !important; line-height: 1.1 !important; text-align: left !important; margin-bottom: 24px !important; font-weight: 800 !important; white-space: normal !important; word-break: normal !important; color: #182145 !important; }
+          .cmp-wrap h2 br { display: none !important; }
+          .cmp-wrap h2 span { font-size: 1.8rem !important; display: block !important; color: #DD1E21 !important; }
           .cmp-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; width: 100% !important; max-width: 100% !important; padding-bottom: 8px !important; }
           .cmp-table { width: max-content !important; min-width: 600px !important; }
           .cmp-table th { white-space: normal !important; font-size: 8px !important; min-width: 65px !important; padding: 10px 6px !important; text-align: center !important; }
@@ -2887,7 +2892,7 @@ export default function AF() {
         {/* TRUSTED BY */}
         <section id="trusted" ref={lR} className="trusted-sec" style={{ ...full, background: "#182145", overflow: "hidden" }}>
           <div className="msec trusted-sec" style={{ ...sec, textAlign: "center", paddingBottom: 0, paddingTop: 48 }}>
-            <h2 style={{ ...rv(lV, 0), ...mega("clamp(1.8rem,3.5vw,2.8rem)", 8) }}>Trusted By <span style={{ color: "#C9A84C" }}>Industry Leaders</span></h2>
+            <h2 style={{ ...rv(lV, 0), ...mega("clamp(1.8rem,3.5vw,2.8rem)", 8) }}>Trusted By<br /><span style={{ color: "#C9A84C" }}>Industry Leaders</span></h2>
             <p style={{ ...rv(lV, 0.1), color: "rgba(240,224,178,0.6)", fontSize: "0.92rem", marginBottom: 48 }}>Integrated with leading wallets, chains, and financial institutions</p>
           </div>
           {/* Marquee strip */}
