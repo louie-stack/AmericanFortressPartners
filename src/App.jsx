@@ -2408,24 +2408,25 @@ export default function AF() {
             box-sizing: border-box !important;
           }
 
-          /* Credential pills */
+          /* Credential pills — 3 on row 1, 2 on row 2 */
           .hero-badges {
             display: flex !important;
             flex-wrap: wrap !important;
             justify-content: center !important;
-            gap: 6px 8px !important;
+            gap: 10px !important;
             padding: 0 16px !important;
             margin-top: 0 !important;
             overflow: visible !important;
             max-width: 100% !important;
           }
           .hero-badges > span {
-            padding: 5px 10px !important;
+            padding: 6px 12px !important;
             font-size: 9px !important;
             letter-spacing: 1px !important;
-            border-radius: 4px !important;
             white-space: nowrap !important;
             flex-shrink: 0 !important;
+            width: auto !important;
+            flex-basis: auto !important;
           }
           /* Red dot — perfect 5px circle */
           .hero-badges > span > span:first-child {
@@ -3604,7 +3605,7 @@ export default function AF() {
             <div className="hero-badges" style={{
               display: "flex", gap: 8, justifyContent: "center", flexWrap: "wrap",
             }}>
-              {["11 Patented Inventions","Multi-Chain from Day 1","SDK Available Q2 2026","Zero Integration Costs","Quantum-Proof Technology"].map((b, i) => (
+              {["11 Patented Inventions","Multi-Chain from Day 1","Zero Integration Costs","SDK Available Q2 2026","Quantum-Proof Technology"].map((b, i) => (
                 <span key={i} style={{
                   fontFamily: "'Space Grotesk',sans-serif", fontSize: "10px", fontWeight: 500, padding: "6px 14px", borderRadius: 12,
                   border: "1px solid rgba(100,140,200,0.2)", color: "rgba(240,224,178,0.85)", background: "#1a2a4a",
