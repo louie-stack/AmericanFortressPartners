@@ -1072,7 +1072,7 @@ function NameResolver() {
     <div className="nr-wrap">
       <div style={{ height: 22, marginBottom: 10, opacity: contentOp, transition: "opacity 0.3s" }}>
         {isScramble && <span style={{ fontFamily:"'JetBrains Mono'", fontSize: 9, textTransform:"uppercase", letterSpacing:"3px", color:"rgba(201,168,76,0.95)", display:"inline-flex", alignItems:"center", gap:4 }}><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>Resolving name...</span>}
-        {isResolved && <span style={{ fontFamily:"'JetBrains Mono'", fontSize: 9, textTransform:"uppercase", letterSpacing:"3px", color:"#34D399", display:"inline-flex", alignItems:"center", gap:4 }}><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20,6 9,17 4,12"/></svg>Identity verified — private transfer ready</span>}
+        {isResolved && <span style={{ fontFamily:"'JetBrains Mono'", fontSize: 9, textTransform:"uppercase", letterSpacing:"3px", color:"#34D399", display:"inline-flex", alignItems:"center", gap:4 }}><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20,6 9,17 4,12"/></svg>Identity verified<span className="nr-transfer-suffix"> — private transfer ready</span></span>}
       </div>
       <div className="nr-row" style={{ position:"relative", display:"inline-flex", alignItems:"center", gap: 20, opacity: contentOp, transition: "opacity 0.4s" }}>
         {isResolved && <div style={{ position:"absolute", inset:"-40px -80px", background:"radial-gradient(ellipse,rgba(201,168,76,0.14) 0%,transparent 70%)", pointerEvents:"none" }} />}
@@ -2281,17 +2281,36 @@ export default function AF() {
 
           /* ====================================================
              GLOBAL — Badge pill dot alignment (all sections)
-             G_LBL is inline-flex with alignItems:center already,
-             but the G_DOT child span needs flex-shrink:0 + align-self
           ==================================================== */
+
+          /* G_LBL pill container — ensure flex centering */
+          span[style*="inline-flex"][style*="pulseG"],
+          span[style*="inline-flex"] > span[style*="pulseG"],
+          span[style*="borderRadius: 24"] {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+          }
+
+          /* G_DOT — the animated pulse dot inside every pill */
           span[style*="pulseG"] {
             display: inline-block !important;
             flex-shrink: 0 !important;
             align-self: center !important;
             vertical-align: middle !important;
+            width: 8px !important;
+            height: 8px !important;
+            min-width: 8px !important;
+            min-height: 8px !important;
+            border-radius: 50% !important;
             margin-top: 0 !important;
+            top: auto !important;
+            transform: none !important;
             position: static !important;
           }
+
+          /* Hide "— private transfer ready" on mobile */
+          .nr-transfer-suffix { display: none !important; }
 
           /* Brushstroke / divider — restore and compact on mobile */
           .stripe-wrap {
