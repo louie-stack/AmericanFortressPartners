@@ -2428,7 +2428,7 @@ export default function AF() {
           #exposed .msec { padding: 0 !important; }
           #exposed .msec h2 { font-size: 1.5rem !important; text-align: center !important; margin-bottom: 20px !important; }
 
-          /* Scanner box */
+          /* Scanner box — compact, scanning-state only */
           .scanner-box {
             width: 100% !important;
             max-width: 100% !important;
@@ -2436,9 +2436,13 @@ export default function AF() {
             padding: 16px !important;
             border-radius: 14px !important;
             margin: 0 auto !important;
+            min-height: unset !important;
           }
 
-          /* WALLET EXPOSED status label */
+          /* Hide "WALLET EXPOSED" label — only show scanning state */
+          .scanner-box > div:first-child svg:first-child ~ * { display: none !important; }
+
+          /* Status label text size */
           .scanner-box > div:first-child {
             font-size: 10px !important;
             letter-spacing: 1.5px !important;
@@ -2450,47 +2454,49 @@ export default function AF() {
             overflow: hidden !important;
             text-overflow: ellipsis !important;
             white-space: nowrap !important;
-            padding: 8px 12px !important;
           }
 
-          /* Data tags grid */
-          .leak-grid {
-            display: grid !important;
-            grid-template-columns: 1fr 1fr !important;
-            gap: 8px !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
-          }
-          .leak-grid > div {
-            width: 100% !important;
-            box-sizing: border-box !important;
-            overflow: hidden !important;
-          }
-          .leak-grid > div > div:last-child {
-            width: 100% !important;
-            box-sizing: border-box !important;
-            border-radius: 8px !important;
-            padding: 10px 8px !important;
-            text-align: center !important;
-          }
-          .leak-label { font-size: 8px !important; letter-spacing: 1px !important; }
-          .leak-value { font-size: 12px !important; }
+          /* HIDE data tag grid entirely */
+          .leak-grid { display: none !important; }
+
+          /* HIDE footer "WALLET EXPOSED" text */
+          .scanner-box > div:last-child { display: none !important; }
+
+          /* HIDE ambient glow blob (large fixed-size div) */
+          .scanner-box > div[style*="820px"] { display: none !important; }
 
           /* For Wallets / For Name Services cards — stack vertically */
           #exposed .mgrid2 {
             display: flex !important;
             flex-direction: column !important;
             gap: 16px !important;
+            margin-top: 24px !important;
           }
           #exposed .mgrid2 > div {
             width: 100% !important;
             box-sizing: border-box !important;
-            padding: 20px !important;
+            padding: 24px !important;
             border-radius: 16px !important;
+            transform: none !important;
           }
-          .exposed-card-h3 { justify-content: flex-start !important; }
+
+          /* Card title + icon row — flex left-aligned */
+          .exposed-card-h3 {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            gap: 12px !important;
+            text-align: left !important;
+          }
           .exposed-card-h3 > span { font-size: 1.1rem !important; }
-          #exposed .mgrid2 > div p { font-size: 14px !important; line-height: 1.55 !important; }
+
+          /* Bullet text */
+          #exposed .mgrid2 > div p {
+            font-size: 15px !important;
+            line-height: 1.6 !important;
+            color: rgba(240,224,178,0.85) !important;
+            text-align: left !important;
+          }
 
           /* ====================================================
              FORTRESSNAMES
