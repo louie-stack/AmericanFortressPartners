@@ -2502,28 +2502,51 @@ export default function AF() {
           }
           #exposed .mgrid2 > div {
             width: 100% !important;
+            max-width: 100% !important;
             box-sizing: border-box !important;
             padding: 24px !important;
-            border-radius: 16px !important;
+            border-radius: 12px !important;
+            background: #2a4a7a !important;
+            border: 2px solid rgba(100,140,200,0.35) !important;
             transform: none !important;
+            /* Critical — remove clipping */
+            overflow: visible !important;
+            max-height: none !important;
+            text-overflow: unset !important;
           }
 
-          /* Card title + icon row — flex left-aligned */
+          /* Decorative absolute-positioned children inside cards — keep in bounds */
+          #exposed .mgrid2 > div > div[style*="absolute"] {
+            display: none !important;
+          }
+
+          /* Card title + icon row — flex left-aligned, no overflow clip */
           .exposed-card-h3 {
             display: flex !important;
             align-items: center !important;
             justify-content: flex-start !important;
             gap: 12px !important;
             text-align: left !important;
+            overflow: visible !important;
+            white-space: normal !important;
+            text-overflow: unset !important;
+            margin-bottom: 16px !important;
           }
-          .exposed-card-h3 > span { font-size: 1.1rem !important; }
+          .exposed-card-h3 > span {
+            font-size: 1.1rem !important;
+            white-space: normal !important;
+            overflow: visible !important;
+            text-overflow: unset !important;
+          }
 
-          /* Bullet text */
+          /* Bullet text — fully visible */
           #exposed .mgrid2 > div p {
-            font-size: 15px !important;
-            line-height: 1.6 !important;
-            color: rgba(240,224,178,0.85) !important;
+            font-size: 14px !important;
+            line-height: 1.5 !important;
+            color: rgba(240,224,178,0.7) !important;
             text-align: left !important;
+            overflow: visible !important;
+            white-space: normal !important;
           }
 
           /* ====================================================
