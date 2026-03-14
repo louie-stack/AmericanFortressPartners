@@ -109,7 +109,7 @@ const LibertyImage = ({ style = {} }) => (
 );
 
 const Stripe = ({ brush = "/images/brush-navy.svg", flip }) => (
-  <div style={{
+  <div className="stripe-wrap" style={{
     position: "relative",
     zIndex: 10,
     width: "100%",
@@ -2279,9 +2279,19 @@ export default function AF() {
             font-size: 1.1rem !important; color: #F0E0B2 !important;
           }
 
-          /* Brushstroke / divider images */
-          img[src*="brush"], img[src*="stroke"], img[src*="wave"], img[src*="divider"],
-          .section-divider, .brush-divider { height: 20px !important; object-fit: cover !important; }
+          /* Brushstroke / divider — restore and compact on mobile */
+          .stripe-wrap {
+            display: block !important;
+            height: 20px !important;
+            margin-top: -10px !important;
+            margin-bottom: -10px !important;
+          }
+          .stripe-wrap img {
+            display: block !important;
+            height: 20px !important;
+            width: 100% !important;
+            object-fit: fill !important;
+          }
 
           /* Gap: heading → first content */
           section h2 + *, .msec h2 + * { margin-top: 20px !important; }
@@ -2294,7 +2304,14 @@ export default function AF() {
           /* ====================================================
              HERO
           ==================================================== */
-          .hero-cover { display: none !important; }
+
+          /* Restore cover photo — subtle on mobile */
+          .hero-cover {
+            display: block !important;
+            opacity: 0.15 !important;
+            transform: none !important;
+          }
+
           .hero-section { min-height: auto !important; overflow: hidden !important; }
           .hero-content {
             padding: 88px 24px 40px !important;
@@ -2309,13 +2326,14 @@ export default function AF() {
             text-align: center !important;
           }
 
+          /* Title — word-level wrap only, no mid-word breaks */
           .mhero {
-            font-size: 2.4rem !important;
+            font-size: 1.9rem !important;
             white-space: normal !important;
             word-break: normal !important;
-            overflow-wrap: break-word !important;
+            overflow-wrap: normal !important;
             text-align: center !important;
-            padding: 0 20px !important;
+            padding: 0 !important;
             line-height: 1.1 !important;
           }
 
@@ -2368,8 +2386,8 @@ export default function AF() {
             display: flex !important;
             flex-wrap: wrap !important;
             justify-content: center !important;
-            gap: 6px !important;
-            padding: 0 12px !important;
+            gap: 6px 8px !important;
+            padding: 0 16px !important;
             margin-top: 0 !important;
             overflow: visible !important;
             max-width: 100% !important;
@@ -2380,9 +2398,6 @@ export default function AF() {
             letter-spacing: 1px !important;
             border-radius: 4px !important;
             white-space: nowrap !important;
-            background: #182145 !important;
-            border: 1px solid rgba(240,224,178,0.2) !important;
-            color: #F0E0B2 !important;
             flex-shrink: 0 !important;
           }
           /* Red dot — perfect 5px circle */
@@ -3336,7 +3351,7 @@ export default function AF() {
              MISC / SAFETY NETS
           ==================================================== */
           .nr-arrow svg { width: 16px !important; height: 16px !important; }
-          .liberty-bg { opacity: 0.05 !important; }
+          .liberty-bg { opacity: 0.15 !important; }
           .cmp-shake { transform: none !important; }
           footer a { min-height: 44px !important; }
           nav a, nav button { min-height: 44px !important; min-width: 44px !important; }
