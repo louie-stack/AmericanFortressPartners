@@ -2593,8 +2593,16 @@ export default function AF() {
           /* Badge */
           #confidentiality .msec > div:first-child span { font-size: 10px !important; margin-bottom: 16px !important; }
 
-          /* Heading */
-          #confidentiality .msec h2 { font-size: 1.5rem !important; line-height: 1.15 !important; margin-bottom: 12px !important; }
+          /* Heading — both "CONFIDENTIALITY" and "MACHINE" same size */
+          #confidentiality .msec h2 {
+            font-size: 1.5rem !important;
+            line-height: 1.15 !important;
+            margin-bottom: 12px !important;
+          }
+          #confidentiality .msec h2 span {
+            font-size: 1.5rem !important;
+            line-height: 1.15 !important;
+          }
 
           /* Subtitle */
           #confidentiality .msec > p { font-size: 14px !important; color: #333 !important; margin-bottom: 20px !important; }
@@ -2603,11 +2611,36 @@ export default function AF() {
           .conf-bullets { margin-bottom: 24px !important; }
 
           /* Each bullet row */
-          .conf-bullet-item { display: flex !important; align-items: flex-start !important; gap: 10px !important; margin-bottom: 16px !important; }
+          .conf-bullet-item {
+            display: flex !important;
+            align-items: flex-start !important;
+            gap: 12px !important;
+            margin-bottom: 16px !important;
+          }
 
-          /* Bullet dot — perfect circle */
-          .conf-bullet-dot { display: flex !important; align-items: flex-start !important; padding-top: 0 !important; flex-shrink: 0 !important; }
-          .conf-bullet-dot > span { width: 6px !important; height: 6px !important; border-radius: 50% !important; flex-shrink: 0 !important; margin-top: 8px !important; }
+          /* Bullet dot wrapper — strip the fchk box, show only the dot */
+          .conf-bullet-dot {
+            width: auto !important;
+            height: auto !important;
+            background: transparent !important;
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            display: flex !important;
+            align-items: flex-start !important;
+            flex-shrink: 0 !important;
+            padding: 0 !important;
+          }
+          .conf-bullet-dot > span {
+            width: 8px !important;
+            height: 8px !important;
+            min-width: 8px !important;
+            min-height: 8px !important;
+            border-radius: 50% !important;
+            flex-shrink: 0 !important;
+            margin-top: 6px !important;
+            display: block !important;
+          }
 
           /* Bullet text */
           .conf-bullet-text { font-size: 15px !important; line-height: 1.6 !important; color: #222 !important; }
@@ -2624,12 +2657,40 @@ export default function AF() {
           /* Remove the staggered margin-top from the right column wrapper */
           #confidentiality .mgrid2 > div:last-child { margin-top: 0 !important; }
 
-          /* Card title */
-          .conf-revenue-card h3 { font-size: 1.1rem !important; line-height: 1.2 !important; margin-bottom: 16px !important; }
+          /* Card title — entire title same size, "One SDK" span matches */
+          .conf-revenue-card h3 {
+            font-size: 1.2rem !important;
+            line-height: 1.2 !important;
+            margin-bottom: 16px !important;
+          }
+          .conf-revenue-card h3 span {
+            font-size: 1.2rem !important;
+          }
 
-          /* Card bullet items */
-          .conf-revenue-card > div { font-size: 14px !important; line-height: 1.5 !important; }
-          .conf-revenue-card > div span:first-child { width: 6px !important; height: 6px !important; border-radius: 50% !important; flex-shrink: 0 !important; }
+          /* Card bullet items — consistent flex layout for all 3 */
+          .conf-revenue-card > div {
+            display: flex !important;
+            align-items: flex-start !important;
+            gap: 10px !important;
+            font-size: 14px !important;
+            line-height: 1.5 !important;
+          }
+
+          /* Card bullet dots — all 3 as perfect circles, 3rd gets red */
+          .conf-revenue-card > div span:first-child {
+            width: 6px !important;
+            height: 6px !important;
+            min-width: 6px !important;
+            min-height: 6px !important;
+            border-radius: 50% !important;
+            flex-shrink: 0 !important;
+            margin-top: 5px !important;
+            display: block !important;
+          }
+          /* Third bullet dot — force red (was #3D4A63 inline) */
+          .conf-revenue-card > div:nth-child(3) span:first-child {
+            background: #DD1E21 !important;
+          }
 
           /* SDK button */
           .conf-revenue-card a {
