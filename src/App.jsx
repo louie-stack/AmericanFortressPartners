@@ -430,7 +430,7 @@ function ComparisonSection() {
         <div className="cmp-wrap" style={{ maxWidth:1000, margin:"0 auto", padding:"80px 48px", width:"100%" }}>
           {/* Title */}
           <h2 style={{ fontFamily:"'Monument Extended'", letterSpacing:"0.04em", lineHeight:1.05, color:"#182145", fontSize:"clamp(2rem,4.5vw,3.2rem)", fontWeight:800, textTransform:"uppercase", marginBottom:16 }}>
-            Head-to-Head <span style={{ color:"#DD1E21" }}>Feature Comparison</span>
+            Head-to-Head <br /><span style={{ color:"#DD1E21" }}>Feature Comparison</span>
           </h2>
 
           {/* Grid table */}
@@ -572,7 +572,7 @@ function CompetitiveLandscapeInner() {
 
   return (
     <div ref={sectionRef} className="msec" style={{ ...G_SEC, padding: "100px 48px 80px", opacity: cp > 0 ? 1 : 0, transform: cp > 0 ? "translateY(0)" : "translateY(30px)", transition: "opacity 0.7s ease, transform 0.7s ease" }}>
-      <div><span style={G_LBL}><span style={G_DOT} /> Competitive Landscape</span></div>
+      <div><span className="section-pill" style={G_LBL}><span className="pill-dot" style={G_DOT} /> Competitive Landscape</span></div>
       <h2 style={G_MEGA("clamp(2rem,4.5vw,3.2rem)", 48)}>Where We Stand<br /><span style={{ color: "#DD1E21" }}>Privacy — Usability</span></h2>
       <div className="mgrid2 scatter-layout" style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 40, alignItems: "start" }}>
         <div className="scatter-wrapper"><CompetitiveChart p={cp} /></div>
@@ -804,6 +804,38 @@ function FinancialSection() {
   const CM6   = [1,4];  // commas at position 1 and 4 ? 1,000,000
   const CM5   = [3];     // 200,000
 
+  if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+    return (
+      <section style={{ background: "#F0E0B2", padding: "40px 20px", position: "relative", overflow: "hidden" }}>
+        <div style={{ maxWidth: 480, margin: "0 auto", textAlign: "center" }}>
+          <div style={{ marginBottom: 20 }}>
+            <span className="section-pill" style={G_LBL}><span className="pill-dot" style={G_DOT}/> Revenue Projections</span>
+          </div>
+          <h2 style={{ fontFamily: "'Monument Extended',sans-serif", fontSize: "1.8rem", fontWeight: 800, letterSpacing: "0.04em", lineHeight: 1.1, textTransform: "uppercase", color: "#182145", marginBottom: 24 }}>
+            The <span style={{ color: "#DD1E21" }}>Financial</span> Opportunity
+          </h2>
+          <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, textTransform: "uppercase", letterSpacing: "2px", color: "#555", marginBottom: 8 }}>FortressNames Revenue</p>
+          <div style={{ fontFamily: "'Monument Extended',sans-serif", fontSize: "clamp(2.4rem, 9vw, 3.5rem)", fontWeight: 800, color: "#182145", whiteSpace: "nowrap", marginBottom: 4 }}>
+            $1,000,000<span style={{ fontSize: "0.3em", opacity: 0.4 }}>/mo</span>
+          </div>
+          <p style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: 13, color: "#555", marginBottom: 24 }}>100,000 names sold at $10/month</p>
+          <div style={{ margin: "0 auto 24px", display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19,12 12,19 5,12"/></svg>
+          </div>
+          <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, textTransform: "uppercase", letterSpacing: "2px", color: "#555", marginBottom: 8 }}>Your 20% Share — Recurring</p>
+          <div style={{ fontFamily: "'Monument Extended',sans-serif", fontSize: "clamp(2.4rem, 9vw, 3.5rem)", fontWeight: 800, color: "#DD1E21", whiteSpace: "nowrap", marginBottom: 4 }}>
+            $200,000<span style={{ fontSize: "0.3em", opacity: 0.4 }}>/mo</span>
+          </div>
+          <p style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: 13, color: "#555", marginBottom: 32 }}>Plus affiliate commissions on referrals</p>
+          <a href="https://calendly.com/jakub_zurawinski/intro-call" target="_blank" rel="noopener noreferrer"
+            style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, width: "100%", maxWidth: 300, height: 48, margin: "0 auto", background: "#DD1E21", color: "#FDFAF4", fontFamily: "'Space Grotesk',sans-serif", fontSize: 13, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", textDecoration: "none", borderRadius: 4 }}>
+            Discuss Revenue Opportunity
+          </a>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section ref={sectionRef} style={{
       background: "#F0E0B2", minHeight: "100vh",
@@ -856,7 +888,7 @@ function FinancialSection() {
       }}/>
 
 
-      <div style={{ position:"relative", zIndex:5, textAlign:"center", width:"100%", maxWidth:900 }}>
+      <div className="fin-inner" style={{ position:"relative", zIndex:5, textAlign:"center", width:"100%", maxWidth:900 }}>
 
         {/* Header */}
         <div style={{ marginBottom:"2rem", textAlign:"center" }}>
@@ -864,7 +896,7 @@ function FinancialSection() {
             boxShadow:"0 0 10px rgba(221,30,33,0.5),0 0 30px rgba(221,30,33,0.15)",
             margin:"0 auto 16px" }}/>
           <div style={{ marginBottom:"0.5rem" }}>
-            <span style={{ ...G_LBL, color:"#182145", border:"2px solid rgba(24,33,69,0.3)", background:"transparent" }}><span style={G_DOT}/> Revenue Projections</span>
+            <span style={{ ...G_LBL, color:"#182145", border:"2px solid rgba(24,33,69,0.3)", background:"transparent" }}><span className="pill-dot" style={G_DOT}/> Revenue Projections</span>
           </div>
           <h2 className="fin-title" style={{ fontFamily:"'Monument Extended',sans-serif", fontSize:"clamp(1.8rem,4vw,3rem)",
             fontWeight:800, letterSpacing:"0.03em", lineHeight:1.05, textTransform:"uppercase",
@@ -1503,12 +1535,12 @@ function MoatSection({ mR, mV }) {
 
         {/* Header */}
         <div style={{ marginBottom: 0 }}>
-          <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#DD1E21",
+          <div className="moat-red-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: "#DD1E21",
             boxShadow: "0 0 10px rgba(221,30,33,0.5), 0 0 30px rgba(221,30,33,0.15)",
             margin: "0 auto 20px" }}/>
-          <div style={{ marginBottom: 16 }}><span style={G_LBL}><span style={G_DOT}/> Why Partner With Us</span></div>
+          <div style={{ marginBottom: 16 }}><span className="section-pill" style={G_LBL}><span className="pill-dot" style={G_DOT}/> Why Partner With Us</span></div>
           <h2 style={{ ...G_MEGA("clamp(2rem,4.5vw,3.2rem)"), marginBottom: 64 }}>
-            The Technology <span style={{ color: "#daa545" }}>Moat</span>
+            The Technology <br /><span style={{ color: "#daa545" }}>Moat</span>
           </h2>
         </div>
 
@@ -1655,7 +1687,7 @@ function CTASection({ ctR, ctV }) {
             </div>
             <p style={{ fontFamily: "'Monument Extended'", fontSize: "1.1rem", letterSpacing: "0.06em",
               color: hovR ? "#F0E0B2" : "rgba(210,215,230,0.8)", transition: "color 0.3s ease" }}>JAKUB ZURAWINSKI</p>
-            <p style={{ fontFamily: "'JetBrains Mono'", fontSize: "0.7rem", color: "#3D4A63", marginBottom: 16, letterSpacing: "0.04em" }}>Head of Business Development</p>
+            <p style={{ fontFamily: "'JetBrains Mono'", fontSize: "0.7rem", color: "rgba(240,224,178,0.5)", marginBottom: 10, letterSpacing: "0.04em" }}>Head of Business Development</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
               <a href="mailto:jakub@americanfortress.io" className="cta-contact-link"
                 onMouseEnter={() => setHovMail(true)} onMouseLeave={() => setHovMail(false)}
@@ -2245,1295 +2277,205 @@ export default function AF() {
 
         /* -- Mobile (=768px) ------------------------------- */
         @media (max-width: 768px) {
-
-          /* ====================================================
-             GLOBAL
-          ==================================================== */
           html, body { overflow-x: hidden !important; }
           *, *::before, *::after { box-sizing: border-box !important; max-width: 100%; }
           img, svg { max-width: 100% !important; height: auto !important; }
-          section, .msec { padding: 48px 24px !important; }
-
-          /* Section headings */
-          section h2, .msec h2,
-          [style*="Monument Extended"] h2,
-          h2 { font-size: 1.6rem !important; line-height: 1.2 !important; }
-
-          /* Red accent heading line (second line of split headings) */
-          h2 span[style*="#DD1E21"],
-          h2 > span { font-size: inherit !important; }
-
-          /* No heading below 1.4rem */
-          h3, h4 { font-size: 1rem !important; line-height: 1.25 !important; }
-          h3 { max-font-size: 1.1rem; }
-
-          /* Body text */
-          p, li { font-size: 15px !important; line-height: 1.6 !important; }
-
-          /* Card body */
-          .card-on-dark p, .card-on-light p, .card-on-red p {
-            font-size: 14px !important; line-height: 1.55 !important;
-            color: rgba(240,224,178,0.82) !important;
-          }
-          .card-on-dark h3, .card-on-light h3, .card-on-red h3 {
-            font-size: 1.1rem !important; color: #F0E0B2 !important;
-          }
-
-          /* ====================================================
-             GLOBAL — Badge pill dot alignment (all sections)
-          ==================================================== */
-
-          /* G_LBL pill container — ensure flex centering */
-          span[style*="inline-flex"][style*="pulseG"],
-          span[style*="inline-flex"] > span[style*="pulseG"],
-          span[style*="borderRadius: 24"] {
-            display: inline-flex !important;
-            align-items: center !important;
-            gap: 8px !important;
-          }
-
-          /* G_DOT — the animated pulse dot inside every pill */
-          span[style*="pulseG"] {
-            display: inline-block !important;
-            flex-shrink: 0 !important;
-            align-self: center !important;
-            vertical-align: middle !important;
-            width: 8px !important;
-            height: 8px !important;
-            min-width: 8px !important;
-            min-height: 8px !important;
-            border-radius: 50% !important;
-            margin-top: 0 !important;
-            top: auto !important;
-            transform: none !important;
-            position: static !important;
-          }
-
-          /* Hide "— private transfer ready" on mobile */
-          .nr-transfer-suffix { display: none !important; }
-
-          /* Brushstroke / divider — restore and compact on mobile */
-          .stripe-wrap {
-            display: block !important;
-            height: 20px !important;
-            margin-top: -10px !important;
-            margin-bottom: -10px !important;
-          }
-          .stripe-wrap img {
-            display: block !important;
-            height: 20px !important;
+          section, .msec {
+            padding: 48px 20px !important;
+            max-width: 100% !important;
             width: 100% !important;
-            object-fit: fill !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            box-sizing: border-box !important;
           }
-
-          /* Gap: heading → first content */
+          section h2, .msec h2, h2 { font-size: 1.6rem !important; line-height: 1.2 !important; }
+          h2 span[style*="#DD1E21"], h2 > span { font-size: inherit !important; }
+          h3, h4 { font-size: 1rem !important; line-height: 1.25 !important; }
+          p, li { font-size: 15px !important; line-height: 1.6 !important; }
+          .card-on-dark p, .card-on-light p, .card-on-red p { font-size: 14px !important; line-height: 1.55 !important; color: rgba(240,224,178,0.82) !important; }
+          .card-on-dark h3, .card-on-light h3, .card-on-red h3 { font-size: 1.1rem !important; color: #F0E0B2 !important; }
           section h2 + *, .msec h2 + * { margin-top: 20px !important; }
-
-          /* Nav */
+          .section-pill { display: inline-flex !important; align-items: center !important; gap: 8px !important; line-height: 1 !important; padding-top: 7px !important; padding-bottom: 7px !important; }
+          .pill-dot { display: none !important; }
+          .stripe-wrap { display: block !important; height: 20px !important; margin-top: -10px !important; margin-bottom: -10px !important; }
+          .stripe-wrap img { display: block !important; height: 20px !important; width: 100% !important; object-fit: fill !important; }
           nav { height: 56px !important; padding: 0 16px !important; }
           .nav-center, .sitenav-links, .nav-book-cta { display: none !important; }
           .nav-hamburger { display: flex !important; }
-
-          /* ====================================================
-             HERO
-          ==================================================== */
-
-          /* Nav logo — slightly reduced */
-          .nav-logo {
-            max-height: 36px !important;
-            overflow: visible !important;
-          }
-          .nav-logo svg {
-            max-height: 36px !important;
-            width: auto !important;
-            height: 30px !important;
-          }
-
-          /* Restore cover photo — more visible, zoomed out */
-          .hero-cover {
-            display: block !important;
-            opacity: 0.3 !important;
-            transform: none !important;
-            background-size: 80% auto !important;
-            background-position: center center !important;
-            background-repeat: no-repeat !important;
-          }
-
+          .nav-logo { max-height: 36px !important; overflow: visible !important; }
+          .nav-logo svg { max-height: 36px !important; width: auto !important; height: 30px !important; }
           .hero-section { min-height: auto !important; overflow: hidden !important; }
-
-          /* Hero content — fully centred column */
-          .hero-content {
-            padding: 88px 16px 40px !important;
-            text-align: center !important;
-            overflow: hidden !important;
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-          }
-
-          .hero-partner-label {
-            font-size: 11px !important;
-            letter-spacing: 3px !important;
-            margin-bottom: 8px !important;
-            text-align: center !important;
-          }
-
-          /* Title — centred, dominant, natural word-break */
-          .mhero {
-            font-size: 2.8rem !important;
-            white-space: normal !important;
-            word-break: normal !important;
-            overflow-wrap: normal !important;
-            text-align: center !important;
-            padding-left: 16px !important;
-            padding-right: 16px !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-            line-height: 1.05 !important;
-            width: 100% !important;
-          }
-
-          /* Gold divider below title */
-          .hero-title-line {
-            width: 40px !important; height: 2px !important;
-            margin: 16px auto !important; display: block !important;
-          }
-
-          .hero-subtitle {
-            font-size: 17px !important;
-            margin-bottom: 8px !important;
-            text-align: center !important;
-          }
-
-          .hero-desc {
-            font-size: 14px !important;
-            color: rgba(240,224,178,0.7) !important;
-            text-align: center !important;
-            max-width: 340px !important;
-            margin: 0 auto 28px auto !important;
-          }
-
-          /* CTA buttons */
-          .hero-ctas {
-            flex-direction: column !important;
-            align-items: center !important;
-            width: 100% !important;
-            gap: 0 !important;
-          }
-          .hero-ctas a:first-child {
-            width: 100% !important; max-width: 320px !important;
-            height: 50px !important; min-height: 50px !important;
-            display: flex !important; align-items: center !important;
-            justify-content: center !important;
-            margin: 0 auto 10px auto !important;
-            box-sizing: border-box !important;
-          }
-          .hero-ctas a:last-child {
-            width: 100% !important; max-width: 320px !important;
-            height: 50px !important; min-height: 50px !important;
-            display: flex !important; align-items: center !important;
-            justify-content: center !important;
-            margin: 0 auto 24px auto !important;
-            box-sizing: border-box !important;
-          }
-
-          /* Credential pills — 3 on row 1, 2 on row 2 */
-          .hero-badges {
-            display: flex !important;
-            flex-direction: row !important;
-            flex-wrap: wrap !important;
-            justify-content: center !important;
-            align-items: center !important;
-            gap: 8px !important;
-            padding: 0 8px !important;
-            margin-top: 0 !important;
-            overflow: visible !important;
-            max-width: 100% !important;
-          }
-          .hero-badges > span {
-            display: inline-flex !important;
-            width: auto !important;
-            flex-basis: auto !important;
-            flex-shrink: 0 !important;
-            padding: 5px 10px !important;
-            font-size: 8.5px !important;
-            letter-spacing: 1px !important;
-            white-space: nowrap !important;
-            /* Remove any block/column overrides */
-            flex-direction: row !important;
-          }
-          /* Red dot — perfect 5px circle */
-          .hero-badges > span > span:first-child {
-            width: 5px !important;
-            height: 5px !important;
-            min-width: 5px !important;
-            min-height: 5px !important;
-            border-radius: 50% !important;
-            flex-shrink: 0 !important;
-            aspect-ratio: 1 / 1 !important;
-            display: inline-block !important;
-          }
-
-          /* ====================================================
-             TRUSTED BY
-          ==================================================== */
+          .hero-cover { display: block !important; opacity: 0.45 !important; transform: none !important; background-size: cover !important; background-position: center 40% !important; }
+          .hero-overlay-radial { background: radial-gradient(ellipse 80% 70% at 50% 40%, rgba(4,11,24,0.65) 0%, rgba(4,11,24,0.45) 40%, rgba(4,11,24,0.2) 70%, rgba(4,11,24,0.05) 100%) !important; }
+          .hero-overlay-top { height: 120px !important; background: linear-gradient(180deg, rgba(4,11,24,0.7) 0%, transparent 100%) !important; }
+          .hero-content { padding: 88px 16px 40px !important; text-align: center !important; overflow: hidden !important; display: flex !important; flex-direction: column !important; align-items: center !important; margin-left: 0 !important; margin-right: 0 !important; }
+          .hero-partner-label { font-size: 11px !important; letter-spacing: 3px !important; margin-bottom: 8px !important; text-align: center !important; }
+          .mhero { font-size: 2.8rem !important; white-space: normal !important; word-break: normal !important; overflow-wrap: normal !important; text-align: center !important; padding-left: 16px !important; padding-right: 16px !important; margin-left: 0 !important; margin-right: 0 !important; line-height: 1.05 !important; width: 100% !important; }
+          .hero-title-line { width: 40px !important; height: 2px !important; margin: 16px auto !important; display: block !important; }
+          .hero-subtitle { font-size: 17px !important; margin-bottom: 8px !important; text-align: center !important; }
+          .hero-desc { font-size: 14px !important; color: rgba(240,224,178,0.7) !important; text-align: center !important; max-width: 340px !important; margin: 0 auto 28px auto !important; }
+          .hero-ctas { flex-direction: column !important; align-items: center !important; width: 100% !important; gap: 0 !important; }
+          .hero-ctas a:first-child { width: 100% !important; max-width: 320px !important; height: 50px !important; min-height: 50px !important; display: flex !important; align-items: center !important; justify-content: center !important; margin: 0 auto 10px auto !important; }
+          .hero-ctas a:last-child { width: 100% !important; max-width: 320px !important; height: 50px !important; min-height: 50px !important; display: flex !important; align-items: center !important; justify-content: center !important; margin: 0 auto 24px auto !important; }
+          .hero-badges { display: flex !important; flex-direction: row !important; flex-wrap: wrap !important; justify-content: center !important; align-items: center !important; gap: 5px !important; padding: 0 4px !important; margin-top: 0 !important; overflow: visible !important; max-width: 100% !important; }
+          .hero-badges > span { display: inline-flex !important; width: auto !important; max-width: none !important; flex-basis: auto !important; flex-shrink: 0 !important; flex-grow: 0 !important; padding: 5px 8px !important; font-size: 7.5px !important; letter-spacing: 0.5px !important; white-space: nowrap !important; flex-direction: row !important; align-items: center !important; border-radius: 8px !important; }
+          .hero-badges > span > span:first-child { width: 5px !important; height: 5px !important; min-width: 5px !important; min-height: 5px !important; border-radius: 50% !important; flex-shrink: 0 !important; display: inline-block !important; }
           .trusted-sec { padding: 32px 24px !important; min-height: 0 !important; height: auto !important; }
           .trusted-sec h2 { font-size: 1.4rem !important; line-height: 1.2 !important; text-align: center !important; margin-bottom: 12px !important; }
-          .trusted-sec p { font-size: 13px !important; text-align: center !important; margin-bottom: 20px !important; }
+          .trusted-sec p { font-size: 13px !important; text-align: center !important; margin-bottom: 20px !important; color: rgba(240,224,178,0.6) !important; }
           .trusted-sec > div[style] { margin: 0 !important; padding-bottom: 20px !important; padding-top: 0 !important; }
           .marquee-logo { height: 20px !important; }
-
-          /* ====================================================
-             EXPOSED (WALLET SCANNER)
-          ==================================================== */
           #exposed { padding: 40px 20px !important; }
           #exposed .msec { padding: 0 !important; }
-          #exposed .msec h2 { font-size: 2rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 20px !important; }
-          #exposed .msec h2 span { font-size: 2rem !important; }
-
-          /* Scanner box — compact, scanning-state only */
-          .scanner-box {
-            width: 100% !important;
-            max-width: 100% !important;
-            box-sizing: border-box !important;
-            padding: 16px !important;
-            border-radius: 14px !important;
-            margin: 0 auto !important;
-            min-height: unset !important;
-          }
-
-          /* Hide "WALLET EXPOSED" label — only show scanning state */
+          #exposed .msec h2 { font-size: 1.8rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 20px !important; }
+          #exposed .msec h2 span { font-size: 1.8rem !important; }
+          .scanner-box { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; padding: 16px !important; border-radius: 14px !important; margin: 0 auto !important; min-height: unset !important; }
           .scanner-box > div:first-child svg:first-child ~ * { display: none !important; }
-
-          /* Status label text size */
-          .scanner-box > div:first-child {
-            font-size: 10px !important;
-            letter-spacing: 1.5px !important;
-          }
-
-          /* Hex address bar */
-          .wallet-addr {
-            font-size: 10px !important;
-            overflow: hidden !important;
-            text-overflow: ellipsis !important;
-            white-space: nowrap !important;
-          }
-
-          /* HIDE data tag grid entirely */
+          .scanner-box > div:first-child { font-size: 10px !important; letter-spacing: 1.5px !important; }
+          .wallet-addr { font-size: 10px !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; }
           .leak-grid { display: none !important; }
-
-          /* HIDE footer "WALLET EXPOSED" text */
           .scanner-box > div:last-child { display: none !important; }
-
-          /* HIDE ambient glow blob (large fixed-size div) */
           .scanner-box > div[style*="820px"] { display: none !important; }
-
-          /* For Wallets / For Name Services cards — stack vertically */
-          #exposed .mgrid2 {
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 16px !important;
-            margin-top: 24px !important;
-          }
-          #exposed .mgrid2 > div {
-            width: 100% !important;
-            max-width: 100% !important;
-            box-sizing: border-box !important;
-            padding: 24px !important;
-            border-radius: 12px !important;
-            background: #2a4a7a !important;
-            border: 2px solid rgba(100,140,200,0.35) !important;
-            transform: none !important;
-            /* Critical — remove clipping */
-            overflow: visible !important;
-            max-height: none !important;
-            text-overflow: unset !important;
-          }
-
-          /* Decorative absolute-positioned children inside cards — keep in bounds */
-          #exposed .mgrid2 > div > div[style*="absolute"] {
-            display: none !important;
-          }
-
-          /* Card title + icon row — flex left-aligned, no overflow clip */
-          .exposed-card-h3 {
-            display: flex !important;
-            align-items: center !important;
-            justify-content: flex-start !important;
-            gap: 12px !important;
-            text-align: left !important;
-            overflow: visible !important;
-            white-space: normal !important;
-            text-overflow: unset !important;
-            margin-bottom: 16px !important;
-          }
-          .exposed-card-h3 > span {
-            font-size: 1.1rem !important;
-            line-height: 1.2 !important;
-            white-space: nowrap !important;
-            overflow: visible !important;
-            text-overflow: unset !important;
-          }
-
-          /* Bullet text */
-          #exposed .mgrid2 > div p {
-            font-size: 14px !important;
-            line-height: 1.5 !important;
-            color: rgba(240,224,178,0.7) !important;
-            text-align: left !important;
-            overflow: visible !important;
-            white-space: normal !important;
-          }
-
-          /* ====================================================
-             FORTRESSNAMES
-          ==================================================== */
+          #exposed .mgrid2 { display: flex !important; flex-direction: column !important; gap: 16px !important; margin-top: 24px !important; }
+          #exposed .mgrid2 > div { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; padding: 24px !important; border-radius: 12px !important; background: #2a4a7a !important; border: 2px solid rgba(100,140,200,0.35) !important; transform: none !important; overflow: visible !important; max-height: none !important; }
+          #exposed .mgrid2 > div > div[style*="absolute"] { display: none !important; }
+          .exposed-card-h3 { display: flex !important; align-items: center !important; justify-content: flex-start !important; gap: 12px !important; text-align: left !important; overflow: visible !important; margin-bottom: 16px !important; }
+          .exposed-card-h3 > span { font-size: 0.95rem !important; white-space: nowrap !important; }
+          #exposed .mgrid2 > div p { font-size: 14px !important; line-height: 1.5 !important; color: rgba(240,224,178,0.7) !important; text-align: left !important; }
           #fortressnames { padding: 40px 20px !important; }
-          #fortressnames .msec { padding: 0 !important; }
-          #fortressnames .msec > div:first-child span { font-size: 10px !important; margin-bottom: 16px !important; }
-          #fortressnames .msec h2 { font-size: 1.5rem !important; line-height: 1.15 !important; overflow: hidden !important; }
+          #fortressnames .msec { padding: 0 !important; margin-left: 0 !important; margin-right: 0 !important; max-width: 100% !important; width: 100% !important; }
+          #fortressnames .msec .section-pill { font-size: 10px !important; margin-bottom: 16px !important; }
+          #fortressnames .msec h2 { font-size: 1.8rem !important; line-height: 1.15 !important; }
           #fortressnames .msec > p { font-size: 14px !important; margin-bottom: 24px !important; }
-
-          /* Liberty statue bg — reduce opacity on mobile */
           #fortressnames .liberty-bg { opacity: 0.05 !important; }
-
-          /* Name resolver row */
-          .nr-wrap {
-            max-width: 100% !important;
-            overflow: hidden !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
-            padding: 0 4px !important;
-          }
-          .nr-row {
-            display: flex !important;
-            align-items: center !important;
-            flex-wrap: nowrap !important;
-            max-width: 100% !important;
-            overflow: hidden !important;
-            box-sizing: border-box !important;
-            gap: 0 !important;
-          }
-          .nr-hex {
-            font-size: 11px !important;
-            padding: 6px 10px !important;
-            max-width: 40% !important;
-            overflow: hidden !important;
-            text-overflow: ellipsis !important;
-            white-space: nowrap !important;
-            flex-shrink: 1 !important;
-            min-width: 0 !important;
-            box-sizing: border-box !important;
-          }
-          .nr-arrow {
-            flex-shrink: 0 !important;
-            margin: 0 8px !important;
-            display: flex !important;
-            align-items: center !important;
-          }
+          .nr-transfer-suffix { display: none !important; }
+          .nr-wrap { max-width: 100% !important; overflow: hidden !important; width: 100% !important; padding: 0 4px !important; }
+          .nr-row { display: flex !important; align-items: center !important; flex-wrap: nowrap !important; max-width: 100% !important; overflow: hidden !important; gap: 0 !important; }
+          .nr-hex { font-size: 11px !important; padding: 6px 10px !important; max-width: 40% !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; flex-shrink: 1 !important; min-width: 0 !important; }
+          .nr-arrow { flex-shrink: 0 !important; margin: 0 8px !important; display: flex !important; align-items: center !important; }
           .nr-arrow svg { width: 16px !important; height: 16px !important; }
-          .nr-display {
-            max-width: 45% !important;
-            overflow: hidden !important;
-            text-overflow: ellipsis !important;
-            flex-shrink: 1 !important;
-            min-width: 0 !important;
-          }
+          .nr-display { max-width: 45% !important; overflow: hidden !important; text-overflow: ellipsis !important; flex-shrink: 1 !important; min-width: 0 !important; }
           .nr-display span { font-size: 18px !important; }
-
-          /* Feature chips — 2-col grid, all 8 visible, solid background */
-          .s1chips {
-            display: grid !important;
-            grid-template-columns: 1fr 1fr !important;
-            gap: 10px !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
-          }
-          .s1chips > div {
-            padding: 14px !important;
-            border-radius: 12px !important;
-            box-sizing: border-box !important;
-            background: #2a4a7a !important;
-            width: 100% !important;
-            overflow: hidden !important;
-          }
-          .s1chips > div > div:first-child {
-            font-size: 9px !important;
-            letter-spacing: 1px !important;
-            margin-bottom: 6px !important;
-          }
-          .s1chips > div > div:last-child {
-            font-size: 13px !important;
-            line-height: 1.4 !important;
-            color: rgba(240,224,178,0.8) !important;
-          }
-
-          /* ====================================================
-             CONFIDENTIALITY
-          ==================================================== */
+          .s1chips { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 10px !important; width: 100% !important; }
+          .s1chips > div { padding: 14px !important; border-radius: 12px !important; background: #2a4a7a !important; width: 100% !important; overflow: hidden !important; }
+          .s1chips > div > div:first-child { font-size: 9px !important; letter-spacing: 1px !important; margin-bottom: 6px !important; }
+          .s1chips > div > div:last-child { font-size: 13px !important; line-height: 1.4 !important; color: rgba(240,224,178,0.8) !important; }
           #confidentiality { padding: 40px 20px !important; }
           #confidentiality .msec { padding: 0 !important; }
-
-          /* Single column — no side-by-side */
           #confidentiality .mgrid2 { grid-template-columns: 1fr !important; gap: 0 !important; }
-
-          /* Badge */
-          #confidentiality .msec > div:first-child span { font-size: 10px !important; margin-bottom: 16px !important; }
-
-          /* Heading — both "CONFIDENTIALITY" and "MACHINE" same size */
-          #confidentiality .msec h2 {
-            font-size: 1.8rem !important;
-            line-height: 1.1 !important;
-            font-weight: 800 !important;
-            margin-bottom: 12px !important;
-          }
-          #confidentiality .msec h2 span {
-            font-size: 1.8rem !important;
-            line-height: 1.1 !important;
-            font-weight: 800 !important;
-            color: #DD1E21 !important;
-          }
-
-          /* Subtitle */
+          #confidentiality .msec .section-pill { font-size: 10px !important; margin-bottom: 16px !important; }
+          #confidentiality .msec h2, #confidentiality h2 { font-size: 1.8rem !important; line-height: 1.1 !important; font-weight: 800 !important; margin-bottom: 12px !important; }
+          #confidentiality .msec h2 span, #confidentiality h2 span { font-size: 1.8rem !important; line-height: 1.1 !important; font-weight: 800 !important; color: #DD1E21 !important; display: block !important; }
           #confidentiality .msec > p { font-size: 14px !important; color: #333 !important; margin-bottom: 20px !important; }
-
-          /* Bullet list container */
           .conf-bullets { margin-bottom: 24px !important; }
-
-          /* Each bullet row */
-          .conf-bullet-item {
-            display: flex !important;
-            align-items: flex-start !important;
-            gap: 10px !important;
-            margin-bottom: 16px !important;
-          }
-
-          /* Bullet dot wrapper — strip the fchk box, show only the dot */
-          .conf-bullet-dot {
-            width: auto !important;
-            height: auto !important;
-            background: transparent !important;
-            border: none !important;
-            border-radius: 0 !important;
-            box-shadow: none !important;
-            display: flex !important;
-            align-items: flex-start !important;
-            flex-shrink: 0 !important;
-            padding: 0 !important;
-          }
-          .conf-bullet-dot > span {
-            width: 8px !important;
-            height: 8px !important;
-            min-width: 8px !important;
-            min-height: 8px !important;
-            border-radius: 50% !important;
-            flex-shrink: 0 !important;
-            margin-top: 7px !important;
-            display: block !important;
-          }
-
-          /* Bullet text */
-          .conf-bullet-text { font-size: 15px !important; line-height: 1.5 !important; color: #222 !important; }
-
-          /* Revenue card */
-          .conf-revenue-card {
-            width: 100% !important;
-            box-sizing: border-box !important;
-            padding: 24px !important;
-            border-radius: 16px !important;
-            margin-top: 0 !important;
-          }
-
-          /* Remove the staggered margin-top from the right column wrapper */
+          .conf-bullet-item { display: flex !important; align-items: flex-start !important; gap: 10px !important; margin-bottom: 16px !important; }
+          .conf-bullet-dot { width: auto !important; height: auto !important; background: transparent !important; border: none !important; border-radius: 0 !important; box-shadow: none !important; display: flex !important; align-items: flex-start !important; flex-shrink: 0 !important; padding: 0 !important; }
+          .conf-bullet-dot > span { width: 8px !important; height: 8px !important; min-width: 8px !important; min-height: 8px !important; border-radius: 50% !important; flex-shrink: 0 !important; margin-top: 7px !important; display: block !important; }
+          .conf-bullet-text { font-size: 16px !important; line-height: 1.6 !important; color: #222 !important; }
+          .conf-revenue-card { width: 100% !important; padding: 24px !important; border-radius: 16px !important; margin-top: 0 !important; }
           #confidentiality .mgrid2 > div:last-child { margin-top: 0 !important; }
-
-          /* Card title — entire title same size, "One SDK" span matches */
-          .conf-revenue-card h3 {
-            font-size: 1.3rem !important;
-            line-height: 1.2 !important;
-            font-weight: 700 !important;
-            margin-bottom: 16px !important;
-          }
-          .conf-revenue-card h3 span {
-            font-size: 1.3rem !important;
-            line-height: 1.2 !important;
-            font-weight: 700 !important;
-          }
-
-          /* Card bullet items — consistent flex layout for all 3 */
-          .conf-revenue-card > div {
-            display: flex !important;
-            align-items: flex-start !important;
-            gap: 10px !important;
-            font-size: 14px !important;
-            line-height: 1.5 !important;
-          }
-
-          /* Card bullet dots — all 3 as perfect circles, 3rd gets red */
-          .conf-revenue-card > div span:first-child {
-            width: 6px !important;
-            height: 6px !important;
-            min-width: 6px !important;
-            min-height: 6px !important;
-            border-radius: 50% !important;
-            flex-shrink: 0 !important;
-            margin-top: 5px !important;
-            display: block !important;
-          }
-          /* Third bullet dot — force red (was #3D4A63 inline) */
-          .conf-revenue-card > div:nth-child(3) span:first-child {
-            background: #DD1E21 !important;
-          }
-
-          /* SDK button */
-          .conf-revenue-card a {
-            width: 100% !important;
-            max-width: 280px !important;
-            height: 44px !important;
-            font-size: 12px !important;
-            margin-top: 16px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            box-sizing: border-box !important;
-          }
-
-          /* Hide ghost watermark */
+          .conf-revenue-card h3, #confidentiality .conf-revenue-card h3 { font-size: 1.3rem !important; line-height: 1.2 !important; font-weight: 700 !important; margin-bottom: 16px !important; }
+          .conf-revenue-card h3 span, #confidentiality .conf-revenue-card h3 span { font-size: 1.3rem !important; line-height: 1.2 !important; font-weight: 700 !important; }
+          .conf-revenue-card > div { display: flex !important; align-items: center !important; gap: 10px !important; font-size: 13px !important; line-height: 1.5 !important; }
+          .conf-revenue-card > div span:first-child { width: 6px !important; height: 6px !important; min-width: 6px !important; min-height: 6px !important; border-radius: 50% !important; flex-shrink: 0 !important; margin-top: 0 !important; display: block !important; }
+          .conf-revenue-card > div:nth-child(3) span:first-child { background: #DD1E21 !important; }
+          .conf-revenue-card a { width: 100% !important; max-width: 280px !important; height: 44px !important; font-size: 12px !important; margin-top: 16px !important; display: flex !important; align-items: center !important; justify-content: center !important; }
           .ghost-word { display: none !important; }
-
-          /* ====================================================
-             COMPETITIVE LANDSCAPE
-          ==================================================== */
-
-          /* Section — static, no pinning */
-          #landscape {
-            height: auto !important;
-            min-height: unset !important;
-            position: relative !important;
-            padding: 40px 20px !important;
-          }
-
-          /* Inner msec container — kill scroll-triggered hide/transform */
-          #landscape .msec {
-            opacity: 1 !important;
-            transform: none !important;
-            transition: none !important;
-            padding: 0 !important;
-          }
-
-          /* Badge */
-          #landscape .msec > div:first-child span { font-size: 10px !important; margin-bottom: 16px !important; }
-
-          /* Heading — "WHERE WE STAND" stays 1.5rem, red "PRIVACY — USABILITY" line reduced to fit */
-          #landscape .msec h2 { font-size: 1.5rem !important; line-height: 1.15 !important; margin-bottom: 20px !important; }
-          #landscape .msec h2 span { font-size: 1.3rem !important; white-space: nowrap !important; }
-
-          /* Layout — single column */
-          .scatter-layout {
-            grid-template-columns: 1fr !important;
-            gap: 0 !important;
-          }
-
-          /* Scatter plot wrapper */
-          .scatter-wrapper {
-            width: 100% !important;
-            max-width: 100% !important;
-            box-sizing: border-box !important;
-            overflow: hidden !important;
-            padding: 0 !important;
-            margin: 0 auto 20px auto !important;
-            aspect-ratio: 1 / 1 !important;
-          }
-          .scatter-wrapper svg {
-            width: 100% !important;
-            height: 100% !important;
-            display: block !important;
-          }
-
-          /* Key insight card — below plot, full width */
-          .scatter-insight {
-            width: 100% !important;
-            box-sizing: border-box !important;
-            opacity: 1 !important;
-            transform: none !important;
-            transition: none !important;
-            padding: 20px !important;
-            border-radius: 16px !important;
-            margin-top: 16px !important;
-          }
-          .scatter-insight h4 {
-            font-size: 1rem !important;
-            margin-bottom: 12px !important;
-          }
-          .scatter-insight p {
-            font-size: 14px !important;
-            line-height: 1.55 !important;
-            color: rgba(240,224,178,0.85) !important;
-          }
-
-          /* Footnote — legible, tight spacing */
-          #landscape .msec > p:last-child {
-            opacity: 1 !important;
-            font-size: 13px !important;
-            color: rgba(240,224,178,0.6) !important;
-            text-align: center !important;
-            margin-top: 20px !important;
-            margin-bottom: 0 !important;
-            padding: 0 12px !important;
-          }
-
-          /* "only solution" — brighter red, readable on blue card */
-          .scatter-insight p span[style*="DD1E21"] {
-            color: #FF4444 !important;
-            text-shadow: 0 0 8px rgba(221,30,33,0.3) !important;
-          }
-
-          /* ====================================================
-             FEATURE COMPARISON
-          ==================================================== */
-
-          /* Section — static, no pinning, no shake (breaks sticky) */
-          #comparison { height: auto !important; min-height: unset !important; position: relative !important; }
-          .cmp-shake { height: auto !important; position: relative !important; overflow: hidden !important; transform: none !important; }
-          .cmp-wrap { padding: 40px 20px !important; width: 100% !important; box-sizing: border-box !important; }
-
-          /* Heading */
-          .cmp-wrap h2 { font-size: 1.5rem !important; line-height: 1.15 !important; margin-bottom: 20px !important; }
-
-          /* Scrollable table container — overrides inline overflow:hidden */
-          .cmp-table {
-            overflow-x: auto !important;
-            overflow-y: visible !important;
-            -webkit-overflow-scrolling: touch !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
-            border-radius: 12px !important;
-            box-shadow: inset -20px 0 15px -15px rgba(0,0,0,0.1) !important;
-          }
-
-          /* Header row and data rows — force min-width so all 7 cols render */
-          .cmp-header-row, .cmp-row {
-            min-width: 650px !important;
-          }
-
-          /* Header row */
-          .cmp-header-row {
-            background: #182145 !important;
-            padding: 0 !important;
-          }
-
-          /* All header cells */
-          .cmp-header-row > div {
-            min-width: 80px !important;
-            padding: 10px 8px !important;
-            font-size: 10px !important;
-            letter-spacing: 1px !important;
-            color: #F0E0B2 !important;
-            text-align: center !important;
-            white-space: nowrap !important;
-          }
-
-          /* FEATURE header cell */
-          .cmp-header-row > div:nth-child(1) {
-            min-width: 130px !important;
-            text-align: left !important;
-            position: sticky !important;
-            left: 0 !important;
-            z-index: 3 !important;
-            background: #182145 !important;
-          }
-
-          /* AMERICAN FORTRESS header cell */
-          .cmp-header-row > div:nth-child(2) {
-            min-width: 90px !important;
-            position: sticky !important;
-            left: 130px !important;
-            z-index: 3 !important;
-            background: #182145 !important;
-            color: #daa545 !important;
-          }
-
-          /* Data rows */
-          .cmp-row {
-            padding: 0 !important;
-          }
-
-          /* All body cells */
-          .cmp-row > div {
-            padding: 10px 8px !important;
-            font-size: 12px !important;
-            text-align: center !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-          }
-
-          /* Feature name cell — sticky left */
-          .cmp-row > div:nth-child(1) {
-            min-width: 130px !important;
-            text-align: left !important;
-            justify-content: flex-start !important;
-            font-size: 13px !important;
-            font-weight: 600 !important;
-            position: sticky !important;
-            left: 0 !important;
-            z-index: 2 !important;
-            background: #F0E0B2 !important;
-          }
-
-          /* AF cell — sticky second column */
-          .cmp-row > div:nth-child(2) {
-            min-width: 90px !important;
-            position: sticky !important;
-            left: 130px !important;
-            z-index: 2 !important;
-            background: #F0E0B2 !important;
-          }
-          .cmp-row:nth-child(even) > div:nth-child(1),
-          .cmp-row:nth-child(even) > div:nth-child(2) {
-            background: rgba(240,224,178,0.92) !important;
-          }
-
-          /* Red stars in AF column */
-          .cmp-row > div:nth-child(2) svg { color: #DD1E21 !important; }
-          .cmp-row > div:nth-child(2) span[style] { font-size: 18px !important; }
-
-          /* Stars and icons */
-          .cmp-row svg { width: 16px !important; height: 16px !important; }
-
-          /* Dashes */
-          .cmp-row span[style*="rgba(24,33,69"] { color: #999 !important; }
-
-          /* Alternating rows — override inline rowBg for odd/even */
-          .cmp-row:nth-child(odd)  { background: #F0E0B2 !important; }
-          .cmp-row:nth-child(even) { background: rgba(24,33,69,0.05) !important; }
-
-          /* Footer */
-          .cmp-footer {
-            flex-direction: column !important;
-            align-items: center !important;
-            gap: 12px !important;
-            padding: 0 !important;
-            opacity: 1 !important;
-            transform: none !important;
-          }
-          .cmp-footer p { display: none !important; }
-          .cmp-footer a {
-            width: 100% !important;
-            max-width: 300px !important;
-            margin: 24px auto 0 auto !important;
-            display: block !important;
-            text-align: center !important;
-            box-sizing: border-box !important;
-          }
-
-          /* ====================================================
-             REVENUE SHARE
-          ==================================================== */
+          #landscape { height: auto !important; min-height: unset !important; position: relative !important; padding: 40px 20px !important; }
+          #landscape .msec { opacity: 1 !important; transform: none !important; transition: none !important; padding: 0 !important; height: auto !important; display: block !important; }
+          #landscape .msec .section-pill { font-size: 10px !important; margin-bottom: 16px !important; }
+          #landscape .msec h2 { font-size: 1.8rem !important; line-height: 1.15 !important; text-align: center !important; }
+          #landscape .msec h2 span { font-size: 1.5rem !important; }
+          #landscape .msec > p { font-size: 14px !important; text-align: center !important; margin-bottom: 24px !important; }
+          .scatter-layout { grid-template-columns: 1fr !important; gap: 0 !important; }
+          .scatter-wrapper { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; overflow: hidden !important; padding: 0 !important; margin: 0 auto 20px auto !important; aspect-ratio: 1 / 1 !important; }
+          .scatter-wrapper svg { width: 100% !important; height: 100% !important; display: block !important; }
+          .scatter-insight { width: 100% !important; box-sizing: border-box !important; opacity: 1 !important; transform: none !important; transition: none !important; padding: 20px !important; border-radius: 16px !important; margin-top: 16px !important; }
+          .scatter-insight h4 { font-size: 1rem !important; margin-bottom: 12px !important; }
+          .scatter-insight p { font-size: 14px !important; line-height: 1.55 !important; color: rgba(240,224,178,0.85) !important; }
+          .scatter-insight p span[style*="DD1E21"] { color: #FF4444 !important; text-shadow: 0 0 8px rgba(221,30,33,0.3) !important; }
+          #landscape .msec > p:last-child { opacity: 1 !important; font-size: 13px !important; color: rgba(240,224,178,0.6) !important; text-align: center !important; margin-top: 20px !important; margin-bottom: 0 !important; padding: 0 12px !important; }
+          #comparison { height: auto !important; min-height: unset !important; position: relative !important; padding: 40px 20px !important; }
+          #comparison .msec { opacity: 1 !important; transform: none !important; transition: none !important; padding: 0 !important; }
+          #comparison .msec h2 { font-size: 1.8rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 24px !important; font-weight: 800 !important; }
+          #comparison .msec h2 span { font-size: 1.4rem !important; }
+          .cmp-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; width: 100% !important; max-width: 100% !important; padding-bottom: 8px !important; }
+          .cmp-table { width: max-content !important; min-width: 600px !important; }
+          .cmp-table th { white-space: normal !important; font-size: 8px !important; min-width: 65px !important; padding: 10px 6px !important; text-align: center !important; }
+          .cmp-table th:first-child { font-size: 10px !important; min-width: 110px !important; padding: 14px 8px 14px 12px !important; text-align: left !important; position: sticky !important; left: 0 !important; z-index: 3 !important; }
+          .cmp-table th:nth-child(2) { min-width: 80px !important; position: sticky !important; left: 110px !important; z-index: 3 !important; }
+          .cmp-table td { font-size: 11px !important; padding: 8px 6px !important; text-align: center !important; }
+          .cmp-table td:first-child { font-size: 11px !important; min-width: 110px !important; position: sticky !important; left: 0 !important; z-index: 2 !important; padding-left: 12px !important; }
+          .cmp-table td:nth-child(2) { min-width: 80px !important; position: sticky !important; left: 110px !important; z-index: 2 !important; }
+          .cmp-shake { transform: none !important; }
+          .cmp-cta { margin-top: 24px !important; text-align: center !important; }
+          .cmp-cta a { width: 100% !important; max-width: 280px !important; height: 44px !important; font-size: 12px !important; display: flex !important; align-items: center !important; justify-content: center !important; margin: 0 auto !important; }
           #revenue { height: auto !important; min-height: unset !important; padding: 40px 20px !important; }
           #revenue .msec { padding: 0 !important; }
-
-          /* Hide dot pattern */
-          #revenue .dot-pattern { display: none !important; }
-
-          /* Badge */
-          #revenue .msec > div:first-child span { font-size: 10px !important; margin-bottom: 16px !important; }
-
-          /* Heading */
           #revenue .msec h2 { font-size: 1.5rem !important; line-height: 1.15 !important; margin-bottom: 12px !important; }
-
-          /* Subtitle */
-          #revenue .msec > p { font-size: 14px !important; margin-bottom: 24px !important; }
-
-          /* Cards — stacked column */
-          .rev-cards {
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 16px !important;
-          }
-          .rev-cards > div {
-            width: 100% !important;
-            box-sizing: border-box !important;
-            padding: 20px !important;
-            border-radius: 16px !important;
-            transform: none !important;
-          }
-
-          /* Card title */
+          #revenue .msec .section-pill { font-size: 10px !important; margin-bottom: 16px !important; }
+          .dot-pattern { display: none !important; }
+          .rev-cards { display: flex !important; flex-direction: column !important; gap: 16px !important; }
+          .rev-cards > div { width: 100% !important; box-sizing: border-box !important; padding: 20px !important; border-radius: 16px !important; transform: none !important; }
           .rev-cards h3 { font-size: 1.1rem !important; margin-bottom: 4px !important; }
-
-          /* Card subtitle */
-          .rev-cards > div > p:first-of-type {
-            font-size: 12px !important;
-            color: rgba(240,224,178,0.5) !important;
-            margin-bottom: 14px !important;
-          }
-
-          /* Bullet items */
-          .rev-cards p[style] { font-size: 14px !important; line-height: 1.55 !important; margin-bottom: 12px !important; }
-
-          /* Bullet dots — perfect circles */
-          .rev-cards span[style*="border-radius"] { width: 6px !important; height: 6px !important; border-radius: 50% !important; flex-shrink: 0 !important; }
-
-          /* ====================================================
-             FINANCIAL
-          ==================================================== */
-          /* ====================================================
-             FINANCIAL OPPORTUNITY
-          ==================================================== */
-
-          /* Section — kill minHeight:100vh, reset padding, no shake */
-          #financial > section {
-            min-height: unset !important;
-            height: auto !important;
-            padding: 40px 20px !important;
-            transform: none !important;
-            text-align: center !important;
-          }
-
-          /* Badge label */
-          #financial > section span[style*="Revenue Projections"],
-          #financial .fin-badge { font-size: 10px !important; margin-bottom: 16px !important; }
-
-          /* Heading */
-          .fin-title {
-            font-size: 1.5rem !important;
-            line-height: 1.15 !important;
-            white-space: normal !important;
-            padding-right: 0 !important;
-            margin-bottom: 24px !important;
-          }
-
-          /* FORTRESSNAMES REVENUE / YOUR 20% SHARE labels */
-          #financial p[style*="JetBrains Mono"][style*="letterSpacing"] {
-            font-size: 11px !important;
-            letter-spacing: 2px !important;
-            margin-bottom: 8px !important;
-          }
-
-          /* Both slot numbers — fit on one line */
-          .fin-slot-wrap {
-            font-size: clamp(2rem, 9vw, 3.5rem) !important;
-            white-space: nowrap !important;
-            flex-wrap: nowrap !important;
-          }
-          .fin-slot-wrap span { white-space: nowrap !important; }
-
-          /* Supporting text under $1M */
-          #financial p[style*="Outfit"],
-          #financial p[style*="100,000"] { font-size: 13px !important; margin-bottom: 20px !important; }
-
-          /* Divider arrow */
-          #financial > section > div[style*="alignItems"] > div[style*="1.5rem auto"],
-          #financial div[style*="margin"][style*="1.5rem auto"] { margin: 16px auto !important; }
-
-          /* Supporting italic text under $200K */
-          #financial p[style*="Cormorant"] { font-size: 13px !important; margin-bottom: 20px !important; }
-
-          /* Live ticker pill */
-          #financial div[style*="tickerFadeIn"] span[style*="Space Grotesk"],
-          #financial div[style*="tickerFadeIn"] { font-size: 12px !important; margin-bottom: 16px !important; }
-
-          /* CTA button */
-          .fin-cta { margin-top: 16px !important; }
-          .fin-cta a {
-            width: 100% !important;
-            max-width: 300px !important;
-            height: 48px !important;
-            font-size: 13px !important;
-            margin: 0 auto !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            box-sizing: border-box !important;
-          }
-
-          /* Hide ambient glow blob — takes up space on mobile */
-          #financial > section > div[style*="900px"] { display: none !important; }
-
-          /* ====================================================
-             TECHNOLOGY MOAT
-          ==================================================== */
-
-          /* Section */
-          #moat > section {
-            min-height: unset !important;
-            height: auto !important;
-          }
-          #moat .msec {
-            padding: 40px 20px !important;
-          }
-
-          /* Hide decorative elements — rings, orbits, power lines */
+          .rev-cards > div > p:first-of-type { font-size: 12px !important; color: rgba(240,224,178,0.5) !important; margin-bottom: 14px !important; }
+          #financial * { opacity: 1 !important; transform: none !important; transition: none !important; }
+          .fin-inner { max-width: 100% !important; width: 100% !important; margin-left: 0 !important; margin-right: 0 !important; }
+          .moat-red-dot { display: none !important; margin: 0 !important; height: 0 !important; }
+          #moat > section { min-height: unset !important; height: auto !important; }
+          #moat .msec { padding: 40px 20px !important; }
           .moat-rings, .moat-orbits, .moat-powerlines { display: none !important; }
-
-          /* Badge */
-          #moat .msec > div:first-child span { font-size: 10px !important; margin-bottom: 16px !important; }
-
-          /* Heading */
-          #moat .msec h2 { font-size: 1.5rem !important; line-height: 1.15 !important; text-align: center !important; margin-bottom: 24px !important; }
-
-          /* Card area — remove relative positioning that reserved space for rings */
+          #moat .msec .section-pill { font-size: 10px !important; margin-bottom: 16px !important; }
+          #moat .msec h2 { font-size: 1.8rem !important; line-height: 1.15 !important; text-align: center !important; margin-bottom: 24px !important; }
           .moat-card-area { position: static !important; max-width: 100% !important; }
-
-          /* Card rows — single column stack */
-          .moat-row {
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: stretch !important;
-            gap: 12px !important;
-            margin-bottom: 0 !important;
-            margin-top: 0 !important;
-          }
-
-          /* Individual cards */
-          .moat-card {
-            width: 100% !important;
-            max-width: 100% !important;
-            flex: none !important;
-            box-sizing: border-box !important;
-            padding: 20px !important;
-            border-radius: 16px !important;
-            text-align: center !important;
-            transform: none !important;
-            opacity: 1 !important;
-          }
-
-          /* Icon badge */
-          .moat-icon-badge {
-            width: 48px !important;
-            height: 48px !important;
-            margin: 0 auto 12px auto !important;
-          }
-
-          /* Card title */
-          .moat-card-title {
-            font-size: 1rem !important;
-            color: #F0E0B2 !important;
-            margin-bottom: 8px !important;
-          }
-
-          /* Card body */
-          .moat-card-body {
-            font-size: 13px !important;
-            line-height: 1.5 !important;
-            color: rgba(240,224,178,0.8) !important;
-          }
-
-          /* Shield — compact, centred */
-          .moat-shield {
-            padding: 0 !important;
-            margin: 20px auto !important;
-            display: flex !important;
-            justify-content: center !important;
-            align-items: center !important;
-            max-height: 120px !important;
-            overflow: hidden !important;
-          }
-          .moat-shield-inner {
-            width: 80px !important;
-            height: auto !important;
-            display: block !important;
-          }
-          .moat-shield-inner img {
-            width: 80px !important;
-            height: auto !important;
-            display: block !important;
-          }
-
-          /* ====================================================
-             CTA SECTION
-          ==================================================== */
-
-          /* Section — kill G_SEC 140px padding */
-          #contact > section {
-            min-height: unset !important;
-            height: auto !important;
-            padding: 40px 20px !important;
-          }
-          #contact .msec {
-            padding: 0 !important;
-          }
-
-          /* Heading */
-          #contact .msec h2 {
-            font-size: 1.5rem !important;
-            line-height: 1.15 !important;
-            text-align: center !important;
-            color: #FDFAF4 !important;
-            margin-bottom: 8px !important;
-          }
-
-          /* Subtitle */
-          #contact .msec > p {
-            font-size: 14px !important;
-            text-align: center !important;
-            color: rgba(253,250,244,0.8) !important;
-            margin-bottom: 24px !important;
-          }
-
-          /* Cards — single column, no gap above */
-          .cta-cards {
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 16px !important;
-            margin-top: 0 !important;
-            max-width: 100% !important;
-          }
-          .cta-cards > div {
-            width: 100% !important;
-            box-sizing: border-box !important;
-            padding: 24px !important;
-            border-radius: 16px !important;
-            text-align: center !important;
-            transform: none !important;
-          }
-
-          /* Schedule a Call card — calendar icon */
-          .cta-cards > div:first-child > div:nth-child(2) {
-            width: 40px !important;
-            height: 40px !important;
-            margin: 0 auto 12px auto !important;
-          }
-          .cta-cards > div:first-child h3 {
-            font-size: 1rem !important;
-            color: #F0E0B2 !important;
-            margin-bottom: 8px !important;
-          }
-          .cta-cards > div:first-child > p {
-            font-size: 13px !important;
-            color: rgba(240,224,178,0.7) !important;
-            margin-bottom: 16px !important;
-          }
-
-          /* Book a Call button */
-          .cta-book-btn {
-            width: 100% !important;
-            max-width: 240px !important;
-            height: 44px !important;
-            font-size: 12px !important;
-            margin: 0 auto !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            box-sizing: border-box !important;
-          }
-
-          /* Jakub card — photo */
-          .cta-cards > div:last-child > div:nth-child(2) {
-            width: 60px !important;
-            height: 60px !important;
-            border-radius: 50% !important;
-            margin: 0 auto 12px auto !important;
-          }
-          /* Name */
-          .cta-cards > div:last-child > p:nth-child(3) {
-            font-size: 1rem !important;
-            color: #F0E0B2 !important;
-            margin-bottom: 12px !important;
-          }
-          /* Email link */
-          .cta-contact-link {
-            font-size: 13px !important;
-            color: rgba(240,224,178,0.75) !important;
-          }
-
-          /* ====================================================
-             FOOTER
-          ==================================================== */
-
-          /* Footer container */
-          footer {
-            overflow: hidden !important;
-          }
-
-          /* Hide decorative grid texture */
+          .moat-row { display: flex !important; flex-direction: column !important; align-items: stretch !important; gap: 12px !important; margin-bottom: 0 !important; margin-top: 0 !important; }
+          .moat-card { width: 100% !important; max-width: 100% !important; flex: none !important; box-sizing: border-box !important; padding: 20px !important; border-radius: 16px !important; text-align: center !important; transform: none !important; opacity: 1 !important; }
+          .moat-icon-badge { width: 48px !important; height: 48px !important; margin: 0 auto 12px auto !important; }
+          .moat-card-title { font-size: 1rem !important; color: #F0E0B2 !important; margin-bottom: 8px !important; }
+          .moat-card-body { font-size: 13px !important; line-height: 1.5 !important; color: rgba(240,224,178,0.8) !important; }
+          .moat-shield { padding: 0 !important; margin: 20px auto !important; display: flex !important; justify-content: center !important; align-items: center !important; max-height: 120px !important; overflow: hidden !important; }
+          .moat-shield-inner { width: 80px !important; height: auto !important; display: block !important; }
+          .moat-shield-inner img { width: 80px !important; height: auto !important; display: block !important; }
+          #contact > section { min-height: unset !important; height: auto !important; padding: 40px 20px !important; }
+          #contact .msec { padding: 0 !important; }
+          #contact .msec h2 { font-size: 1.8rem !important; line-height: 1.15 !important; text-align: center !important; margin-bottom: 8px !important; }
+          #contact .msec > p { font-size: 14px !important; text-align: center !important; margin-bottom: 24px !important; }
+          .cta-cards { display: flex !important; flex-direction: column !important; gap: 16px !important; margin-top: 0 !important; max-width: 100% !important; }
+          .cta-cards > div { width: 100% !important; padding: 24px !important; border-radius: 16px !important; text-align: center !important; transform: none !important; }
+          .cta-cards > div:first-child > div:nth-child(2) { width: 40px !important; height: 40px !important; margin: 0 auto 12px auto !important; }
+          .cta-cards > div:first-child h3 { font-size: 1rem !important; margin-bottom: 8px !important; }
+          .cta-cards > div:first-child > p { font-size: 13px !important; margin-bottom: 16px !important; }
+          .cta-book-btn { width: 100% !important; max-width: 240px !important; height: 44px !important; font-size: 12px !important; margin: 0 auto !important; display: flex !important; align-items: center !important; justify-content: center !important; }
+          .cta-cards > div:last-child > div:nth-child(2) { width: 60px !important; height: 60px !important; border-radius: 50% !important; margin: 0 auto 12px auto !important; }
+          .cta-cards > div:last-child > p:nth-child(3) { font-size: 1rem !important; margin-bottom: 12px !important; }
+          .cta-contact-link { font-size: 13px !important; }
+          footer { overflow: hidden !important; }
           .footer-grid-texture { display: none !important; }
-
-          /* Main cols wrapper — single centered column, no two-col layout */
-          .footer-cols {
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            text-align: center !important;
-            padding: 40px 20px 0 !important;
-            gap: 0 !important;
-            max-width: 100% !important;
-          }
-
-          /* Left column — full width, centred */
-          .footer-left {
-            width: 100% !important;
-            max-width: 100% !important;
-            text-align: center !important;
-            margin: 0 0 0 0 !important;
-            flex-shrink: unset !important;
-          }
-
-          /* Logo wrapper — centre it */
-          .footer-left > div:first-child {
-            display: flex !important;
-            justify-content: center !important;
-            align-items: center !important;
-            margin-bottom: 16px !important;
-            max-width: 160px !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-          }
-
-          /* Description */
-          .footer-left > p {
-            font-size: 14px !important;
-            line-height: 1.6 !important;
-            color: rgba(240,224,178,0.7) !important;
-            text-align: center !important;
-            margin-bottom: 20px !important;
-            max-width: 320px !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-          }
-
-          /* Badges */
-          .footer-badges-row {
-            display: flex !important;
-            flex-wrap: wrap !important;
-            justify-content: center !important;
-            gap: 8px !important;
-            margin-bottom: 24px !important;
-          }
-          .footer-badges-row span {
-            padding: 4px 10px !important;
-            font-size: 9px !important;
-            letter-spacing: 1px !important;
-            border-radius: 4px !important;
-          }
-
-          /* Social icons — single row, centred, good tap targets */
-          .footer-social-row {
-            display: flex !important;
-            flex-direction: row !important;
-            flex-wrap: nowrap !important;
-            justify-content: center !important;
-            gap: 0 !important;
-            margin-bottom: 24px !important;
-          }
-          .footer-social-row a {
-            min-width: 44px !important;
-            min-height: 44px !important;
-            width: auto !important;
-            height: auto !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            padding: 10px !important;
-          }
-          .footer-social-row a svg {
-            width: 24px !important;
-            height: 24px !important;
-          }
-
-          /* Right column — full width, centred below left */
-          .footer-right {
-            width: 100% !important;
-            max-width: 100% !important;
-            text-align: center !important;
-            margin: 0 !important;
-            padding-top: 0 !important;
-            flex-shrink: unset !important;
-          }
-
-          /* Contact links — centred */
-          .footer-right > div:first-child {
-            margin-bottom: 20px !important;
-          }
-          .footer-right a {
-            justify-content: center !important;
-            font-size: 14px !important;
-            color: rgba(240,224,178,0.75) !important;
-            min-height: 44px !important;
-            display: flex !important;
-            align-items: center !important;
-            gap: 8px !important;
-            margin-bottom: 10px !important;
-          }
-          .footer-right a svg { flex-shrink: 0 !important; }
-
-          /* Book a Call CTA */
-          .footer-cta-wrap {
-            justify-content: center !important;
-            display: flex !important;
-          }
-          .footer-cta-wrap a {
-            width: 100% !important;
-            max-width: 260px !important;
-            height: 44px !important;
-            font-size: 12px !important;
-            justify-content: center !important;
-            margin: 20px auto 0 auto !important;
-            display: flex !important;
-            align-items: center !important;
-            box-sizing: border-box !important;
-          }
-
-          /* Divider */
-          footer > div[style*="border-top"],
-          footer > div > div[style*="border-top"] {
-            margin: 24px 0 !important;
-            padding: 0 !important;
-          }
-
-          /* Bottom bar */
-          .footer-bottom {
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            gap: 8px !important;
-            padding: 0 20px 40px !important;
-            text-align: center !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
-          }
-          .footer-bottom > p {
-            font-size: 12px !important;
-            color: rgba(240,224,178,0.4) !important;
-            text-align: center !important;
-            margin: 0 0 8px 0 !important;
-          }
-
-          /* Privacy / Terms links */
-          .footer-policy {
-            display: flex !important;
-            flex-direction: row !important;
-            justify-content: center !important;
-            flex-wrap: nowrap !important;
-            gap: 20px !important;
-          }
-          .footer-policy a {
-            font-size: 12px !important;
-            color: rgba(240,224,178,0.5) !important;
-            min-height: 44px !important;
-            display: flex !important;
-            align-items: center !important;
-          }
-
-          /* Back-to-top button */
-          .footer-policy button {
-            margin-top: 16px !important;
-            width: 40px !important;
-            height: 40px !important;
-          }
-
-          /* ====================================================
-             MISC / SAFETY NETS
-          ==================================================== */
-          .nr-arrow svg { width: 16px !important; height: 16px !important; }
+          .footer-cols { display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; padding: 40px 20px 0 !important; gap: 0 !important; max-width: 100% !important; }
+          .footer-left { width: 100% !important; text-align: center !important; margin: 0 !important; }
+          .footer-left > div:first-child { display: flex !important; justify-content: center !important; max-width: 160px !important; margin: 0 auto 16px auto !important; }
+          .footer-left > p { font-size: 14px !important; text-align: center !important; margin-bottom: 20px !important; max-width: 320px !important; margin-left: auto !important; margin-right: auto !important; }
+          .footer-badges-row { display: flex !important; flex-wrap: wrap !important; justify-content: center !important; gap: 8px !important; margin-bottom: 24px !important; }
+          .footer-badges-row span { padding: 4px 10px !important; font-size: 9px !important; letter-spacing: 1px !important; border-radius: 4px !important; }
+          .footer-social-row { display: flex !important; flex-direction: row !important; justify-content: center !important; gap: 0 !important; margin-bottom: 24px !important; }
+          .footer-social-row a { min-width: 44px !important; min-height: 44px !important; display: flex !important; align-items: center !important; justify-content: center !important; padding: 10px !important; }
+          .footer-social-row a svg { width: 24px !important; height: 24px !important; }
+          .footer-right { width: 100% !important; text-align: center !important; margin: 0 !important; }
+          .footer-right > div:first-child { margin-bottom: 20px !important; }
+          .footer-right a { justify-content: center !important; font-size: 14px !important; min-height: 44px !important; display: flex !important; align-items: center !important; gap: 8px !important; margin-bottom: 10px !important; }
+          .footer-cta-wrap { justify-content: center !important; display: flex !important; }
+          .footer-cta-wrap a { width: 100% !important; max-width: 260px !important; height: 44px !important; font-size: 12px !important; justify-content: center !important; margin: 20px auto 0 auto !important; display: flex !important; align-items: center !important; }
+          footer > div[style*="border-top"], footer > div > div[style*="border-top"] { margin: 24px 0 !important; padding: 0 !important; }
+          .footer-bottom { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 8px !important; padding: 0 20px 40px !important; text-align: center !important; width: 100% !important; }
+          .footer-bottom > p { font-size: 12px !important; text-align: center !important; margin: 0 0 8px 0 !important; }
+          .footer-policy { display: flex !important; flex-direction: row !important; justify-content: center !important; gap: 20px !important; }
+          .footer-policy a { font-size: 12px !important; min-height: 44px !important; display: flex !important; align-items: center !important; }
+          .footer-policy button { margin-top: 16px !important; width: 40px !important; height: 40px !important; }
           .liberty-bg { opacity: 0.15 !important; }
-          .cmp-shake { transform: none !important; }
           footer a { min-height: 44px !important; }
           nav a, nav button { min-height: 44px !important; min-width: 44px !important; }
         }
+        @media (max-width: 480px) {
         @media (max-width: 480px) {
           /* chips stay 2-col per FORTRESSNAMES-MOBILE spec */
         }
@@ -3575,12 +2517,12 @@ export default function AF() {
             transition: "transform 0.05s linear",
           }} />
           {/* Heavy center overlay for text readability — radial dark zone */}
-          <div style={{
+          <div className="hero-overlay-radial" style={{
             position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none",
             background: "radial-gradient(ellipse 80% 70% at 50% 40%, rgba(4,11,24,0.88) 0%, rgba(4,11,24,0.7) 40%, rgba(4,11,24,0.35) 70%, rgba(4,11,24,0.15) 100%)",
           }} />
           {/* Top fade for nav blending */}
-          <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 200, zIndex: 1, pointerEvents: "none", background: "linear-gradient(180deg, rgba(4,11,24,0.9) 0%, transparent 100%)" }} />
+          <div className="hero-overlay-top" style={{ position: "absolute", top: 0, left: 0, right: 0, height: 200, zIndex: 1, pointerEvents: "none", background: "linear-gradient(180deg, rgba(4,11,24,0.9) 0%, transparent 100%)" }} />
           {/* Bottom fade for section transition */}
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 180, zIndex: 1, pointerEvents: "none", background: "linear-gradient(0deg, #182145 0%, transparent 100%)" }} />
           {/* Noise texture */}
@@ -3672,7 +2614,7 @@ export default function AF() {
             <div className="hero-badges" style={{
               display: "flex", gap: 8, justifyContent: "center", flexWrap: "wrap",
             }}>
-              {["11 Patented Inventions","Multi-Chain from Day 1","Zero Integration Costs","SDK Available Q2 2026","Quantum-Proof Technology"].map((b, i) => (
+              {["11 Patented Inventions","Zero Integration Costs","Multi-Chain from Day 1","SDK Available Q2 2026","Quantum-Proof Technology"].map((b, i) => (
                 <span key={i} style={{
                   fontFamily: "'Space Grotesk',sans-serif", fontSize: "10px", fontWeight: 500, padding: "6px 14px", borderRadius: 12,
                   border: "1px solid rgba(100,140,200,0.2)", color: "rgba(240,224,178,0.85)", background: "#1a2a4a",
@@ -3799,7 +2741,7 @@ export default function AF() {
           <div className="liberty-bg" className="liberty-bg" style={{ position:"absolute", top:0, right:0, bottom:0, width:"55%", zIndex:0, backgroundImage:`url(${LIBERTY_SRC})`, backgroundSize:"cover", backgroundPosition:"center", opacity:0.09, filter:"saturate(0.15)", maskImage:"linear-gradient(to right,transparent,black 30%,black 70%,transparent),linear-gradient(to bottom,transparent 0%,black 15%,black 75%,transparent 100%)", maskComposite:"intersect", WebkitMaskImage:"linear-gradient(to right,transparent,black 30%,black 70%,transparent),linear-gradient(to bottom,transparent 0%,black 15%,black 75%,transparent 100%)", WebkitMaskComposite:"destination-in" }} />
 
           <div className="msec" style={{ maxWidth:900, marginLeft:"6vw", marginRight:"auto", padding:"120px 0 120px", display:"flex", flexDirection:"column", justifyContent:"center", position:"relative", zIndex:1 }}>
-            <div style={rv(s1V, 0)}><span style={lbl}><span style={dot} /> The Solution — Part 1</span></div>
+            <div style={rv(s1V, 0)}><span className="section-pill" style={lbl}><span className="pill-dot" style={dot} /> The Solution — Part 1</span></div>
             <h2 style={{ ...rv(s1V, 0.12), ...mega("clamp(1.8rem,4vw,3rem)"), maxWidth:700 }}>FortressNames<br /><span style={{ color:"#DD1E21", whiteSpace:"nowrap" }}>Send-to-Name™</span></h2>
             <p style={{ ...rv(s1V, 0.22), color:"#7A8599", fontSize:"1.05rem", marginBottom:40, maxWidth:460 }}>Human-readable names replace complex wallet addresses with patented privacy</p>
             <div style={{ marginBottom:44 }}><NameResolver /></div>
@@ -3871,7 +2813,7 @@ export default function AF() {
         <section id="revenue" ref={rR2} style={{ ...full, position:"relative", overflow:"hidden" }}>
           <div className="dot-pattern" style={{ right:"-100px", bottom:"-60px", opacity:0.4 }} />
           <div className="msec" style={sec}>
-            <div style={rv(rV, 0)}><span style={lbl}><span style={dot} /> Revenue Share</span></div>
+            <div style={rv(rV, 0)}><span className="section-pill" style={lbl}><span className="pill-dot" style={dot} /> Revenue Share</span></div>
             <h2 style={{ ...rv(rV, 0.12), ...mega("clamp(2rem,4.5vw,3.2rem)") }}>A New Revenue Stream<br /><span style={{ color: "#DD1E21" }}>Not Just a Feature</span></h2>
             <p style={{ ...rv(rV, 0.22), color: "#7A8599", fontSize: "1.05rem", marginBottom: 40 }}>Earn 20% commission on every name upgrade + 20% affiliate commission</p>
 
@@ -3942,7 +2884,7 @@ export default function AF() {
         <section id="trusted" ref={lR} className="trusted-sec" style={{ ...full, background: "#182145", overflow: "hidden" }}>
           <div className="msec trusted-sec" style={{ ...sec, textAlign: "center", paddingBottom: 0, paddingTop: 48 }}>
             <h2 style={{ ...rv(lV, 0), ...mega("clamp(1.8rem,3.5vw,2.8rem)", 8) }}>Trusted By <span style={{ color: "#C9A84C" }}>Industry Leaders</span></h2>
-            <p style={{ ...rv(lV, 0.1), color: "#3D4A63", fontSize: "0.92rem", marginBottom: 48 }}>Integrated with leading wallets, chains, and financial institutions</p>
+            <p style={{ ...rv(lV, 0.1), color: "rgba(240,224,178,0.6)", fontSize: "0.92rem", marginBottom: 48 }}>Integrated with leading wallets, chains, and financial institutions</p>
           </div>
           {/* Marquee strip */}
           <style>{`
