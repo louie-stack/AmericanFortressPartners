@@ -868,7 +868,7 @@ function FinancialSection() {
           </div>
           <h2 className="fin-title" style={{ fontFamily:"'Monument Extended',sans-serif", fontSize:"clamp(1.8rem,4vw,3rem)",
             fontWeight:800, letterSpacing:"0.03em", lineHeight:1.05, textTransform:"uppercase",
-            whiteSpace:"nowrap", textAlign:"center", display:"block", width:"100%", margin:"0 auto", paddingLeft:0, paddingRight:0 }}>
+            whiteSpace:"nowrap", textAlign:"center", display:"block", width:"100%", margin:"0 auto", paddingLeft:0, paddingRight:"4rem" }}>
             <span style={{ color:"#182145", letterSpacing:"0.03em" }}>The </span>
             <span style={{ color:"#DD1E21", letterSpacing:"0.03em" }}>Financial Opportunity</span>
           </h2>
