@@ -2476,7 +2476,6 @@ export default function AF() {
           nav a, nav button { min-height: 44px !important; min-width: 44px !important; }
         }
         @media (max-width: 480px) {
-        @media (max-width: 480px) {
           /* chips stay 2-col per FORTRESSNAMES-MOBILE spec */
         }
         @keyframes heroLineUp{0%{opacity:0;transform:translateY(80px) skewY(2deg)}100%{opacity:1;transform:translateY(0) skewY(0)}}
