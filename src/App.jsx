@@ -2279,6 +2279,20 @@ export default function AF() {
             font-size: 1.1rem !important; color: #F0E0B2 !important;
           }
 
+          /* ====================================================
+             GLOBAL — Badge pill dot alignment (all sections)
+             G_LBL is inline-flex with alignItems:center already,
+             but the G_DOT child span needs flex-shrink:0 + align-self
+          ==================================================== */
+          span[style*="pulseG"] {
+            display: inline-block !important;
+            flex-shrink: 0 !important;
+            align-self: center !important;
+            vertical-align: middle !important;
+            margin-top: 0 !important;
+            position: static !important;
+          }
+
           /* Brushstroke / divider — restore and compact on mobile */
           .stripe-wrap {
             display: block !important;
@@ -2731,8 +2745,9 @@ export default function AF() {
           /* Badge */
           #landscape .msec > div:first-child span { font-size: 10px !important; margin-bottom: 16px !important; }
 
-          /* Heading */
+          /* Heading — "WHERE WE STAND" stays 1.5rem, red "PRIVACY — USABILITY" line reduced to fit */
           #landscape .msec h2 { font-size: 1.5rem !important; line-height: 1.15 !important; margin-bottom: 20px !important; }
+          #landscape .msec h2 span { font-size: 1.3rem !important; white-space: nowrap !important; }
 
           /* Layout — single column */
           .scatter-layout {
@@ -2777,14 +2792,21 @@ export default function AF() {
             color: rgba(240,224,178,0.85) !important;
           }
 
-          /* Footnote — no pinned opacity, tight spacing */
+          /* Footnote — legible, tight spacing */
           #landscape .msec > p:last-child {
             opacity: 1 !important;
             font-size: 13px !important;
+            color: rgba(240,224,178,0.6) !important;
             text-align: center !important;
             margin-top: 20px !important;
             margin-bottom: 0 !important;
             padding: 0 12px !important;
+          }
+
+          /* "only solution" — brighter red, readable on blue card */
+          .scatter-insight p span[style*="DD1E21"] {
+            color: #FF4444 !important;
+            text-shadow: 0 0 8px rgba(221,30,33,0.3) !important;
           }
 
           /* ====================================================
