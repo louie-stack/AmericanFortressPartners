@@ -2471,7 +2471,8 @@ export default function AF() {
           ==================================================== */
           #exposed { padding: 40px 20px !important; }
           #exposed .msec { padding: 0 !important; }
-          #exposed .msec h2 { font-size: 1.5rem !important; text-align: center !important; margin-bottom: 20px !important; }
+          #exposed .msec h2 { font-size: 2rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 20px !important; }
+          #exposed .msec h2 span { font-size: 2rem !important; }
 
           /* Scanner box — compact, scanning-state only */
           .scanner-box {
@@ -2551,12 +2552,13 @@ export default function AF() {
           }
           .exposed-card-h3 > span {
             font-size: 1.1rem !important;
-            white-space: normal !important;
+            line-height: 1.2 !important;
+            white-space: nowrap !important;
             overflow: visible !important;
             text-overflow: unset !important;
           }
 
-          /* Bullet text — fully visible */
+          /* Bullet text */
           #exposed .mgrid2 > div p {
             font-size: 14px !important;
             line-height: 1.5 !important;
