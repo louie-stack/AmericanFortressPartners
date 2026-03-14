@@ -3841,8 +3841,8 @@ export default function AF() {
                   </h3>
                   {[["FortressNames","name sales & upgrades"],["Confidentiality Machine","transaction fees"],["Single SDK integration","for both"]].map(([a, b], i) => (
                     <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 12, marginBottom: 14 }}>
-                      <span style={{ width: 8, height: 8, borderRadius: "50%", background: i < 2 ? "#DD1E21" : "#3D4A63", flexShrink: 0, marginTop: 5 }} />
-                      <span style={{ fontSize: "16px", color: "rgba(240,224,178,0.85)" }}><strong style={{ color: "#F0E0B2" }}>{a}</strong> — {b}</span>
+                      <span style={{ width: 8, height: 8, borderRadius: "50%", background: i < 2 ? "#DD1E21" : "#3D4A63", flexShrink: 0, marginTop: 6 }} />
+                      <span style={{ fontSize: "16px", lineHeight: 1.5, color: "rgba(240,224,178,0.85)" }}><strong style={{ color: "#F0E0B2" }}>{a}</strong> — {b}</span>
                     </div>
                   ))}
                   <a href="https://americanfortress.io/sdk" target="_blank" rel="noopener noreferrer" style={{ ...btnG, marginTop: 20, padding: "12px 28px", fontSize: "0.8rem", textDecoration: "none", display: "inline-block", textAlign: "center" }}>View SDK Documentation</a>
