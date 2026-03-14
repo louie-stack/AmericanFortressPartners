@@ -2684,13 +2684,16 @@ export default function AF() {
 
           /* Heading — both "CONFIDENTIALITY" and "MACHINE" same size */
           #confidentiality .msec h2 {
-            font-size: 1.5rem !important;
-            line-height: 1.15 !important;
+            font-size: 1.8rem !important;
+            line-height: 1.1 !important;
+            font-weight: 800 !important;
             margin-bottom: 12px !important;
           }
           #confidentiality .msec h2 span {
-            font-size: 1.5rem !important;
-            line-height: 1.15 !important;
+            font-size: 1.8rem !important;
+            line-height: 1.1 !important;
+            font-weight: 800 !important;
+            color: #DD1E21 !important;
           }
 
           /* Subtitle */
@@ -2703,7 +2706,7 @@ export default function AF() {
           .conf-bullet-item {
             display: flex !important;
             align-items: flex-start !important;
-            gap: 12px !important;
+            gap: 10px !important;
             margin-bottom: 16px !important;
           }
 
@@ -2727,12 +2730,12 @@ export default function AF() {
             min-height: 8px !important;
             border-radius: 50% !important;
             flex-shrink: 0 !important;
-            margin-top: 6px !important;
+            margin-top: 7px !important;
             display: block !important;
           }
 
           /* Bullet text */
-          .conf-bullet-text { font-size: 15px !important; line-height: 1.6 !important; color: #222 !important; }
+          .conf-bullet-text { font-size: 15px !important; line-height: 1.5 !important; color: #222 !important; }
 
           /* Revenue card */
           .conf-revenue-card {
