@@ -1071,8 +1071,8 @@ function NameResolver() {
   return (
     <div className="nr-wrap">
       <div style={{ height: 22, marginBottom: 10, opacity: contentOp, transition: "opacity 0.3s" }}>
-        {isScramble && <span style={{ fontFamily:"'JetBrains Mono'", fontSize: 9, textTransform:"uppercase", letterSpacing:"3px", color:"rgba(201,168,76,0.95)" }}>? Resolving name...</span>}
-        {isResolved && <span style={{ fontFamily:"'JetBrains Mono'", fontSize: 9, textTransform:"uppercase", letterSpacing:"3px", color:"#34D399" }}>? Identity verified — private transfer ready</span>}
+        {isScramble && <span style={{ fontFamily:"'JetBrains Mono'", fontSize: 9, textTransform:"uppercase", letterSpacing:"3px", color:"rgba(201,168,76,0.95)", display:"inline-flex", alignItems:"center", gap:4 }}><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>Resolving name...</span>}
+        {isResolved && <span style={{ fontFamily:"'JetBrains Mono'", fontSize: 9, textTransform:"uppercase", letterSpacing:"3px", color:"#34D399", display:"inline-flex", alignItems:"center", gap:4 }}><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20,6 9,17 4,12"/></svg>Identity verified — private transfer ready</span>}
       </div>
       <div className="nr-row" style={{ position:"relative", display:"inline-flex", alignItems:"center", gap: 20, opacity: contentOp, transition: "opacity 0.4s" }}>
         {isResolved && <div style={{ position:"absolute", inset:"-40px -80px", background:"radial-gradient(ellipse,rgba(201,168,76,0.14) 0%,transparent 70%)", pointerEvents:"none" }} />}
@@ -2507,6 +2507,9 @@ export default function AF() {
           #fortressnames .msec h2 { font-size: 1.5rem !important; line-height: 1.15 !important; overflow: hidden !important; }
           #fortressnames .msec > p { font-size: 14px !important; margin-bottom: 24px !important; }
 
+          /* Liberty statue bg — reduce opacity on mobile */
+          #fortressnames .liberty-bg { opacity: 0.05 !important; }
+
           /* Name resolver row */
           .nr-wrap {
             max-width: 100% !important;
@@ -2551,16 +2554,21 @@ export default function AF() {
           }
           .nr-display span { font-size: 18px !important; }
 
-          /* Feature chips */
+          /* Feature chips — 2-col grid, all 8 visible, solid background */
           .s1chips {
             display: grid !important;
             grid-template-columns: 1fr 1fr !important;
             gap: 10px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
           }
           .s1chips > div {
             padding: 14px !important;
             border-radius: 12px !important;
             box-sizing: border-box !important;
+            background: #2a4a7a !important;
+            width: 100% !important;
+            overflow: hidden !important;
           }
           .s1chips > div > div:first-child {
             font-size: 9px !important;
@@ -2568,9 +2576,9 @@ export default function AF() {
             margin-bottom: 6px !important;
           }
           .s1chips > div > div:last-child {
-            font-size: 12px !important;
+            font-size: 13px !important;
             line-height: 1.4 !important;
-            color: rgba(240, 224, 178, 0.8) !important;
+            color: rgba(240,224,178,0.8) !important;
           }
 
           /* ====================================================
