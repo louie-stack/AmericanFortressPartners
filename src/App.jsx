@@ -2330,20 +2330,28 @@ export default function AF() {
             height: 30px !important;
           }
 
-          /* Restore cover photo — slightly more visible on mobile */
+          /* Restore cover photo — more visible, zoomed out */
           .hero-cover {
             display: block !important;
-            opacity: 0.18 !important;
+            opacity: 0.3 !important;
             transform: none !important;
-            background-size: cover !important;
-            background-position: center !important;
+            background-size: 80% auto !important;
+            background-position: center center !important;
+            background-repeat: no-repeat !important;
           }
 
           .hero-section { min-height: auto !important; overflow: hidden !important; }
+
+          /* Hero content — fully centred column */
           .hero-content {
-            padding: 88px 24px 40px !important;
+            padding: 88px 16px 40px !important;
             text-align: center !important;
             overflow: hidden !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
           }
 
           .hero-partner-label {
@@ -2353,15 +2361,19 @@ export default function AF() {
             text-align: center !important;
           }
 
-          /* Title — dominant, natural word-break */
+          /* Title — centred, dominant, natural word-break */
           .mhero {
             font-size: 2.8rem !important;
             white-space: normal !important;
             word-break: normal !important;
             overflow-wrap: normal !important;
             text-align: center !important;
-            padding: 0 !important;
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
             line-height: 1.05 !important;
+            width: 100% !important;
           }
 
           /* Gold divider below title */
