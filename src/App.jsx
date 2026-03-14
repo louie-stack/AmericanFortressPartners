@@ -2751,12 +2751,15 @@ export default function AF() {
 
           /* Card title — entire title same size, "One SDK" span matches */
           .conf-revenue-card h3 {
-            font-size: 1.2rem !important;
+            font-size: 1.3rem !important;
             line-height: 1.2 !important;
+            font-weight: 700 !important;
             margin-bottom: 16px !important;
           }
           .conf-revenue-card h3 span {
-            font-size: 1.2rem !important;
+            font-size: 1.3rem !important;
+            line-height: 1.2 !important;
+            font-weight: 700 !important;
           }
 
           /* Card bullet items — consistent flex layout for all 3 */
