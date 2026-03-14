@@ -2423,22 +2423,27 @@ export default function AF() {
           /* Credential pills — 3 on row 1, 2 on row 2 */
           .hero-badges {
             display: flex !important;
+            flex-direction: row !important;
             flex-wrap: wrap !important;
             justify-content: center !important;
-            gap: 10px !important;
-            padding: 0 16px !important;
+            align-items: center !important;
+            gap: 8px !important;
+            padding: 0 8px !important;
             margin-top: 0 !important;
             overflow: visible !important;
             max-width: 100% !important;
           }
           .hero-badges > span {
-            padding: 6px 12px !important;
-            font-size: 9px !important;
-            letter-spacing: 1px !important;
-            white-space: nowrap !important;
-            flex-shrink: 0 !important;
+            display: inline-flex !important;
             width: auto !important;
             flex-basis: auto !important;
+            flex-shrink: 0 !important;
+            padding: 5px 10px !important;
+            font-size: 8.5px !important;
+            letter-spacing: 1px !important;
+            white-space: nowrap !important;
+            /* Remove any block/column overrides */
+            flex-direction: row !important;
           }
           /* Red dot — perfect 5px circle */
           .hero-badges > span > span:first-child {
