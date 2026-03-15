@@ -864,7 +864,7 @@ function FinancialSection() {
             boxShadow:"0 0 10px rgba(221,30,33,0.5),0 0 30px rgba(221,30,33,0.15)",
             margin:"0 auto 16px" }}/>
           <div style={{ marginBottom:"0.5rem" }}>
-            <span style={{ ...G_LBL, color:"#182145", border:"2px solid rgba(24,33,69,0.3)", background:"transparent" }}><span className="pill-dot" style={G_DOT}/> Revenue Projections</span>
+            <span className="section-pill" style={{ ...G_LBL, color:"#182145", border:"2px solid rgba(24,33,69,0.3)", background:"transparent" }}><span className="pill-dot" style={G_DOT}/> Revenue Projections</span>
           </div>
           <h2 className="fin-title" style={{ fontFamily:"'Monument Extended',sans-serif", fontSize:"clamp(1.8rem,4vw,3rem)",
             fontWeight:800, letterSpacing:"0.03em", lineHeight:1.05, textTransform:"uppercase",
@@ -2644,7 +2644,7 @@ export default function AF() {
         <section id="exposed" ref={pR} style={{ ...full, background: "#F0E0B2" }}>
           <Stars count={15} color="rgba(221,30,33,0.08)" />
           <div className="msec" style={{ ...sec, textAlign: "center" }}>
-            <div style={{ ...rv(pV, 0), textAlign: "center" }}><span style={{ ...lbl, color:"#182145", border:"2px solid rgba(24,33,69,0.3)", background:"transparent" }}><span style={{ ...dot, background:"#DD1E21" }} /> The Problem</span></div>
+            <div style={{ ...rv(pV, 0), textAlign: "center" }}><span className="section-pill" style={{ ...lbl, color:"#182145", border:"2px solid rgba(24,33,69,0.3)", background:"transparent" }}><span style={{ ...dot, background:"#DD1E21" }} /> The Problem</span></div>
             <h2 style={{ ...rv(pV, 0.12), ...mega("clamp(2rem,4.5vw,3.2rem)"), color: "#182145", textAlign: "center" }}>Your Users Are <span style={{ color: "#DD1E21" }}>Exposed</span></h2>
 
             <div style={rv(pV, 0.25)}><WalletScanner /></div>
@@ -2767,7 +2767,7 @@ export default function AF() {
             <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 72, alignItems: "start" }}>
               {/* Left column: badge + title + subtitle + bullets */}
               <div>
-                <div style={{ ...rv(s2V, 0), marginBottom: 0 }}><span style={{ ...lbl, color:"#182145", border:"2px solid rgba(24,33,69,0.3)", background:"transparent" }}><span style={{ ...dot, background:"#DD1E21" }} /> The Solution - Part 2</span></div>
+                <div style={{ ...rv(s2V, 0), marginBottom: 0 }}><span className="section-pill" style={{ ...lbl, color:"#182145", border:"2px solid rgba(24,33,69,0.3)", background:"transparent" }}><span style={{ ...dot, background:"#DD1E21" }} /> The Solution - Part 2</span></div>
                 <h2 style={{ ...rv(s2V, 0.12), ...mega("clamp(2rem,4.5vw,3.2rem)"), marginBottom: 16, color: "#182145" }}>Confidentiality <span style={{ color: "#DD1E21" }}>Machine</span></h2>
                 <p style={{ ...rv(s2V, 0.22), color: "#555555", fontSize: "16px", marginBottom: 32 }}>On-chain transaction privacy layer — compliance-ready, not a mixer</p>
                 <div className="conf-bullets">
