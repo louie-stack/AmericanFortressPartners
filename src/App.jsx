@@ -2291,16 +2291,16 @@ export default function AF() {
           .hero-cover { display: block !important; opacity: 0.45 !important; background-size: cover !important; background-position: center 40% !important; }
           .hero-overlay-radial { background: radial-gradient(ellipse 80% 70% at 50% 40%, rgba(4,11,24,0.7) 0%, rgba(4,11,24,0.5) 40%, rgba(4,11,24,0.2) 70%, transparent 100%) !important; }
           .hero-overlay-top { height: 100px !important; background: linear-gradient(180deg, rgba(4,11,24,0.8) 0%, transparent 100%) !important; }
-          .hero-content { padding: 90px 20px 44px !important; display: flex !important; flex-direction: column !important; align-items: flex-start !important; text-align: left !important; }
-          .hero-partner-label { font-size: 10px !important; letter-spacing: 3px !important; margin-bottom: 12px !important; }
-          .mhero { font-size: clamp(2.2rem, 9vw, 3.4rem) !important; line-height: 0.95 !important; word-break: normal !important; overflow-wrap: normal !important; white-space: normal !important; text-align: left !important; padding: 0 !important; margin: 0 0 20px 0 !important; width: 100% !important; }
-          .hero-title-line { width: 40px !important; height: 3px !important; margin: 0 0 16px 0 !important; display: block !important; }
-          .hero-subtitle { font-size: 1.1rem !important; line-height: 1.2 !important; margin-bottom: 8px !important; text-align: left !important; }
-          .hero-desc { font-size: 15px !important; line-height: 1.6 !important; color: rgba(240,224,178,0.75) !important; text-align: left !important; max-width: 100% !important; margin: 0 0 28px 0 !important; }
-          .hero-ctas { flex-direction: column !important; align-items: flex-start !important; width: 100% !important; gap: 10px !important; margin-bottom: 24px !important; }
+          .hero-content { padding: 90px 20px 44px !important; display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; }
+          .hero-partner-label { font-size: 10px !important; letter-spacing: 3px !important; margin-bottom: 12px !important; text-align: center !important; }
+          .mhero { font-size: clamp(2.2rem, 9vw, 3.4rem) !important; line-height: 0.95 !important; word-break: normal !important; overflow-wrap: normal !important; white-space: normal !important; text-align: center !important; padding: 0 !important; margin: 0 0 20px 0 !important; width: 100% !important; }
+          .hero-title-line { width: 40px !important; height: 3px !important; margin: 0 auto 16px !important; display: block !important; }
+          .hero-subtitle { font-size: 1.1rem !important; line-height: 1.2 !important; margin-bottom: 8px !important; text-align: center !important; }
+          .hero-desc { font-size: 15px !important; line-height: 1.6 !important; color: rgba(240,224,178,0.75) !important; text-align: center !important; max-width: 100% !important; margin: 0 0 28px 0 !important; }
+          .hero-ctas { flex-direction: column !important; align-items: center !important; width: 100% !important; gap: 10px !important; margin-bottom: 24px !important; }
           .hero-ctas a { width: 100% !important; height: 52px !important; display: flex !important; align-items: center !important; justify-content: center !important; }
-          .hero-badges { display: flex !important; flex-direction: row !important; flex-wrap: wrap !important; justify-content: flex-start !important; gap: 6px !important; padding: 0 !important; margin-top: 0 !important; }
-          .hero-badges > span { display: inline-flex !important; width: auto !important; flex-basis: auto !important; flex-shrink: 0 !important; padding: 8px 14px !important; font-size: 11px !important; letter-spacing: 0.5px !important; white-space: nowrap !important; }
+          .hero-badges { display: flex !important; flex-direction: row !important; flex-wrap: wrap !important; justify-content: center !important; gap: 6px !important; padding: 0 !important; margin-top: 0 !important; width: 100% !important; }
+          .hero-badges > span { display: inline-flex !important; flex: 0 0 calc(50% - 3px) !important; width: calc(50% - 3px) !important; max-width: calc(50% - 3px) !important; justify-content: center !important; text-align: center !important; padding: 8px 8px !important; font-size: 9px !important; letter-spacing: 0.4px !important; white-space: nowrap !important; box-sizing: border-box !important; overflow: hidden !important; text-overflow: ellipsis !important; }
 
           /* ── TRUSTED BY ────────────────────────────────────────────── */
           #trusted, .trusted-sec { padding: 56px 24px 32px !important; }
