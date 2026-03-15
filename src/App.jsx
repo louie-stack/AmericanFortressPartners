@@ -2301,6 +2301,7 @@ export default function AF() {
           .hero-ctas a { width: 100% !important; height: 52px !important; display: flex !important; align-items: center !important; justify-content: center !important; }
           .hero-badges { display: flex !important; flex-direction: row !important; flex-wrap: wrap !important; justify-content: center !important; gap: 6px !important; padding: 0 !important; margin-top: 0 !important; width: 100% !important; }
           .hero-badges > span { display: inline-flex !important; align-items: center !important; flex: 0 0 calc(50% - 3px) !important; width: calc(50% - 3px) !important; max-width: calc(50% - 3px) !important; justify-content: center !important; text-align: center !important; padding: 8px 10px !important; font-size: 9px !important; letter-spacing: 0.4px !important; white-space: nowrap !important; box-sizing: border-box !important; overflow: visible !important; }
+          .hero-badges > span:last-child { flex: 0 0 auto !important; width: auto !important; max-width: 100% !important; padding: 8px 16px !important; }
 
           /* ── TRUSTED BY ────────────────────────────────────────────── */
           #trusted, .trusted-sec { padding: 56px 24px 32px !important; }
