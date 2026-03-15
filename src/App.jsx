@@ -2416,7 +2416,8 @@ export default function AF() {
           /* ── FINANCIAL ─────────────────────────────────────────────── */
           #financial > section { min-height: auto !important; padding: 48px 20px !important; }
           .fin-inner { max-width: 100% !important; width: 100% !important; }
-          .fin-title { white-space: normal !important; padding-right: 0 !important; font-size: 2.2rem !important; }
+          .fin-inner > div:first-child > div:first-child { display: none !important; }
+          .fin-title { white-space: normal !important; padding-right: 0 !important; padding-left: 0 !important; font-size: 1.5rem !important; text-align: center !important; }
           .fin-slot-wrap { font-size: clamp(2.2rem, 9vw, 3.5rem) !important; }
 
           /* ── TECHNOLOGY MOAT ───────────────────────────────────────── */
