@@ -2335,6 +2335,7 @@ export default function AF() {
 
           /* ── FORTRESSNAMES ─────────────────────────────────────────── */
           #fortressnames { padding: 72px 20px 48px !important; }
+          #fortressnames .msec { margin-left: 0 !important; margin-right: 0 !important; padding: 0 !important; }
           #fortressnames .msec h2 { font-size: clamp(1.6rem, 6vw, 2.2rem) !important; line-height: 1.05 !important; text-align: left !important; overflow-wrap: break-word !important; word-break: break-word !important; }
           #fortressnames .msec > p { font-size: 15px !important; margin-bottom: 24px !important; }
           #fortressnames .liberty-bg { opacity: 0.04 !important; }
