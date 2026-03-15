@@ -434,7 +434,7 @@ function ComparisonSection() {
           </h2>
 
           {/* Grid table */}
-
+          <div className="cmp-table-wrap">
           <div className="cmp-table" style={{ background:"transparent", border:"1px solid rgba(24,33,69,0.08)", borderRadius:12, overflow:"hidden" }}>
             {/* Header row */}
             <div className="cmp-header-row" style={{ display:"grid", gridTemplateColumns:gridCols, padding:"10px 20px", background:"#182145", borderBottom:"1px solid rgba(100,110,150,0.1)", borderRadius:"12px 12px 0 0" }}>
@@ -502,6 +502,8 @@ function ComparisonSection() {
               );
             })}
           </div>
+          </div>{/* end cmp-table-wrap */}
+          <div className="cmp-scroll-hint">swipe to see more →</div>
 
           {/* Footer */}
           <div className="cmp-footer" style={{
@@ -2395,8 +2397,10 @@ export default function AF() {
           .cmp-wrap { padding: 48px 20px !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; margin: 0 !important; }
           .cmp-wrap h2 { font-size: 1.6rem !important; line-height: 1.1 !important; text-align: left !important; font-weight: 800 !important; margin-bottom: 24px !important; color: #182145 !important; font-family: 'Monument Extended',sans-serif !important; text-transform: uppercase !important; letter-spacing: 0.04em !important; }
           .cmp-wrap h2 span { font-size: 1.4rem !important; display: block !important; color: #DD1E21 !important; font-family: 'Monument Extended',sans-serif !important; }
-          .cmp-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; width: 100% !important; }
+          .cmp-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; width: 100% !important; position: relative !important; }
+          .cmp-table-wrap::after { content: '' !important; position: absolute !important; top: 0 !important; right: 0 !important; bottom: 0 !important; width: 56px !important; background: linear-gradient(to left, #F0E0B2 40%, transparent 100%) !important; pointer-events: none !important; z-index: 3 !important; }
           .cmp-table { min-width: 580px !important; }
+          .cmp-scroll-hint { display: flex !important; align-items: center !important; justify-content: flex-end !important; gap: 4px !important; font-size: 10px !important; color: rgba(24,33,69,0.5) !important; font-family: 'Space Grotesk',sans-serif !important; margin-top: 6px !important; letter-spacing: 0.05em !important; }
           .cmp-table th { font-size: 8px !important; min-width: 64px !important; padding: 10px 6px !important; white-space: normal !important; }
           .cmp-table th:first-child { min-width: 110px !important; padding: 12px 8px 12px 12px !important; text-align: left !important; position: sticky !important; left: 0 !important; z-index: 3 !important; }
           .cmp-table th:nth-child(2) { min-width: 80px !important; position: sticky !important; left: 110px !important; z-index: 3 !important; }
