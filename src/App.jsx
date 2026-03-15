@@ -2258,12 +2258,12 @@ export default function AF() {
           .marquee-track, @keyframes { opacity: unset !important; }
 
           /* ── SECTION BASE ──────────────────────────────────────────── */
-          section { padding: 48px 20px !important; max-width: 100% !important; width: 100% !important; box-sizing: border-box !important; }
+          section { padding: 48px 20px !important; max-width: 100% !important; width: 100% !important; box-sizing: border-box !important; scroll-margin-top: 56px !important; }
           .msec { padding: 0 !important; max-width: 100% !important; width: 100% !important; box-sizing: border-box !important; }
 
           /* ── TYPOGRAPHY SCALE ──────────────────────────────────────── */
           /* Base heading — font consistency, each section sets its own size */
-          h2 { line-height: 1.2 !important; text-align: left !important; margin-bottom: 16px !important; font-family: 'Monument Extended',sans-serif !important; text-transform: uppercase !important; letter-spacing: 0.04em !important; font-weight: 800 !important; }
+          h2 { line-height: 1.2 !important; text-align: left !important; margin-bottom: 16px !important; font-family: 'Monument Extended',sans-serif !important; text-transform: uppercase !important; letter-spacing: 0.04em !important; font-weight: 800 !important; overflow-wrap: break-word !important; word-break: break-word !important; }
           h2 span { font-size: inherit !important; line-height: inherit !important; }
           h3 { font-size: 1.1rem !important; line-height: 1.2 !important; }
           h4 { font-size: 1rem !important; line-height: 1.25 !important; }
@@ -2293,7 +2293,7 @@ export default function AF() {
           .hero-overlay-top { height: 100px !important; background: linear-gradient(180deg, rgba(4,11,24,0.8) 0%, transparent 100%) !important; }
           .hero-content { padding: 90px 20px 44px !important; display: flex !important; flex-direction: column !important; align-items: flex-start !important; text-align: left !important; }
           .hero-partner-label { font-size: 10px !important; letter-spacing: 3px !important; margin-bottom: 12px !important; }
-          .mhero { font-size: 3.4rem !important; line-height: 0.95 !important; word-break: normal !important; overflow-wrap: normal !important; white-space: normal !important; text-align: left !important; padding: 0 !important; margin: 0 0 20px 0 !important; width: 100% !important; }
+          .mhero { font-size: clamp(2.2rem, 9vw, 3.4rem) !important; line-height: 0.95 !important; word-break: normal !important; overflow-wrap: normal !important; white-space: normal !important; text-align: left !important; padding: 0 !important; margin: 0 0 20px 0 !important; width: 100% !important; }
           .hero-title-line { width: 40px !important; height: 3px !important; margin: 0 0 16px 0 !important; display: block !important; }
           .hero-subtitle { font-size: 1.1rem !important; line-height: 1.2 !important; margin-bottom: 8px !important; text-align: left !important; }
           .hero-desc { font-size: 15px !important; line-height: 1.6 !important; color: rgba(240,224,178,0.75) !important; text-align: left !important; max-width: 100% !important; margin: 0 0 28px 0 !important; }
@@ -2334,7 +2334,7 @@ export default function AF() {
 
           /* ── FORTRESSNAMES ─────────────────────────────────────────── */
           #fortressnames { padding: 72px 20px 48px !important; }
-          #fortressnames .msec h2 { font-size: 2.2rem !important; line-height: 1.05 !important; text-align: left !important; }
+          #fortressnames .msec h2 { font-size: clamp(1.6rem, 6vw, 2.2rem) !important; line-height: 1.05 !important; text-align: left !important; overflow-wrap: break-word !important; word-break: break-word !important; }
           #fortressnames .msec > p { font-size: 15px !important; margin-bottom: 24px !important; }
           #fortressnames .liberty-bg { opacity: 0.04 !important; }
           .nr-transfer-suffix { display: none !important; }
@@ -2346,15 +2346,16 @@ export default function AF() {
           .nr-display { max-width: 45% !important; overflow: hidden !important; flex-shrink: 1 !important; min-width: 0 !important; }
           .nr-display span { font-size: 20px !important; }
           .s1chips { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 10px !important; width: 100% !important; margin-top: 20px !important; }
-          .s1chips > div { padding: 16px 14px !important; border-radius: 12px !important; background: #2a4a7a !important; border: 1px solid rgba(100,140,200,0.2) !important; overflow: hidden !important; }
+          .s1chips > div { padding: 16px 14px !important; border-radius: 12px !important; background: #2a4a7a !important; border: 1px solid rgba(100,140,200,0.2) !important; overflow: hidden !important; min-height: auto !important; height: auto !important; }
           .s1chips > div > div:first-child { font-size: 9px !important; letter-spacing: 1px !important; margin-bottom: 6px !important; }
           .s1chips > div > div:last-child { font-size: 13px !important; line-height: 1.4 !important; color: rgba(240,224,178,0.85) !important; }
 
           /* ── CONFIDENTIALITY ───────────────────────────────────────── */
-          #confidentiality { padding: 48px 20px !important; }
+          #confidentiality { padding: 0 !important; overflow: hidden !important; }
+          #confidentiality .msec { padding: 48px 20px !important; max-width: 100% !important; box-sizing: border-box !important; }
           #confidentiality .mgrid2 { display: flex !important; flex-direction: column !important; gap: 0 !important; }
-          #confidentiality h2 { font-size: 2.2rem !important; line-height: 1.05 !important; text-align: left !important; font-weight: 800 !important; margin-bottom: 12px !important; }
-          #confidentiality h2 span { font-size: 2.2rem !important; font-weight: 800 !important; color: #DD1E21 !important; display: block !important; }
+          #confidentiality h2 { font-size: clamp(1.5rem, 5.8vw, 2.2rem) !important; line-height: 1.05 !important; text-align: left !important; font-weight: 800 !important; margin-bottom: 12px !important; white-space: normal !important; overflow-wrap: break-word !important; word-break: break-word !important; }
+          #confidentiality h2 span { font-size: clamp(1.5rem, 5.8vw, 2.2rem) !important; font-weight: 800 !important; color: #DD1E21 !important; display: block !important; }
           #confidentiality .msec > p { font-size: 15px !important; color: rgba(24,33,69,0.8) !important; margin-bottom: 20px !important; }
           .conf-bullets { margin-bottom: 24px !important; }
           .conf-bullet-item { display: flex !important; align-items: flex-start !important; gap: 12px !important; margin-bottom: 16px !important; }
@@ -2425,10 +2426,13 @@ export default function AF() {
           #moat h2 { font-size: 2rem !important; line-height: 1.05 !important; text-align: left !important; margin-bottom: 24px !important; }
           .moat-card-area { position: static !important; max-width: 100% !important; }
           .moat-row { display: flex !important; flex-direction: column !important; align-items: stretch !important; gap: 12px !important; }
-          .moat-card { width: 100% !important; box-sizing: border-box !important; padding: 20px !important; border-radius: 16px !important; text-align: left !important; }
+          .moat-card { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; padding: 20px !important; border-radius: 16px !important; text-align: left !important; overflow: visible !important; }
           .moat-icon-badge { width: 44px !important; height: 44px !important; margin: 0 0 12px 0 !important; }
           .moat-card-title { font-size: 1rem !important; color: #F0E0B2 !important; margin-bottom: 6px !important; text-align: left !important; }
           .moat-card-body { font-size: 13px !important; line-height: 1.5 !important; color: rgba(240,224,178,0.75) !important; text-align: left !important; }
+          #moat .moat-card-title { color: #F0E0B2 !important; opacity: 1 !important; }
+          #moat .moat-card-body { color: rgba(240,224,178,0.75) !important; opacity: 1 !important; }
+          #moat .moat-card { opacity: 1 !important; transform: none !important; max-width: 100% !important; }
           .moat-shield { margin: 24px 0 !important; justify-content: flex-start !important; max-height: 100px !important; overflow: hidden !important; background: transparent !important; border: none !important; box-shadow: none !important; padding: 0 !important; }
           .moat-shield-inner { width: 72px !important; background: transparent !important; border: none !important; box-shadow: none !important; }
           .moat-shield-inner img { width: 72px !important; height: auto !important; }
@@ -2551,7 +2555,7 @@ export default function AF() {
                 fontFamily: "'Monument Extended',sans-serif",
                 letterSpacing: "0.02em", lineHeight: 0.92, textTransform: "uppercase",
                 fontSize: "clamp(2.5rem, 5vw, 4.5rem)", wordBreak: "keep-all", overflowWrap: "normal",
-                color: "#F0E0B2", whiteSpace: "nowrap",
+                color: "#F0E0B2", whiteSpace: "normal",
                 animation: hV ? "heroLineUp 1.1s cubic-bezier(0.16,1,0.3,1) 0.5s both" : "none",
                 opacity: 0,
               }}>
@@ -2740,7 +2744,7 @@ export default function AF() {
 
           <div className="msec" style={{ maxWidth:900, marginLeft:"6vw", marginRight:"auto", padding:"120px 0 120px", display:"flex", flexDirection:"column", justifyContent:"center", position:"relative", zIndex:1 }}>
             <div style={rv(s1V, 0)}><span className="section-pill" style={lbl}><span className="pill-dot" style={dot} /> The Solution — Part 1</span></div>
-            <h2 style={{ ...rv(s1V, 0.12), ...mega("clamp(1.8rem,4vw,3rem)"), maxWidth:700 }}>FortressNames<br /><span style={{ color:"#DD1E21", whiteSpace:"nowrap" }}>Send-to-Name™</span></h2>
+            <h2 style={{ ...rv(s1V, 0.12), ...mega("clamp(1.8rem,4vw,3rem)"), maxWidth:700 }}>FortressNames<br /><span style={{ color:"#DD1E21", whiteSpace:"normal" }}>Send-to-Name™</span></h2>
             <p style={{ ...rv(s1V, 0.22), color:"#7A8599", fontSize:"1.05rem", marginBottom:40, maxWidth:460 }}>Human-readable names replace complex wallet addresses with patented privacy</p>
             <div style={{ marginBottom:44 }}><NameResolver /></div>
             <FeatureChips />
