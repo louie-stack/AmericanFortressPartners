@@ -2306,7 +2306,7 @@ export default function AF() {
           .hero-badges > span:last-child { flex: 0 0 auto !important; width: auto !important; max-width: 100% !important; padding: 8px 16px !important; }
 
           /* ── TRUSTED BY ────────────────────────────────────────────── */
-          #trusted, .trusted-sec { padding: 56px 24px 32px !important; }
+          #trusted, .trusted-sec { padding: 32px 24px 32px !important; }
           .trusted-sec .msec { text-align: center !important; }
           /* Beat inline <style> specificity */
           section#trusted.trusted-sec h2, #trusted .msec h2 { font-size: 1.35rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 10px !important; }
@@ -2903,7 +2903,7 @@ export default function AF() {
             .marquee-track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
             .marquee-track:hover { animation-play-state: paused; }
             @media (max-width: 768px) {
-              section#trusted { padding: 56px 24px 32px !important; min-height: unset !important; height: auto !important; }
+              section#trusted { padding: 32px 24px 32px !important; min-height: unset !important; height: auto !important; }
               section#trusted .msec.trusted-sec { padding-top: 0 !important; padding-bottom: 0 !important; }
               section#trusted h2 { font-size: 1.35rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 12px !important; }
               section#trusted h2 span { font-size: 1.35rem !important; }
