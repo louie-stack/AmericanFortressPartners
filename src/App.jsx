@@ -2323,25 +2323,29 @@ export default function AF() {
           .hero-overlay-top { height: 100px !important; background: linear-gradient(180deg, rgba(4,11,24,0.8) 0%, transparent 100%) !important; }
           .hero-content { padding: 90px 20px 44px !important; display: flex !important; flex-direction: column !important; align-items: flex-start !important; text-align: left !important; }
           .hero-partner-label { font-size: 10px !important; letter-spacing: 3px !important; margin-bottom: 12px !important; }
-          .mhero { font-size: 3rem !important; line-height: 0.95 !important; word-break: normal !important; overflow-wrap: normal !important; text-align: left !important; padding: 0 !important; margin: 0 0 20px 0 !important; width: 100% !important; }
+          .mhero { font-size: 3rem !important; line-height: 0.95 !important; word-break: normal !important; overflow-wrap: normal !important; white-space: normal !important; text-align: left !important; padding: 0 !important; margin: 0 0 20px 0 !important; width: 100% !important; }
           .hero-title-line { width: 40px !important; height: 3px !important; margin: 0 0 16px 0 !important; display: block !important; }
           .hero-subtitle { font-size: 1.1rem !important; line-height: 1.2 !important; margin-bottom: 8px !important; text-align: left !important; }
           .hero-desc { font-size: 15px !important; line-height: 1.6 !important; color: rgba(240,224,178,0.75) !important; text-align: left !important; max-width: 100% !important; margin: 0 0 28px 0 !important; }
           .hero-ctas { flex-direction: column !important; align-items: flex-start !important; width: 100% !important; gap: 10px !important; margin-bottom: 24px !important; }
           .hero-ctas a { width: 100% !important; height: 52px !important; display: flex !important; align-items: center !important; justify-content: center !important; }
           .hero-badges { display: flex !important; flex-direction: row !important; flex-wrap: wrap !important; justify-content: flex-start !important; gap: 6px !important; padding: 0 !important; margin-top: 0 !important; }
-          .hero-badges > span { display: inline-flex !important; width: auto !important; flex-basis: auto !important; flex-shrink: 0 !important; padding: 5px 10px !important; font-size: 8px !important; letter-spacing: 0.5px !important; white-space: nowrap !important; }
+          .hero-badges > span { display: inline-flex !important; width: auto !important; flex-basis: auto !important; flex-shrink: 0 !important; padding: 8px 14px !important; font-size: 11px !important; letter-spacing: 0.5px !important; white-space: nowrap !important; }
 
           /* ── TRUSTED BY ────────────────────────────────────────────── */
           #trusted, .trusted-sec { padding: 48px 20px !important; }
           .trusted-sec .msec { text-align: center !important; }
-          .trusted-sec h2 { font-size: 2.2rem !important; line-height: 1.0 !important; text-align: center !important; margin-bottom: 10px !important; }
-          .trusted-sec h2 span { font-size: 2.2rem !important; }
+          /* Beat inline <style> specificity (section#trusted h2 = same, but ours is last via !important + higher specificity) */
+          section#trusted.trusted-sec h2, section#trusted h2.trusted-h2, #trusted .msec h2 { font-size: 1.7rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 10px !important; }
+          .trusted-sec h2 { font-size: 1.7rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 10px !important; }
+          .trusted-sec h2 span { font-size: 1.7rem !important; }
           .trusted-sec > div.msec > p { font-size: 14px !important; text-align: center !important; margin-bottom: 20px !important; color: rgba(240,224,178,0.65) !important; }
           .trusted-sec > div[style] { margin: 0 !important; padding: 0 0 20px !important; }
-          .marquee-logo { height: 22px !important; }
+          .marquee-logo { height: 36px !important; }
+          .marquee-track { animation-duration: 8s !important; }
 
           /* ── EXPOSED ───────────────────────────────────────────────── */
+          #exposed span[style*="pulseG"] { display: none !important; }
           #exposed { padding: 48px 20px !important; }
           #exposed .msec h2 { font-size: 2rem !important; line-height: 1.05 !important; text-align: left !important; margin-bottom: 20px !important; }
           #exposed .msec h2 span { font-size: 2rem !important; }
@@ -2359,7 +2363,7 @@ export default function AF() {
           #exposed .mgrid2 > div p { font-size: 14px !important; line-height: 1.55 !important; color: rgba(240,224,178,0.75) !important; text-align: left !important; }
 
           /* ── FORTRESSNAMES ─────────────────────────────────────────── */
-          #fortressnames { padding: 48px 20px !important; }
+          #fortressnames { padding: 72px 20px 48px !important; }
           #fortressnames .msec h2 { font-size: 2rem !important; line-height: 1.05 !important; text-align: left !important; }
           #fortressnames .msec > p { font-size: 15px !important; margin-bottom: 24px !important; }
           #fortressnames .liberty-bg { opacity: 0.04 !important; }
@@ -2400,8 +2404,8 @@ export default function AF() {
           /* ── COMPETITIVE LANDSCAPE ─────────────────────────────────── */
           #landscape { padding: 48px 20px !important; height: auto !important; min-height: unset !important; }
           #landscape .msec { text-align: left !important; height: auto !important; }
-          #landscape h2 { font-size: 2rem !important; line-height: 1.05 !important; text-align: left !important; }
-          #landscape h2 span { font-size: 1.6rem !important; display: block !important; }
+          #landscape h2 { font-size: 2rem !important; line-height: 1.05 !important; text-align: left !important; white-space: normal !important; }
+          #landscape h2 span { font-size: 1.1rem !important; display: block !important; white-space: normal !important; word-break: break-word !important; }
           .scatter-layout { display: flex !important; flex-direction: column !important; gap: 20px !important; }
           .scatter-wrapper { width: 100% !important; overflow: hidden !important; aspect-ratio: 1 / 1 !important; }
           .scatter-wrapper svg { width: 100% !important; height: 100% !important; display: block !important; }
@@ -2413,11 +2417,10 @@ export default function AF() {
 
           /* ── FEATURE COMPARISON ────────────────────────────────────── */
           #comparison { padding: 0 !important; height: auto !important; min-height: unset !important; }
-          .cmp-shake { transform: none !important; }
-          .cmp-wrap { padding: 48px 20px !important; width: 100% !important; box-sizing: border-box !important; }
-          .cmp-wrap h2 { font-size: 2rem !important; line-height: 1.05 !important; text-align: left !important; font-weight: 800 !important; margin-bottom: 24px !important; color: #182145 !important; }
-          .cmp-wrap h2 br { display: none !important; }
-          .cmp-wrap h2 span { font-size: 1.8rem !important; display: block !important; color: #DD1E21 !important; }
+          .cmp-shake { transform: none !important; margin: 0 !important; }
+          .cmp-wrap { padding: 48px 20px !important; width: 100% !important; box-sizing: border-box !important; margin: 0 !important; }
+          .cmp-wrap h2 { font-size: 1.8rem !important; line-height: 1.1 !important; text-align: left !important; font-weight: 800 !important; margin-bottom: 24px !important; color: #182145 !important; }
+          .cmp-wrap h2 span { font-size: 1.4rem !important; display: block !important; color: #DD1E21 !important; }
           .cmp-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; width: 100% !important; }
           .cmp-table { min-width: 580px !important; }
           .cmp-table th { font-size: 8px !important; min-width: 64px !important; padding: 10px 6px !important; white-space: normal !important; }
@@ -2431,30 +2434,32 @@ export default function AF() {
 
           /* ── REVENUE SHARE ─────────────────────────────────────────── */
           #revenue { padding: 48px 20px !important; height: auto !important; min-height: unset !important; }
-          #revenue h2 { font-size: 2rem !important; line-height: 1.05 !important; text-align: left !important; }
+          #revenue h2 { font-size: 1.5rem !important; line-height: 1.1 !important; text-align: left !important; }
           .dot-pattern { display: none !important; }
           .rev-cards { display: flex !important; flex-direction: column !important; gap: 16px !important; margin-top: 24px !important; }
           .rev-cards > div { width: 100% !important; box-sizing: border-box !important; padding: 22px !important; border-radius: 16px !important; }
           .rev-cards h3 { font-size: 1.2rem !important; margin-bottom: 6px !important; }
           .rev-cards > div > p:first-of-type { font-size: 12px !important; color: rgba(240,224,178,0.5) !important; margin-bottom: 14px !important; }
 
-          /* ── FINANCIAL (mobile static render handles this) ─────────── */
+          /* ── FINANCIAL ─────────────────────────────────────────────── */
           .fin-inner { max-width: 100% !important; width: 100% !important; }
+          .fin-title { font-size: 2.2rem !important; white-space: normal !important; padding-right: 0 !important; text-align: center !important; }
+          #financial .fin-inner span[style*="rgba(24,33,69,0.3)"] { color: rgba(201,168,76,0.8) !important; border-color: rgba(201,168,76,0.3) !important; background: rgba(201,168,76,0.06) !important; }
 
           /* ── TECHNOLOGY MOAT ───────────────────────────────────────── */
           .moat-red-dot { display: none !important; }
           #moat > section { min-height: unset !important; height: auto !important; }
           #moat .msec { padding: 48px 20px !important; }
           .moat-rings, .moat-orbits, .moat-powerlines { display: none !important; }
-          #moat h2 { font-size: 2rem !important; line-height: 1.05 !important; text-align: left !important; margin-bottom: 24px !important; }
+          #moat h2 { font-size: 1.75rem !important; line-height: 1.05 !important; text-align: left !important; margin-bottom: 24px !important; }
           .moat-card-area { position: static !important; max-width: 100% !important; }
           .moat-row { display: flex !important; flex-direction: column !important; align-items: stretch !important; gap: 12px !important; }
           .moat-card { width: 100% !important; box-sizing: border-box !important; padding: 20px !important; border-radius: 16px !important; text-align: left !important; }
           .moat-icon-badge { width: 44px !important; height: 44px !important; margin: 0 0 12px 0 !important; }
           .moat-card-title { font-size: 1rem !important; color: #F0E0B2 !important; margin-bottom: 6px !important; text-align: left !important; }
           .moat-card-body { font-size: 13px !important; line-height: 1.5 !important; color: rgba(240,224,178,0.75) !important; text-align: left !important; }
-          .moat-shield { margin: 24px 0 !important; justify-content: flex-start !important; max-height: 100px !important; overflow: hidden !important; }
-          .moat-shield-inner { width: 72px !important; }
+          .moat-shield { margin: 24px 0 !important; justify-content: flex-start !important; max-height: 100px !important; overflow: hidden !important; background: transparent !important; border: none !important; box-shadow: none !important; padding: 0 !important; }
+          .moat-shield-inner { width: 72px !important; background: transparent !important; border: none !important; box-shadow: none !important; }
           .moat-shield-inner img { width: 72px !important; height: auto !important; }
 
           /* ── CTA / CONTACT ─────────────────────────────────────────── */
