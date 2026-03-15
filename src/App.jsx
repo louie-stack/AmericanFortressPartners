@@ -516,7 +516,7 @@ function ComparisonSection() {
             <p style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", color:"rgba(24,33,69,0.45)", fontSize:13 }}>
               The technology advantage is clear. Now let's talk about what it means for your bottom line. ?
             </p>
-            <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer" style={{ fontFamily:"'JetBrains Mono'", fontSize:"0.72rem", letterSpacing:"0.08em", textTransform:"uppercase", padding:"14px 28px", background:"#DD1E21", color:"#fff", border:"none", borderRadius:4, cursor:"pointer", textDecoration:"none", display:"inline-block" }}>
+            <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer" style={{ ...G_BTNR, textDecoration:"none", display:"inline-block" }}>
               <span style={{display:"inline-flex",alignItems:"center",gap:8}}>Book a Partnership Call <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
             </a>
           </div>
