@@ -2293,8 +2293,8 @@ export default function AF() {
           .hero-overlay-top { height: 100px !important; background: linear-gradient(180deg, rgba(4,11,24,0.8) 0%, transparent 100%) !important; }
           .hero-content { padding: 120px 20px 44px !important; display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; }
           .hero-partner-label { font-size: 10px !important; letter-spacing: 3px !important; margin-bottom: 4px !important; text-align: center !important; }
-          .mhero { font-size: clamp(2.6rem, 10vw, 3.4rem) !important; line-height: 0.95 !important; word-break: normal !important; overflow-wrap: normal !important; white-space: normal !important; text-align: center !important; padding: 0 !important; margin: 0 0 20px 0 !important; width: 100% !important; }
-          .hero-title-line { width: 40px !important; height: 3px !important; margin: 0 auto 16px !important; display: block !important; }
+          .mhero { font-size: clamp(2.6rem, 10vw, 3.4rem) !important; line-height: 0.95 !important; word-break: normal !important; overflow-wrap: normal !important; white-space: normal !important; text-align: center !important; padding: 0 !important; margin: 0 !important; width: 100% !important; }
+          .hero-title-line { width: 60px !important; height: 2px !important; margin: 16px auto 16px !important; display: block !important; }
           .hero-subtitle { font-size: 1.1rem !important; line-height: 1.2 !important; margin-bottom: 8px !important; text-align: center !important; }
           .hero-desc { font-size: 15px !important; line-height: 1.6 !important; color: rgba(240,224,178,0.75) !important; text-align: center !important; max-width: 100% !important; margin: 0 0 28px 0 !important; }
           .hero-ctas { flex-direction: column !important; align-items: center !important; width: 100% !important; gap: 10px !important; margin-bottom: 24px !important; }
@@ -2550,7 +2550,7 @@ export default function AF() {
             </div>
 
             {/* Line 2: AMERICAN FORTRESS — massive, dominant */}
-            <div style={{ overflow: "visible", marginBottom: "2rem" }}>
+            <div style={{ overflow: "visible", marginBottom: "1rem" }}>
               <h1 className="mhero" style={{
                 fontFamily: "'Monument Extended',sans-serif",
                 letterSpacing: "0.02em", lineHeight: 0.92, textTransform: "uppercase",
@@ -2564,7 +2564,7 @@ export default function AF() {
             </div>
 
             {/* Gold accent line — centered */}
-            <div style={{
+            <div className="hero-title-line" style={{
               width: 60, height: 2, margin: "0 auto 24px",
               background: "linear-gradient(90deg, transparent, #C9A84C, transparent)",
               animation: hV ? "heroFadeIn 0.8s ease 0.9s both" : "none", opacity: 0,
