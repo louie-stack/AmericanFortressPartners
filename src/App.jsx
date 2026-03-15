@@ -2252,11 +2252,11 @@ export default function AF() {
           img { max-width: 100% !important; height: auto !important; }
 
           /* Kill all scroll-triggered animations — everything visible immediately */
-          * { opacity: 1 !important; transform: none !important; transition: none !important; animation-delay: 0ms !important; }
+          *:not(.marquee-track) { opacity: 1 !important; transform: none !important; transition: none !important; animation-delay: 0ms !important; }
           /* Exceptions — keep essential animations alive */
           .stripe-wrap, .stripe-wrap img, .hero-section, .hero-cover { opacity: unset !important; }
-          /* Marquee — restore transform and animation so scrolling works */
-          .marquee-track { transform: unset !important; transition: unset !important; animation: marquee 20s linear infinite !important; }
+          /* Marquee — free to animate horizontally */
+          .marquee-track { animation: marquee 20s linear infinite !important; }
           .marquee-track:hover { animation-play-state: paused !important; }
 
           /* ── SECTION BASE ──────────────────────────────────────────── */
