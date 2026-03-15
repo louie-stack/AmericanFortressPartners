@@ -2457,7 +2457,7 @@ export default function AF() {
           /* ── FOOTER ────────────────────────────────────────────────── */
           footer { overflow: hidden !important; }
           .footer-grid-texture { display: none !important; }
-          .footer-cols { display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; padding: 72px 20px 0 !important; }
+          .footer-cols { display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; padding: 72px 20px 0 !important; gap: 0 !important; }
           .footer-left, .footer-right { width: 100% !important; text-align: center !important; margin: 0 !important; }
           .footer-left > div:first-child { display: flex !important; justify-content: center !important; max-width: 160px !important; margin: 0 auto 24px !important; }
           .footer-left > p { font-size: 14px !important; text-align: center !important; max-width: 320px !important; margin: 0 auto 12px !important; margin-top: 0 !important; color: rgba(240,224,178,0.65) !important; }
