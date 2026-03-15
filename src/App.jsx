@@ -2444,7 +2444,7 @@ export default function AF() {
 
           /* ── CTA / CONTACT ─────────────────────────────────────────── */
           #contact > section { min-height: unset !important; padding: 56px 20px 40px !important; }
-          #contact h2 { font-size: 2.2rem !important; line-height: 1.0 !important; text-align: center !important; margin-bottom: 8px !important; }
+          #contact h2 { font-size: 1.6rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 8px !important; }
           #contact .msec > p { font-size: 15px !important; text-align: center !important; margin-bottom: 24px !important; }
           .cta-cards { display: flex !important; flex-direction: column !important; gap: 16px !important; }
           .cta-cards > div { width: 100% !important; box-sizing: border-box !important; padding: 24px !important; border-radius: 16px !important; text-align: center !important; }
