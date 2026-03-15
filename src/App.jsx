@@ -2472,8 +2472,10 @@ export default function AF() {
           .footer-right a svg { display: block !important; flex-shrink: 0 !important; position: relative !important; top: 0 !important; }
           .footer-cta-wrap { justify-content: center !important; display: flex !important; }
           .footer-cta-wrap a { width: 100% !important; max-width: 280px !important; height: 48px !important; font-size: 13px !important; justify-content: center !important; margin: 10px auto 0 !important; display: flex !important; align-items: center !important; }
-          .footer-bottom { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 8px !important; padding: 0 20px 40px !important; text-align: center !important; }
-          .footer-bottom > p { font-size: 12px !important; color: rgba(240,224,178,0.4) !important; margin: 0 0 8px !important; }
+          footer > div:nth-last-child(2) { margin-top: 16px !important; }
+          .footer-bottom { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 2px !important; padding: 8px 20px 20px !important; text-align: center !important; }
+          .footer-bottom > p { font-size: 12px !important; color: rgba(240,224,178,0.4) !important; margin: 0 !important; }
+          .footer-policy { gap: 12px !important; justify-content: center !important; }
           .footer-policy { display: flex !important; flex-direction: row !important; justify-content: center !important; gap: 20px !important; }
           .footer-policy a { font-size: 12px !important; min-height: 44px !important; display: flex !important; align-items: center !important; }
           .footer-policy button { margin-top: 16px !important; width: 40px !important; height: 40px !important; }
