@@ -2398,7 +2398,7 @@ export default function AF() {
           .cmp-wrap h2 { font-size: 1.6rem !important; line-height: 1.1 !important; text-align: left !important; font-weight: 800 !important; margin-bottom: 24px !important; color: #182145 !important; font-family: 'Monument Extended',sans-serif !important; text-transform: uppercase !important; letter-spacing: 0.04em !important; }
           .cmp-wrap h2 span { font-size: 1.4rem !important; display: block !important; color: #DD1E21 !important; font-family: 'Monument Extended',sans-serif !important; }
           .cmp-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; width: 100% !important; position: relative !important; }
-          .cmp-table-wrap::after { content: '' !important; position: absolute !important; top: 0 !important; right: 0 !important; bottom: 0 !important; width: 56px !important; background: linear-gradient(to left, #F0E0B2 40%, transparent 100%) !important; pointer-events: none !important; z-index: 3 !important; }
+          .cmp-table-wrap::after { display: none !important; }
           .cmp-table { min-width: 580px !important; }
           .cmp-scroll-hint { display: flex !important; align-items: center !important; justify-content: flex-end !important; gap: 4px !important; font-size: 10px !important; color: rgba(24,33,69,0.5) !important; font-family: 'Space Grotesk',sans-serif !important; margin-top: 6px !important; letter-spacing: 0.05em !important; }
           .cmp-table th { font-size: 8px !important; min-width: 64px !important; padding: 10px 6px !important; white-space: normal !important; }
