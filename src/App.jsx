@@ -2307,9 +2307,9 @@ export default function AF() {
           #trusted, .trusted-sec { padding: 56px 24px 32px !important; }
           .trusted-sec .msec { text-align: center !important; }
           /* Beat inline <style> specificity */
-          section#trusted.trusted-sec h2, #trusted .msec h2 { font-size: 1.7rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 10px !important; }
-          .trusted-sec h2 { font-size: 1.7rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 10px !important; }
-          .trusted-sec h2 span { font-size: 1.7rem !important; }
+          section#trusted.trusted-sec h2, #trusted .msec h2 { font-size: 1.35rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 10px !important; }
+          .trusted-sec h2 { font-size: 1.35rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 10px !important; }
+          .trusted-sec h2 span { font-size: 1.35rem !important; }
           .trusted-sec > div.msec > p { font-size: 14px !important; text-align: center !important; margin-bottom: 20px !important; color: rgba(240,224,178,0.65) !important; }
           .trusted-sec > div[style] { margin: 0 !important; padding: 0 0 20px !important; }
           .marquee-logo { height: 36px !important; }
@@ -2898,8 +2898,8 @@ export default function AF() {
             @media (max-width: 768px) {
               section#trusted { padding: 56px 24px 32px !important; min-height: unset !important; height: auto !important; }
               section#trusted .msec.trusted-sec { padding-top: 0 !important; padding-bottom: 0 !important; }
-              section#trusted h2 { font-size: 1.7rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 12px !important; }
-              section#trusted h2 span { font-size: 1.7rem !important; }
+              section#trusted h2 { font-size: 1.35rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 12px !important; }
+              section#trusted h2 span { font-size: 1.35rem !important; }
               section#trusted p { font-size: 13px !important; text-align: center !important; margin-bottom: 20px !important; }
               section#trusted .marquee-wrapper { margin: 0 !important; padding: 0 !important; padding-bottom: 20px !important; }
               section#trusted .marquee-track { animation-duration: 8s !important; }
