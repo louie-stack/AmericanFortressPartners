@@ -2376,8 +2376,8 @@ export default function AF() {
           /* ── COMPETITIVE LANDSCAPE ─────────────────────────────────── */
           #landscape { padding: 80px 20px 48px !important; height: auto !important; min-height: unset !important; }
           #landscape .msec { text-align: left !important; height: auto !important; }
-          #landscape h2 { font-size: 2.2rem !important; line-height: 1.05 !important; text-align: left !important; white-space: normal !important; margin-bottom: 16px !important; }
-          #landscape h2 span { font-size: 1.8rem !important; display: block !important; white-space: normal !important; word-break: break-word !important; }
+          #landscape h2 { font-size: 1.6rem !important; line-height: 1.1 !important; text-align: left !important; white-space: normal !important; margin-bottom: 8px !important; }
+          #landscape h2 span { font-size: 1.4rem !important; display: block !important; white-space: normal !important; word-break: break-word !important; }
           .scatter-layout { display: flex !important; flex-direction: column !important; gap: 4px !important; }
           .scatter-wrapper { width: 100% !important; overflow: hidden !important; aspect-ratio: 1 / 1 !important; margin: 0 auto 4px auto !important; }
           .scatter-wrapper svg { width: 100% !important; height: 100% !important; display: block !important; }
