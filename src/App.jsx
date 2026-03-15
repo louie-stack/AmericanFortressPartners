@@ -2391,8 +2391,8 @@ export default function AF() {
           #comparison { padding: 0 !important; height: auto !important; min-height: unset !important; }
           .cmp-shake { transform: none !important; padding: 0 !important; margin: 0 !important; }
           .cmp-wrap { padding: 48px 20px !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; margin: 0 !important; }
-          .cmp-wrap h2 { font-size: 2rem !important; line-height: 1.1 !important; text-align: left !important; font-weight: 800 !important; margin-bottom: 24px !important; color: #182145 !important; font-family: 'Monument Extended',sans-serif !important; text-transform: uppercase !important; letter-spacing: 0.04em !important; }
-          .cmp-wrap h2 span { font-size: 1.8rem !important; display: block !important; color: #DD1E21 !important; font-family: 'Monument Extended',sans-serif !important; }
+          .cmp-wrap h2 { font-size: 1.6rem !important; line-height: 1.1 !important; text-align: left !important; font-weight: 800 !important; margin-bottom: 24px !important; color: #182145 !important; font-family: 'Monument Extended',sans-serif !important; text-transform: uppercase !important; letter-spacing: 0.04em !important; }
+          .cmp-wrap h2 span { font-size: 1.4rem !important; display: block !important; color: #DD1E21 !important; font-family: 'Monument Extended',sans-serif !important; }
           .cmp-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; width: 100% !important; }
           .cmp-table { min-width: 580px !important; }
           .cmp-table th { font-size: 8px !important; min-width: 64px !important; padding: 10px 6px !important; white-space: normal !important; }
