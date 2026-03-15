@@ -2318,8 +2318,8 @@ export default function AF() {
           /* ── EXPOSED ───────────────────────────────────────────────── */
           #exposed span[style*="pulseG"] { display: none !important; }
           #exposed { padding: 48px 20px !important; }
-          #exposed .msec h2 { font-size: 2rem !important; line-height: 1.05 !important; text-align: left !important; margin-bottom: 20px !important; }
-          #exposed .msec h2 span { font-size: 2rem !important; }
+          #exposed h2 { font-size: 1.6rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 20px !important; }
+          #exposed h2 span { font-size: 1.6rem !important; }
           .scanner-box { width: 100% !important; box-sizing: border-box !important; padding: 16px !important; border-radius: 14px !important; margin: 0 !important; min-height: unset !important; overflow: hidden !important; }
           .scanner-box > div:first-child svg:first-child ~ * { display: none !important; }
           .wallet-addr { font-size: 10px !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; }
