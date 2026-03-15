@@ -2851,8 +2851,8 @@ export default function AF() {
                   transition: "background 0.35s ease" }}/>
                 <h3 style={{ fontFamily: "'Monument Extended'", fontSize: "1.3rem", letterSpacing: "0.06em", marginBottom: 4,
                   color: hovRev === 0 ? "#F0E0B2" : "rgba(210,215,230,0.8)", transition: "color 0.35s ease" }}>FOR NAME SERVICES</h3>
-                <p style={{ fontFamily: "'JetBrains Mono'", fontSize: "0.7rem", color: "#3D4A63", marginBottom: 20, letterSpacing: "0.06em",
-                  opacity: hovRev === 0 ? 0.75 : 1, transition: "opacity 0.35s ease" }}>ENS, Space ID, SNS, etc.</p>
+                <p style={{ fontFamily: "'JetBrains Mono'", fontSize: "0.7rem", color: "rgba(180,190,220,0.7)", marginBottom: 20, letterSpacing: "0.06em",
+                  opacity: hovRev === 0 ? 1 : 0.85, transition: "opacity 0.35s ease" }}>ENS, Space ID, SNS, etc.</p>
                 {["Privacy upgrade for all existing sold domain names","20% commission on every privacy name upgrade","Additional 20% for affiliate/community promoters","Pricing adjustable per partner"].map((t, i) => (
                   <p key={i} style={{ ...bpt("#C9A84C"), color: hovRev === 0 ? "rgba(180,185,210,0.7)" : "rgba(160,170,195,0.5)", transition: "color 0.35s ease" }}><span style={bpdot("#C9A84C")} /><span>{t}</span></p>
                 ))}
