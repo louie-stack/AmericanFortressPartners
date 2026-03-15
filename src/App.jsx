@@ -2595,7 +2595,7 @@ export default function AF() {
 
             {/* Body text */}
             <p className="hero-desc" style={{
-              fontSize: "0.95rem", color: "rgba(122,133,153,0.9)", lineHeight: 1.75, maxWidth: 560, margin: "0 auto",
+              fontSize: "0.95rem", color: "rgba(210,218,235,0.92)", lineHeight: 1.75, maxWidth: 560, margin: "0 auto",
               marginBottom: "2.5rem",
               textShadow: "0 1px 10px rgba(0,0,0,0.4)",
               animation: hV ? "heroFadeIn 1s cubic-bezier(0.16,1,0.3,1) 1.2s both" : "none", opacity: 0,
