@@ -2367,8 +2367,8 @@ export default function AF() {
           .ghost-word { display: none !important; }
           .conf-revenue-card { width: 100% !important; box-sizing: border-box !important; padding: 24px !important; border-radius: 16px !important; margin-top: 24px !important; }
           #confidentiality .mgrid2 > div:last-child { margin-top: 0 !important; }
-          .conf-revenue-card h3 { font-size: 1.3rem !important; line-height: 1.2 !important; font-weight: 700 !important; margin-bottom: 16px !important; }
-          .conf-revenue-card h3 span { font-size: 1.3rem !important; font-weight: 700 !important; }
+          .conf-revenue-card h3 { font-size: 1rem !important; line-height: 1.2 !important; font-weight: 700 !important; margin-bottom: 16px !important; }
+          .conf-revenue-card h3 span { font-size: 1rem !important; font-weight: 700 !important; }
           .conf-revenue-card > div { display: flex !important; align-items: flex-start !important; gap: 10px !important; font-size: 14px !important; line-height: 1.5 !important; margin-bottom: 12px !important; }
           .conf-revenue-card > div span:first-child { width: 6px !important; height: 6px !important; min-width: 6px !important; border-radius: 50% !important; flex-shrink: 0 !important; margin-top: 6px !important; display: block !important; }
           .conf-revenue-card > div:nth-child(3) span:first-child { background: #DD1E21 !important; }
