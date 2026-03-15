@@ -2423,7 +2423,8 @@ export default function AF() {
 
           /* ── TECHNOLOGY MOAT ───────────────────────────────────────── */
           .moat-red-dot { display: none !important; }
-          #moat > section { min-height: unset !important; height: auto !important; }
+          #moat > section { min-height: unset !important; height: auto !important; overflow: visible !important; }
+          #moat { overflow: visible !important; }
           #moat .msec { padding: 64px 20px 40px !important; }
           .moat-rings, .moat-orbits, .moat-powerlines { display: none !important; }
           #moat h2 { font-size: 1.45rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 24px !important; }
@@ -2436,7 +2437,7 @@ export default function AF() {
           #moat .moat-card-title { color: #F0E0B2 !important; opacity: 1 !important; }
           #moat .moat-card-body { color: rgba(240,224,178,0.75) !important; opacity: 1 !important; }
           #moat .moat-card { opacity: 1 !important; transform: none !important; max-width: 100% !important; }
-          .moat-shield { margin: 24px 0 !important; justify-content: flex-start !important; max-height: 100px !important; overflow: hidden !important; background: transparent !important; border: none !important; box-shadow: none !important; padding: 0 !important; }
+          .moat-shield { margin: 24px 0 !important; justify-content: center !important; max-height: none !important; overflow: visible !important; background: transparent !important; border: none !important; box-shadow: none !important; padding: 8px 0 !important; }
           .moat-shield-inner { width: 72px !important; background: transparent !important; border: none !important; box-shadow: none !important; }
           .moat-shield-inner img { width: 72px !important; height: auto !important; }
 
