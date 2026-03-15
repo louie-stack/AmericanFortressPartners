@@ -804,38 +804,6 @@ function FinancialSection() {
   const CM6   = [1,4];  // commas at position 1 and 4 ? 1,000,000
   const CM5   = [3];     // 200,000
 
-  if (typeof window !== 'undefined' && window.innerWidth <= 768) {
-    return (
-      <section style={{ background: "#F0E0B2", padding: "40px 20px", position: "relative", overflow: "hidden" }}>
-        <div style={{ maxWidth: 480, margin: "0 auto", textAlign: "center" }}>
-          <div style={{ marginBottom: 20 }}>
-            <span className="section-pill" style={G_LBL}><span className="pill-dot" style={G_DOT}/> Revenue Projections</span>
-          </div>
-          <h2 style={{ fontFamily: "'Monument Extended',sans-serif", fontSize: "1.8rem", fontWeight: 800, letterSpacing: "0.04em", lineHeight: 1.1, textTransform: "uppercase", color: "#182145", marginBottom: 24 }}>
-            The <span style={{ color: "#DD1E21" }}>Financial</span> Opportunity
-          </h2>
-          <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, textTransform: "uppercase", letterSpacing: "2px", color: "#555", marginBottom: 8 }}>FortressNames Revenue</p>
-          <div style={{ fontFamily: "'Monument Extended',sans-serif", fontSize: "clamp(2.4rem, 9vw, 3.5rem)", fontWeight: 800, color: "#182145", whiteSpace: "nowrap", marginBottom: 4 }}>
-            $1,000,000<span style={{ fontSize: "0.3em", opacity: 0.4 }}>/mo</span>
-          </div>
-          <p style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: 13, color: "#555", marginBottom: 24 }}>100,000 names sold at $10/month</p>
-          <div style={{ margin: "0 auto 24px", display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19,12 12,19 5,12"/></svg>
-          </div>
-          <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, textTransform: "uppercase", letterSpacing: "2px", color: "#555", marginBottom: 8 }}>Your 20% Share — Recurring</p>
-          <div style={{ fontFamily: "'Monument Extended',sans-serif", fontSize: "clamp(2.4rem, 9vw, 3.5rem)", fontWeight: 800, color: "#DD1E21", whiteSpace: "nowrap", marginBottom: 4 }}>
-            $200,000<span style={{ fontSize: "0.3em", opacity: 0.4 }}>/mo</span>
-          </div>
-          <p style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: 13, color: "#555", marginBottom: 32 }}>Plus affiliate commissions on referrals</p>
-          <a href="https://calendly.com/jakub_zurawinski/intro-call" target="_blank" rel="noopener noreferrer"
-            style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, width: "100%", maxWidth: 300, height: 48, margin: "0 auto", background: "#DD1E21", color: "#FDFAF4", fontFamily: "'Space Grotesk',sans-serif", fontSize: 13, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", textDecoration: "none", borderRadius: 4 }}>
-            Discuss Revenue Opportunity
-          </a>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section ref={sectionRef} style={{
       background: "#F0E0B2", minHeight: "100vh",
@@ -1055,7 +1023,7 @@ const NR_MS    = 65;
 
 function NameResolver() {
   const [time, setTime]        = useState(0);
-  const [text, setText]        = useState("0xA7c4...3F9b");
+  const [text, setText]        = useState(NR_TGT);
   const startRef               = useRef(null);
   const rafRef                 = useRef(null);
   const lastPhaseRef           = useRef("hex");
@@ -1538,7 +1506,7 @@ function MoatSection({ mR, mV }) {
           <div className="moat-red-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: "#DD1E21",
             boxShadow: "0 0 10px rgba(221,30,33,0.5), 0 0 30px rgba(221,30,33,0.15)",
             margin: "0 auto 20px" }}/>
-          <div style={{ marginBottom: 16 }}><span className="section-pill" style={G_LBL}><span className="pill-dot" style={G_DOT}/> Why Partner With Us</span></div>
+          <div style={{ marginBottom: 0 }}><span className="section-pill" style={G_LBL}><span className="pill-dot" style={G_DOT}/> Why Partner With Us</span></div>
           <h2 style={{ ...G_MEGA("clamp(2rem,4.5vw,3.2rem)"), marginBottom: 64 }}>
             The Technology <br /><span style={{ color: "#daa545" }}>Moat</span>
           </h2>
@@ -2294,16 +2262,18 @@ export default function AF() {
           .msec { padding: 0 !important; max-width: 100% !important; width: 100% !important; box-sizing: border-box !important; }
 
           /* ── TYPOGRAPHY SCALE ──────────────────────────────────────── */
-          /* Base heading — left-aligned, commanding */
-          h2 { font-size: 2rem !important; line-height: 1.05 !important; text-align: left !important; margin-bottom: 16px !important; }
+          /* Base heading — font consistency, each section sets its own size */
+          h2 { line-height: 1.2 !important; text-align: left !important; margin-bottom: 16px !important; font-family: 'Monument Extended',sans-serif !important; text-transform: uppercase !important; letter-spacing: 0.04em !important; font-weight: 800 !important; }
           h2 span { font-size: inherit !important; line-height: inherit !important; }
           h3 { font-size: 1.1rem !important; line-height: 1.2 !important; }
           h4 { font-size: 1rem !important; line-height: 1.25 !important; }
           p { font-size: 15px !important; line-height: 1.6 !important; }
 
           /* ── SECTION PILL BADGES ───────────────────────────────────── */
-          .section-pill { display: inline-flex !important; align-items: center !important; gap: 6px !important; padding: 6px 14px !important; margin-bottom: 12px !important; }
+          .section-pill { display: inline-flex !important; align-items: center !important; gap: 8px !important; line-height: 1 !important; padding: 7px 14px !important; font-size: 10px !important; margin-bottom: 12px !important; }
           .pill-dot { display: none !important; }
+          #exposed .msec > div:first-child span span:first-child,
+          #confidentiality .msec .mgrid2 > div:first-child > div:first-child span span:first-child { width: 0 !important; height: 0 !important; display: none !important; }
 
           /* ── BRUSHSTROKE DIVIDERS ──────────────────────────────────── */
           .stripe-wrap { display: block !important; height: 56px !important; margin-top: -28px !important; margin-bottom: -28px !important; position: relative !important; z-index: 10 !important; overflow: visible !important; }
@@ -2323,7 +2293,7 @@ export default function AF() {
           .hero-overlay-top { height: 100px !important; background: linear-gradient(180deg, rgba(4,11,24,0.8) 0%, transparent 100%) !important; }
           .hero-content { padding: 90px 20px 44px !important; display: flex !important; flex-direction: column !important; align-items: flex-start !important; text-align: left !important; }
           .hero-partner-label { font-size: 10px !important; letter-spacing: 3px !important; margin-bottom: 12px !important; }
-          .mhero { font-size: 3rem !important; line-height: 0.95 !important; word-break: normal !important; overflow-wrap: normal !important; white-space: normal !important; text-align: left !important; padding: 0 !important; margin: 0 0 20px 0 !important; width: 100% !important; }
+          .mhero { font-size: 3.4rem !important; line-height: 0.95 !important; word-break: normal !important; overflow-wrap: normal !important; white-space: normal !important; text-align: left !important; padding: 0 !important; margin: 0 0 20px 0 !important; width: 100% !important; }
           .hero-title-line { width: 40px !important; height: 3px !important; margin: 0 0 16px 0 !important; display: block !important; }
           .hero-subtitle { font-size: 1.1rem !important; line-height: 1.2 !important; margin-bottom: 8px !important; text-align: left !important; }
           .hero-desc { font-size: 15px !important; line-height: 1.6 !important; color: rgba(240,224,178,0.75) !important; text-align: left !important; max-width: 100% !important; margin: 0 0 28px 0 !important; }
@@ -2333,10 +2303,10 @@ export default function AF() {
           .hero-badges > span { display: inline-flex !important; width: auto !important; flex-basis: auto !important; flex-shrink: 0 !important; padding: 8px 14px !important; font-size: 11px !important; letter-spacing: 0.5px !important; white-space: nowrap !important; }
 
           /* ── TRUSTED BY ────────────────────────────────────────────── */
-          #trusted, .trusted-sec { padding: 48px 20px !important; }
+          #trusted, .trusted-sec { padding: 56px 24px 32px !important; }
           .trusted-sec .msec { text-align: center !important; }
-          /* Beat inline <style> specificity (section#trusted h2 = same, but ours is last via !important + higher specificity) */
-          section#trusted.trusted-sec h2, section#trusted h2.trusted-h2, #trusted .msec h2 { font-size: 1.7rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 10px !important; }
+          /* Beat inline <style> specificity */
+          section#trusted.trusted-sec h2, #trusted .msec h2 { font-size: 1.7rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 10px !important; }
           .trusted-sec h2 { font-size: 1.7rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 10px !important; }
           .trusted-sec h2 span { font-size: 1.7rem !important; }
           .trusted-sec > div.msec > p { font-size: 14px !important; text-align: center !important; margin-bottom: 20px !important; color: rgba(240,224,178,0.65) !important; }
@@ -2364,7 +2334,7 @@ export default function AF() {
 
           /* ── FORTRESSNAMES ─────────────────────────────────────────── */
           #fortressnames { padding: 72px 20px 48px !important; }
-          #fortressnames .msec h2 { font-size: 2rem !important; line-height: 1.05 !important; text-align: left !important; }
+          #fortressnames .msec h2 { font-size: 2.2rem !important; line-height: 1.05 !important; text-align: left !important; }
           #fortressnames .msec > p { font-size: 15px !important; margin-bottom: 24px !important; }
           #fortressnames .liberty-bg { opacity: 0.04 !important; }
           .nr-transfer-suffix { display: none !important; }
@@ -2383,8 +2353,8 @@ export default function AF() {
           /* ── CONFIDENTIALITY ───────────────────────────────────────── */
           #confidentiality { padding: 48px 20px !important; }
           #confidentiality .mgrid2 { display: flex !important; flex-direction: column !important; gap: 0 !important; }
-          #confidentiality h2 { font-size: 2rem !important; line-height: 1.05 !important; text-align: left !important; font-weight: 800 !important; margin-bottom: 12px !important; }
-          #confidentiality h2 span { font-size: 2rem !important; font-weight: 800 !important; color: #DD1E21 !important; display: block !important; }
+          #confidentiality h2 { font-size: 2.2rem !important; line-height: 1.05 !important; text-align: left !important; font-weight: 800 !important; margin-bottom: 12px !important; }
+          #confidentiality h2 span { font-size: 2.2rem !important; font-weight: 800 !important; color: #DD1E21 !important; display: block !important; }
           #confidentiality .msec > p { font-size: 15px !important; color: rgba(24,33,69,0.8) !important; margin-bottom: 20px !important; }
           .conf-bullets { margin-bottom: 24px !important; }
           .conf-bullet-item { display: flex !important; align-items: flex-start !important; gap: 12px !important; margin-bottom: 16px !important; }
@@ -2402,25 +2372,25 @@ export default function AF() {
           .conf-revenue-card a { width: 100% !important; max-width: 100% !important; height: 48px !important; font-size: 12px !important; margin-top: 20px !important; display: flex !important; align-items: center !important; justify-content: center !important; }
 
           /* ── COMPETITIVE LANDSCAPE ─────────────────────────────────── */
-          #landscape { padding: 48px 20px !important; height: auto !important; min-height: unset !important; }
+          #landscape { padding: 80px 20px 48px !important; height: auto !important; min-height: unset !important; }
           #landscape .msec { text-align: left !important; height: auto !important; }
-          #landscape h2 { font-size: 2rem !important; line-height: 1.05 !important; text-align: left !important; white-space: normal !important; }
-          #landscape h2 span { font-size: 1.1rem !important; display: block !important; white-space: normal !important; word-break: break-word !important; }
-          .scatter-layout { display: flex !important; flex-direction: column !important; gap: 20px !important; }
-          .scatter-wrapper { width: 100% !important; overflow: hidden !important; aspect-ratio: 1 / 1 !important; }
+          #landscape h2 { font-size: 2.2rem !important; line-height: 1.05 !important; text-align: left !important; white-space: normal !important; margin-bottom: 16px !important; }
+          #landscape h2 span { font-size: 1.8rem !important; display: block !important; white-space: normal !important; word-break: break-word !important; }
+          .scatter-layout { display: flex !important; flex-direction: column !important; gap: 4px !important; }
+          .scatter-wrapper { width: 100% !important; overflow: hidden !important; aspect-ratio: 1 / 1 !important; margin: 0 auto 4px auto !important; }
           .scatter-wrapper svg { width: 100% !important; height: 100% !important; display: block !important; }
-          .scatter-insight { width: 100% !important; box-sizing: border-box !important; padding: 20px !important; border-radius: 16px !important; }
+          .scatter-insight { width: 100% !important; box-sizing: border-box !important; padding: 20px !important; border-radius: 16px !important; margin-top: 4px !important; }
           .scatter-insight h4 { font-size: 1rem !important; margin-bottom: 10px !important; }
           .scatter-insight p { font-size: 14px !important; line-height: 1.55 !important; color: rgba(240,224,178,0.85) !important; }
           .scatter-insight p span[style*="DD1E21"] { color: #FF4444 !important; }
-          #landscape .msec > p:last-child { font-size: 13px !important; color: rgba(240,224,178,0.55) !important; text-align: left !important; margin-top: 16px !important; padding: 0 !important; }
+          #landscape .msec > p:last-child { font-size: 13px !important; color: rgba(240,224,178,0.55) !important; text-align: left !important; margin-top: 16px !important; margin-bottom: 16px !important; padding: 0 !important; }
 
           /* ── FEATURE COMPARISON ────────────────────────────────────── */
           #comparison { padding: 0 !important; height: auto !important; min-height: unset !important; }
-          .cmp-shake { transform: none !important; margin: 0 !important; }
-          .cmp-wrap { padding: 48px 20px !important; width: 100% !important; box-sizing: border-box !important; margin: 0 !important; }
-          .cmp-wrap h2 { font-size: 1.8rem !important; line-height: 1.1 !important; text-align: left !important; font-weight: 800 !important; margin-bottom: 24px !important; color: #182145 !important; }
-          .cmp-wrap h2 span { font-size: 1.4rem !important; display: block !important; color: #DD1E21 !important; }
+          .cmp-shake { transform: none !important; padding: 0 !important; margin: 0 !important; }
+          .cmp-wrap { padding: 48px 20px !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; margin: 0 !important; }
+          .cmp-wrap h2 { font-size: 2rem !important; line-height: 1.1 !important; text-align: left !important; font-weight: 800 !important; margin-bottom: 24px !important; color: #182145 !important; font-family: 'Monument Extended',sans-serif !important; text-transform: uppercase !important; letter-spacing: 0.04em !important; }
+          .cmp-wrap h2 span { font-size: 1.8rem !important; display: block !important; color: #DD1E21 !important; font-family: 'Monument Extended',sans-serif !important; }
           .cmp-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; width: 100% !important; }
           .cmp-table { min-width: 580px !important; }
           .cmp-table th { font-size: 8px !important; min-width: 64px !important; padding: 10px 6px !important; white-space: normal !important; }
@@ -2433,8 +2403,8 @@ export default function AF() {
           .cmp-cta a { width: 100% !important; height: 48px !important; display: flex !important; align-items: center !important; justify-content: center !important; }
 
           /* ── REVENUE SHARE ─────────────────────────────────────────── */
-          #revenue { padding: 48px 20px !important; height: auto !important; min-height: unset !important; }
-          #revenue h2 { font-size: 1.5rem !important; line-height: 1.1 !important; text-align: left !important; }
+          #revenue { padding: 64px 20px 48px !important; height: auto !important; min-height: unset !important; }
+          #revenue h2 { font-size: 1.75rem !important; line-height: 1.1 !important; text-align: left !important; }
           .dot-pattern { display: none !important; }
           .rev-cards { display: flex !important; flex-direction: column !important; gap: 16px !important; margin-top: 24px !important; }
           .rev-cards > div { width: 100% !important; box-sizing: border-box !important; padding: 22px !important; border-radius: 16px !important; }
@@ -2442,16 +2412,17 @@ export default function AF() {
           .rev-cards > div > p:first-of-type { font-size: 12px !important; color: rgba(240,224,178,0.5) !important; margin-bottom: 14px !important; }
 
           /* ── FINANCIAL ─────────────────────────────────────────────── */
+          #financial > section { min-height: auto !important; padding: 48px 20px !important; }
           .fin-inner { max-width: 100% !important; width: 100% !important; }
-          .fin-title { font-size: 2.2rem !important; white-space: normal !important; padding-right: 0 !important; text-align: center !important; }
-          #financial .fin-inner span[style*="rgba(24,33,69,0.3)"] { color: rgba(201,168,76,0.8) !important; border-color: rgba(201,168,76,0.3) !important; background: rgba(201,168,76,0.06) !important; }
+          .fin-title { white-space: normal !important; padding-right: 0 !important; font-size: 2.2rem !important; }
+          .fin-slot-wrap { font-size: clamp(2.2rem, 9vw, 3.5rem) !important; }
 
           /* ── TECHNOLOGY MOAT ───────────────────────────────────────── */
           .moat-red-dot { display: none !important; }
           #moat > section { min-height: unset !important; height: auto !important; }
-          #moat .msec { padding: 48px 20px !important; }
+          #moat .msec { padding: 64px 20px 40px !important; }
           .moat-rings, .moat-orbits, .moat-powerlines { display: none !important; }
-          #moat h2 { font-size: 1.75rem !important; line-height: 1.05 !important; text-align: left !important; margin-bottom: 24px !important; }
+          #moat h2 { font-size: 2rem !important; line-height: 1.05 !important; text-align: left !important; margin-bottom: 24px !important; }
           .moat-card-area { position: static !important; max-width: 100% !important; }
           .moat-row { display: flex !important; flex-direction: column !important; align-items: stretch !important; gap: 12px !important; }
           .moat-card { width: 100% !important; box-sizing: border-box !important; padding: 20px !important; border-radius: 16px !important; text-align: left !important; }
@@ -2463,7 +2434,7 @@ export default function AF() {
           .moat-shield-inner img { width: 72px !important; height: auto !important; }
 
           /* ── CTA / CONTACT ─────────────────────────────────────────── */
-          #contact > section { min-height: unset !important; padding: 48px 20px !important; }
+          #contact > section { min-height: unset !important; padding: 56px 20px 40px !important; }
           #contact h2 { font-size: 2.2rem !important; line-height: 1.0 !important; text-align: center !important; margin-bottom: 8px !important; }
           #contact .msec > p { font-size: 15px !important; text-align: center !important; margin-bottom: 24px !important; }
           .cta-cards { display: flex !important; flex-direction: column !important; gap: 16px !important; }
@@ -2477,19 +2448,19 @@ export default function AF() {
           /* ── FOOTER ────────────────────────────────────────────────── */
           footer { overflow: hidden !important; }
           .footer-grid-texture { display: none !important; }
-          .footer-cols { display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; padding: 40px 20px 0 !important; }
+          .footer-cols { display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; padding: 72px 20px 0 !important; }
           .footer-left, .footer-right { width: 100% !important; text-align: center !important; margin: 0 !important; }
-          .footer-left > div:first-child { display: flex !important; justify-content: center !important; max-width: 160px !important; margin: 0 auto 16px !important; }
-          .footer-left > p { font-size: 14px !important; text-align: center !important; max-width: 320px !important; margin: 0 auto 20px !important; color: rgba(240,224,178,0.65) !important; }
-          .footer-badges-row { display: flex !important; flex-wrap: wrap !important; justify-content: center !important; gap: 8px !important; margin-bottom: 24px !important; }
+          .footer-left > div:first-child { display: flex !important; justify-content: center !important; max-width: 160px !important; margin: 0 auto 4px !important; }
+          .footer-left > p { font-size: 14px !important; text-align: center !important; max-width: 320px !important; margin: 0 auto 12px !important; margin-top: 0 !important; color: rgba(240,224,178,0.65) !important; }
+          .footer-badges-row { display: flex !important; flex-wrap: wrap !important; justify-content: center !important; gap: 8px !important; margin-bottom: 14px !important; }
           .footer-badges-row span { padding: 4px 10px !important; font-size: 9px !important; }
-          .footer-social-row { display: flex !important; flex-direction: row !important; justify-content: center !important; margin-bottom: 24px !important; }
+          .footer-social-row { display: flex !important; flex-direction: row !important; justify-content: center !important; margin-bottom: 10px !important; }
           .footer-social-row a { min-width: 44px !important; min-height: 44px !important; display: flex !important; align-items: center !important; justify-content: center !important; padding: 10px !important; }
           .footer-social-row a svg { width: 24px !important; height: 24px !important; }
-          .footer-right > div:first-child { margin-bottom: 16px !important; }
-          .footer-right a { justify-content: center !important; font-size: 14px !important; min-height: 44px !important; display: flex !important; align-items: center !important; gap: 8px !important; margin-bottom: 8px !important; }
+          .footer-right > div:first-child { margin-bottom: 8px !important; }
+          .footer-right a { justify-content: center !important; font-size: 14px !important; min-height: 44px !important; display: flex !important; align-items: center !important; gap: 8px !important; margin-bottom: 2px !important; }
           .footer-cta-wrap { justify-content: center !important; display: flex !important; }
-          .footer-cta-wrap a { width: 100% !important; max-width: 280px !important; height: 48px !important; font-size: 13px !important; justify-content: center !important; margin: 20px auto 0 !important; display: flex !important; align-items: center !important; }
+          .footer-cta-wrap a { width: 100% !important; max-width: 280px !important; height: 48px !important; font-size: 13px !important; justify-content: center !important; margin: 10px auto 0 !important; display: flex !important; align-items: center !important; }
           .footer-bottom { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 8px !important; padding: 0 20px 40px !important; text-align: center !important; }
           .footer-bottom > p { font-size: 12px !important; color: rgba(240,224,178,0.4) !important; margin: 0 0 8px !important; }
           .footer-policy { display: flex !important; flex-direction: row !important; justify-content: center !important; gap: 20px !important; }
@@ -2500,6 +2471,8 @@ export default function AF() {
           .liberty-bg { opacity: 0.08 !important; }
           footer a, nav a, nav button { min-height: 44px !important; }
           .dot-pattern { display: none !important; }
+          .s1chips > div { min-height: 44px !important; }
+          .hero-badges > span { min-height: 32px !important; }
         }
         @media (max-width: 480px) {
           /* chips stay 2-col per FORTRESSNAMES-MOBILE spec */
@@ -2787,7 +2760,7 @@ export default function AF() {
             <div className="mgrid2" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 72, alignItems: "start" }}>
               {/* Left column: badge + title + subtitle + bullets */}
               <div>
-                <div style={{ ...rv(s2V, 0), marginBottom: 20 }}><span style={{ ...lbl, color:"#182145", border:"2px solid rgba(24,33,69,0.3)", background:"transparent" }}><span style={{ ...dot, background:"#DD1E21" }} /> The Solution - Part 2</span></div>
+                <div style={{ ...rv(s2V, 0), marginBottom: 0 }}><span style={{ ...lbl, color:"#182145", border:"2px solid rgba(24,33,69,0.3)", background:"transparent" }}><span style={{ ...dot, background:"#DD1E21" }} /> The Solution - Part 2</span></div>
                 <h2 style={{ ...rv(s2V, 0.12), ...mega("clamp(2rem,4.5vw,3.2rem)"), marginBottom: 16, color: "#182145" }}>Confidentiality <span style={{ color: "#DD1E21" }}>Machine</span></h2>
                 <p style={{ ...rv(s2V, 0.22), color: "#555555", fontSize: "16px", marginBottom: 32 }}>On-chain transaction privacy layer — compliance-ready, not a mixer</p>
                 <div className="conf-bullets">
@@ -2917,11 +2890,13 @@ export default function AF() {
             .marquee-track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
             .marquee-track:hover { animation-play-state: paused; }
             @media (max-width: 768px) {
-              section#trusted { padding: 32px 24px !important; min-height: unset !important; height: auto !important; }
+              section#trusted { padding: 56px 24px 32px !important; min-height: unset !important; height: auto !important; }
               section#trusted .msec.trusted-sec { padding-top: 0 !important; padding-bottom: 0 !important; }
-              section#trusted h2 { font-size: 1.4rem !important; line-height: 1.2 !important; text-align: center !important; margin-bottom: 12px !important; }
+              section#trusted h2 { font-size: 1.7rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 12px !important; }
+              section#trusted h2 span { font-size: 1.7rem !important; }
               section#trusted p { font-size: 13px !important; text-align: center !important; margin-bottom: 20px !important; }
               section#trusted .marquee-wrapper { margin: 0 !important; padding: 0 !important; padding-bottom: 20px !important; }
+              section#trusted .marquee-track { animation-duration: 8s !important; }
             }
           `}</style>
           <div className="marquee-wrapper" style={{ position: "relative", width: "100%", overflow: "hidden", paddingBottom: 64 }}>
