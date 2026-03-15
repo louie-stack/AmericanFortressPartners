@@ -2357,8 +2357,8 @@ export default function AF() {
           #confidentiality { padding: 0 !important; overflow: hidden !important; }
           #confidentiality .msec { padding: 48px 20px !important; max-width: 100% !important; box-sizing: border-box !important; }
           #confidentiality .mgrid2 { display: flex !important; flex-direction: column !important; gap: 0 !important; }
-          #confidentiality h2 { font-size: clamp(1.5rem, 5.8vw, 2.2rem) !important; line-height: 1.05 !important; text-align: left !important; font-weight: 800 !important; margin-bottom: 12px !important; white-space: normal !important; overflow-wrap: break-word !important; word-break: break-word !important; }
-          #confidentiality h2 span { font-size: clamp(1.5rem, 5.8vw, 2.2rem) !important; font-weight: 800 !important; color: #DD1E21 !important; display: block !important; }
+          #confidentiality h2 { font-size: clamp(1.7rem, 6vw, 2.2rem) !important; line-height: 1.05 !important; text-align: left !important; font-weight: 800 !important; margin-bottom: 12px !important; white-space: normal !important; overflow-wrap: break-word !important; word-break: break-word !important; }
+          #confidentiality h2 span { font-size: clamp(1.7rem, 6vw, 2.2rem) !important; font-weight: 800 !important; color: #DD1E21 !important; display: block !important; }
           #confidentiality .msec > p { font-size: 15px !important; color: rgba(24,33,69,0.8) !important; margin-bottom: 20px !important; }
           .conf-bullets { margin-bottom: 24px !important; }
           .conf-bullet-item { display: flex !important; align-items: flex-start !important; gap: 12px !important; margin-bottom: 16px !important; }
