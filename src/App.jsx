@@ -2425,7 +2425,7 @@ export default function AF() {
           #moat > section { min-height: unset !important; height: auto !important; }
           #moat .msec { padding: 64px 20px 40px !important; }
           .moat-rings, .moat-orbits, .moat-powerlines { display: none !important; }
-          #moat h2 { font-size: 2rem !important; line-height: 1.05 !important; text-align: left !important; margin-bottom: 24px !important; }
+          #moat h2 { font-size: 1.45rem !important; line-height: 1.1 !important; text-align: center !important; margin-bottom: 24px !important; }
           .moat-card-area { position: static !important; max-width: 100% !important; }
           .moat-row { display: flex !important; flex-direction: column !important; align-items: stretch !important; gap: 12px !important; }
           .moat-card { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; padding: 20px !important; border-radius: 16px !important; text-align: left !important; overflow: visible !important; }
