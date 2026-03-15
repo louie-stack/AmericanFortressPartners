@@ -2408,7 +2408,7 @@ export default function AF() {
 
           /* ── REVENUE SHARE ─────────────────────────────────────────── */
           #revenue { padding: 64px 20px 48px !important; height: auto !important; min-height: unset !important; }
-          #revenue h2 { font-size: 1.5rem !important; line-height: 1.1 !important; text-align: left !important; }
+          #revenue h2 { font-size: 1.15rem !important; line-height: 1.15 !important; text-align: left !important; word-break: normal !important; overflow-wrap: normal !important; white-space: normal !important; letter-spacing: 0.02em !important; }
           .dot-pattern { display: none !important; }
           .rev-cards { display: flex !important; flex-direction: column !important; gap: 16px !important; margin-top: 24px !important; }
           .rev-cards > div { width: 100% !important; box-sizing: border-box !important; padding: 22px !important; border-radius: 16px !important; }
