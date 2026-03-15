@@ -2468,7 +2468,8 @@ export default function AF() {
           .footer-social-row a svg { width: 24px !important; height: 24px !important; }
           .footer-right::before { content: '' !important; display: block !important; width: 60px !important; height: 2px !important; background: linear-gradient(90deg, transparent, #DD1E21, transparent) !important; margin: 20px auto 20px !important; }
           .footer-right > div:first-child { margin-bottom: 8px !important; }
-          .footer-right a { justify-content: center !important; font-size: 14px !important; min-height: 44px !important; display: flex !important; align-items: center !important; gap: 8px !important; margin-bottom: 2px !important; }
+          .footer-right a { justify-content: center !important; font-size: 14px !important; min-height: unset !important; height: auto !important; display: flex !important; align-items: center !important; gap: 6px !important; margin-bottom: 6px !important; padding: 4px 0 !important; line-height: 1 !important; }
+          .footer-right a svg { display: block !important; flex-shrink: 0 !important; position: relative !important; top: 0 !important; }
           .footer-cta-wrap { justify-content: center !important; display: flex !important; }
           .footer-cta-wrap a { width: 100% !important; max-width: 280px !important; height: 48px !important; font-size: 13px !important; justify-content: center !important; margin: 10px auto 0 !important; display: flex !important; align-items: center !important; }
           .footer-bottom { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 8px !important; padding: 0 20px 40px !important; text-align: center !important; }
