@@ -2466,7 +2466,7 @@ export default function AF() {
           .footer-social-row { display: flex !important; flex-direction: row !important; justify-content: center !important; margin-bottom: 0 !important; }
           .footer-social-row a { min-width: 44px !important; min-height: 44px !important; display: flex !important; align-items: center !important; justify-content: center !important; padding: 10px !important; }
           .footer-social-row a svg { width: 24px !important; height: 24px !important; }
-          .footer-right::before { content: '' !important; display: block !important; width: 60px !important; height: 2px !important; background: linear-gradient(90deg, transparent, #DD1E21, transparent) !important; margin: 8px auto 20px !important; }
+          .footer-right::before { content: '' !important; display: block !important; width: 60px !important; height: 2px !important; background: linear-gradient(90deg, transparent, #DD1E21, transparent) !important; margin: 20px auto 20px !important; }
           .footer-right > div:first-child { margin-bottom: 8px !important; }
           .footer-right a { justify-content: center !important; font-size: 14px !important; min-height: 44px !important; display: flex !important; align-items: center !important; gap: 8px !important; margin-bottom: 2px !important; }
           .footer-cta-wrap { justify-content: center !important; display: flex !important; }
