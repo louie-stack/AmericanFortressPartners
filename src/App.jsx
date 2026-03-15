@@ -2254,8 +2254,10 @@ export default function AF() {
           /* Kill all scroll-triggered animations — everything visible immediately */
           * { opacity: 1 !important; transform: none !important; transition: none !important; animation-delay: 0ms !important; }
           /* Exceptions — keep essential animations alive */
-          .stripe-wrap, .stripe-wrap img, .hero-section, .hero-cover,
-          .marquee-track, @keyframes { opacity: unset !important; }
+          .stripe-wrap, .stripe-wrap img, .hero-section, .hero-cover { opacity: unset !important; }
+          /* Marquee — restore transform and animation so scrolling works */
+          .marquee-track { transform: unset !important; transition: unset !important; animation: marquee 20s linear infinite !important; }
+          .marquee-track:hover { animation-play-state: paused !important; }
 
           /* ── SECTION BASE ──────────────────────────────────────────── */
           section { padding: 48px 20px !important; max-width: 100% !important; width: 100% !important; box-sizing: border-box !important; scroll-margin-top: 56px !important; }
@@ -2313,7 +2315,6 @@ export default function AF() {
           .trusted-sec > div.msec > p { font-size: 14px !important; text-align: center !important; margin-bottom: 20px !important; color: rgba(240,224,178,0.65) !important; }
           .trusted-sec > div[style] { margin: 0 !important; padding: 0 0 20px !important; }
           .marquee-logo { height: 36px !important; }
-          .marquee-track { animation-duration: 8s !important; }
 
           /* ── EXPOSED ───────────────────────────────────────────────── */
           #exposed span[style*="pulseG"] { display: none !important; }
@@ -2904,7 +2905,7 @@ export default function AF() {
               section#trusted h2 span { font-size: 1.35rem !important; }
               section#trusted p { font-size: 13px !important; text-align: center !important; margin-bottom: 20px !important; }
               section#trusted .marquee-wrapper { margin: 0 !important; padding: 0 !important; padding-bottom: 20px !important; }
-              section#trusted .marquee-track { animation-duration: 8s !important; }
+              section#trusted .marquee-track { animation: marquee 20s linear infinite !important; }
             }
           `}</style>
           <div className="marquee-wrapper" style={{ position: "relative", width: "100%", overflow: "hidden", paddingBottom: 64 }}>
