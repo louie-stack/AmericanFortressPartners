@@ -337,7 +337,7 @@ function CustomCursor() {
   }, []);
 
   return (
-    <canvas ref={canvasRef} style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 99999 }} />
+    <canvas ref={canvasRef} style={{ position: "fixed", inset: 0, width: "100vw", height: "100vh", pointerEvents: "none", zIndex: 99999 }} />
   );
 }
 // -- ComparisonSection ----------------------------------------------------
