@@ -264,6 +264,10 @@ function CustomCursor() {
 
   useEffect(() => {
     document.body.style.cursor = "none";
+    const styleTag = document.createElement("style");
+    styleTag.id = "cursor-none-override";
+    styleTag.textContent = "*, *::before, *::after { cursor: none !important; }";
+    document.head.appendChild(styleTag);
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
 
@@ -330,6 +334,8 @@ function CustomCursor() {
 
     return () => {
       document.body.style.cursor = "";
+      const tag = document.getElementById("cursor-none-override");
+      if (tag) tag.remove();
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("resize", resize);
       cancelAnimationFrame(raf.current);
