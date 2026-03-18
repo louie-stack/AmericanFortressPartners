@@ -254,91 +254,92 @@ function useCountUp(target, triggered, duration = 1800) {
 }
 
 function CustomCursor() {
-  const dot = useRef(null);
-  const ring = useRef(null);
+  const canvasRef = useRef(null);
   const mouse = useRef({ x: -100, y: -100 });
-  const ringPos = useRef({ x: -100, y: -100 });
+  const prevMouse = useRef({ x: -100, y: -100 });
+  const particles = useRef([]);
+  const lastSpawn = useRef(0);
+  const toggle = useRef(false);
   const raf = useRef(null);
-  const [trails, setTrails] = useState([]);
-  const lastTrail = useRef(0);
-  const [clicking, setClicking] = useState(false);
-  const [hovering, setHovering] = useState(false);
 
   useEffect(() => {
     document.body.style.cursor = "none";
-    const onMove = (e) => {
-      mouse.current = { x: e.clientX, y: e.clientY };
-      if (dot.current) {
-        dot.current.style.left = e.clientX + "px";
-        dot.current.style.top = e.clientY + "px";
-      }
-      // Trail particles every 20ms
-      const now = Date.now();
-      if (now - lastTrail.current > 20) {
-        lastTrail.current = now;
-        const id = now;
-        setTrails(t => [...t.slice(-24), { id, x: e.clientX, y: e.clientY }]);
-        setTimeout(() => setTrails(t => t.filter(p => p.id !== id)), 800);
-      }
-      // Hover detection
-      const el = document.elementFromPoint(e.clientX, e.clientY);
-      if (el) {
-        const cs = window.getComputedStyle(el);
-        const isPointer = cs.cursor === "pointer" || el.tagName === "BUTTON" || el.tagName === "A" || el.onclick;
-        setHovering(!!isPointer);
-      }
-    };
-    const onDown = () => setClicking(true);
-    const onUp = () => setClicking(false);
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("mousedown", onDown);
-    window.addEventListener("mouseup", onUp);
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
 
-    // Spring ring animation
-    const animate = () => {
-      const damping = 0.15;
-      ringPos.current.x += (mouse.current.x - ringPos.current.x) * damping;
-      ringPos.current.y += (mouse.current.y - ringPos.current.y) * damping;
-      if (ring.current) {
-        ring.current.style.left = ringPos.current.x + "px";
-        ring.current.style.top = ringPos.current.y + "px";
-      }
-      raf.current = requestAnimationFrame(animate);
+    const resize = () => {
+      canvas.width = window.innerWidth * 2;
+      canvas.height = window.innerHeight * 2;
+      ctx.setTransform(2, 0, 0, 2, 0, 0);
     };
-    raf.current = requestAnimationFrame(animate);
+    resize();
+    window.addEventListener("resize", resize);
+
+    const onMove = (e) => {
+      prevMouse.current = { ...mouse.current };
+      mouse.current = { x: e.clientX, y: e.clientY };
+    };
+    window.addEventListener("mousemove", onMove);
+
+    const draw = () => {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      const now = Date.now();
+      const mx = mouse.current.x, my = mouse.current.y;
+      const px = prevMouse.current.x, py = prevMouse.current.y;
+
+      if (mx > 0 && my > 0 && px > 0 && now - lastSpawn.current > 20) {
+        const dx = mx - px, dy = my - py;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist > 2) {
+          lastSpawn.current = now;
+          toggle.current = !toggle.current;
+          const nx = dx / dist, ny = dy / dist;
+          particles.current.push({ x: mx - nx * 8, y: my - ny * 8, born: now, isRed: toggle.current });
+        }
+      }
+
+      const pts = particles.current;
+      for (let i = pts.length - 1; i >= 0; i--) {
+        const p = pts[i];
+        const age = now - p.born;
+        if (age > 800) { pts.splice(i, 1); continue; }
+        const t = age / 800;
+        const alpha = 0.9 * (1 - t);
+        const scale = 1 - t * 0.5;
+        const s = 2.2 * scale;
+        const r = p.isRed ? 255 : 50, g = p.isRed ? 25 : 120, b = p.isRed ? 30 : 255;
+
+        ctx.beginPath(); ctx.arc(p.x, p.y, s + 3, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${r},${g},${b},${alpha * 0.2})`; ctx.fill();
+
+        ctx.beginPath(); ctx.arc(p.x, p.y, s, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`; ctx.fill();
+
+        ctx.beginPath(); ctx.arc(p.x, p.y, s * 0.35, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${Math.min(r+60,255)},${Math.min(g+60,255)},${Math.min(b+40,255)},${alpha * 0.7})`; ctx.fill();
+      }
+
+      if (mx > 0 && my > 0) {
+        ctx.beginPath(); ctx.arc(mx, my, 3, 0, Math.PI * 2);
+        ctx.fillStyle = "#ffffff"; ctx.fill();
+      }
+
+      raf.current = requestAnimationFrame(draw);
+    };
+    raf.current = requestAnimationFrame(draw);
 
     return () => {
       document.body.style.cursor = "";
       window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mousedown", onDown);
-      window.removeEventListener("mouseup", onUp);
+      window.removeEventListener("resize", resize);
       cancelAnimationFrame(raf.current);
     };
   }, []);
 
-  const dotSize = clicking ? 8 : 6;
-  const dotShadow = clicking
-    ? "0 0 16px rgba(221,30,33,0.9), 0 0 30px rgba(221,30,33,0.5)"
-    : "0 0 8px rgba(221,30,33,0.8), 0 0 16px rgba(221,30,33,0.4)";
-  const ringSize = clicking ? 16 : hovering ? 48 : 32;
-  const ringBorder = clicking ? "2px solid #C9A84C" : hovering ? "1.5px solid rgba(221,30,33,1)" : "1px solid rgba(221,30,33,0.5)";
-  const ringBg = clicking ? "rgba(221,30,33,0.08)" : "transparent";
-  const ringShadow = hovering ? "0 0 12px rgba(221,30,33,0.3)" : clicking ? "inset 0 0 8px rgba(221,30,33,0.2)" : "none";
-
   return (
-    <>
-      {/* Trail particles */}
-      {trails.map(p => (
-        <div key={p.id} style={{ position: "fixed", left: p.x, top: p.y, width: 6, height: 6, borderRadius: "50%", background: "rgba(80,140,255,1)", boxShadow: "0 0 8px rgba(80,140,255,0.9), 0 0 16px rgba(80,140,255,0.5)", transform: "translate(-50%,-50%)", pointerEvents: "none", zIndex: 99998, animation: "trailFade 800ms ease-out forwards" }} />
-      ))}
-      {/* Dot */}
-      <div ref={dot} style={{ position: "fixed", width: dotSize, height: dotSize, borderRadius: "50%", background: "#DD1E21", boxShadow: dotShadow, transform: "translate(-50%,-50%)", pointerEvents: "none", zIndex: 99999, transition: "width 0.2s cubic-bezier(0.16,1,0.3,1), height 0.2s cubic-bezier(0.16,1,0.3,1), box-shadow 0.2s ease" }} />
-      {/* Ring */}
-      <div ref={ring} style={{ position: "fixed", width: ringSize, height: ringSize, borderRadius: "50%", border: ringBorder, background: ringBg, boxShadow: ringShadow, transform: "translate(-50%,-50%)", pointerEvents: "none", zIndex: 99998, transition: "width 0.4s cubic-bezier(0.16,1,0.3,1), height 0.4s cubic-bezier(0.16,1,0.3,1), border 0.3s ease, box-shadow 0.3s ease, background 0.3s ease" }} />
-    </>
+    <canvas ref={canvasRef} style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 99999 }} />
   );
 }
-
 // -- ComparisonSection ----------------------------------------------------
 const SLAM_INTERVAL   = 350;
 const IMPACT_DURATION = 150;
@@ -2505,7 +2506,7 @@ export default function AF() {
         @keyframes glitchB{0%{border-color:rgba(201,168,76,0.1);box-shadow:none}30%{border-color:#DD1E21;box-shadow:0 0 40px rgba(221,30,33,0.25),inset 0 0 20px rgba(221,30,33,0.05)}100%{border-color:rgba(221,30,33,0.2);box-shadow:0 0 20px rgba(221,30,33,0.08)}}
         @keyframes glitchLoop{0%,100%{transform:translate(0);opacity:1;color:#DD1E21;text-shadow:0 0 20px rgba(221,30,33,0.25)}10%{transform:translate(-3px,2px);clip-path:inset(10% 0 80% 0)}20%{transform:translate(3px,-1px);clip-path:inset(60% 0 20% 0);color:#fff;text-shadow:-2px 0 rgba(221,30,33,0.5),2px 0 rgba(42,30,196,0.4)}30%{transform:translate(0);clip-path:none}50%{transform:translate(-2px,1px);opacity:0.85}70%{transform:translate(2px,-1px);color:#DD1E21}85%{transform:translate(-1px,0);opacity:1}}
         @keyframes glitchBLoop{0%,100%{border-color:rgba(221,30,33,0.2);box-shadow:0 0 10px rgba(221,30,33,0.06)}40%{border-color:#DD1E21;box-shadow:0 0 30px rgba(221,30,33,0.2),inset 0 0 10px rgba(221,30,33,0.04)}70%{border-color:rgba(221,30,33,0.35);box-shadow:0 0 15px rgba(221,30,33,0.1)}}
-        @keyframes trailFade{0%{opacity:0.7;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(0)}}
+        
         @keyframes partnerGlow{0%,100%{text-shadow:0 0 8px rgba(240,224,178,0)}50%{text-shadow:0 0 20px rgba(240,224,178,0.5),0 0 40px rgba(240,224,178,0.2)}}
         @keyframes partnerWarmGlow{0%,100%{text-shadow:0 0 8px rgba(240,224,178,0)}50%{text-shadow:0 0 20px rgba(240,224,178,0.5),0 0 40px rgba(240,224,178,0.2)}}
         .noise::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px}
