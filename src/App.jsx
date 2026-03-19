@@ -2818,17 +2818,6 @@ export default function AF() {
 
         <Stripe brush="/images/brush-beige.svg" flip />
 
-        {/* COMPETITIVE LANDSCAPE */}
-        <section id="landscape" style={{ ...full, background: "#182145" }}>
-          <Stars count={20} color="rgba(201,168,76,0.1)" />
-          <CompetitiveLandscapeInner />
-        </section>
-
-        <Stripe brush="/images/brush-navy.svg" />
-
-        {/* COMPARISON TABLE */}
-        <div id="comparison"><ComparisonSection /></div>
-
         <Stripe brush="/images/brush-beige.svg" flip />
 
         {/* REVENUE SHARE */}
@@ -2896,6 +2885,17 @@ export default function AF() {
         <div id="financial"><FinancialSection /></div>
 
         <Stripe brush="/images/brush-beige.svg" flip />
+
+        {/* COMPETITIVE LANDSCAPE */}
+        <section id="landscape" style={{ ...full, background: "#182145" }}>
+          <Stars count={20} color="rgba(201,168,76,0.1)" />
+          <CompetitiveLandscapeInner />
+        </section>
+
+        <Stripe brush="/images/brush-navy.svg" />
+
+        {/* COMPARISON TABLE */}
+        <div id="comparison"><ComparisonSection /></div>
 
         {/* MOAT */}
         <div id="moat"><MoatSection mR={mR} mV={mV} /></div>
