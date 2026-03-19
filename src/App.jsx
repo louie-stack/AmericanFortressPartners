@@ -108,14 +108,14 @@ const LibertyImage = ({ style = {} }) => (
   }} />
 );
 
-const Stripe = ({ brush = "/images/brush-navy.svg", flip }) => (
+const Stripe = ({ brush = "/images/brush-navy.svg", flip, height = 80 }) => (
   <div className="stripe-wrap" style={{
     position: "relative",
     zIndex: 10,
     width: "100%",
-    height: 80,
-    marginTop: -40,
-    marginBottom: -40,
+    height: height,
+    marginTop: -(height / 2),
+    marginBottom: -(height / 2),
     lineHeight: 0,
     fontSize: 0,
     pointerEvents: "none",
@@ -2884,7 +2884,7 @@ export default function AF() {
         {/* FINANCIAL */}
         <div id="financial"><FinancialSection /></div>
 
-        <Stripe brush="/images/brush-navy.svg" />
+        <Stripe brush="/images/brush-navy.svg" height={120} />
 
         {/* COMPETITIVE LANDSCAPE */}
         <section id="landscape" style={{ ...full, background: "#182145" }}>
