@@ -2897,6 +2897,8 @@ export default function AF() {
         {/* COMPARISON TABLE */}
         <div id="comparison"><ComparisonSection /></div>
 
+        <Stripe brush="/images/brush-beige.svg" flip />
+
         {/* MOAT */}
         <div id="moat"><MoatSection mR={mR} mV={mV} /></div>
 
