@@ -1541,7 +1541,7 @@ function MoatSection({ mR, mV }) {
           </div>
 
           {/* Center shield */}
-          <div className="moat-shield" style={{ display: "flex", justifyContent: "center", padding: "36px 0", position: "relative", zIndex: 3 }}>
+          <div className="moat-shield" style={{ display: "flex", justifyContent: "center", padding: "0", marginTop: "-20px", position: "relative", zIndex: 3 }}>
             <div className="moat-shield-inner"><AFShieldSVG/></div>
           </div>
 
