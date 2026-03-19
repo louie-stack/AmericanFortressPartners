@@ -2884,7 +2884,7 @@ export default function AF() {
         {/* FINANCIAL */}
         <div id="financial"><FinancialSection /></div>
 
-        <Stripe brush="/images/brush-beige.svg" flip />
+        <Stripe brush="/images/brush-navy.svg" />
 
         {/* COMPETITIVE LANDSCAPE */}
         <section id="landscape" style={{ ...full, background: "#182145" }}>
