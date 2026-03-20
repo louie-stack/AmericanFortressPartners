@@ -1908,8 +1908,8 @@ function SiteNav() {
   const NAV_LINKS = [
     { label: "Problem",    href: "#exposed" },
     { label: "Solution",   href: "#fortressnames" },
-    { label: "Comparison", href: "#comparison" },
     { label: "Revenue",    href: "#revenue" },
+    { label: "Comparison", href: "#comparison" },
     { label: "Technology", href: "#moat" },
   ];
 
