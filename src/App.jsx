@@ -510,7 +510,7 @@ function ComparisonSection() {
             })}
           </div>
           </div>{/* end cmp-table-wrap */}
-          <div className="cmp-scroll-hint">swipe to see more →</div>
+          <div className="cmp-scroll-hint" style={{color:"rgba(24,33,69,0.6)"}}>swipe to see more →</div>
 
           {/* Footer */}
           <div className="cmp-footer" style={{
@@ -520,8 +520,8 @@ function ComparisonSection() {
             transform: footerVis ? "translateY(0)" : "translateY(8px)",
             transition:"opacity 0.6s ease, transform 0.6s ease",
           }}>
-            <p style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", color:"rgba(24,33,69,0.45)", fontSize:13 }}>
-              The technology advantage is clear. Now let's talk about what it means for your bottom line. ?
+            <p style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", color:"rgba(24,33,69,0.7)", fontSize:13 }}>
+              The technology advantage is clear. Now let's talk about what it means for your bottom line.
             </p>
             <a href="https://calendly.com/jakub_zurawinski/intro-call?month=2026-03" target="_blank" rel="noopener noreferrer" style={{ ...G_BTNR, textDecoration:"none", display:"inline-block" }}>
               <span style={{display:"inline-flex",alignItems:"center",gap:8}}>Book a Partnership Call <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
@@ -2174,7 +2174,7 @@ export default function AF() {
 
   return (
     <>
-      <CustomCursor />
+      {/* <CustomCursor /> */}
       <style>{`
         @font-face {
           font-family: 'Monument Extended';
@@ -2636,7 +2636,7 @@ export default function AF() {
             <div className="hero-badges" style={{
               display: "flex", gap: 8, justifyContent: "center", flexWrap: "wrap",
             }}>
-              {["11 Patented Inventions","Zero Integration Costs","Multi-Chain from Day 1","SDK Available Q2 2026","Quantum-Proof Technology"].map((b, i) => (
+              {["11 Patents Filed","Zero Integration Costs","Multi-Chain from Day 1","SDK Available Q2 2026","Quantum-Proof Technology"].map((b, i) => (
                 <span key={i} style={{
                   fontFamily: "'Space Grotesk',sans-serif", fontSize: "10px", fontWeight: 500, padding: "6px 14px", borderRadius: 12,
                   border: "1px solid rgba(100,140,200,0.2)", color: "rgba(240,224,178,0.85)", background: "#1a2a4a",
